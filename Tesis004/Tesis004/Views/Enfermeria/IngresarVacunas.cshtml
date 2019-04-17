@@ -1,0 +1,111 @@
+﻿
+@{
+	ViewBag.Title = "IngresarVacunas";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<h2>Ingresar Vacunas</h2>
+
+
+<br />
+<div class="row">
+	<div class="col-xl-6">
+		<p>
+			<label>Nombre Completo</label>
+			<br />
+			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>Cedula</label>
+			<br />
+			<input style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>Nº Historia Clinica</label>
+			<br />
+			<input style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" disabled />
+	</div>
+</div>
+
+<h3>Información de vacuna</h3>
+<div class="row">
+	<div class="col-xl-3">
+		<p>
+			<label>Vacunas</label>
+			<br />
+			<select name="Vacunas" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+				<option> ----- </option>
+			</select>
+		</p>
+	</div>
+	<div class="col-xl-5">
+		<p>
+			<label>Descripción</label>
+			<br />
+			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label>Edad</label>
+			<br />
+			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label>Fecha</label>
+			<br />
+			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label>Lote</label>
+			<br />
+			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
+		</p>
+	</div>
+	<div class="col-xl-4">
+		<p>
+			<label>Responsable</label>
+			<br />
+			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
+		</p>
+	</div>
+	<div class="col-xl-1">
+		<p>
+			<br />
+			<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+				<i class="fas fa-plus-square"></i>
+			</button>
+		</p>
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th scope="col">Vacunas</th>
+			<th scope="col">Descriocción</th>
+			<th scope="col">Edad</th>
+			<th scope="col">Fecha</th>
+			<th scope="col">Lote</th>
+			<th scope="col">Responsable</th>
+		</tr>
+		<tr>
+			<td scope="col">AAAAAAA</td>
+			<td scope="col">AAAAAAA</td>
+			<td scope="col">X AÑOS X MESES</td>
+			<td scope="col">01/01/99</td>
+			<td scope="col">AAA111</td>
+			<td scope="col">AAAA AAAA</td>
+		</tr>
+	</table>
+</div>
+</div>
