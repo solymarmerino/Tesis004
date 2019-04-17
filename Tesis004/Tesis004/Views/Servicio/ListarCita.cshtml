@@ -1,0 +1,79 @@
+﻿
+@{
+	ViewBag.Title = "ListarCita";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<h2 style="text-align:center">Citas Médicas</h2>
+<br />
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th scope="col">Paciente</th>
+			<th scope="col">C&eacute;dula</th>
+			<th scope="col">Historia Clinica</th>
+			<th scope="col">M&eacute;dico</th>
+			<th scope="col">Pagado</th>
+			<th scope="col">Enfermer&iacute;a</th>
+			<th scope="col">Atenci&oacute;n</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+		</tr>
+
+		{
+		<tr>
+			<td scope="col">nombreCompletoPaciente</td>
+			<td scope="col">cedulaPaciente</td>
+			<td scope="col">000001</td>
+			<td scope="col">nombrePersonal</td>
+			<td scope="col">Pagado</td>
+			<td scope="col">Enfermeria</td>
+			<td scope="col">Atencion</td>
+			<td scope="col">
+				<form action="#" method="post">
+					<input name="Pagado" value="SI" hidden />
+					<button name="IdCita" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+						<i class="far fa-money-bill-alt"></i>
+					</button>
+				</form>
+			</td>
+			<td scope="col">
+				<form action="#" method="post">
+					<input name="" value="" hidden />
+					<button name="IdCita" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+						<i class="fas fa-user-md"></i>
+					</button>
+				</form>
+			</td>
+			<td scope="col">
+				<form action="#" method="post">
+					<input name="Facturado" value="SI" hidden />
+					<button name="IdCita" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+						<i class="fas fa-file-invoice-dollar"></i>
+					</button>
+				</form>
+			</td>
+			<td scope="col">
+				<form action="#" method="post">
+					<button name="IdCita" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				</form>
+			</td>
+		</tr>
+		}
+	</table>
+</div>
+<br />
+<div class="text-center">
+	<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="location='../Paciente/BuscarPaciente'">NUEVA</button>
+</div>
+
+
+
+
+

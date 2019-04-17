@@ -127,7 +127,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EnfermeriaController.cs" />
+    <Compile Include="Controllers\HistoriaClinicaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IngresoController.cs" />
+    <Compile Include="Controllers\PacienteController.cs" />
+    <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,6 +175,18 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Enfermeria\IngresarSignosVitales.cshtml" />
     <Content Include="Views\Enfermeria\IngresarVacunas.cshtml" />
+    <Content Include="Views\HistoriaClinica\HistoriaClinica.cshtml" />
+    <Content Include="Views\Ingreso\Ingreso.cshtml" />
+    <Content Include="Views\Ingreso\Presentacion.cshtml" />
+    <Content Include="Views\Ingreso\Salir.cshtml" />
+    <Content Include="Views\Paciente\IngresarPaciente.cshtml" />
+    <Content Include="Views\Paciente\BuscarPaciente.cshtml" />
+    <Content Include="Views\Paciente\ActualizarPaciente.cshtml" />
+    <Content Include="Views\Servicio\IngresarServicio.cshtml" />
+    <Content Include="Views\Servicio\ListarCita.cshtml" />
+    <Content Include="Views\Servicio\ListarLaboratorio.cshtml" />
+    <Content Include="Views\Servicio\ModificarLaboratorio.cshtml" />
+    <Content Include="Views\Servicio\MostrarResultadoExamenMedico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
