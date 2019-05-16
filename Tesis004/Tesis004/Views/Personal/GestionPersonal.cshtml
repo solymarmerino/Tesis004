@@ -1,0 +1,109 @@
+﻿
+@{
+	ViewBag.Title = "GestionPersonal";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Link para uso de iconos-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<h2>Gestion Personal</h2>
+
+<div class="container">
+	<br>
+	<!-- Nav tabs  creacion de encavezado de navegacion-->
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link active" data-toggle="tab" href="#nuevopersonal">Nuevo Personal</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#listapersonal">Lista Personal</a>
+		</li>
+	</ul>
+
+	<!--Creacion de secciones para la gestion del personal-->
+	<div class="tab-content">
+		<div id="nuevopersonal" class="container tab-pane active">
+			<br />
+			<div class="card bg-info text-white">
+				<div class="card-header">
+					NUEVO PACIENTE
+				</div>
+			</div>
+			<br />
+			<form id="IngresarPersonal" action="IngresarPersonal" method="post">
+				<div class="row">
+					<div class="col-md-6">
+						<p>
+							<label>Nombre Completo</label>
+							<br />
+							<input name="Nombre" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombre : string.Empty)" />
+						</p>
+					</div>
+					<div class="col-md-2">
+						<p>
+							<label>Cedula</label>
+							<br />
+							<input id="Cedula" name="Cedula" class="col-md required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.cedula : string.Empty)" />
+							<label id="salida" name="ValidacionCedula" />
+						</p>
+					</div>
+					<div class="col-md-2">
+						<p>
+							<label>Telefono</label>
+							<br />
+							<input name="Telefono" class="col-md required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.telefono : string.Empty)" />
+						</p>
+					</div>
+					<div class="col-md-2">
+						<p>
+							<label>Cargo</label>
+							<br />
+							<select name="Cargo" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+								<option> ----- </option>
+							</select>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					
+					<div class="col-xl-3">
+						<p>
+							<label>Especialidad</label>
+							<br />
+							<input name="especialidad" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+						</p>
+					</div>
+					<div class="col-xl-3">
+						<p>
+							<label>Usuario</label>
+							<br />
+							<input name="usuario" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.usuario : string.Empty)" />
+						</p>
+					</div>
+					<div class="col-xl-3">
+						<p>
+							<label>Contraseña</label>
+							<br />
+							<input type="password" name="contrasena" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.contrasena : string.Empty)" />
+						</p>
+					</div>
+					<div class="col-xl-3">
+						<p>
+							<label>Confirmar contraseña</label>
+							<br />
+							<input type="password" name="contrasena" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+						</p>
+					</div>
+				</div>
+				<br />
+				<div class="text-center">
+					<button name="btn" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormulario()">Ingresar Personal</button>
+				</div>
+			</form>
+			<br />
+		</div>
+	</div>
+</div>
+
+

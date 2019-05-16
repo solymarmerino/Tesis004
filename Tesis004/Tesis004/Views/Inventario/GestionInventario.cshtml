@@ -1,0 +1,79 @@
+﻿
+@{
+	ViewBag.Title = "GestionInventario";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Link para uso de iconos-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<div class="card bg-info text-white">
+	<div class="card-header">
+		<h2>Gestion Inventario</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<br />
+		<label>Producto</label>
+		<br />
+		<input class="col-md" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+	</div>
+	<div class="col-md-2">
+		<br />
+		<label>Tipo</label>
+		<br />
+		<select class="col-md" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+			<option>Medicamento</option>
+			<option>Limpieza</option>
+		</select>
+	</div>
+	<div class="col-md-1">
+		<br />
+		<label>Cantidad</label>
+		<br />
+		<input class="col-md" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+	</div>
+	<div class="col-md-3">
+		<br />
+		<label>Lote</label>
+		<br />
+		<input class="col-md" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+	</div>
+	<div class="col-md-3">
+		<br />
+		<label>Fecha Vencimiento</label>
+		<br />
+		<input class="col-md" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+	</div>
+</div>
+<br />
+<div class="text-center">
+	<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit">GUARDAR</button>
+	<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit">BUSCAR</button>
+</div>
+<br />
+<div>
+	<table class="table">
+		<tr>
+			<th scope="col">Producto</th>
+			<th scope="col">Tipo</th>
+			<th scope="col">Cantidad</th>
+			<th scope="col">Lote</th>
+			<th scope="col">Fecha Vencimiento</th>
+			<th scope="col"></th>
+		</tr>
+		<tr>
+			<td scope="col">PARASETAMOL</td>
+			<td scope="col">Medicamento</td>
+			<td scope="col">20</td>
+			<td scope="col">ABC12345</td>
+			<td scope="col">01/01/2020</td>
+			<td scope="col">
+				<button name="Identificador" title="Eliminar egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+					<i class="fas fa-trash-alt"></i>
+				</button>
+			</td>
+	</table>
+</div>
