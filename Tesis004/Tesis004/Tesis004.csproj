@@ -230,6 +230,8 @@
     <Content Include="Views\Contabilidad\GestionContabilidad.cshtml" />
     <Content Include="Views\Inventario\GestionInventario.cshtml" />
     <Content Include="Views\Personal\GestionPersonal.cshtml" />
+    <Content Include="Views\Personal\ModificarPersonal.cshtml" />
+    <Content Include="Views\Enfermeria\GestionEnfermeria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

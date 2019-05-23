@@ -1,0 +1,101 @@
+﻿
+@{
+	ViewBag.Title = "ModificarPersonal";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Actualizar Datos Personal</h2>
+<br />
+
+<div class="row">
+	<div class="col-xl-6">
+		<p>
+			<label>Nombre Completo</label>
+			<br />
+			<input name="NombrePersonal" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label>Cedula</label>
+			<br />
+			<input id="Cedula" name="CedulaPersonal" class="col-xl required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+			<label id="salida" name="ValidacionCedula" />
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label>Telefono</label>
+			<br />
+			<input name="TelefonoPersonal" class="col-xl required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xl-3">
+		<p>
+			<label>Cargo</label>
+			<br />
+			<select name="CargoPersonal" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+				<option value="administrador">Administrador</option>
+				<option value="enfermera">Enfermera</option>
+				<option value="laboratorista">Laboratorista</option>
+				<option value="medico">Medico</option>
+				<option value="recepcionista">Recepcionista</option>
+			</select>
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label>Usuario</label>
+			<br />
+			<input name="UsuarioPersonal" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.UsuarioPersonal : string.Empty)" @(Model != null ? (!string.IsNullOrEmpty(Model.IdPersonal) ? "disabled" : string.Empty) : string.Empty) />
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label>Contraseña</label>
+			<br />
+			<input type="password" name="ContrasenaPersonal" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.ContrasenaPersonal : string.Empty)" @(Model != null ? (!string.IsNullOrEmpty(Model.IdPersonal) ? "disabled" : string.Empty) : string.Empty) />
+		</p>
+	</div>
+</div>
+<br />
+<div class="text-center">
+	<button name="btn" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormulario()" @(Model != null ? (!string.IsNullOrEmpty(Model.IdPersonal) ? "disabled" : string.Empty) : string.Empty)>Ingresar Personal</button>
+</div>
+<br />
+<div class="row">
+	<div class="col-xl-6">
+		<p>
+			<label>Detalle</label>
+			<br />
+			<input name="NombreServicio" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label>Valor</label>
+			<br />
+			<input name="ValorServicio" class="col-xl required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+		</p>
+	</div>
+	<div class="col-xl-3">
+		<p>
+			<label></label>
+			<br />
+			<button name="Btn" value="ingresar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">Ingresar Servicio</button>
+		</p>
+	</div>
+</div>
+<div>
+	<p>
+		<table class="table">
+			<tr>
+				<th scope="col">Detalle</th>
+				<th scope="col">Valor</th>
+			</tr>
+		</table>
+	</p>
+</div>
+

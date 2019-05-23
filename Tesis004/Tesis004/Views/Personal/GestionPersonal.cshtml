@@ -19,6 +19,9 @@
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="tab" href="#listapersonal">Lista Personal</a>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#serviciopersonal">Servicios Personal</a>
+		</li>
 	</ul>
 
 	<!--Creacion de secciones para la gestion del personal-->
@@ -102,6 +105,89 @@
 				</div>
 			</form>
 			<br />
+		</div>
+		<div id="listapersonal" class="container tab-pane fade">
+			<br />
+			<div class="card bg-info text-white">
+				<div class="card-header">
+					LISTA PERSONAL
+				</div>
+			</div>
+			<br />
+			<div>
+				<table class="table">
+					<tr>
+						<th scope="col">Nombre</th>
+						<th scope="col">Telefono</th>
+						<th scope="col">Cargo</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</tr>
+					
+					<tr>
+						<td scope="col"></td>
+						<td scope="col"></td>
+						<td scope="col"></td>
+						<td scope="col">
+							<form action="Modificar" method="post">
+								<button name="IdPersonal" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+									<i class="fas fa-edit"></i>
+								</button>
+							</form>
+						</td>
+					</tr>
+					
+				</table>
+			</div>
+			<br />
+		</div>
+		<div id="serviciopersonal" class="container tab-pane fade">
+			<br />
+			<div class="card bg-info text-white">
+				<div class="card-header">
+					SERVICIOS DE PERSONAL
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-xl-6">
+					<label>Detalle</label>
+					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+				</div>
+				<div class="col-xl-3">
+					<label>Valor</label>
+					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+				</div>
+				<div class="col-xl-1">
+					<br />
+					<button name="Identificador" title="Ingresar nuevo servicio" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+						<i class="fas fa-plus-square"></i>
+					</button>
+				</div>
+			</div>
+			<div>
+				<table class="table">
+					<tr>
+						<th scope="col">Servicio</th>
+						<th scope="col">Valor</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</tr>
+					<tr>
+						<td scope="col">CITA A</td>
+						<td scope="col">20.00</td>
+						<td scope="col">
+							<button name="Identificador" title="Modificar egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+								<i class="fa fa-edit"></i>
+							</button>
+						</td>
+						<td scope="col">
+							<button name="Identificador" title="Eliminar egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+								<i class="fas fa-trash-alt"></i>
+							</button>
+						</td>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

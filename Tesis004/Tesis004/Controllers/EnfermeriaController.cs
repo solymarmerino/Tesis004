@@ -9,6 +9,11 @@ namespace Tesis004.Controllers
     public class EnfermeriaController : Controller
     {
 		// GET: Enfermeria
+		public ActionResult GestionEnfermeria()
+		{
+			return View();
+		}
+
 		public ActionResult IngresarSignosVitales()
 		{
 			return View();
