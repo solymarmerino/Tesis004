@@ -17,6 +17,14 @@
     IngresarPersonal.success = function (ingresado) {
         if (ingresado[0] == true) {
             alert("Personal ingresado!!");
+            $("#Nombre").empty();
+            $("#Cedula").empty();
+            $("#Telefono").empty();
+            $("#Cargo").empty();
+            $("#Especialidad").empty();
+            $("#Usuario").empty();
+            $("#Contrasena").empty();
+            $("#ConfContrasena").empty();
         }
         else {
             alert("Personal NO ingresado!!!!");
