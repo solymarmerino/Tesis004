@@ -13,14 +13,14 @@
 	<br>
 	<!-- Nav tabs  creacion de encavezado de navegacion-->
 	<ul class="nav nav-tabs" role="tablist">
-		<li class="nav-item">
-			<a class="nav-link active" data-toggle="tab" href="#nuevopersonal">Nuevo Personal</a>
+		<li id="ItemPersonal" class="nav-item">
+			<a id="AItemPersonal" class="nav-link active" data-toggle="tab" href="#nuevopersonal">Personal</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#listapersonal" onclick="listar()">Lista Personal</a>
+		<li id="ItemLista" class="nav-item">
+			<a id="AItemLista" class="nav-link" data-toggle="tab" href="#listapersonal" onclick="listar()">Lista Personal</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#serviciopersonal">Servicios Personal</a>
+		<li id="ItemServicio" class="nav-item">
+			<a id="AItemLista" class="nav-link" data-toggle="tab" href="#serviciopersonal" onclick="listarServicios()">Servicios Personal</a>
 		</li>
 	</ul>
 
@@ -29,8 +29,11 @@
         <div id="nuevopersonal" class="container tab-pane active">
             <br />
             <div class="card bg-info text-white">
-                <div class="card-header">
+                <div id="TituloCabeceraNuevo" class="card-header">
                     NUEVO PERSONAL
+                </div>
+                <div id="TituloCabeceraModificar" class="card-header" hidden>
+                    MODIFICAR PERSONAL
                 </div>
             </div>
             <br />
@@ -64,7 +67,7 @@
                             <label>Cargo</label>
                             <br />
                             <select id="Cargo" name="Cargo" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                                <option> Seleccionar </option>
+                                <option value="0"> Seleccionar </option>
                                 @{
                                     var cargos = ViewData["cargos"] as List<Tesis004.Models.ParametroModel>;
                                     foreach (var cargo in cargos)
@@ -108,8 +111,11 @@
                     </div>
                 </div>
                 <br />
-                <div class="text-center">
+                <div id="BtnGuardarNuevo" class="text-center">
                     <button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="ingresar()">Ingresar Personal</button>
+                </div>
+                <div id="BtnGuardarModificar" class="text-center" hidden>
+                    <button id ="BtnBtnGuardarModificar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="guardarModificado()">Guardar</button>
                 </div>
                 <!--</form>-->
             </div>
@@ -158,31 +164,31 @@
 				</div>
 			</div>
 			<br />
-			<div class="row">
-				<div class="col-xl-5">
-					<label>Detalle</label>
-					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-				</div>
-				<div class="col-xl-2">
-					<label>Valor</label>
-					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-				</div>
-				<div class="col-xl-4">
-					<label>Usuario</label>
-					<select id="Usuario" name="Usuario" title="Seleccionar el usuario que realziara el servicio" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-						<option> Seleccionar </option>
-					</select>
-				</div>
-				<div class="col-md-1">
-					<br />
-					<button name="Identificador" title="Ingresar nuevo servicio" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
-						<i class="fas fa-plus-square"></i>
-					</button>
-				</div>
-			</div>
+            <div class="row">
+                <div class="col-xl-4">
+                    <label>Usuario</label>
+                    <select id="UsuarioSrv" name="Usuario" title="Seleccionar el usuario que realziara el servicio" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                        <!-- <option> Seleccionar </option> -->
+                    </select>
+                </div>
+                <div class="col-xl-5">
+                    <label>Detalle</label>
+                    <input id="DetalleSrv" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                </div>
+                <div class="col-xl-2">
+                    <label>Valor</label>
+                    <input id="ValorSrv" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                </div>
+                <div class="col-md-1">
+                    <br />
+                    <button id="IdentificadorSrv" name="Identificador" title="Ingresar nuevo servicio" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" onclick="anadirServicio()">
+                        <i class="fas fa-plus-square"></i>
+                    </button>
+                </div>
+            </div>
 			<br />
 			<div>
-				<table class="table">
+				<table id="TablaPersonalServicio" class="table">
 					<tr>
 						<th scope="col">Servicio</th>
 						<th scope="col">Valor</th>
