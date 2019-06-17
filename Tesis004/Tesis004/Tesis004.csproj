@@ -134,7 +134,9 @@
     </Compile>
     <Compile Include="InformacionBDD\ConexionBDD.cs" />
     <Compile Include="InformacionBDD\InformacionGeneralBDD.cs" />
+    <Compile Include="InformacionBDD\PacienteBDD.cs" />
     <Compile Include="InformacionBDD\PersonalBDD.cs" />
+    <Compile Include="Models\PacienteModel.cs" />
     <Compile Include="Models\ParametroModel.cs" />
     <Compile Include="Models\PersonalModel.cs" />
     <Compile Include="Models\PersonalServicioModel.cs" />
@@ -188,6 +190,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\paciente.js" />
     <Content Include="Scripts\personal.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />

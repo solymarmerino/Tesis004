@@ -28,16 +28,18 @@
 
 <div class="row">
 	<div class="col-xl-6">
-		<p>
-			<input name="parametroBusqueda" class="col-xl" style=" text-transform: uppercase;text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-		</p>
+		<input id="parametroBusqueda" name="parametroBusqueda" list="sugerenciaPaciente" class="col-xl" style=" text-transform: uppercase;text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 	</div>
+
+    <datalist id="sugerenciaPaciente">
+    </datalist>
+
 	<div class="col-xl-3">
-		<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer">BUSCAR</button>
+		<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="buscarPaciente()">BUSCAR</button>
 	</div>
 </div>
 <br />
-<table class="table">
+<table id="tblResultadoBusqueda" class="table">
 	<tr>
 		<th scope="col">Paciente</th>
 		<th scope="col">Historia Cl&iacute;nica</th>
@@ -70,3 +72,5 @@
 <div class="text-center">
 	<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="location='../Paciente/Ingresar'">NUEVO PACIENTE</button>
 </div>
+
+<script src="~/Scripts/paciente.js"></script>
