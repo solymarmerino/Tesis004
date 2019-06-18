@@ -83,3 +83,43 @@ function buscarPaciente() {
     };
     $.ajax(ConsultarPaciente);
 }
+
+function guardarPaciente() {
+    var OpcionConsulta = "";
+    if ($("#SltNombrePaciente").is(':checked')) {
+        OpcionConsulta = $("#SltNombrePaciente").val();
+    }
+    if ($("#SltCedulaPaciente").is(':checked')) {
+        OpcionConsulta = $("#SltCedulaPaciente").val();
+    }
+    if ($("#SltHistoriaClinicaPaciente").is(':checked')) {
+        OpcionConsulta = $("#SltHistoriaClinicaPaciente").val();
+    }
+    var ConsultarPaciente = {};
+    ConsultarPaciente.url = "/Paciente/ListarPacienteBusqueda";
+    ConsultarPaciente.type = "POST";
+    ConsultarPaciente.data = JSON.stringify({
+        opcionBusqueda: OpcionConsulta,
+        parametroBusqueda: $("#parametroBusqueda").val(),
+    });
+    ConsultarPaciente.datatype = "json";
+    ConsultarPaciente.contentType = "application/json";
+    ConsultarPaciente.success = function (listaPaciente) {
+        iniciarTablaResultadoBusqueda();
+        for (var i = 0; i < listaPaciente.length; i++) {
+            var fila = "";
+            fila += "<td scope=\"col\">" + listaPaciente[i]["NombreCompleto"] + "</th >";
+            fila += "<td scope=\"col\">" + listaPaciente[i]["NumHistoriaClinica"] + "</th >";
+            fila += "<td scope=\"col\">" + listaPaciente[i]["Cedula"] + "</th >";
+            fila += "<th scope=\"col\"></th>";
+            fila += "<th scope=\"col\"></th>";
+            //fila += "<td scope=\"col\"> <button name=\"btnModificar\" id=\"btnModificar\" value=\"" + listaPersonal[i]["PersonalID"] + "\" style=\"background - color: darkturquoise; border - bottom - color: darkturquoise; color: white; border - radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"modificar(" + listaPersonal[i]["PersonalID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
+            //fila += "<td scope=\"col\"> <button name=\"btnServicios\" id=\"btnServicios\" onclick=\"anadirServicio()\">Servicos</button></th >"
+            $("#tblResultadoBusqueda").append("<tr>" + fila + "</tr>");
+        }
+    };
+    ConsultarPaciente.error = function () {
+        alert("Error al consultar paciente!!");
+    };
+    $.ajax(ConsultarPaciente);
+}

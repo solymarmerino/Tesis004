@@ -116,5 +116,19 @@ namespace Tesis004.InformacionBDD
 
             return listaPacienteResultado;
         }
+
+        public int OptenerUltimoNumeroHC()
+        {
+            int ultimoNumeroHC = 0;
+
+            string sentenciaSql = "SELECT max(NumHistoriaClinica) as Ultimo " +
+                                  "FROM Paciente ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            ultimoNumeroHC = tablaDatos.Rows[0].Field<int>("ultimo") + 1;
+
+            return ultimoNumeroHC;
+        }
     }
 }
