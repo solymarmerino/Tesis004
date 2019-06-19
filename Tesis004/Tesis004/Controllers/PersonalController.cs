@@ -58,9 +58,7 @@ namespace Tesis004.Controllers
             List<PersonalServicioModel> listaPersonalServicio = new List<PersonalServicioModel>();
             listaPersonalServicio = this.personalBDD.ListaPersonalServicio(personalServico.PersonalID);
             return Json(listaPersonalServicio);
-        }
-
-        
+        }        
 
         [HttpPost]
         public JsonResult AnadirServicio(PersonalServicioModel personalServicio)

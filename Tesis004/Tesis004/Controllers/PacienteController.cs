@@ -49,5 +49,13 @@ namespace Tesis004.Controllers
             return Json(listaPaciente);
         }
 
+        [HttpPost]
+        public JsonResult GuardarPaciente(PacienteModel paciente)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.pacienteBDD.IngresarPaciente(paciente));
+            return Json(ingresado);
+        }
+
     }
 }

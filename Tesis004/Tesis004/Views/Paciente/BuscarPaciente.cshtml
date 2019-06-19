@@ -9,21 +9,26 @@
 <p><h2 style="text-align:center">Buscar Paciente</h2></p>
 
 <div class="row">
-	<div class="col-xl-2">
-		<p>
-			<input id="SltNombrePaciente" name="tipoParametro" type="radio" value="Nombre" /> Nombre
-		</p>
-	</div>
-	<div class="col-xl-2">
-		<p>
-			<input id="SltCedulaPaciente" name="tipoParametro" type="radio" value="Cedula" /> Cedula
-		</p>
-	</div>
-	<div class="col-xl-2">
-		<p>
-			<input id="SltHistoriaClinicaPaciente" name="tipoParametro" type="radio" value="HCPaciente" /> Nº Historia Clinica
-		</p>
-	</div>
+    <div class="col-xl-2">
+        <p>
+            <input id="SltNombrePaciente" name="tipoParametro" type="radio" value="Nombre" /> Nombre
+        </p>
+    </div>
+    <div class="col-xl-2">
+        <p>
+            <input id="SltCedulaPaciente" name="tipoParametro" type="radio" value="Cedula" /> Cedula
+        </p>
+    </div>
+    <div class="col-xl-2">
+        <p>
+            <input id="SltHistoriaClinicaPaciente" name="tipoParametro" type="radio" value="HCPaciente" /> Nº Historia Clinica
+        </p>
+    </div>
+    <div class="col-xl-2">
+        <p>
+            <input id="SltUltimoPaciente" name="tipoParametro" type="radio" value="Ultimo" /> Ultimos
+        </p>
+    </div>
 </div>
 
 <div class="row">
@@ -46,25 +51,6 @@
 		<th scope="col">C&eacute;dula</th>
 		<th scope="col"></th>
 		<th scope="col"></th>
-	</tr>
-	<tr>
-		<td scope="col">PACIENTE 1</td>
-		<td scope="col">0000001</td>
-		<td scope="col">1234567890</td>
-		<td scope="col">
-			<form action="ActualizarPaciente" method="post">
-				<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-					<i class="fas fa-eye"></i>
-				</button>
-			</form>
-		</td>
-		<td scope="col">
-			<form action="ActualizarPaciente" method="post">
-				<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-					<i class="fas fa-edit"></i>
-				</button>
-			</form>
-		</td>
 	</tr>
 </table>
 

@@ -6,179 +6,178 @@
 
 <h2 style="text-align:center">Ingresar Paciente</h2>
 
-<form id="IngresarPaciente" action="IngresarPaciente" method="post">
-    <div class="text-right">
+<div class="text-right">
+    <p>
+        <label>Nº Historia Clinica</label>
+        <br />
+        <input id="IptNumeroHistoriaClinica" name="" class="required" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" disabled value="@ViewData["ultimo"]"/>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-xl-6">
         <p>
-            <label>Nº Historia Clinica</label>
-            <br />
-            <input id="iptNumeroHistoriaClinica" name="" class="required" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" disabled value="@ViewData["ultimo"]"/>
+            <label>Nombre Completo</label>
+            <input class="col-xl required" id="IptNombreCompleto" name="NombreCompleto" placeholder=" NOMBRES APELLIDOS" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombreCompleto : string.Empty)" />
         </p>
     </div>
+    <div class="col-xl-3">
+        <p>
+            <label>Cedula</label>
+            <br />
+            <input id="IptCedula" name="Cedula" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+            <label id="salida" name="ValidacionCedula" />
+        </p>
+    </div>
+    <div class="col-xl-3">
+        <p>
+            <label>Representante</label>
+            <br />
+            <input id="CboxRepresentante" type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" /> Representante
+        </p>
+    </div>
+</div>
 
-    <div class="row">
-        <div class="col-xl-6">
-            <p>
-                <label>Nombre Completo</label>
-                <input class="col-xl required" name="NombreCompleto" placeholder=" NOMBRES APELLIDOS" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombreCompleto : string.Empty)" />
-            </p>
-        </div>
-        <div class="col-xl-3">
-            <p>
-                <label>Cedula</label>
-                <br />
-                <input id="Cedula" name="Cedula" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.cedula : string.Empty)" />
-                <label id="salida" name="ValidacionCedula" />
-            </p>
-        </div>
-        <div class="col-xl-3">
-            <p>
-                <label>Representante</label>
-                <br />
-                <input type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" /> Representante
-            </p>
-        </div>
+<div class="row">
+    <div class="col-xl-6">
+        <p>
+            <label>Direccion</label>
+            <br />
+            <input id="IptDireccion" name="Direccion" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.direccion : string.Empty)">
+        </p>
     </div>
+    <div class="col-xl-6">
+        <p>
+            <label>Email</label>
+            <br />
+            <input id ="IptEmail" name="EmailPaciente" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-3">
+        <p>
+            <label>Telefono</label>
+            <br />
+            <input id="IptTelefono" name="Telefono" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+        </p>
+    </div>
+    <div class="col-xl-3">
+        <p>
+            <label>Ocupación</label>
+            <br />
+            <input id="IptOcupacion" name="Ocupacion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+        </p>
+    </div>
+    <div class="col-xl-3">
+        <p>
+            <label>Etnia</label>
+            <br>
+            <select id="SltEtnia" name="Etnia" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                <option value="0"> Seleccionar </option>
+                @{
+                    var etnias = ViewData["etnias"] as List<Tesis004.Models.ParametroModel>;
+                    foreach (var etnia in etnias)
+                    {
+                        <option value="@etnia.Identificador"> @etnia.Valor </option>
+                    }
+                }
+            </select>
+        </p>
+    </div>
+    <div class="col-xl-3">
+        <p>
+            <label>Discapacidad</label>
+            <br />
+            <input id="CboxDiscapacidad" type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" /> Discapacidad
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-3">
+        <p>
+            <label>Fecha de Nacimiento</label>
+            <br />
+            <input id="IptFechaNacimiento" name="FechaNacimiento" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+        </p>
+    </div>
+    <div class="col-xl-3">
+        <p>
+            <label>Genero</label>
+            <br>
+            <select id="SltGenero" name="Sexo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                <option value="0"> Seleccionar </option>
+                @{
+                    var generos = ViewData["generos"] as List<Tesis004.Models.ParametroModel>;
+                    foreach (var genero in generos)
+                    {
+                        <option value="@genero.Identificador"> @genero.Valor </option>
+                    }
+                }
+            </select>
+        </p>
+    </div>
+    <div class="col-md-3">
+        <p>
+            <label>Estado Civil</label>
+            <br />
+            <select id="SltEstadoCivil" name="EstadoCivil" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                <option value="0"> Seleccionar </option>
+                @{
+                    var estados = ViewData["estados"] as List<Tesis004.Models.ParametroModel>;
+                    foreach (var estado in estados)
+                    {
+                        <option value="@estado.Identificador"> @estado.Valor </option>
+                    }
+                }
+            </select>
+        </p>
+    </div>
+    <div class="col-md-3">
+        <p>
+            <label>Tipo de Sangre</label>
+            <br />
+            <select id="SltTipoSangre" name="TipoSangre" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                <option value="0"> Seleccionar </option>
+                @{
+                    var tipos = ViewData["tipos"] as List<Tesis004.Models.ParametroModel>;
+                    foreach (var tipo in tipos)
+                    {
+                        <option value="@tipo.Identificador"> @tipo.Valor </option>
+                    }
+                }
+            </select>
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <h5>Datos contacto de emergencia</h5>
+    </div>
+    <div class="col-xl-6">
+        <p>
+            <label>Nombre</label>
+            <br />
+            <input id="IptNombreContactoEmergencia"name="NombreContactoEmergencia" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombreContactoEmergencia : string.Empty)" />
+        </p>
+    </div>
+    <div class="col-xl-3">
+        <p>
+            <label>Afinidad</label>
+            <input id="IptAfinidadContactoEmergencia" name="AfinidadContactoEmergencia" class="required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.afinidadContactoEmergencia : string.Empty)" />
+        </p>
+    </div>
+    <div class="col-xl-3">
+        <p>
+            <label>Telefono</label>
+            <input id="IptTelefonoContactoEmergencia" name="TelefonoContactoEmergencia" class="required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.telefono : string.Empty)" />
+        </p>
+    </div>
+</div>
 
-    <div class="row">
-        <div class="col-xl-6">
-            <p>
-                <label>Direccion</label>
-                <br />
-                <input name="Direccion" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.direccion : string.Empty)">
-            </p>
-        </div>
-        <div class="col-xl-6">
-            <p>
-                <label>Email</label>
-                <br />
-                <input name="EmailPaciente" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-3">
-            <p>
-                <label>Telefono</label>
-                <br />
-                <input name="Telefono" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-            </p>
-        </div>
-        <div class="col-xl-3">
-            <p>
-                <label>Ocupación</label>
-                <br />
-                <input name="Ocupacion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-            </p>
-        </div>
-        <div class="col-xl-3">
-            <p>
-                <label>Etnia</label>
-                <br>
-                <select name="Etnia" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                    <option value="0"> Seleccionar </option>
-                    @{
-                        var etnias = ViewData["etnias"] as List<Tesis004.Models.ParametroModel>;
-                        foreach (var etnia in etnias)
-                        {
-                            <option value="@etnia.Identificador"> @etnia.Valor </option>
-                        }
-                    }
-                </select>
-            </p>
-        </div>
-        <div class="col-xl-3">
-            <p>
-                <label>Discapacidad</label>
-                <br />
-                <input type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" /> Discapacidad
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-3">
-            <p>
-                <label>Fecha de Nacimiento</label>
-                <br />
-                <input name="FechaNacimiento" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-            </p>
-        </div>
-        <div class="col-xl-3">
-            <p>
-                <label>Genero</label>
-                <br>
-                <select name="Sexo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                    <option value="0"> Seleccionar </option>
-                    @{
-                        var generos = ViewData["generos"] as List<Tesis004.Models.ParametroModel>;
-                        foreach (var genero in generos)
-                        {
-                            <option value="@genero.Identificador"> @genero.Valor </option>
-                        }
-                    }
-                </select>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <p>
-                <label>Estado Civil</label>
-                <br />
-                <select name="EstadoCivil" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                    <option value="0"> Seleccionar </option>
-                    @{
-                        var estados = ViewData["estados"] as List<Tesis004.Models.ParametroModel>;
-                        foreach (var estado in estados)
-                        {
-                            <option value="@estado.Identificador"> @estado.Valor </option>
-                        }
-                    }
-                </select>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <p>
-                <label>Tipo de Sangre</label>
-                <br />
-                <select name="TipoSangre" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                    <option value="0"> Seleccionar </option>
-                    @{
-                        var tipos = ViewData["tipos"] as List<Tesis004.Models.ParametroModel>;
-                        foreach (var tipo in tipos)
-                        {
-                            <option value="@tipo.Identificador"> @tipo.Valor </option>
-                        }
-                    }
-                </select>
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-12">
-            <h5>Datos contacto de emergencia</h5>
-        </div>
-        <div class="col-xl-6">
-            <p>
-                <label>Nombre</label>
-                <br />
-                <input name="NombreContactoEmergencia" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombreContactoEmergencia : string.Empty)" />
-            </p>
-        </div>
-        <div class="col-xl-3">
-            <p>
-                <label>Afinidad</label>
-                <input name="AfinidadContactoEmergencia" class="required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.afinidadContactoEmergencia : string.Empty)" />
-            </p>
-        </div>
-        <div class="col-xl-3">
-            <p>
-                <label>Telefono</label>
-                <input name="TelefonoContactoEmergencia" class="required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.telefono : string.Empty)" />
-            </p>
-        </div>
-    </div>
+<div class="text-center">
+    <br />
+    <button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="guardarPaciente()">GUARDAR</button>
+</div>
 
-    <div class="text-center">
-        <br />
-        <button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormulario()">GUARDAR</button>
-    </div>
-</form>
-
+<script src="~/Scripts/paciente.js"></script>

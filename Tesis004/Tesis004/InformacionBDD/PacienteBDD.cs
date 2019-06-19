@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Tesis004.Models;
@@ -99,7 +100,8 @@ namespace Tesis004.InformacionBDD
                     sentenciaSql += $"WHERE NumHistoriaClinica = {parametroBusqueda}";
                     break;
             }
-                                  
+            sentenciaSql += "ORDER BY PacienteID desc ";
+
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -129,6 +131,44 @@ namespace Tesis004.InformacionBDD
             ultimoNumeroHC = tablaDatos.Rows[0].Field<int>("ultimo") + 1;
 
             return ultimoNumeroHC;
+        }
+
+        public bool IngresarPaciente(PacienteModel paciente)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO PACIENTE (NumHistoriaClinica, NombreCompleto, Cedula, Direccion, Telefono, FechaNacimiento, Sexo, EstadoCivil, TipoSangre, Etnia, NombreContactoEmergencia, AfinidadContactoEmergencia, TelefonoContactoEmergencia, Representante, Discapacidad, Email, Ocupacion) " +
+                                  "VALUES (@NumHistoriaClinica, @NombreCompleto, @Cedula, @Direccion, @Telefono, @FechaNacimiento, @Sexo, @EstadoCivil, @TipoSangre, @Etnia, @NombreContactoEmergencia, @AfinidadContactoEmergencia, @TelefonoContactoEmergencia, @Representante, @Discapacidad, @Email, @Ocupacion)";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@NumHistoriaClinica", paciente.NumHistoriaClinica);
+            sentenciaSQL.Parameters.AddWithValue("@NombreCompleto", paciente.NombreCompleto);
+            sentenciaSQL.Parameters.AddWithValue("@Cedula", paciente.Cedula);
+            sentenciaSQL.Parameters.AddWithValue("@Direccion", paciente.Direccion);
+            sentenciaSQL.Parameters.AddWithValue("@Telefono", paciente.Telefono);
+            sentenciaSQL.Parameters.AddWithValue("@FechaNacimiento", paciente.FechaNacimiento);
+            sentenciaSQL.Parameters.AddWithValue("@Sexo", paciente.Sexo);
+            sentenciaSQL.Parameters.AddWithValue("@EstadoCivil", paciente.EstadoCivil);
+            sentenciaSQL.Parameters.AddWithValue("@TipoSangre", paciente.TipoSangre);
+            sentenciaSQL.Parameters.AddWithValue("@Etnia", paciente.Etnia);
+            sentenciaSQL.Parameters.AddWithValue("@NombreContactoEmergencia", paciente.NombreContactoEmergencia);
+            sentenciaSQL.Parameters.AddWithValue("@AfinidadContactoEmergencia", paciente.AfinidadContactoEmergencia);
+            sentenciaSQL.Parameters.AddWithValue("@TelefonoContactoEmergencia", paciente.TelefonoContactoEmergencia);
+            sentenciaSQL.Parameters.AddWithValue("@Representante", paciente.Representante);
+            sentenciaSQL.Parameters.AddWithValue("@Discapacidad", paciente.Discapacidad);
+            sentenciaSQL.Parameters.AddWithValue("@Email", paciente.Email);
+            sentenciaSQL.Parameters.AddWithValue("@Ocupacion", paciente.Ocupacion);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
         }
     }
 }
