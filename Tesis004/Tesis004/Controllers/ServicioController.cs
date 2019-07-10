@@ -13,7 +13,9 @@ namespace Tesis004.Controllers
         // GET: Servicio
         public ActionResult IngresarServicio()
 		{
-			return View();
+            ViewData["especialidades"] = informacionGeneral.ObtenerInformacionParametro("especialidad");
+            ViewData["citas"] = informacionGeneral.ObtenerInformacionParametro("tipo cita");
+            return View();
 		}
 
 		public ActionResult ListarCita()

@@ -16,6 +16,7 @@ namespace Tesis004.Controllers
         // GET: Personal
         public ActionResult GestionPersonal()
         {
+            ViewData["especialidades"] = informacionGeneral.ObtenerInformacionParametro("especialidad");
             ViewData["cargos"] = informacionGeneral.ObtenerInformacionParametro("cargo");
             return View();
         }
@@ -104,6 +105,15 @@ namespace Tesis004.Controllers
 		{
 			return View();
 		}*/
+
+
+        [HttpPost]
+        public JsonResult ListarPersonalNombrePorEspecialidad(PersonalModel personal)
+        {
+            List<PersonalModel> listaPersonalPorEspecialidad = new List<PersonalModel>();
+            listaPersonalPorEspecialidad = this.personalBDD.ListaPersonalNombrePorEspecialidad(personal.Especialidad);
+            return Json(listaPersonalPorEspecialidad);
+        }
 
 
         public ActionResult GestionServiciosMedicos()
