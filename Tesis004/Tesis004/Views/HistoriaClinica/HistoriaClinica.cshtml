@@ -49,7 +49,7 @@
 			<a class="nav-link" data-toggle="tab" href="#tablasimc">Tablas de IMC</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#curvascrecimiento">Curvas de Crecimiento</a>
+			<a class="nav-link" data-toggle="tab" href="#curvascrecimiento">Pediatria</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" data-toggle="tab" href="#vacunas">Vacunas</a>
@@ -93,7 +93,7 @@
 						<p>
 							<label>Discapacidad</label>
 							<br>
-							<input name="Discapacidad" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<input name="Discapacidad" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
 						</p>
 					</div>
 					<div class="col-xl-3">
@@ -446,11 +446,11 @@
 					</tr>
 				</table>
 			</div>
-			<!--Creacion de seccion de ingreso de medicamento-->
-			<button data-toggle="collapse" data-target="#medicina" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
-				MEDICAMENTO 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
+			<!--Creacion de seccion de ingreso de receta-->
+			<button data-toggle="collapse" data-target="#receta" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
+				RECETA 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
 			</button>
-			<div id="medicina" class="collapse">
+			<div id="receta" class="collapse">
 				<br />
 				<div class="row">
 					<div class="col-xl-10">
@@ -465,11 +465,43 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<br />
-						<textarea name="medicamento" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+						<input name="medicamento" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></input>
 						<br />
 					</div>
 				</div>
 				<br />
+				<div class="row">
+					<div class="col-xl-10">
+						<label>Indicaciones</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<br />
+						<input name="indicaciones" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px"></input>
+						<br />
+					</div>
+				</div>
+				<br />
+				<div class="table-responsive">
+					<br />
+					<table class="table">
+						<tr>
+							<th scope="col">Medicamento</th>
+							<th scope="col">Indicación</th>
+							<th scope="col"></th>
+						</tr>
+						<tr>
+							<td scope="col">AAAAAAA</td>
+							<td scope="col">AAA111</td>
+							<td scope="col">
+								<button name="Identificador" title="Eliminar diagnostico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+									<i class="fas fa-minus-square"></i>
+								</button>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			<br />
 			<!--Creacion de seccion de ingreso de procedimientos-->

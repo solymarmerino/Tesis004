@@ -19,7 +19,7 @@ namespace Tesis004.InformacionBDD
     public class ConexionBDD
     {
         //String con los parametros que se utiliza para la conexion a la base de datos.
-        private string stringConexion = "data source = 192.168.56.101; initial catalog = DBVACARI; user id = sa; password = Tesis2018";
+        private string stringConexion = "data source = localhost; initial catalog = DBVACARI; user id = sa; password = Tesis2018";
 
         public ConexionBDD()
         {
