@@ -84,8 +84,17 @@
                     <div class="col-xl-3">
                         <p>
                             <label>Especialidad</label>
-                            <br />
-                            <input id="Especialidad" name="Especialidad" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <br />                            
+                            <select id="Especialidad" name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                                <option value="0"> Seleccionar </option>
+                                @{
+                                    var especialidades = ViewData["especialidades"] as List<Tesis004.Models.ParametroModel>;
+                                    foreach (var especialidad in especialidades)
+                                    {
+                                        <option value="@especialidad.Identificador"> @especialidad.Valor </option>
+                                    }
+                                }
+                            </select>
                         </p>
                     </div>
                     <div class="col-xl-3">

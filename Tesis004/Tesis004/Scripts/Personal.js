@@ -50,7 +50,7 @@ function ingresar() {
             $("#Cedula").empty();
             $("#Telefono").empty();
             $("#Cargo").prop("value",0);
-            $("#Especialidad").empty();
+            $("#Especialidad").prop("value", 0);
             $("#Usuario").empty();
             $("#Contrasena").empty();
             $("#ConfContrasena").empty();
@@ -129,7 +129,7 @@ function guardarModificado() {
             $("#Cedula").empty();
             $("#Telefono").empty();
             $("#Cargo").prop("value",0);
-            $("#Especialidad").empty();
+            $("#Especialidad").prop("value", 0);
             $("#Usuario").empty();
             $("#Contrasena").empty();
             $("#ConfContrasena").empty();

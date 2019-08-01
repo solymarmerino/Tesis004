@@ -75,6 +75,28 @@ namespace Tesis004.InformacionBDD
             return listaPersonalResultado;
         }
 
+        public List<PersonalModel> ListaPersonalNombrePorEspecialidad(string especialidad)
+        {
+            List<PersonalModel> listaPersonalResultado = new List<PersonalModel>();
+
+            string sentenciaSql = "SELECT PersonalID, Nombre " +
+                                  "FROM Personal " +
+                                  $"WHERE Especialidad LIKE '{especialidad}'";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                PersonalModel personalResultado = new PersonalModel();
+                personalResultado.PersonalID = tablaDatos.Rows[i].Field<int>("PersonalID");
+                personalResultado.Nombre = tablaDatos.Rows[i].Field<string>("Nombre");
+
+                listaPersonalResultado.Add(personalResultado);
+            }
+
+            return listaPersonalResultado;
+        }
+
         public PersonalModel OptenerPersonal(int idPersonal)
         {
             PersonalModel personalResultado = new PersonalModel();

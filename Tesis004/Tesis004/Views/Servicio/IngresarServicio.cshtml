@@ -65,16 +65,23 @@
 						<p>
 							<label>Especialidad</label>
 							<br />
-							<select name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-								<option> Seleccionar </option>
-							</select>
+                            <select id="sltEspecialidad" name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                                <option value="0"> Seleccionar </option>
+                                @{
+                                    var especialidades = ViewData["especialidades"] as List<Tesis004.Models.ParametroModel>;
+                                    foreach (var especialidad in especialidades)
+                                    {
+                                        <option value="@especialidad.Identificador"> @especialidad.Valor </option>
+                                    }
+                                }
+                            </select>
 						</p>
 					</div>
 					<div class="col-md-3">
 						<p>
 							<label>Medico</label>
 							<br />
-							<select name="IdentificadorPersonal" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<select id="sltIdentificadorPersonal" name="IdentificadorPersonal" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
 								<option> Seleccionar </option>
 							</select>
 						</p>
@@ -83,9 +90,16 @@
 						<p>
 							<label>Tipo cita</label>
 							<br />
-							<select name="TipoCita" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-								<option> Seleccionar </option>
-							</select>
+                            <select name="TipoCita" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                                <option value="0"> Seleccionar </option>
+                                @{
+                                    var citas = ViewData["citas"] as List<Tesis004.Models.ParametroModel>;
+                                    foreach (var cita in citas)
+                                    {
+                                        <option value="@cita.Identificador"> @cita.Valor </option>
+                                    }
+                                }
+                            </select>
 						</p>
 					</div>
 					<div class="col-md-1">
@@ -354,4 +368,4 @@
 	</div>
 </div>
 
-
+<script src="~/Scripts/servicio.js"></script>
