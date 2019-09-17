@@ -74,7 +74,7 @@ function buscarPaciente() {
             fila += "<th scope=\"col\"></th>";
             fila += "<th scope=\"col\"></th>";  
             //fila += "<td scope=\"col\"> <button name=\"btnModificar\" id=\"btnModificar\" value=\"" + listaPersonal[i]["PersonalID"] + "\" style=\"background - color: darkturquoise; border - bottom - color: darkturquoise; color: white; border - radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"modificar(" + listaPersonal[i]["PersonalID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
-            //fila += "<td scope=\"col\"> <button name=\"btnServicios\" id=\"btnServicios\" onclick=\"anadirServicio()\">Servicos</button></th >"
+            fila += "<td scope=\"col\"> <form action=\"../Servicio/IngresarServicio\" method=\"POST\"><button name=\"idPaciente\" id=\"btnServicios\" value=\"" + listaPaciente[i]["PacienteID"]+"\">Servicios</button><form></th >"
             $("#tblResultadoBusqueda").append("<tr>" + fila + "</tr>");
         }
     };
