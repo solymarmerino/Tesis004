@@ -130,6 +130,9 @@
             </div>
             <br />
         </div>
+
+		<!--Visualizacion de lista personal completa-->
+
 		<div id="listapersonal" class="container tab-pane fade">
 			<br />
 			<div class="card bg-info text-white">
@@ -160,11 +163,13 @@
 							</form>
 						</td>
 					</tr>
-					
 				</table>
 			</div>
 			<br />
 		</div>
+
+		<!--Gestion de los serviciso brindados por el personal-->
+		
 		<div id="serviciopersonal" class="container tab-pane fade">
 			<br />
 			<div class="card bg-info text-white">
@@ -190,12 +195,14 @@
                 </div>
                 <div class="col-md-1">
                     <br />
-                    <button id="IdentificadorSrv" name="Identificador" title="Ingresar nuevo servicio" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" onclick="anadirServicio()">
+                    <button id="IdentificadorSrv" name="Identificador" title="Ingresar nuevo servicio" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:40px; height:40px; cursor: pointer" onclick="anadirServicio()">
                         <i class="fas fa-plus-square"></i>
                     </button>
                 </div>
             </div>
 			<br />
+
+		
 			<div>
 				<table id="TablaPersonalServicio" class="table">
 					<tr>
@@ -204,9 +211,10 @@
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
+					
 					<tr>
-						<td scope="col">CITA A</td>
-						<td scope="col">20.00</td>
+						<td scope="col"></td>
+						<td scope="col"></td>
 						<td scope="col">
 							<button name="Identificador" title="Modificar egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
 								<i class="fa fa-edit"></i>
@@ -217,8 +225,10 @@
 								<i class="fas fa-trash-alt"></i>
 							</button>
 						</td>
+				
 				</table>
 			</div>
+        
 		</div>
 	</div>
 </div>

@@ -10,7 +10,7 @@
     <p>
         <label>Nº Historia Clinica</label>
         <br />
-        <input id="IptNumeroHistoriaClinica" name="" class="required" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" disabled value="@ViewData["ultimo"]"/>
+        <input id="IptNumeroHistoriaClinica" name="" class="required" style="text-align:right; border-radius:0.3rem; width:200px; height:40px;" disabled value="@ViewData["ultimo"]"/>
     </p>
 </div>
 
@@ -41,7 +41,7 @@
 <div class="row">
     <div class="col-xl-6">
         <p>
-            <label>Direccion</label>
+            <label>Dirección</label>
             <br />
             <input id="IptDireccion" name="Direccion" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.direccion : string.Empty)">
         </p>
