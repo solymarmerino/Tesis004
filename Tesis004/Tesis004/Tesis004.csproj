@@ -149,6 +149,11 @@
     <Compile Include="InformacionBDD\PersonalBDD.cs" />
     <Compile Include="InformacionBDD\ServicioBDD.cs" />
     <Compile Include="InformacionBDD\SignosVitalesBDD.cs" />
+    <Compile Include="Models\EgresoModel.cs" />
+    <Compile Include="Models\IngresoModel.cs" />
+    <Compile Include="Models\DetalleFacturaModel.cs" />
+    <Compile Include="Models\FacturaModel.cs" />
+    <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\RecetaModel.cs" />
     <Compile Include="Models\SubjetivoModel.cs" />
     <Compile Include="Models\ObjetivoModel.cs" />
