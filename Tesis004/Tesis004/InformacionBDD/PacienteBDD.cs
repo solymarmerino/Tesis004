@@ -121,7 +121,7 @@ namespace Tesis004.InformacionBDD
 
         public PacienteModel PacientePorId(string idPaciente)
         {
-            string sentenciaSql = "SELECT TOP(1) PacienteID, NumHistoriaClinica, NombreCompleto , Cedula " +
+            string sentenciaSql = "SELECT TOP(1) PacienteID, NumHistoriaClinica, NombreCompleto , Cedula, FechaNacimiento " +
                                   "FROM Paciente "+
                                   $"WHERE PacienteID = '{idPaciente}' ";
 
@@ -131,6 +131,7 @@ namespace Tesis004.InformacionBDD
             pacienteResultado.NumHistoriaClinica = tablaDatos.Rows[0].Field<int>("NumHistoriaClinica");
             pacienteResultado.NombreCompleto = tablaDatos.Rows[0].Field<string>("NombreCompleto");
             pacienteResultado.Cedula = tablaDatos.Rows[0].Field<string>("Cedula");
+            pacienteResultado.FechaNacimiento = tablaDatos.Rows[0].Field<DateTime>("FechaNacimiento");
 
             return pacienteResultado;
         }

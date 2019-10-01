@@ -148,11 +148,13 @@
     <Compile Include="InformacionBDD\PacienteBDD.cs" />
     <Compile Include="InformacionBDD\PersonalBDD.cs" />
     <Compile Include="InformacionBDD\ServicioBDD.cs" />
+    <Compile Include="InformacionBDD\SignosVitalesBDD.cs" />
     <Compile Include="Models\CitaModel.cs" />
     <Compile Include="Models\PacienteModel.cs" />
     <Compile Include="Models\ParametroModel.cs" />
     <Compile Include="Models\PersonalModel.cs" />
     <Compile Include="Models\PersonalServicioModel.cs" />
+    <Compile Include="Models\SignosVitalesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
