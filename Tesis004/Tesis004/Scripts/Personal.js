@@ -80,7 +80,7 @@ function listar() {
             "<th scope = \"col\">Telefono</th>" +
             "<th scope = \"col\">Cargo</th>" +
             "<th scope = \"col\"></th>" +
-            //"<th scope = \"col\"></th>" +
+            "<th scope = \"col\"></th>" +
 			"</tr >";
         $("#TablaPersonal").append(cabecera);
         for (var i = 0; i < listaPersonal.length ; i++) {
@@ -88,8 +88,7 @@ function listar() {
             fila += "<td scope=\"col\">" + listaPersonal[i]["Nombre"] + "</th >";
             fila += "<td scope=\"col\">" + listaPersonal[i]["Telefono"] + "</th >";
             fila += "<td scope=\"col\">" + listaPersonal[i]["CargoNombre"] + "</th >";
-            fila += "<td scope=\"col\"> <button name=\"btnModificar\" id=\"btnModificar\" value=\"" + listaPersonal[i]["PersonalID"] + "\" style=\"background-color: darkturquoise; border-bottom-color: darkturquoise; color: white; border-radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"modificar("+listaPersonal[i]["PersonalID"]+")\"><i class=\"fas fa-edit\"></i></button></th >"
-           // fila += "<td scope=\"col\"> <button name=\"btnServicios\" id=\"btnServicios\" onclick=\"anadirServicio()\">Servicos</button></th >"
+            fila += "<td scope=\"col\"> <button name=\"btnModificar\" id=\"btnModificar\" value=\"" + listaPersonal[i]["PersonalID"] + "\" style=\"background - color: darkturquoise; border - bottom - color: darkturquoise; color: white; border - radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"modificar("+listaPersonal[i]["PersonalID"]+")\"><i class=\"fas fa-edit\"></i></button></th >" 
             $("#TablaPersonal").append("<tr>" + fila + "</tr>");
 
         }
@@ -263,8 +262,8 @@ $("#UsuarioSrv").change(function () {
             var fila = "";
             fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Detalle"] + "</th >";
             fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Valor"] + "</th >";
-            fila += "<td scope=\"col\"> <button name=\"btnModificarServico\" id=\"btnModificarServico\" value=\"" + listaPersonalServicio[i]["ServicioID"] + "\" style=\"background-color: darkturquoise; border-bottom-color: darkturquoise; color: white; border-radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"obtenerServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
-			fila += "<td scope=\"col\"> <button name=\"btnEliminarServicio\" id=\"btnEliminarServicio\" style=\"background-color: darkturquoise; border-bottom-color: darkturquoise; color: white; border-radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"eliminarServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-trash-alt\"></i></button></th >"
+            fila += "<td scope=\"col\"> <button name=\"btnModificarServico\" id=\"btnModificarServico\" value=\"" + listaPersonalServicio[i]["ServicioID"] + "\" style=\"background - color: darkturquoise; border - bottom - color: darkturquoise; color: white; border - radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"obtenerServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
+            fila += "<td scope=\"col\"> <button name=\"btnEliminarServicio\" id=\"btnEliminarServicio\" onclick=\"eliminarServicio(" + listaPersonalServicio[i]["ServicioID"]+")\">Eliminar</button></th >"
             $("#TablaPersonalServicio").append("<tr>" + fila + "</tr>");
         }
     };

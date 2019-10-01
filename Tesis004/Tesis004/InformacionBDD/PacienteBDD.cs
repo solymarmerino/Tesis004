@@ -119,6 +119,23 @@ namespace Tesis004.InformacionBDD
             return listaPacienteResultado;
         }
 
+        public PacienteModel PacientePorId(string idPaciente)
+        {
+            string sentenciaSql = "SELECT TOP(1) PacienteID, NumHistoriaClinica, NombreCompleto , Cedula, FechaNacimiento " +
+                                  "FROM Paciente "+
+                                  $"WHERE PacienteID = '{idPaciente}' ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+            PacienteModel pacienteResultado = new PacienteModel();
+            pacienteResultado.PacienteID = tablaDatos.Rows[0].Field<int>("PacienteID");
+            pacienteResultado.NumHistoriaClinica = tablaDatos.Rows[0].Field<int>("NumHistoriaClinica");
+            pacienteResultado.NombreCompleto = tablaDatos.Rows[0].Field<string>("NombreCompleto");
+            pacienteResultado.Cedula = tablaDatos.Rows[0].Field<string>("Cedula");
+            pacienteResultado.FechaNacimiento = tablaDatos.Rows[0].Field<DateTime>("FechaNacimiento");
+
+            return pacienteResultado;
+        }
+
         public int OptenerUltimoNumeroHC()
         {
             int ultimoNumeroHC = 0;
