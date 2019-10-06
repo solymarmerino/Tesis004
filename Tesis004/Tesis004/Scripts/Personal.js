@@ -88,7 +88,7 @@ function listar() {
             fila += "<td scope=\"col\">" + listaPersonal[i]["Nombre"] + "</th >";
             fila += "<td scope=\"col\">" + listaPersonal[i]["Telefono"] + "</th >";
             fila += "<td scope=\"col\">" + listaPersonal[i]["CargoNombre"] + "</th >";
-            fila += "<td scope=\"col\"> <button name=\"btnModificar\" id=\"btnModificar\" value=\"" + listaPersonal[i]["PersonalID"] + "\" style=\"background - color: darkturquoise; border - bottom - color: darkturquoise; color: white; border - radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"modificar("+listaPersonal[i]["PersonalID"]+")\"><i class=\"fas fa-edit\"></i></button></th >" 
+            fila += "<td scope=\"col\"> <button name=\"btnModificar\" id=\"btnModificar\" value=\"" + listaPersonal[i]["PersonalID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"modificar("+listaPersonal[i]["PersonalID"]+")\"><i class=\"fas fa-edit\"></i></button></th >" 
             $("#TablaPersonal").append("<tr>" + fila + "</tr>");
 
         }
