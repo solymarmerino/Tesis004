@@ -87,6 +87,30 @@ namespace Tesis004.InformacionBDD
             return ingresado;
         }
 
+        public bool AtencionEnfermeriaCita(int pacienteID)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "UPDATE CITAMEDICA " +
+                                  "SET enfermeria = 1 " +
+                                  "WHERE PacienteID = @PacienteID AND Fecha = @Fecha";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@PacienteID", pacienteID);
+            sentenciaSQL.Parameters.AddWithValue("@Fecha", DateTime.Now.Date);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
         public List<CitaModel> ListarCita()
         {
             List<CitaModel> listaCitaResultado = new List<CitaModel>();

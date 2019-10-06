@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Tesis004.InformacionBDD;
+using Tesis004.Models;
 
 namespace Tesis004.Controllers
 {
     public class EnfermeriaController : Controller
     {
         PacienteBDD pacienteBDD = new PacienteBDD();
+        SignosVitalesBDD signosVitalesBDD = new SignosVitalesBDD();
         // GET: Enfermeria
         public ActionResult GestionEnfermeria(string idPaciente)
 		{
@@ -18,10 +20,11 @@ namespace Tesis004.Controllers
 		}
 
         [HttpPost]
-        public JsonResult GuardarSignosVitales()
+        public JsonResult GuardarSignosVitales(SignosVitalesModel signosVitales)
         {
             List<bool> resultado = new List<bool>();
-            //resultado.Add(servicioBDD.IngresarCita(cita));
+            resultado.Add(signosVitalesBDD.IngresarSignosVitales(signosVitales));
+            //resultado.Add(false);
             return Json(resultado);
         }
 

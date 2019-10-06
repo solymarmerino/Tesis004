@@ -15,7 +15,7 @@ namespace Tesis004.Controllers
         // GET: Paciente
         public ActionResult IngresarPaciente()
 		{
-            ViewData["ultimo"] = pacienteBDD.OptenerUltimoNumeroHC();
+            ViewData["ultimo"] = pacienteBDD.ObtenerUltimoNumeroHC();
             ViewData["generos"] = informacionGeneral.ObtenerInformacionParametro("genero");
             ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
             ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");

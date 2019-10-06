@@ -69,6 +69,14 @@ namespace Tesis004.Controllers
         }
 
         [HttpPost]
+        public JsonResult AtencionEnfermeriaCita(int pacienteID)
+        {
+            List<bool> resultado = new List<bool>();
+            resultado.Add(servicioBDD.AtencionEnfermeriaCita(pacienteID));
+            return Json(resultado);
+        }
+
+        [HttpPost]
         public JsonResult ListarCitaMedico()
         {
             return Json("");

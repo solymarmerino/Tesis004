@@ -242,6 +242,7 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\servicio.js" />
     <Content Include="Scripts\servicio-cita.js" />
+    <Content Include="Scripts\signos-vitales.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />

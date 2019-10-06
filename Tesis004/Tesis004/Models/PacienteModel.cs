@@ -27,5 +27,6 @@ namespace Tesis004.Models
         public bool Discapacidad { get; set; }
         public string OpcionBusqueda { get; set; }
         public string ParametroBusqueda { get; set; }
+        public string Edad { get; set; }
     }
 }

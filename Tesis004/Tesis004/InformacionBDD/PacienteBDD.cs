@@ -121,7 +121,7 @@ namespace Tesis004.InformacionBDD
 
         public PacienteModel PacientePorId(string idPaciente)
         {
-            string sentenciaSql = "SELECT TOP(1) PacienteID, NumHistoriaClinica, NombreCompleto , Cedula, FechaNacimiento " +
+            string sentenciaSql = "SELECT TOP(1) PacienteID, NumHistoriaClinica, NombreCompleto , Cedula, FechaNacimiento, Direccion, Telefono, Sexo, EstadoCivil, TipoSangre, Etnia, NombreContactoEmergencia, AfinidadContactoEmergencia, TelefonoContactoEmergencia, Representante, Discapacidad, Email, Ocupacion " +
                                   "FROM Paciente "+
                                   $"WHERE PacienteID = '{idPaciente}' ";
 
@@ -132,11 +132,31 @@ namespace Tesis004.InformacionBDD
             pacienteResultado.NombreCompleto = tablaDatos.Rows[0].Field<string>("NombreCompleto");
             pacienteResultado.Cedula = tablaDatos.Rows[0].Field<string>("Cedula");
             pacienteResultado.FechaNacimiento = tablaDatos.Rows[0].Field<DateTime>("FechaNacimiento");
+            pacienteResultado.Direccion = tablaDatos.Rows[0].Field<string>("Direccion");
+            pacienteResultado.Telefono = tablaDatos.Rows[0].Field<string>("Telefono");
+            pacienteResultado.Sexo = tablaDatos.Rows[0].Field<int>("Sexo");
+            pacienteResultado.EstadoCivil = tablaDatos.Rows[0].Field<int>("EstadoCivil");
+            pacienteResultado.TipoSangre = tablaDatos.Rows[0].Field<int>("TipoSangre");
+            pacienteResultado.Etnia = tablaDatos.Rows[0].Field<int>("Etnia");
+            pacienteResultado.NombreContactoEmergencia = tablaDatos.Rows[0].Field<string>("NombreContactoEmergencia");
+            pacienteResultado.NombreContactoEmergencia = tablaDatos.Rows[0].Field<string>("AfinidadContactoEmergencia");
+            pacienteResultado.NombreContactoEmergencia = tablaDatos.Rows[0].Field<string>("TelefonoContactoEmergencia");
+            pacienteResultado.Representante = tablaDatos.Rows[0].Field<bool>("Representante");
+            pacienteResultado.Discapacidad = tablaDatos.Rows[0].Field<bool>("Discapacidad");
+            pacienteResultado.Email = tablaDatos.Rows[0].Field<string>("Email");
+            pacienteResultado.Ocupacion = tablaDatos.Rows[0].Field<string>("Ocupacion");
+
+            DateTime fechaActual = DateTime.Today;
+            //TimeSpan diferencia = fechaActual.Subtract(pacienteResultado.FechaNacimiento);
+            int anos = fechaActual.Year - pacienteResultado.FechaNacimiento.Year;
+            int meses = fechaActual.Month - pacienteResultado.FechaNacimiento.Month;
+
+            pacienteResultado.Edad = anos + " Años " + meses + " Meses ";
 
             return pacienteResultado;
-        }
+        } 
 
-        public int OptenerUltimoNumeroHC()
+        public int ObtenerUltimoNumeroHC()
         {
             int ultimoNumeroHC = 0;
 
@@ -148,6 +168,21 @@ namespace Tesis004.InformacionBDD
             ultimoNumeroHC = tablaDatos.Rows[0].Field<int>("ultimo") + 1;
 
             return ultimoNumeroHC;
+        }
+
+        public int ObtenerIdPacientePorHC(int numHistoriaClinica)
+        {
+            int idPaciente = 0;
+
+            string sentenciaSql = "SELECT PacienteID " +
+                                  "FROM Paciente "+
+                                  $"WHERE NumHistoriaClinica = {numHistoriaClinica}";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            idPaciente = tablaDatos.Rows[0].Field<int>("PacienteID");
+
+            return idPaciente;
         }
 
         public bool IngresarPaciente(PacienteModel paciente)
@@ -177,6 +212,24 @@ namespace Tesis004.InformacionBDD
             sentenciaSQL.Parameters.AddWithValue("@Discapacidad", paciente.Discapacidad);
             sentenciaSQL.Parameters.AddWithValue("@Email", paciente.Email);
             sentenciaSQL.Parameters.AddWithValue("@Ocupacion", paciente.Ocupacion);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            paciente.PacienteID = this.ObtenerIdPacientePorHC(paciente.NumHistoriaClinica);
+
+            sentenciaSql = "SET IDENTITY_INSERT HistoriaClinica ON; "+
+                           "INSERT INTO HistoriaClinica (HistoriaClinicaID, PacienteID) " +
+                           "VALUES (@HistoriaClinicaID, @PacienteID); ";
+
+            sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", paciente.NumHistoriaClinica);
+            sentenciaSQL.Parameters.AddWithValue("@PacienteID", paciente.PacienteID);
 
             resultado = this.conexion.ComandoModificacion(sentenciaSQL);
 

@@ -26,10 +26,10 @@ namespace Tesis004.InformacionBDD
             SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
 
             sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", signosVitales.HistoriaClinica);
-            sentenciaSQL.Parameters.AddWithValue("@Fecha", signosVitales.Fecha);
+            sentenciaSQL.Parameters.AddWithValue("@Fecha", DateTime.Now);
             sentenciaSQL.Parameters.AddWithValue("@PrecionArterial", signosVitales.PrecionArterial);
             sentenciaSQL.Parameters.AddWithValue("@Temperatura", signosVitales.Temperatura);
-            sentenciaSQL.Parameters.AddWithValue("@Peso>", signosVitales.Peso);
+            sentenciaSQL.Parameters.AddWithValue("@Peso", signosVitales.Peso);
             sentenciaSQL.Parameters.AddWithValue("@Talla", signosVitales.Talla);
             sentenciaSQL.Parameters.AddWithValue("@FrecuenciaCardiaca", signosVitales.FrecuenciaCardiaca);
             sentenciaSQL.Parameters.AddWithValue("@FrecuenciaRespiratoria", signosVitales.FrecuenciaRespiratoria);

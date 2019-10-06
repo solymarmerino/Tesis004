@@ -28,11 +28,11 @@
             <br />
             @{
             var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
-            var fechaString = paciente.FechaNacimiento.Year.ToString()+"-"+paciente.FechaNacimiento.Month.ToString()+"-"+paciente.FechaNacimiento.Day.ToString();
+             var fechaString = paciente.FechaNacimiento.Year.ToString()+"-"+paciente.FechaNacimiento.Month.ToString()+"-"+paciente.FechaNacimiento.Day.ToString();
             <input id="IdPaciente" value="@paciente.PacienteID" hidden />
             <div class="text-right">
                 <p><label>Nº Historia Clinica</label></p>
-                <input style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" value="@paciente.NumHistoriaClinica" disabled />
+                <input id="HistoriaClinica" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" value="@paciente.NumHistoriaClinica" disabled />
             </div>
             <br />
             <div class="row">
@@ -102,14 +102,16 @@
                 <div class="col-md-2">
                     <p>
                         <label>Saturación</label>
-                        <input id="Saturacion" name="Saturación" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="Saturacion" name="Saturacion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                     </p>
                 </div>
             </div>
             <br />
             <div class="text-center">
-                <button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">GUARDAR</button>
+                <button id="btnGuardarSignosVitales" name="btnGuardarSignosVitales" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer">GUARDAR</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/signos-vitales.js"></script>
