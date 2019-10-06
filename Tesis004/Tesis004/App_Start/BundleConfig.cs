@@ -25,6 +25,13 @@ namespace Tesis004
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
 					  "~/Content/site.css"));
-		}
+
+            //Añadir librerias toastr
+            bundles.Add(new ScriptBundle("~/bundles/toastrjs").Include(
+                      "~/Scripts/toastr.js"));
+
+            bundles.Add(new StyleBundle("~/Content/toastrcss").Include(
+                      "~/Content/toastr.css"));
+        }
 	}
 }
