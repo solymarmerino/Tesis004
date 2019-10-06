@@ -32,6 +32,8 @@ namespace Tesis004
 
             bundles.Add(new StyleBundle("~/Content/toastrcss").Include(
                       "~/Content/toastr.css"));
+
+            //Linea comentada
         }
 	}
 }
