@@ -320,14 +320,16 @@ function anadirServicio() {
     AnadirServicio.contentType = "application/json";
     AnadirServicio.success = function (anadido) {
         if (anadido[0] == true) {
-            alert("Personal ingresado!!");
-            $("#DetalleSrv").prop("value", "");
+			//alert("Personal ingresado!!")
+			swal("Personal ingresado!!")
+			$("#DetalleSrv").prop("value", "");
             $("#ValorSrv").prop("value", "");
             $("#UsuarioSrv").val(0).trigger("change");
             //$("#UsuarioSrv").val(idPersonal).trigger("change");
         }
         else {
-            alert("Servicio NO ingresado!!!!");
+			alert("Servicio NO ingresado!!!!");
+			$.jGrowl("prueba mensaje", { life: 2000 });
         }
     };
     AnadirServicio.error = function () {
@@ -335,6 +337,7 @@ function anadirServicio() {
     };
     $.ajax(AnadirServicio);
 }
+
 
 
 

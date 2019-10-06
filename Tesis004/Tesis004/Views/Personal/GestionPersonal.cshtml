@@ -26,110 +26,110 @@
 
 	<!--Creacion de secciones para la gestion del personal-->
 	<div class="tab-content">
-        <div id="nuevopersonal" class="container tab-pane active">
-            <br />
-            <div class="card bg-info text-white">
-                <div id="TituloCabeceraNuevo" class="card-header">
-                    NUEVO PERSONAL
-                </div>
-                <div id="TituloCabeceraModificar" class="card-header" hidden>
-                    MODIFICAR PERSONAL
-                </div>
-            </div>
-            <br />
-            <!--<form id="IngresarPersonal" action="IngresarPersonal" method="post">-->
-            <div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>
-                            <label>Nombre Completo</label>
-                            <br />
-                            <input id="Nombre" name="Nombre" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombre : string.Empty)" />
-                        </p>
-                    </div>
-                    <div class="col-md-2">
-                        <p>
-                            <label>Cedula</label>
-                            <br />
-                            <input id="Cedula" name="Cedula" class="col-md required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.cedula : string.Empty)" />
-                            <label id="Salida" name="ValidacionCedula"> </label>
-                        </p>
-                    </div>
-                    <div class="col-md-2">
-                        <p>
-                            <label>Telefono</label>
-                            <br />
-                            <input id="Telefono" name="Telefono" class="col-md required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.telefono : string.Empty)" />
-                        </p>
-                    </div>
-                    <div class="col-md-2">
-                        <p>
-                            <label>Cargo</label>
-                            <br />
-                            <select id="Cargo" name="Cargo" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                                <option value="0"> Seleccionar </option>
-                                @{
-                                    var cargos = ViewData["cargos"] as List<Tesis004.Models.ParametroModel>;
-                                    foreach (var cargo in cargos)
-                                    {
-                                        <option value="@cargo.Identificador"> @cargo.Valor </option>
-                                    }
-                                }
-                            </select>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
+		<div id="nuevopersonal" class="container tab-pane active">
+			<br />
+			<div class="card bg-info text-white">
+				<div id="TituloCabeceraNuevo" class="card-header">
+					NUEVO PERSONAL
+				</div>
+				<div id="TituloCabeceraModificar" class="card-header" hidden>
+					MODIFICAR PERSONAL
+				</div>
+			</div>
+			<br />
+			<!--<form id="IngresarPersonal" action="IngresarPersonal" method="post">-->
+			<div>
+				<div class="row">
+					<div class="col-md-6">
+						<p>
+							<label>Nombre Completo</label>
+							<br />
+							<input id="Nombre" name="Nombre" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombre : string.Empty)" />
+						</p>
+					</div>
+					<div class="col-md-2">
+						<p>
+							<label>Cedula</label>
+							<br />
+							<input id="Cedula" name="Cedula" class="col-md required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.cedula : string.Empty)" />
+							<label id="Salida" name="ValidacionCedula"> </label>
+						</p>
+					</div>
+					<div class="col-md-2">
+						<p>
+							<label>Telefono</label>
+							<br />
+							<input id="Telefono" name="Telefono" class="col-md required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.telefono : string.Empty)" />
+						</p>
+					</div>
+					<div class="col-md-2">
+						<p>
+							<label>Cargo</label>
+							<br />
+							<select id="Cargo" name="Cargo" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+								<option value="0"> Seleccionar </option>
+								@{
+									var cargos = ViewData["cargos"] as List<Tesis004.Models.ParametroModel>;
+									foreach (var cargo in cargos)
+									{
+										<option value="@cargo.Identificador"> @cargo.Valor </option>
+									}
+								}
+							</select>
+						</p>
+					</div>
+				</div>
+				<div class="row">
 
-                    <div class="col-xl-3">
-                        <p>
-                            <label>Especialidad</label>
-                            <br />                            
-                            <select id="Especialidad" name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                                <option value="0"> Seleccionar </option>
-                                @{
-                                    var especialidades = ViewData["especialidades"] as List<Tesis004.Models.ParametroModel>;
-                                    foreach (var especialidad in especialidades)
-                                    {
-                                        <option value="@especialidad.Identificador"> @especialidad.Valor </option>
-                                    }
-                                }
-                            </select>
-                        </p>
-                    </div>
-                    <div class="col-xl-3">
-                        <p>
-                            <label>Usuario</label>
-                            <br />
-                            <input id="Usuario" name="Usuario" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.usuario : string.Empty)" />
-                        </p>
-                    </div>
-                    <div class="col-xl-3">
-                        <p>
-                            <label>Contraseña</label>
-                            <br />
-                            <input type="password" id="Contrasena" name="Contrasena" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.contrasena : string.Empty)" />
-                        </p>
-                    </div>
-                    <div class="col-xl-3">
-                        <p>
-                            <label>Confirmar contraseña</label>
-                            <br />
-                            <input type="password" id="ConfContrasena" name="ConfContrasena" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-                        </p>
-                    </div>
-                </div>
-                <br />
-                <div id="BtnGuardarNuevo" class="text-center">
-                    <button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="ingresar()">Ingresar Personal</button>
-                </div>
-                <div id="BtnGuardarModificar" class="text-center" hidden>
-                    <button id ="BtnBtnGuardarModificar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="guardarModificado()">Guardar</button>
-                </div>
-                <!--</form>-->
-            </div>
-            <br />
-        </div>
+					<div class="col-xl-3">
+						<p>
+							<label>Especialidad</label>
+							<br />
+							<select id="Especialidad" name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+								<option value="0"> Seleccionar </option>
+								@{
+									var especialidades = ViewData["especialidades"] as List<Tesis004.Models.ParametroModel>;
+									foreach (var especialidad in especialidades)
+									{
+										<option value="@especialidad.Identificador"> @especialidad.Valor </option>
+									}
+								}
+							</select>
+						</p>
+					</div>
+					<div class="col-xl-3">
+						<p>
+							<label>Usuario</label>
+							<br />
+							<input id="Usuario" name="Usuario" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.usuario : string.Empty)" />
+						</p>
+					</div>
+					<div class="col-xl-3">
+						<p>
+							<label>Contraseña</label>
+							<br />
+							<input type="password" id="Contrasena" name="Contrasena" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.contrasena : string.Empty)" />
+						</p>
+					</div>
+					<div class="col-xl-3">
+						<p>
+							<label>Confirmar contraseña</label>
+							<br />
+							<input type="password" id="ConfContrasena" name="ConfContrasena" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+						</p>
+					</div>
+				</div>
+				<br />
+				<div id="BtnGuardarNuevo" class="text-center">
+					<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="ingresar()">Ingresar Personal</button>
+				</div>
+				<div id="BtnGuardarModificar" class="text-center" hidden>
+					<button id="BtnBtnGuardarModificar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="guardarModificado()">Guardar</button>
+				</div>
+				<!--</form>-->
+			</div>
+			<br />
+		</div>
 
 		<!--Visualizacion de lista personal completa-->
 
@@ -150,7 +150,7 @@
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
-					
+
 					<tr>
 						<td scope="col"></td>
 						<td scope="col"></td>
@@ -169,7 +169,7 @@
 		</div>
 
 		<!--Gestion de los serviciso brindados por el personal-->
-		
+
 		<div id="serviciopersonal" class="container tab-pane fade">
 			<br />
 			<div class="card bg-info text-white">
@@ -178,31 +178,31 @@
 				</div>
 			</div>
 			<br />
-            <div class="row">
-                <div class="col-xl-4">
-                    <label>Usuario</label>
-                    <select id="UsuarioSrv" name="Usuario" title="Seleccionar el usuario que realziara el servicio" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                        <!-- <option> Seleccionar </option> -->
-                    </select>
-                </div>
-                <div class="col-xl-5">
-                    <label>Detalle</label>
-                    <input id="DetalleSrv" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-                </div>
-                <div class="col-xl-2">
-                    <label>Valor</label>
-                    <input id="ValorSrv" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-                </div>
-                <div class="col-md-1">
-                    <br />
-                    <button id="IdentificadorSrv" name="Identificador" title="Ingresar nuevo servicio" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:40px; height:40px; cursor: pointer" onclick="anadirServicio()">
-                        <i class="fas fa-plus-square"></i>
-                    </button>
-                </div>
-            </div>
+			<div class="row">
+				<div class="col-xl-4">
+					<label>Usuario</label>
+					<select id="UsuarioSrv" name="Usuario" title="Seleccionar el usuario que realziara el servicio" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+						<!-- <option> Seleccionar </option> -->
+					</select>
+				</div>
+				<div class="col-xl-5">
+					<label>Detalle</label>
+					<input id="DetalleSrv" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+				</div>
+				<div class="col-xl-2">
+					<label>Valor</label>
+					<input id="ValorSrv" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+				</div>
+				<div class="col-md-1">
+					<br />
+					<button id="IdentificadorSrv" name="Identificador" title="Ingresar nuevo servicio" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:40px; height:40px; cursor: pointer" onclick="anadirServicio()">
+						<i class="fas fa-plus-square"></i>
+					</button>
+				</div>
+			</div>
 			<br />
 
-		
+
 			<div>
 				<table id="TablaPersonalServicio" class="table">
 					<tr>
@@ -211,7 +211,7 @@
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
-					
+
 					<tr>
 						<td scope="col"></td>
 						<td scope="col"></td>
@@ -225,13 +225,14 @@
 								<i class="fas fa-trash-alt"></i>
 							</button>
 						</td>
-				
+
 				</table>
 			</div>
-        
+
 		</div>
 	</div>
 </div>
 
 <script src="~/Scripts/Validador.js"></script>
 <script src="~/Scripts/Personal.js"></script>
+
