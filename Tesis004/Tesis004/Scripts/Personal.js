@@ -263,7 +263,7 @@ $("#UsuarioSrv").change(function () {
             fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Detalle"] + "</th >";
             fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Valor"] + "</th >";
             fila += "<td scope=\"col\"> <button name=\"btnModificarServico\" id=\"btnModificarServico\" value=\"" + listaPersonalServicio[i]["ServicioID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"obtenerServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
-            fila += "<td scope=\"col\"> <button name=\"btnEliminarServicio\" id=\"btnEliminarServicio\" onclick=\"eliminarServicio(" + listaPersonalServicio[i]["ServicioID"]+")\">Eliminar</button></th >"
+			fila += "<td scope=\"col\"> <button name=\"btnEliminarServicio\" id=\"btnEliminarServicio\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-trash-alt\"></i></button></th >"
             $("#TablaPersonalServicio").append("<tr>" + fila + "</tr>");
         }
     };

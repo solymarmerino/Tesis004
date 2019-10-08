@@ -1,4 +1,5 @@
-﻿$("#Cedula").change(function () {
+﻿//Validacion de cedulas ingresadas en el sistema
+$("#Cedula").change(function () {
     $("#Salida").empty();
     var cedula = $("#Cedula").val();
     //Preguntamos si la cedula consta de 10 digitos
@@ -61,3 +62,64 @@
         $("#Salida").append("Cédula Inválida");
     }
 });
+
+
+//validacion de nombres ingresados en el sistema
+$("#Nombre").change(function () {
+	$("#SalidaNombre").empty();
+	var nombre = $("#Nombre").val();
+// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#SalidaNombre").append("Ingresar Nombre");	
+	}
+	else {
+		$("#SalidaNombre").prop("disable", true);
+		if (/[A-Za-z]/.test(nombre) && !(/[0-9]/.test(nombre)) && !(/[-_.;:*/+!·$%&()=]/.test(nombre))) {
+			$("#SalidaNombre").prop("disable", true);
+		}
+		else {
+			$("#SalidaNombre").append("Ingresar solo letras");	
+		}
+	}
+});
+
+//validar el numero de telefono ingresado al sistema
+$("#Telefono").change(function () {
+	$("#SalidaTelefono").empty();
+	var telefono = $("#Telefono").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#SalidaTelefono").append("P1");
+	}
+	else {
+		$("#SalidaTelefono").append("P2");
+		if (telefono.length > 6) {
+			$("#SalidaTelefono").append("P3");
+
+			if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
+				//$("#Salida").prop("disable", true);
+				$("#SalidaTelefono").append("P4");
+			}
+			else {
+				//$("#Salida").append("Ingresar solo letras");
+				$("#SalidaTelefono").append("P5");
+			}
+		}
+		else {
+			$("#SalidaTelefono").append("P6");
+		}
+
+		/*//$("#Salida").prop("disable", true);
+		$("#SalidaTelefono").append("P2");
+		if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
+			//$("#Salida").prop("disable", true);
+			$("#SalidaTelefono").append("P3");
+		}
+		else {
+			//$("#Salida").append("Ingresar solo letras");
+			$("#SalidaTelefono").append("P4");
+		}*/
+	}
+});
+
+
