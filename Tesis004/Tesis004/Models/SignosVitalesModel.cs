@@ -11,13 +11,13 @@ namespace Tesis004.Models
         public int HistoriaClinica { get; set; }
         public DateTime Fecha { get; set; }
         public string PrecionArterial { get; set; }
-        public double Temperatura { get; set; }
-        public double Peso { get; set; }
-        public double Talla { get; set; }
+        public decimal Temperatura { get; set; }
+        public decimal Peso { get; set; }
+        public decimal Talla { get; set; }
         public int FrecuenciaCardiaca { get; set; }
         public int FrecuenciaRespiratoria { get; set; }
         public int SaturacionOxigeno { get; set; }
-        public double IndiceMasaCorporal { get; set; }
+        public decimal IndiceMasaCorporal { get; set; }
 
     }
 }

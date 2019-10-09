@@ -38,8 +38,8 @@ function iniciarTablaResultadoBusqueda() {
         "<th scope=\"col\">Paciente</th> " +
         "<th scope=\"col\">Historia Cl&iacute;nica</th> " +
         "<th scope=\"col\">C&eacute;dula</th>" +
-        "<th scope=\"col\"></th>" +
-        "<th scope=\"col\"></th>" +        
+        "<th scope=\"col\">Modificar</th>" +
+        "<th scope=\"col\">Nueva Cita</th>" +        
         " </tr >";
     $("#tblResultadoBusqueda").append(cabecera);
 }
@@ -71,8 +71,6 @@ function buscarPaciente() {
             fila += "<td scope=\"col\">" + listaPaciente[i]["NombreCompleto"] + "</th >";
             fila += "<td scope=\"col\">" + listaPaciente[i]["NumHistoriaClinica"] + "</th >";
             fila += "<td scope=\"col\">" + listaPaciente[i]["Cedula"] + "</th >";
-            fila += "<th scope=\"col\"></th>";
-            fila += "<th scope=\"col\"></th>";  
             fila += "<td scope=\"col\"> <form action=\"../Paciente/ActualizarPaciente\" method=\"POST\"><button name=\"idPaciente\" id=\"btnModificar\" value=\"" + listaPaciente[i]["PacienteID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\"><i class=\"fas fa-edit\"></i></button></form></th >"
             fila += "<td scope=\"col\"> <form action=\"../Servicio/IngresarServicio\" method=\"POST\"><button name=\"idPaciente\" id=\"btnServicios\" value=\"" + listaPaciente[i]["PacienteID"] +"\">Servicios</button></form></th >"
             $("#tblResultadoBusqueda").append("<tr>" + fila + "</tr>");
