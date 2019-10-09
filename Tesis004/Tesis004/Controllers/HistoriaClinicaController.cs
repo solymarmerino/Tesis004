@@ -17,7 +17,5 @@ namespace Tesis004.Controllers
             ViewData["paciente"] = pacienteBDD.PacientePorId(idPaciente);
             return View();
 		}
-
-
 	}
 }

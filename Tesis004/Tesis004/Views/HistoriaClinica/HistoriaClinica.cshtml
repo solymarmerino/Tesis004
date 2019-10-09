@@ -18,21 +18,21 @@
             <p>
                 <label>Nombre Completo</label>
                 <br />
-                <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.NombreCompleto" disabled />
+                <input id="IptNombreCompleto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.NombreCompleto" disabled />
             </p>
         </div>
         <div class="col-md-3">
             <p>
                 <label>Cedula</label>
                 <br />
-                <input style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" value="@paciente.Cedula" disabled />
+                <input id="IptCedula" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" value="@paciente.Cedula" disabled />
             </p>
         </div>
         <div class="col-md-3">
             <p>
                 <label>Nº Historia Clinica</label>
                 <br />
-                <input style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" value="@paciente.NumHistoriaClinica" disabled />
+                <input id="IptNumeroHistoriaClinica" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" value="@paciente.NumHistoriaClinica" disabled />
         </div>
     </div>
 
@@ -150,49 +150,49 @@
                     <div class="col-md-2">
                         <p>
                             <label>Peso (kg)</label>
-                            <input name="Peso" class="col-sm required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <input id="Peso" name="Peso" class="col-sm required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                         </p>
                     </div>
                     <div class="col-md-2">
                         <p>
                             <label>Talla (cm)</label>
-                            <input name="Talla" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <input id="Talla" name="Talla" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                         </p>
                     </div>
                     <div class="col-md-1">
                         <p>
                             <label>PC</label>
-                            <input name="PC" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <input id="PC" name="PC" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                         </p>
                     </div>
                     <div class="col-md-2">
                         <p>
                             <label>Temperatura</label>
-                            <input name="Temperatura" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <input id="Temperatura" name="Temperatura" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                         </p>
                     </div>
                     <div class="col-md-1">
                         <p>
                             <label>Pulso</label>
-                            <input name="Pulso" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <input id="Pulso" name="Pulso" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                         </p>
                     </div>
                     <div class="col-md-2">
                         <p>
                             <label>Respiración</label>
-                            <input name="Respiracion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <input id="Respiracion" name="Respiracion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                         </p>
                     </div>
                     <div class="col-md-1">
                         <p>
                             <label>TA</label>
-                            <input name="TA" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <input id="TA" name="TA" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                         </p>
                     </div>
                     <div class="col-md-1">
                         <p>
                             <label>Ox</label>
-                            <input name="Oximetria" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                            <input id="Oximetria" name="Oximetria" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                         </p>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                         <p>
                             <label>Observaciones Enfermeria</label>
                             <br />
-                            <textarea name="ObservacionesEnfermeria" class="col-xl required number" type="text" rows="2" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                            <textarea id="ObservacionesEnfermeria"  class="col-xl required number" type="text" rows="2" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
                         </p>
                     </div>
                 </div>
@@ -1445,3 +1445,5 @@
         </div>
     </div>
 }
+
+<script src="~/Scripts/historia-clinica.js"></script>

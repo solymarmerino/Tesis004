@@ -28,6 +28,23 @@ namespace Tesis004.Controllers
             return Json(resultado);
         }
 
+        [HttpPost]
+        public JsonResult ConsultarUltimoSignosVitales(int numeroHistoriaClinica)
+        {
+            SignosVitalesModel signosVitalesResultado = new SignosVitalesModel();
+            signosVitalesResultado = signosVitalesBDD.UltimoSignosVitales(numeroHistoriaClinica);
+            return Json(signosVitalesResultado);
+        }
+
+        [HttpPost]
+        public JsonResult ListarSignosVitales(int numeroHistoriaClinica)
+        {
+            List<bool> resultado = new List<bool>();
+            //resultado.Add(signosVitalesBDD.IngresarSignosVitales(signosVitales));
+            //resultado.Add(false);
+            return Json(resultado);
+        }
+
         public ActionResult IngresarSignosVitales()
 		{
 			return View();
