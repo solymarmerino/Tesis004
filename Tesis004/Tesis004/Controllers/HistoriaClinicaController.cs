@@ -11,7 +11,7 @@ namespace Tesis004.Controllers
     {
         PacienteBDD pacienteBDD = new InformacionBDD.PacienteBDD();
         // GET: HistoriaClinica
-        public ActionResult HistoriaClinica(string idPaciente)
+        public ActionResult HistoriaClinica(int idPaciente)
         //public ActionResult HistoriaClinica()
 		{
             ViewData["paciente"] = pacienteBDD.PacientePorId(idPaciente);

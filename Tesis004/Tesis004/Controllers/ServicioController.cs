@@ -15,7 +15,7 @@ namespace Tesis004.Controllers
         ServicioBDD servicioBDD = new ServicioBDD();
         // GET: Servicio
         [HttpPost]
-        public ActionResult IngresarServicio(string idPaciente)
+        public ActionResult IngresarServicio(int idPaciente)
 		{
             ViewData["especialidades"] = informacionGeneral.ObtenerInformacionParametro("especialidad");
             ViewData["citas"] = informacionGeneral.ObtenerInformacionParametro("tipo cita");

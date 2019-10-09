@@ -119,7 +119,7 @@ namespace Tesis004.InformacionBDD
             return listaPacienteResultado;
         }
 
-        public PacienteModel PacientePorId(string idPaciente)
+        public PacienteModel PacientePorId(int idPaciente)
         {
             string sentenciaSql = "SELECT TOP(1) PacienteID, NumHistoriaClinica, NombreCompleto , Cedula, FechaNacimiento, Direccion, Telefono, Sexo, EstadoCivil, TipoSangre, Etnia, NombreContactoEmergencia, AfinidadContactoEmergencia, TelefonoContactoEmergencia, Representante, Discapacidad, Email, Ocupacion " +
                                   "FROM Paciente "+
@@ -147,7 +147,6 @@ namespace Tesis004.InformacionBDD
             pacienteResultado.Ocupacion = tablaDatos.Rows[0].Field<string>("Ocupacion");
 
             DateTime fechaActual = DateTime.Today;
-            //TimeSpan diferencia = fechaActual.Subtract(pacienteResultado.FechaNacimiento);
             int anos = fechaActual.Year - pacienteResultado.FechaNacimiento.Year;
             int meses = fechaActual.Month - pacienteResultado.FechaNacimiento.Month;
 
@@ -230,6 +229,45 @@ namespace Tesis004.InformacionBDD
 
             sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", paciente.NumHistoriaClinica);
             sentenciaSQL.Parameters.AddWithValue("@PacienteID", paciente.PacienteID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public bool ModificarPaciente(PacienteModel paciente)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "UPDATE Paciente "+
+                                  "SET NombreCompleto = @NombreCompleto, Cedula = @Cedula, Direccion = @Direccion, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Sexo = @Sexo, EstadoCivil = @EstadoCivil, TipoSangre = @TipoSangre, Etnia = @Etnia, NombreContactoEmergencia = @NombreContactoEmergencia, AfinidadContactoEmergencia = @AfinidadContactoEmergencia, TelefonoContactoEmergencia = @TelefonoContactoEmergencia, Representante = @Representante, Discapacidad = @Discapacidad, Email = @Email, Ocupacion = @Ocupacion) " +
+                                  "WHERE PacienteID = @PacienteID ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@PacienteID", paciente.PacienteID);
+            sentenciaSQL.Parameters.AddWithValue("@NombreCompleto", paciente.NombreCompleto);
+            sentenciaSQL.Parameters.AddWithValue("@Cedula", paciente.Cedula);
+            sentenciaSQL.Parameters.AddWithValue("@Direccion", paciente.Direccion);
+            sentenciaSQL.Parameters.AddWithValue("@Telefono", paciente.Telefono);
+            sentenciaSQL.Parameters.AddWithValue("@FechaNacimiento", paciente.FechaNacimiento);
+            sentenciaSQL.Parameters.AddWithValue("@Sexo", paciente.Sexo);
+            sentenciaSQL.Parameters.AddWithValue("@EstadoCivil", paciente.EstadoCivil);
+            sentenciaSQL.Parameters.AddWithValue("@TipoSangre", paciente.TipoSangre);
+            sentenciaSQL.Parameters.AddWithValue("@Etnia", paciente.Etnia);
+            sentenciaSQL.Parameters.AddWithValue("@NombreContactoEmergencia", paciente.NombreContactoEmergencia);
+            sentenciaSQL.Parameters.AddWithValue("@AfinidadContactoEmergencia", paciente.AfinidadContactoEmergencia);
+            sentenciaSQL.Parameters.AddWithValue("@TelefonoContactoEmergencia", paciente.TelefonoContactoEmergencia);
+            sentenciaSQL.Parameters.AddWithValue("@Representante", paciente.Representante);
+            sentenciaSQL.Parameters.AddWithValue("@Discapacidad", paciente.Discapacidad);
+            sentenciaSQL.Parameters.AddWithValue("@Email", paciente.Email);
+            sentenciaSQL.Parameters.AddWithValue("@Ocupacion", paciente.Ocupacion);
 
             resultado = this.conexion.ComandoModificacion(sentenciaSQL);
 

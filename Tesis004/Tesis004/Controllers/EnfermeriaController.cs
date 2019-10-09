@@ -13,7 +13,7 @@ namespace Tesis004.Controllers
         PacienteBDD pacienteBDD = new PacienteBDD();
         SignosVitalesBDD signosVitalesBDD = new SignosVitalesBDD();
         // GET: Enfermeria
-        public ActionResult GestionEnfermeria(string idPaciente)
+        public ActionResult GestionEnfermeria(int idPaciente)
 		{
             ViewData["paciente"] = pacienteBDD.PacientePorId(idPaciente);
             return View();

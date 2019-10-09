@@ -28,9 +28,14 @@ namespace Tesis004.Controllers
 			return View();
 		}
 
-		public ActionResult ActualizarPaciente()
+        [HttpPost]
+		public ActionResult ActualizarPaciente(int idPaciente)
 		{
-			return View();
+            ViewData["generos"] = informacionGeneral.ObtenerInformacionParametro("genero");
+            ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
+            ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");
+            ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
+            return View(pacienteBDD.PacientePorId(idPaciente));
 		}
 
         [HttpPost]
@@ -54,6 +59,15 @@ namespace Tesis004.Controllers
         {
             List<bool> ingresado = new List<bool>();
             ingresado.Add(this.pacienteBDD.IngresarPaciente(paciente));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ModificarPaciente(PacienteModel paciente)
+        {
+            List<bool> ingresado = new List<bool>();
+            //ingresado.Add(this.pacienteBDD.IngresarPaciente(paciente));
+            ingresado.Add(false);
             return Json(ingresado);
         }
 
