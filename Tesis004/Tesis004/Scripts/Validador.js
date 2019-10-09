@@ -89,36 +89,23 @@ $("#Telefono").change(function () {
 	var telefono = $("#Telefono").val();
 	// preguntar si el campo esta vacio
 	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
-		$("#SalidaTelefono").append("P1");
+		$("#SalidaTelefono").append("Ingresar numero de telefono");
 	}
 	else {
-		$("#SalidaTelefono").append("P2");
+		$("#SalidaNombre").prop("disable", true);
 		if (telefono.length > 6) {
-			$("#SalidaTelefono").append("P3");
+			$("#SalidaNombre").prop("disable", true);
 
 			if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
-				//$("#Salida").prop("disable", true);
-				$("#SalidaTelefono").append("P4");
+				$("#Salida").prop("disable", true);
 			}
 			else {
-				//$("#Salida").append("Ingresar solo letras");
-				$("#SalidaTelefono").append("P5");
+				$("#SalidaTelefono").append("Ingresar solo numeros");
 			}
 		}
 		else {
-			$("#SalidaTelefono").append("P6");
+			$("#SalidaTelefono").append("Numero de telefono incompleto");
 		}
-
-		/*//$("#Salida").prop("disable", true);
-		$("#SalidaTelefono").append("P2");
-		if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
-			//$("#Salida").prop("disable", true);
-			$("#SalidaTelefono").append("P3");
-		}
-		else {
-			//$("#Salida").append("Ingresar solo letras");
-			$("#SalidaTelefono").append("P4");
-		}*/
 	}
 });
 
