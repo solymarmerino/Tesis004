@@ -45,6 +45,7 @@
 							<label>Nombre Completo</label>
 							<br />
 							<input id="Nombre" name="Nombre" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombre : string.Empty)" />
+							<label id="SalidaNombre" name="ValidacionNombre"> </label>
 						</p>
 					</div>
 					<div class="col-md-2">
@@ -60,6 +61,7 @@
 							<label>Telefono</label>
 							<br />
 							<input id="Telefono" name="Telefono" class="col-md required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.telefono : string.Empty)" />
+							<label id="SalidaTelefono" name="ValidacionTelefono"> </label>
 						</p>
 					</div>
 					<div class="col-md-2">
