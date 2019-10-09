@@ -34,6 +34,7 @@
     ModificarPaciente.success = function (ingresado) {
         if (ingresado[0] == true) {
             toastr.success("Paciente modificado");
+            location.reload();
         }
         else {
             toastr.error("Paciente NO modificado");

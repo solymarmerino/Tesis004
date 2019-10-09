@@ -139,8 +139,8 @@ namespace Tesis004.InformacionBDD
             pacienteResultado.TipoSangre = tablaDatos.Rows[0].Field<int>("TipoSangre");
             pacienteResultado.Etnia = tablaDatos.Rows[0].Field<int>("Etnia");
             pacienteResultado.NombreContactoEmergencia = tablaDatos.Rows[0].Field<string>("NombreContactoEmergencia");
-            pacienteResultado.NombreContactoEmergencia = tablaDatos.Rows[0].Field<string>("AfinidadContactoEmergencia");
-            pacienteResultado.NombreContactoEmergencia = tablaDatos.Rows[0].Field<string>("TelefonoContactoEmergencia");
+            pacienteResultado.AfinidadContactoEmergencia = tablaDatos.Rows[0].Field<string>("AfinidadContactoEmergencia");
+            pacienteResultado.TelefonoContactoEmergencia = tablaDatos.Rows[0].Field<string>("TelefonoContactoEmergencia");
             pacienteResultado.Representante = tablaDatos.Rows[0].Field<bool>("Representante");
             pacienteResultado.Discapacidad = tablaDatos.Rows[0].Field<bool>("Discapacidad");
             pacienteResultado.Email = tablaDatos.Rows[0].Field<string>("Email");
@@ -246,7 +246,7 @@ namespace Tesis004.InformacionBDD
             int resultado = 0;
 
             string sentenciaSql = "UPDATE Paciente "+
-                                  "SET NombreCompleto = @NombreCompleto, Cedula = @Cedula, Direccion = @Direccion, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Sexo = @Sexo, EstadoCivil = @EstadoCivil, TipoSangre = @TipoSangre, Etnia = @Etnia, NombreContactoEmergencia = @NombreContactoEmergencia, AfinidadContactoEmergencia = @AfinidadContactoEmergencia, TelefonoContactoEmergencia = @TelefonoContactoEmergencia, Representante = @Representante, Discapacidad = @Discapacidad, Email = @Email, Ocupacion = @Ocupacion) " +
+                                  "SET NombreCompleto = @NombreCompleto, Cedula = @Cedula, Direccion = @Direccion, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Sexo = @Sexo, EstadoCivil = @EstadoCivil, TipoSangre = @TipoSangre, Etnia = @Etnia, NombreContactoEmergencia = @NombreContactoEmergencia, AfinidadContactoEmergencia = @AfinidadContactoEmergencia, TelefonoContactoEmergencia = @TelefonoContactoEmergencia, Representante = @Representante, Discapacidad = @Discapacidad, Email = @Email, Ocupacion = @Ocupacion " +
                                   "WHERE PacienteID = @PacienteID ";
 
             SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);

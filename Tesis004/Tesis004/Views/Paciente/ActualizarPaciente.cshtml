@@ -34,7 +34,7 @@
         <p>
             <label>Representante</label>
             <br />
-            <input id="CboxRepresentante" type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" /> Representante
+            <input id="CboxRepresentante" type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" @(Model!=null ? (Model.Representante ? "checked": "") : "")/> Representante
         </p>
     </div>
 </div>
@@ -80,7 +80,14 @@
                     var etnias = ViewData["etnias"] as List<Tesis004.Models.ParametroModel>;
                     foreach (var etnia in etnias)
                     {
-                        <option value="@etnia.Identificador"> @etnia.Valor </option>
+                        if (Model.Etnia == etnia.Identificador)
+                        {
+                            <option value="@etnia.Identificador" selected> @etnia.Valor </option>
+                        }
+                        else
+                        {
+                            <option value="@etnia.Identificador"> @etnia.Valor </option>
+                        }
                     }
                 }
             </select>
@@ -90,7 +97,7 @@
         <p>
             <label>Discapacidad</label>
             <br />
-            <input id="CboxDiscapacidad" type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" /> Discapacidad
+            <input id="CboxDiscapacidad" type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" @(Model!=null ? (Model.Discapacidad ? "checked": "") : "")/> Discapacidad
         </p>
     </div>
 </div>
@@ -99,7 +106,7 @@
         <p>
             <label>Fecha de Nacimiento</label>
             <br />
-            <input id="IptFechaNacimiento" name="FechaNacimiento" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.FechaNacimiento : DateTime.Now)"/>
+            <input id="IptFechaNacimiento" name="FechaNacimiento" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.FechaNacimiento.ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"))"/>
         </p>
     </div>
     <div class="col-xl-3">
@@ -112,7 +119,14 @@
                     var generos = ViewData["generos"] as List<Tesis004.Models.ParametroModel>;
                     foreach (var genero in generos)
                     {
-                        <option value="@genero.Identificador"> @genero.Valor </option>
+                        if (Model.Sexo == genero.Identificador)
+                        {
+                            <option value="@genero.Identificador" selected> @genero.Valor </option>
+                        }
+                        else
+                        {
+                            <option value="@genero.Identificador"> @genero.Valor </option>
+                        }                        
                     }
                 }
             </select>
@@ -128,7 +142,14 @@
                     var estados = ViewData["estados"] as List<Tesis004.Models.ParametroModel>;
                     foreach (var estado in estados)
                     {
-                        <option value="@estado.Identificador"> @estado.Valor </option>
+                        if (Model.EstadoCivil == estado.Identificador)
+                        {
+                            <option value="@estado.Identificador" selected> @estado.Valor </option>
+                        }
+                        else
+                        {
+                            <option value="@estado.Identificador"> @estado.Valor </option>
+                        }                        
                     }
                 }
             </select>
@@ -144,7 +165,14 @@
                     var tipos = ViewData["tipos"] as List<Tesis004.Models.ParametroModel>;
                     foreach (var tipo in tipos)
                     {
-                        <option value="@tipo.Identificador"> @tipo.Valor </option>
+                        if (Model.TipoSangre == tipo.Identificador)
+                        {
+                                <option value="@tipo.Identificador" selected> @tipo.Valor </option>
+                        }
+                        else
+                        {
+                            <option value="@tipo.Identificador"> @tipo.Valor </option>
+                        }                        
                     }
                 }
             </select>

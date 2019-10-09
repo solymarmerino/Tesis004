@@ -66,7 +66,7 @@ namespace Tesis004.Controllers
         public JsonResult ModificarPaciente(PacienteModel paciente)
         {
             List<bool> ingresado = new List<bool>();
-            //ingresado.Add(this.pacienteBDD.IngresarPaciente(paciente));
+            ingresado.Add(this.pacienteBDD.ModificarPaciente(paciente));
             ingresado.Add(false);
             return Json(ingresado);
         }
