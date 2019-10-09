@@ -87,7 +87,7 @@
 						<p>
 							<label>Especialidad</label>
 							<br />
-							<select id="Especialidad" name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<select id="Especialidad" name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled>
 								<option value="0"> Seleccionar </option>
 								@{
 									var especialidades = ViewData["especialidades"] as List<Tesis004.Models.ParametroModel>;
@@ -111,6 +111,7 @@
 							<label>Contraseña</label>
 							<br />
 							<input type="password" id="Contrasena" name="Contrasena" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.contrasena : string.Empty)" />
+							<label id="SalidaContrasena" name="ValidacionContrasena"> </label>
 						</p>
 					</div>
 					<div class="col-xl-3">
@@ -118,6 +119,8 @@
 							<label>Confirmar contraseña</label>
 							<br />
 							<input type="password" id="ConfContrasena" name="ConfContrasena" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<label id="SalidaContrasena2" name="ValidacionContrasena"> </label>
+						</p>
 						</p>
 					</div>
 				</div>

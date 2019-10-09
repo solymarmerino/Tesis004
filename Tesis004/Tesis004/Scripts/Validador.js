@@ -74,6 +74,8 @@ $("#Nombre").change(function () {
 	}
 	else {
 		$("#SalidaNombre").prop("disable", true);
+
+		//preguntar si contiene solo letras
 		if (/[A-Za-z]/.test(nombre) && !(/[0-9]/.test(nombre)) && !(/[-_.;:*/+!·$%&()=]/.test(nombre))) {
 			$("#SalidaNombre").prop("disable", true);
 		}
@@ -93,9 +95,11 @@ $("#Telefono").change(function () {
 	}
 	else {
 		$("#SalidaNombre").prop("disable", true);
+		//preguntar si es de la longitud correcta
 		if (telefono.length > 6) {
 			$("#SalidaNombre").prop("disable", true);
 
+			//preguntar si contiene solo numeros
 			if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
 				$("#Salida").prop("disable", true);
 			}
@@ -109,4 +113,49 @@ $("#Telefono").change(function () {
 	}
 });
 
+//validar contraseña
+$("#Contrasena").change(function () {
+	$("#SalidaContrasena").empty();
+	var contrasena1 = $("#Contrasena").val();
 
+	//preguntar si la contraseña no es nula
+	if (contrasena1 == null || contrasena1.length == 0 || /^\s+$/.test(contrasena1)) {
+		$("#SalidaContrasena").append("Ingresar contraseña");
+	}
+	else {
+		$("#Salida").prop("disable", true);
+
+		//preguntar si la contraseña tiene mas de 7 caracteres
+		if (contrasena1.length > 7) {
+			$("#Salida").prop("disable", true);
+		}
+		else {
+			$("#SalidaContrasena").append("Contraseña debe tener minimo 8 caracteres");
+		} 
+	}
+});
+
+//Validar la contraseña de los usuarios
+$("#ConfContrasena").change(function () {
+	$("#SalidaContrasena2").empty();
+	var contrasena1 = $("#Contrasena").val();
+	var contrasena2 = $("#ConfContrasena").val();
+	//preguntar si la contrasela es las misma en los dos campos
+	if (contrasena1 === contrasena2) {
+		$("#SalidaContrasena2").prop("disable", true);
+	}
+	else {
+		$("#SalidaContrasena2").append("Contraseña no coinciden");
+	}
+});
+
+//Validar que no se ingresen especialiades a empleados diferentes de medicos
+$("#Cargo").change(function () {
+	if ($("#Cargo").val() == 21) {
+		$("#Especialidad").prop('disabled', false);
+	}
+	else {
+		$("#Especialidad").prop('disabled', true);
+		document.getElementById("Especialidad").selectedIndex = 0;
+	}
+});

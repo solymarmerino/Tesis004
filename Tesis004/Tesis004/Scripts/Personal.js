@@ -44,8 +44,8 @@ function ingresar() {
     IngresarPersonal.datatype = "json";
     IngresarPersonal.contentType = "application/json";
     IngresarPersonal.success = function (ingresado) {
-        if (ingresado[0] == true) {
-            alert("Personal ingresado!!");
+		if (ingresado[0] == true) {
+			toastr.success("Personal ingresado correctamente!!");
             $("#Nombre").empty();
             $("#Cedula").empty();
             $("#Telefono").empty();
@@ -55,12 +55,12 @@ function ingresar() {
             $("#Contrasena").empty();
             $("#ConfContrasena").empty();
         }
-        else {
-            alert("Personal NO ingresado!!!!");
+		else {
+			toastr.error("Personal NO ingresado!!!!");
         }
     };
     IngresarPersonal.error = function () {
-        alert("Error al ingresar personal!!");
+		toastr.error("Error al ingresar personal!!");
     };
     $.ajax(IngresarPersonal);
 }
@@ -164,36 +164,6 @@ function listarServicios() {
     $.ajax(ListarPersonalParaServicios);
 }
 
-function editarServicio(idServicio) {
-    var idPersonal = $("#UsuarioSrv").val();
-    var EditarServicio = {};
-    EditarServicio.url = "/Personal/ModificarServicio";
-    EditarServicio.type = "POST";
-    EditarServicio.data = JSON.stringify({
-        detalle: $("#DetalleSrv").val(),
-        valor: $("#ValorSrv").val(),
-        ServicioID: idServicio
-    });
-    EditarServicio.datatype = "json";
-    EditarServicio.contentType = "application/json";
-    EditarServicio.success = function (modificado) {
-        if (modificado[0] == true) {
-            alert("Servicio modificado!!");
-            $("#DetalleSrv").prop("value", "");
-            $("#ValorSrv").prop("value", "");
-            $("#UsuarioSrv").val(0).trigger("change");
-            //$("#UsuarioSrv").val(idPersonal).trigger("change");
-        }
-        else {
-            alert("Servicio NO modificado!!!!");
-        }
-    };
-    EditarServicio.error = function () {
-        alert("Error al modificar servicio!!");
-    };
-    $.ajax(EditarServicio);
-}
-
 function obtenerServicio(idServicio) {
     var ObtenerServicio = {};
     ObtenerServicio.url = "/Personal/ObtenerServicio";
@@ -216,6 +186,68 @@ function obtenerServicio(idServicio) {
     $.ajax(ObtenerServicio);
 }
 
+function listarServicioPorPersonal() {
+	var ListarPersonalServico = {};
+	ListarPersonalServico.url = "/Personal/ListarPersonalServico";
+	ListarPersonalServico.type = "POST";
+	ListarPersonalServico.data = JSON.stringify({
+		personalID: $("#UsuarioSrv").val()
+	});
+	ListarPersonalServico.datatype = "json";
+	ListarPersonalServico.contentType = "application/json";
+	ListarPersonalServico.success = function (listaPersonalServicio) {
+		$("#TablaPersonalServicio").empty();
+		var cabecera = "< tr >" +
+			"<th scope = \"col\">Servicio</th>" +
+			"<th scope = \"col\">Valor</th>" +
+			"<th scope = \"col\"></th>" +
+			"<th scope = \"col\"></th>" +
+			"</tr >";
+		$("#TablaPersonalServicio").append(cabecera);
+		for (var i = 0; i < listaPersonalServicio.length; i++) {
+			var fila = "";
+			fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Detalle"] + "</th >";
+			fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Valor"] + "</th >";
+			fila += "<td scope=\"col\"> <button name=\"btnModificarServico\" id=\"btnModificarServico\" value=\"" + listaPersonalServicio[i]["ServicioID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"obtenerServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
+			fila += "<td scope=\"col\"> <button name=\"btnEliminarServicio\" id=\"btnEliminarServicio\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-trash-alt\"></i></button></th >"
+			$("#TablaPersonalServicio").append("<tr>" + fila + "</tr>");
+		}
+	};
+	ListarPersonalServico.error = function () {
+		alert("Error al listar los servicios!!");
+	};
+	$.ajax(ListarPersonalServico);
+}
+
+function editarServicio(idServicio) {
+	var idPersonal = $("#UsuarioSrv").val();
+	var EditarServicio = {};
+	EditarServicio.url = "/Personal/ModificarServicio";
+	EditarServicio.type = "POST";
+	EditarServicio.data = JSON.stringify({
+		detalle: $("#DetalleSrv").val(),
+		valor: $("#ValorSrv").val(),
+		ServicioID: idServicio
+	});
+	EditarServicio.datatype = "json";
+	EditarServicio.contentType = "application/json";
+	EditarServicio.success = function (modificado) {
+		if (modificado[0] == true) {
+			alert("Servicio modificado!!");
+			$("#DetalleSrv").prop("value", "");
+			$("#ValorSrv").prop("value", "");
+			listarServicioPorPersonal();
+		}
+		else {
+			alert("Servicio NO modificado!!!!");
+		}
+	};
+	EditarServicio.error = function () {
+		alert("Error al modificar servicio!!");
+	};
+	$.ajax(EditarServicio);
+}
+
 function eliminarServicio(idServicio) {
     var idPersonal = $("#UsuarioSrv").val();
     var EliminarServicio = {};
@@ -228,10 +260,11 @@ function eliminarServicio(idServicio) {
     EliminarServicio.contentType = "application/json";
     EliminarServicio.success = function (eliminado) {
         if (eliminado[0] == true) {
-            alert("Servicio eliminado!!");
+			alert("Servicio eliminado!!");
+			listarServicioPorPersonal();
         }
         else {
-            alert("Servicio NO eliminado!!!!");
+			alert("Servicio NO eliminado!!!!");
         }
     };
     EliminarServicio.error = function () {
@@ -239,72 +272,6 @@ function eliminarServicio(idServicio) {
     };
     $.ajax(EliminarServicio);
 }
-
-$("#UsuarioSrv").change(function () {
-    var ListarPersonalServico = {};
-    ListarPersonalServico.url = "/Personal/ListarPersonalServico";
-    ListarPersonalServico.type = "POST";
-    ListarPersonalServico.data = JSON.stringify({
-        personalID: $("#UsuarioSrv").val()
-    });
-    ListarPersonalServico.datatype = "json";
-    ListarPersonalServico.contentType = "application/json";
-    ListarPersonalServico.success = function (listaPersonalServicio) {
-        $("#TablaPersonalServicio").empty();
-        var cabecera = "< tr >" +
-            "<th scope = \"col\">Servicio</th>" +
-            "<th scope = \"col\">Valor</th>" +
-            "<th scope = \"col\"></th>" +
-            "<th scope = \"col\"></th>" +
-            "</tr >";
-        $("#TablaPersonalServicio").append(cabecera);
-        for (var i = 0; i < listaPersonalServicio.length; i++) {
-            var fila = "";
-            fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Detalle"] + "</th >";
-            fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Valor"] + "</th >";
-            fila += "<td scope=\"col\"> <button name=\"btnModificarServico\" id=\"btnModificarServico\" value=\"" + listaPersonalServicio[i]["ServicioID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"obtenerServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
-			fila += "<td scope=\"col\"> <button name=\"btnEliminarServicio\" id=\"btnEliminarServicio\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-trash-alt\"></i></button></th >"
-            $("#TablaPersonalServicio").append("<tr>" + fila + "</tr>");
-        }
-    };
-    ListarPersonalServico.error = function () {
-        alert("Error al listar los servicios!!");
-    };
-    $.ajax(ListarPersonalServico);
-});
-
-/*$("#UsuarioSrv").on("change", function () {
-    var ListarPersonalServico = {};
-    ListarPersonalServico.url = "/Personal/ListarPersonalServico";
-    ListarPersonalServico.type = "POST";
-    ListarPersonalServico.data = JSON.stringify({
-        personalID: $("#UsuarioSrv").val()
-    });
-    ListarPersonalServico.datatype = "json";
-    ListarPersonalServico.contentType = "application/json";
-    ListarPersonalServico.success = function (listaPersonalServicio) {
-        $("#TablaPersonalServicio").empty();
-        var cabecera = "< tr >" +
-            "<th scope = \"col\">Servicio</th>" +
-            "<th scope = \"col\">Valor</th>" +
-            "<th scope = \"col\"></th>" +
-            "<th scope = \"col\"></th>" +
-            "</tr >";
-        $("#TablaPersonalServicio").append(cabecera);
-        for (var i = 0; i < listaPersonalServicio.length; i++) {
-            var fila = "";
-            fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Detalle"] + "</th >";
-            fila += "<td scope=\"col\">" + listaPersonalServicio[i]["Valor"] + "</th >";
-            fila += "<td scope=\"col\"> <button name=\"btnModificarServico\" id=\"btnModificarServico\" value=\"" + listaPersonalServicio[i]["ServicioID"] + "\" style=\"background - color: darkturquoise; border - bottom - color: darkturquoise; color: white; border - radius: 0.3rem; width: 35px; height: 30px; cursor: pointer\" onclick=\"modificarServicio(" + listaPersonalServicio[i]["ServicioID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
-            fila += "<td scope=\"col\"> <button name=\"btnEliminarServicio\" id=\"btnEliminarServicio\" onclick=\"eliminarServicio()\">Eliminar</button></th >"
-            $("#TablaPersonalServicio").append("<tr>" + fila + "</tr>");
-        }
-    };
-    ListarPersonalServico.error = function () {
-        alert("Error al listar los servicios!!");
-    };
-    $.ajax(ListarPersonalServico);
-});*/
 
 function anadirServicio() {
     var idPersonal = $("#UsuarioSrv").val();
@@ -320,16 +287,17 @@ function anadirServicio() {
     AnadirServicio.contentType = "application/json";
     AnadirServicio.success = function (anadido) {
         if (anadido[0] == true) {
-			//alert("Personal ingresado!!")
-			swal("Personal ingresado!!")
+			alert("Servicio ingresado!!")
+			//swal("Personal ingresado!!")
 			$("#DetalleSrv").prop("value", "");
-            $("#ValorSrv").prop("value", "");
-            $("#UsuarioSrv").val(0).trigger("change");
+			$("#ValorSrv").prop("value", "");
+			listarServicioPorPersonal();
+            //$("#UsuarioSrv").val(0).trigger("change");
             //$("#UsuarioSrv").val(idPersonal).trigger("change");
         }
         else {
 			alert("Servicio NO ingresado!!!!");
-			$.jGrowl("prueba mensaje", { life: 2000 });
+			//$.jGrowl("prueba mensaje", { life: 2000 });
         }
     };
     AnadirServicio.error = function () {
@@ -338,7 +306,6 @@ function anadirServicio() {
     $.ajax(AnadirServicio);
 }
 
-
-
-
-
+$("#UsuarioSrv").change(function () {
+	listarServicioPorPersonal();
+});
