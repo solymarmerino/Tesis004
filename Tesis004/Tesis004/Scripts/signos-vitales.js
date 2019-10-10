@@ -43,7 +43,8 @@ $("#btnGuardarSignosVitales").click(function () {
         Talla: $("#Talla").val(),
         FrecuenciaCardiaca: $("#Fc").val(),
         FrecuenciaRespiratoria: $("#Fr").val(),
-        SaturacionOxigeno: $("#Saturacion").val()
+        SaturacionOxigeno: $("#Saturacion").val(),
+        Observacion: $("#ObservacionesEnfermeria").val()
     });
     SignosVitales.datatype = "json";
     SignosVitales.contentType = "application/json";

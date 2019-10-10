@@ -20,6 +20,7 @@ function consultarSignosVitales() {
         $("#Respiracion").val(resultado["FrecuenciaRespiratoria"]);
         $("#TA").val(resultado["IndiceMasaCorporal"]);
         $("#Oximetria").val(resultado["SaturacionOxigeno"]);
+        $("#ObservacionesEnfermeria").val(resultado["Observacion"]);
     };
     ConsultarSignosVitales.error = function () {
         toastr.error("Error al consultar los signos vitales");

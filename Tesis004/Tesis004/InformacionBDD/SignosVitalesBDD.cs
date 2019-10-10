@@ -19,7 +19,7 @@ namespace Tesis004.InformacionBDD
         public SignosVitalesModel UltimoSignosVitales(int numeroHistoriaClinica)
         {
             SignosVitalesModel signosVitalesResultado = new SignosVitalesModel();
-            string sentenciaSql = "SELECT TOP(1) SignosVitalesID, HistoriaClinicaID, Fecha, PrecionArterial, Temperatura, Peso, Talla, FrecuenciaCardiaca, FrecuenciaRespiratoria, IndiceMasaCorporal, SaturacionOxigeno " +
+            string sentenciaSql = "SELECT TOP(1) SignosVitalesID, HistoriaClinicaID, Fecha, PrecionArterial, Temperatura, Peso, Talla, FrecuenciaCardiaca, FrecuenciaRespiratoria, IndiceMasaCorporal, SaturacionOxigeno, Observacion " +
                                   "FROM SignosVitales " +
                                   $"WHERE HistoriaClinicaID = {numeroHistoriaClinica} "+
                                   "ORDER BY Fecha desc ";
@@ -39,6 +39,7 @@ namespace Tesis004.InformacionBDD
                 signosVitalesResultado.FrecuenciaRespiratoria = tablaDatos.Rows[0].Field<int>("FrecuenciaRespiratoria");
                 signosVitalesResultado.IndiceMasaCorporal = tablaDatos.Rows[0].Field<decimal>("IndiceMasaCorporal");
                 signosVitalesResultado.SaturacionOxigeno = tablaDatos.Rows[0].Field<int>("SaturacionOxigeno");
+                signosVitalesResultado.Observacion = tablaDatos.Rows[0].Field<string>("Observacion");
             }                     
             
             return signosVitalesResultado;
@@ -68,6 +69,7 @@ namespace Tesis004.InformacionBDD
                 signosVitalesResultado.FrecuenciaRespiratoria = tablaDatos.Rows[i].Field<int>("FrecuenciaRespiratoria");
                 signosVitalesResultado.IndiceMasaCorporal = tablaDatos.Rows[i].Field<decimal>("IndiceMasaCorporal");
                 signosVitalesResultado.SaturacionOxigeno = tablaDatos.Rows[i].Field<int>("SaturacionOxigeno");
+                signosVitalesResultado.Observacion = tablaDatos.Rows[i].Field<string>("Observacion");
                 listaSignosVitalesResultado.Add(signosVitalesResultado);
             }
             
@@ -79,8 +81,8 @@ namespace Tesis004.InformacionBDD
             bool ingresado = false;
             int resultado = 0;
 
-            string sentenciaSql = "INSERT INTO SignosVitales (HistoriaClinicaID, Fecha, PrecionArterial, Temperatura, Peso, Talla, FrecuenciaCardiaca, FrecuenciaRespiratoria, IndiceMasaCorporal, SaturacionOxigeno) " +
-                                  "VALUES (@HistoriaClinicaID, @Fecha, @PrecionArterial, @Temperatura, @Peso, @Talla, @FrecuenciaCardiaca, @FrecuenciaRespiratoria, @IndiceMasaCorporal, @SaturacionOxigeno)";
+            string sentenciaSql = "INSERT INTO SignosVitales (HistoriaClinicaID, Fecha, PrecionArterial, Temperatura, Peso, Talla, FrecuenciaCardiaca, FrecuenciaRespiratoria, IndiceMasaCorporal, SaturacionOxigeno, Observacion) " +
+                                  "VALUES (@HistoriaClinicaID, @Fecha, @PrecionArterial, @Temperatura, @Peso, @Talla, @FrecuenciaCardiaca, @FrecuenciaRespiratoria, @IndiceMasaCorporal, @SaturacionOxigeno, @Observacion)";
 
             SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
 
@@ -94,6 +96,7 @@ namespace Tesis004.InformacionBDD
             sentenciaSQL.Parameters.AddWithValue("@FrecuenciaRespiratoria", signosVitales.FrecuenciaRespiratoria);
             sentenciaSQL.Parameters.AddWithValue("@IndiceMasaCorporal", signosVitales.IndiceMasaCorporal);
             sentenciaSQL.Parameters.AddWithValue("@SaturacionOxigeno", signosVitales.SaturacionOxigeno);
+            sentenciaSQL.Parameters.AddWithValue("@Observacion", signosVitales.Observacion);
 
             resultado = this.conexion.ComandoModificacion(sentenciaSQL);
 

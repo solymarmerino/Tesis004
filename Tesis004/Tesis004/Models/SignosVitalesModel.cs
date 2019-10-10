@@ -18,6 +18,6 @@ namespace Tesis004.Models
         public int FrecuenciaRespiratoria { get; set; }
         public int SaturacionOxigeno { get; set; }
         public decimal IndiceMasaCorporal { get; set; }
-
+        public string Observacion { get; set; }
     }
 }
