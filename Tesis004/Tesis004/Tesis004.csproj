@@ -266,7 +266,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Enfermeria\IngresarSignosVitales.cshtml" />
     <Content Include="Views\Enfermeria\IngresarVacunas.cshtml" />
     <Content Include="Views\HistoriaClinica\HistoriaClinica.cshtml" />
     <Content Include="Views\Ingreso\Ingreso.cshtml" />
