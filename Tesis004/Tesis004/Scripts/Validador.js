@@ -159,3 +159,37 @@ $("#Cargo").change(function () {
 		document.getElementById("Especialidad").selectedIndex = 0;
 	}
 });
+
+//validar campo de detalle lleno
+$("#DetalleSrv").change(function () {
+	$("#SalidaDetalleSrv").empty();
+	var detallesrv = $("#DetalleSrv").val();
+	//preguntar si el detalle no es nula
+	if (detallesrv == null || detallesrv.length == 0 || /^\s+$/.test(detallesrv)) {
+		$("#SalidaDetalleSrv").append("Ingresar detalle del servicio");
+	}
+	else {
+		$("#SalidaDetalleSrv").prop("disable", true);
+	}
+});
+
+//validar campo de valor
+$("#ValorSrv").change(function () {
+	$("#SalidaValorSrv").empty();
+	var valorsrv = $("#ValorSrv").val();
+	//preguntar si valor es nulo
+	if (valorsrv == null || valorsrv.length == 0 || /^\s+$/.test(valorsrv)) {
+		$("#SalidaValorSrv").append("Ingresar valor del servicio");
+	}
+	else {
+		$("#SalidaDetalleSrv").prop("disable", true);
+		//preguntar si contiene solo numeros
+		if (!(/[A-Za-z]/.test(valorsrv)) && (/[0-9]/.test(valorsrv)) && !(/[-_;*:/+!·$%&()=]/.test(valorsrv))) {
+			$("#SalidaValorSrv").prop("disable", true);
+		}
+		else {
+			$("#SalidaValorSrv").append("Ingresar solo numeros");
+		}
+	}
+});
+

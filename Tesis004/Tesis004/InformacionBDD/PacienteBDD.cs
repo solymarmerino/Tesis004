@@ -199,7 +199,7 @@ namespace Tesis004.InformacionBDD
             sentenciaSQL.Parameters.AddWithValue("@Cedula", paciente.Cedula);
             sentenciaSQL.Parameters.AddWithValue("@Direccion", paciente.Direccion);
             sentenciaSQL.Parameters.AddWithValue("@Telefono", paciente.Telefono);
-            sentenciaSQL.Parameters.AddWithValue("@FechaNacimiento", paciente.FechaNacimiento);
+            sentenciaSQL.Parameters.AddWithValue("@FechaNacimiento", paciente.FechaNacimiento.Date);
             sentenciaSQL.Parameters.AddWithValue("@Sexo", paciente.Sexo);
             sentenciaSQL.Parameters.AddWithValue("@EstadoCivil", paciente.EstadoCivil);
             sentenciaSQL.Parameters.AddWithValue("@TipoSangre", paciente.TipoSangre);

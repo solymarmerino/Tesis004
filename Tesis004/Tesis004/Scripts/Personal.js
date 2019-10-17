@@ -21,8 +21,8 @@
         $("#Especialidad").prop("value",personal["Especialidad"]);
         $("#Usuario").prop("value",personal["Usuario"]);
     };
-    ConsultarPersonal.error = function () {
-        alert("Error al consultar personal!!");
+	ConsultarPersonal.error = function () {
+		toastr.error("Error al consultar personal!!");
     };
     $.ajax(ConsultarPersonal);
 }
@@ -93,8 +93,8 @@ function listar() {
 
         }
     };
-    ListarPersonal.error = function () {
-        alert("Error al listar personal!!");
+	ListarPersonal.error = function () {
+		toastr.error("Error al listar personal!!");
     };
     $.ajax(ListarPersonal);
 }
@@ -122,8 +122,8 @@ function guardarModificado() {
     ModificarPersonal.datatype = "json";
     ModificarPersonal.contentType = "application/json";
     ModificarPersonal.success = function (modificado) {
-        if (modificado[0] == true) {
-            alert("Personal modificado!!");
+		if (modificado[0] == true) {
+			toastr.success("Personal modificado!!");
             $("#Nombre").empty();
             $("#Cedula").empty();
             $("#Telefono").empty();
@@ -133,12 +133,12 @@ function guardarModificado() {
             $("#Contrasena").empty();
             $("#ConfContrasena").empty();
         }
-        else {
-            alert("Personal NO modificado!!!!");
+		else {
+			toastr.error("Personal NO modificado!!!!");
         }
     };
-    ModificarPersonal.error = function () {
-        alert("Error al modificar personal!!");
+	ModificarPersonal.error = function () {
+		toastr.error("Error al modificar personal!!");
     };
     $.ajax(ModificarPersonal);
 }
@@ -158,8 +158,8 @@ function listarServicios() {
             $("#UsuarioSrv").append("<option value=\"" + listaPersonal[i]["PersonalID"] + "\">" + listaPersonal[i]["Nombre"] + "</option>");
         }
     };
-    ListarPersonalParaServicios.error = function () {
-        alert("Error al listar personal!!");
+	ListarPersonalParaServicios.error = function () {
+		toastr.error("Error al listar personal!!");
     };
     $.ajax(ListarPersonalParaServicios);
 }
@@ -180,8 +180,8 @@ function obtenerServicio(idServicio) {
         $("#IdentificadorSrv").prop("title", "Modificar servicio");      
         
     };
-    ObtenerServicio.error = function () {
-        alert("Error al listar personal!!");
+	ObtenerServicio.error = function () {
+		toastr.error("Error al listar personal!!");
     };
     $.ajax(ObtenerServicio);
 }
@@ -214,7 +214,7 @@ function listarServicioPorPersonal() {
 		}
 	};
 	ListarPersonalServico.error = function () {
-		alert("Error al listar los servicios!!");
+		toastr.error("Error al listar los servicios!!");
 	};
 	$.ajax(ListarPersonalServico);
 }
@@ -233,17 +233,17 @@ function editarServicio(idServicio) {
 	EditarServicio.contentType = "application/json";
 	EditarServicio.success = function (modificado) {
 		if (modificado[0] == true) {
-			alert("Servicio modificado!!");
+			toastr.success("Servicio modificado!!");
 			$("#DetalleSrv").prop("value", "");
 			$("#ValorSrv").prop("value", "");
 			listarServicioPorPersonal();
 		}
 		else {
-			alert("Servicio NO modificado!!!!");
+			toastr.error("Servicio NO modificado!!!!");
 		}
 	};
 	EditarServicio.error = function () {
-		alert("Error al modificar servicio!!");
+		toastr.error("Error al modificar servicio!!");
 	};
 	$.ajax(EditarServicio);
 }
@@ -259,16 +259,16 @@ function eliminarServicio(idServicio) {
     EliminarServicio.datatype = "json";
     EliminarServicio.contentType = "application/json";
     EliminarServicio.success = function (eliminado) {
-        if (eliminado[0] == true) {
-			alert("Servicio eliminado!!");
+		if (eliminado[0] == true) {
+			toastr.success("Servicio eliminado!!");
 			listarServicioPorPersonal();
         }
-        else {
-			alert("Servicio NO eliminado!!!!");
+		else {
+			toastr.error("Servicio NO eliminado!!!!");
         }
     };
-    EliminarServicio.error = function () {
-        alert("Error al eliminar servicio!!");
+	EliminarServicio.error = function () {
+		toastr.error("Error al eliminar servicio!!");
     };
     $.ajax(EliminarServicio);
 }
@@ -286,8 +286,8 @@ function anadirServicio() {
     AnadirServicio.datatype = "json";
     AnadirServicio.contentType = "application/json";
     AnadirServicio.success = function (anadido) {
-        if (anadido[0] == true) {
-			alert("Servicio ingresado!!")
+		if (anadido[0] == true) {
+			toastr.success("Servicio ingresado!!")
 			//swal("Personal ingresado!!")
 			$("#DetalleSrv").prop("value", "");
 			$("#ValorSrv").prop("value", "");
@@ -295,13 +295,13 @@ function anadirServicio() {
             //$("#UsuarioSrv").val(0).trigger("change");
             //$("#UsuarioSrv").val(idPersonal).trigger("change");
         }
-        else {
-			alert("Servicio NO ingresado!!!!");
+		else {
+			toastr.error("Servicio NO ingresado!!!!");
 			//$.jGrowl("prueba mensaje", { life: 2000 });
         }
     };
-    AnadirServicio.error = function () {
-        alert("Error al ingresar servicio!!");
+	AnadirServicio.error = function () {
+		toastr.error("Error al ingresar servicio!!");
     };
     $.ajax(AnadirServicio);
 }

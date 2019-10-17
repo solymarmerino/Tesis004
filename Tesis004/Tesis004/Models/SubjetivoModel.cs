@@ -10,5 +10,6 @@ namespace Tesis004.Models
         public int SubjetivoID { get; set; }
 		public string Subjetivo { get; set; }
 		public string DescripcionSubjetivo { get; set; }
+		public int ConsultaMedicaID { get; set; }
 	}
 }

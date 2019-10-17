@@ -72,7 +72,7 @@ function buscarPaciente() {
             fila += "<td scope=\"col\">" + listaPaciente[i]["NumHistoriaClinica"] + "</th >";
             fila += "<td scope=\"col\">" + listaPaciente[i]["Cedula"] + "</th >";
             fila += "<td scope=\"col\"> <form action=\"../Paciente/ActualizarPaciente\" method=\"POST\"><button name=\"idPaciente\" id=\"btnModificar\" value=\"" + listaPaciente[i]["PacienteID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\"><i class=\"fas fa-edit\"></i></button></form></th >"
-            fila += "<td scope=\"col\"> <form action=\"../Servicio/IngresarServicio\" method=\"POST\"><button name=\"idPaciente\" id=\"btnServicios\" value=\"" + listaPaciente[i]["PacienteID"] +"\">Servicios</button></form></th >"
+			fila += "<td scope=\"col\"> <form action=\"../Servicio/IngresarServicio\" method=\"POST\"><button name=\"idPaciente\" id=\"btnServicios\" value=\"" + listaPaciente[i]["PacienteID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:75px; height:30px; cursor:pointer\">Servicios</button></form></th >"
             $("#tblResultadoBusqueda").append("<tr>" + fila + "</tr>");
         }
     };

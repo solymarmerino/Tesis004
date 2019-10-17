@@ -10,5 +10,6 @@ namespace Tesis004.Models
         public int DiagnosticoID { get; set; }
 		public int EstadoDiagnostico { get; set; }
 		public int CIE10ID { get; set; }
+		public int ConsultaMedicaID { get; set; }
 	}
 }

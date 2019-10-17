@@ -19,14 +19,15 @@
         <p>
             <label>Nombre Completo</label>
             <input class="col-xl required" id="IptNombreCompleto" name="NombreCompleto" placeholder=" NOMBRES APELLIDOS" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombreCompleto : string.Empty)" />
-        </p>
+			<label id="SalidaNombrePac" name="ValidacionNombrePac"> </label>
+		</p>
     </div>
     <div class="col-xl-3">
         <p>
             <label>Cedula</label>
             <br />
             <input id="IptCedula" name="Cedula" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-            <label id="salida" name="ValidacionCedula" />
+            <label id="salida" name="ValidacionCedula" />3456
         </p>
     </div>
     <div class="col-xl-3">

@@ -20,7 +20,8 @@
         <p>
             <label>Nombre Completo</label>
             <input class="col-xl required" id="IptNombreCompleto" name="NombreCompleto" placeholder=" NOMBRES APELLIDOS" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.NombreCompleto : string.Empty)" />
-        </p>
+			<label id="SalidaNombre" name="ValidacionNombre"> </label>
+		</p>
     </div>
     <div class="col-xl-3">
         <p>
