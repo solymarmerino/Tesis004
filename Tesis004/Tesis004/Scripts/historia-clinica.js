@@ -14,12 +14,12 @@ function consultarSignosVitales() {
     ConsultarSignosVitales.success = function (resultado) {
         $("#Peso").val(resultado["Peso"]);
         $("#Talla").val(resultado["Talla"]);
-        $("#PC").val(resultado["PrecionArterial"]);
+        $("#PA").val(resultado["PrecionArterial"]);
         $("#Temperatura").val(resultado["Temperatura"]);
-        $("#Pulso").val(resultado["FrecuenciaCardiaca"]);
-        $("#Respiracion").val(resultado["FrecuenciaRespiratoria"]);
-        $("#TA").val(resultado["IndiceMasaCorporal"]);
-        $("#Oximetria").val(resultado["SaturacionOxigeno"]);
+        $("#FC").val(resultado["FrecuenciaCardiaca"]);
+        $("#FR").val(resultado["FrecuenciaRespiratoria"]);
+        $("#IMC").val(resultado["IndiceMasaCorporal"]);
+        $("#Saturacion").val(resultado["SaturacionOxigeno"]);
         $("#ObservacionesEnfermeria").val(resultado["Observacion"]);
     };
     ConsultarSignosVitales.error = function () {
@@ -28,3 +28,6 @@ function consultarSignosVitales() {
     $.ajax(ConsultarSignosVitales);
 }
 
+$(document).ready(function () {
+    consultarSignosVitales();
+});

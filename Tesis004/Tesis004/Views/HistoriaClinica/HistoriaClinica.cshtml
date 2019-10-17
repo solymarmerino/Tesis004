@@ -90,13 +90,13 @@
 							<p>
 								<label>Etnia</label>
 								<br>
-								<select id="Etnia" name="Etnia" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"  value="@paciente.Etnia">
+								<select id="Etnia" name="Etnia" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
 									<option value="0"> Seleccionar </option>
 									@{
 										var etnias = ViewData["etnias"] as List<Tesis004.Models.ParametroModel>;
 										foreach (var etnia in etnias)
 											{
-												if (Model.Etnia == etnia.Identificador)
+												if (paciente.Etnia == etnia.Identificador)
 												{
 													<option value="@etnia.Identificador" selected> @etnia.Valor </option>
 												}
@@ -142,7 +142,7 @@
 										var generos = ViewData["generos"] as List<Tesis004.Models.ParametroModel>;
 										foreach (var genero in generos)
 										{
-											if (Model.Sexo == genero.Identificador)
+											if (paciente.Sexo == genero.Identificador)
 											{
 												<option value="@genero.Identificador" selected> @genero.Valor </option>
 											}
@@ -165,7 +165,7 @@
 										var estados = ViewData["estados"] as List<Tesis004.Models.ParametroModel>;
 										foreach (var estado in estados)
 										{
-											if (Model.EstadoCivil == estado.Identificador)
+											if (paciente.EstadoCivil == estado.Identificador)
 											{
 												<option value="@estado.Identificador" selected> @estado.Valor </option>
 											}
@@ -188,7 +188,7 @@
 										var tipos = ViewData["tipos"] as List<Tesis004.Models.ParametroModel>;
 										foreach (var tipo in tipos)
 										{
-											if (Model.TipoSangre == tipo.Identificador)
+											if (paciente.TipoSangre == tipo.Identificador)
 											{
 												<option value="@tipo.Identificador" selected> @tipo.Valor </option>
 											}
