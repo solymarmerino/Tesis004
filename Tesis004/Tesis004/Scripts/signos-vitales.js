@@ -31,6 +31,18 @@ function atencionEnfermeriaCita() {
     $.ajax(ActualizarCita);
 }
 
+$("#Talla").change(function () {
+    if ($("#Peso").val() != "") {
+        $("#IMC").val(($("#Peso").val() / ($("#Talla").val() * $("#Talla").val())).toFixed(2));
+    }
+});
+
+$("#Peso").change(function () {
+    if ($("#Talla").val() != "") {
+        $("#IMC").val(($("#Peso").val() / ($("#Talla").val() * $("#Talla").val())).toFixed(2));
+    }
+});
+
 $("#btnGuardarSignosVitales").click(function () {
     var SignosVitales = {};
     SignosVitales.url = "/Enfermeria/GuardarSignosVitales";

@@ -172,7 +172,7 @@
     <Compile Include="Models\ObjetivoModel.cs" />
     <Compile Include="Models\CIE10Model.cs" />
     <Compile Include="Models\DiagnosticoModel.cs" />
-    <Compile Include="Models\ConsultaMedica.cs" />
+    <Compile Include="Models\ConsultaMedicaModel.cs" />
     <Compile Include="Models\HistoriaClinicaModel.cs" />
     <Compile Include="Models\CitaModel.cs" />
     <Compile Include="Models\PacienteModel.cs" />
