@@ -162,6 +162,7 @@
     <Compile Include="InformacionBDD\PersonalBDD.cs" />
     <Compile Include="InformacionBDD\ServicioBDD.cs" />
     <Compile Include="InformacionBDD\SignosVitalesBDD.cs" />
+    <Compile Include="Models\CertificadoMedicoModel.cs" />
     <Compile Include="Models\EgresoModel.cs" />
     <Compile Include="Models\IngresoModel.cs" />
     <Compile Include="Models\DetalleFacturaModel.cs" />
