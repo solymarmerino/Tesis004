@@ -1,9 +1,22 @@
-﻿function modificar(PersonalID) {
+﻿function limpiarTablaPersonal() {
+    $("#Nombre").val("");
+    $("#Cedula").val("");
+    $("#Telefono").val("");
+    $("#Usuario").val("");
+    $("#Contrasena").val("");
+    $("#ConfContrasena").val("");
+    document.getElementById("Cargo").selectedIndex = 0;
+    document.getElementById("Especialidad").selectedIndex = 0;
+}
+
+function modificar(PersonalID) {
+    limpiarTablaPersonal();
     $("#TituloCabeceraNuevo").prop("hidden", true);
     $("#TituloCabeceraModificar").prop("hidden", false);
     $("#BtnGuardarNuevo").prop("hidden", true);
     $("#BtnGuardarModificar").prop("hidden", false);
     $("#BtnBtnGuardarModificar").prop("value", PersonalID);
+    $("#Especialidad").prop("disabled", true);
     $("#AItemPersonal").click();
     var ConsultarPersonal = {};
     ConsultarPersonal.url = "/Personal/ModificarPersonal";
@@ -17,7 +30,10 @@
         $("#Nombre").prop("value",personal["Nombre"]);
         $("#Cedula").prop("value",personal["Cedula"]);
         $("#Telefono").prop("value",personal["Telefono"]);
-        $("#Cargo").prop("value",personal["Cargo"]);
+        $("#Cargo").prop("value", personal["Cargo"]);
+        if (personal["Cargo"] == 21) {
+            $("#Especialidad").prop("disabled", false);
+        }
         $("#Especialidad").prop("value",personal["Especialidad"]);
         $("#Usuario").prop("value",personal["Usuario"]);
     };
@@ -45,15 +61,8 @@ function ingresar() {
     IngresarPersonal.contentType = "application/json";
     IngresarPersonal.success = function (ingresado) {
 		if (ingresado[0] == true) {
-			toastr.success("Personal ingresado correctamente!!");
-            $("#Nombre").empty();
-            $("#Cedula").empty();
-            $("#Telefono").empty();
-            $("#Cargo").prop("value",0);
-            $("#Especialidad").prop("value", 0);
-            $("#Usuario").empty();
-            $("#Contrasena").empty();
-            $("#ConfContrasena").empty();
+            toastr.success("Personal ingresado correctamente!!");
+            limpiarTablaPersonal();
         }
 		else {
 			toastr.error("Personal NO ingresado!!!!");
@@ -288,16 +297,12 @@ function anadirServicio() {
     AnadirServicio.success = function (anadido) {
 		if (anadido[0] == true) {
 			toastr.success("Servicio ingresado!!")
-			//swal("Personal ingresado!!")
 			$("#DetalleSrv").prop("value", "");
 			$("#ValorSrv").prop("value", "");
 			listarServicioPorPersonal();
-            //$("#UsuarioSrv").val(0).trigger("change");
-            //$("#UsuarioSrv").val(idPersonal).trigger("change");
         }
 		else {
 			toastr.error("Servicio NO ingresado!!!!");
-			//$.jGrowl("prueba mensaje", { life: 2000 });
         }
     };
 	AnadirServicio.error = function () {

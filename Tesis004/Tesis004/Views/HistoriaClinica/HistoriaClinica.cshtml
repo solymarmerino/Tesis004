@@ -11,7 +11,8 @@
 <br />
 @{
     var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
-    var fechaString = paciente.FechaNacimiento.Year.ToString()+"-"+paciente.FechaNacimiento.Month.ToString()+"-"+paciente.FechaNacimiento.Day.ToString();
+    var consulta = ViewData["consulta"] as Tesis004.Models.ConsultaMedicaModel;
+    var fechaString = paciente.FechaNacimiento.ToString("yyyy-MM-dd");
 
     <div class="row">
         <div class="col-xl-6">
@@ -282,6 +283,7 @@
                         DATOS DE CONSULTA
                     </div>
                 </div>
+                <input id="ConsultaMedicaID" value="@consulta.ConsultaMedicaID" hidden/>
                 <br />
                 <div class="row">
                     <div class="col-xl-3">
@@ -300,7 +302,7 @@
                     </div>
                     <br />
                     <div class="col-xl-12">
-                        <textarea id="motivoconsulta" name="motivoconsulta" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                        <textarea id="motivoconsulta" name="motivoconsulta" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;">@consulta.MotivoConsulta</textarea>
                     </div>
                 </div>
                 <br />
@@ -441,7 +443,7 @@
                         <label>Descripción</label>
                     </div>
                     <div class="col-xl-12">
-                        <textarea name="descripcionanalisis" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                        <textarea id="descripcionanalisis" name="descripcionanalisis" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;">@consulta.Analisis</textarea>
                     </div>
                 </div>
                 <br />
@@ -457,7 +459,7 @@
                         <label>Descripción</label>
                     </div>
                     <div class="col-xl-12">
-                        <textarea name="descripcionplan" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                        <textarea id="descripcionplan" name="descripcionplan" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;">@consulta.PlanTratamiento</textarea>
                     </div>
                 </div>
                 <br />

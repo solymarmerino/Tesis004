@@ -12,7 +12,7 @@ namespace Tesis004.Models
 		public string Analisis { get; set; }
 		public string PlanTratamiento { get; set; }
 		public DateTime FechaConsulta { get; set; }
-		public int TipoConsulta { get; set; }
+		public string TipoConsulta { get; set; }
 		public int HistoriaClinicaID { get; set; }
 	}
 }
