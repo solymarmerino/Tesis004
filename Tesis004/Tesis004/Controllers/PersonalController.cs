@@ -49,7 +49,7 @@ namespace Tesis004.Controllers
         public JsonResult GuardarPersonalModificado(PersonalModel personal)
         {
             List<bool> modificado = new List<bool>();
-            PersonalModel personalOriginal = this.personalBDD.OptenerPersonal(personal.PersonalID);
+            modificado.Add(this.personalBDD.GuardarPersonalModificado(personal));
             return Json(modificado);
         }
 

@@ -21,7 +21,7 @@ namespace Tesis004.Models
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
         public string ConfContrasena { get; set; }
-        public string Especialidad { get; set; }
+        public int Especialidad { get; set; }
         public int PersonalID { get; set; }        
     }
 }

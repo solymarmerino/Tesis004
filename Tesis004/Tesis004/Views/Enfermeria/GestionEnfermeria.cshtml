@@ -28,7 +28,7 @@
 			<br />
 			@{
 				var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
-				var fechaString = paciente.FechaNacimiento.Year.ToString() + "-" + paciente.FechaNacimiento.Month.ToString() + "-" + paciente.FechaNacimiento.Day.ToString();
+				var fechaString = paciente.FechaNacimiento.ToString("yyyy-MM-dd");
 				<input id="IdPaciente" value="@paciente.PacienteID" hidden />
 				<div class="text-right">
 					<p><label>Nº Historia Clinica</label></p>

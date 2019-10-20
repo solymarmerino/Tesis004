@@ -75,13 +75,13 @@ namespace Tesis004.InformacionBDD
             return listaPersonalResultado;
         }
 
-        public List<PersonalModel> ListaPersonalNombrePorEspecialidad(string especialidad)
+        public List<PersonalModel> ListaPersonalNombrePorEspecialidad(int especialidad)
         {
             List<PersonalModel> listaPersonalResultado = new List<PersonalModel>();
 
             string sentenciaSql = "SELECT PersonalID, Nombre " +
                                   "FROM Personal " +
-                                  $"WHERE Especialidad LIKE '{especialidad}'";
+                                  $"WHERE Especialidad = '{especialidad}'";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -113,7 +113,7 @@ namespace Tesis004.InformacionBDD
             personalResultado.Telefono = tablaDatos.Rows[0].Field<string>("Telefono");
             personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
             personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
-            personalResultado.Especialidad = tablaDatos.Rows[0].Field<string>("Especialidad");
+            personalResultado.Especialidad = tablaDatos.Rows[0].Field<int>("Especialidad");
 
             return personalResultado;
         }
@@ -126,8 +126,6 @@ namespace Tesis004.InformacionBDD
             string sentenciaSql = "UPDATE Personal "+
                                   "SET Nombre = @Nombre, Cedula = @Cedula, Telefono = @Telefono, Cargo = @Cargo, Usuario = @Usuario, Especialidad = @Especialidad, Contrasena = @Contrasena " +
                                   "WHERE PersonalID = @PersonalID ";
-
-            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
             SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
 
