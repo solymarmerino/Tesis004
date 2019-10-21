@@ -13,6 +13,7 @@
     var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
     var consulta = ViewData["consulta"] as Tesis004.Models.ConsultaMedicaModel;
     var fechaString = paciente.FechaNacimiento.ToString("yyyy-MM-dd");
+    var tipoConsulta = consulta.TipoConsulta.Equals("primera") ? 1 : 2 ;
 
     <div class="row">
         <div class="col-xl-6">
@@ -290,10 +291,10 @@
                         <label>Tipo de consulta:</label>
                     </div>
                     <div class="col-xl-3">
-                        <input id="Primera" name="TipoConsulta" value="primera" type="radio" /> Primera
+                        <input id="Primera" name="TipoConsulta" value="primera" type="radio" @(tipoConsulta == 1 ? "checked" : "")/> Primera
                     </div>
                     <div class="col-xl-3">
-                        <input id="Subsecuente" name="TipoConsulta" value="subsecuente" type="radio" /> Subsecuente
+                        <input id="Subsecuente" name="TipoConsulta" value="subsecuente" type="radio" @(tipoConsulta == 2 ? "checked" : "")/> Subsecuente
                     </div>
                 </div>
                 <div class="row">
