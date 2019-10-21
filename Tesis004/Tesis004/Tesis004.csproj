@@ -157,6 +157,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="InformacionBDD\ConexionBDD.cs" />
+    <Compile Include="InformacionBDD\HistoriaClinicaBDD.cs" />
     <Compile Include="InformacionBDD\InformacionGeneralBDD.cs" />
     <Compile Include="InformacionBDD\PacienteBDD.cs" />
     <Compile Include="InformacionBDD\PersonalBDD.cs" />
