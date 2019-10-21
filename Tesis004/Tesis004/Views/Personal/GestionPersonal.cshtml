@@ -7,7 +7,7 @@
 <!--Link para uso de iconos-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-<h2>Gestion Personal</h2>
+<h2>Gestión de Personal</h2>
 
 <div class="container">
 	<br>
@@ -30,10 +30,10 @@
 			<br />
 			<div class="card bg-info text-white">
 				<div id="TituloCabeceraNuevo" class="card-header">
-					NUEVO PERSONAL
+					<h5>Nuevo Personal</h5>
 				</div>
 				<div id="TituloCabeceraModificar" class="card-header" hidden>
-					MODIFICAR PERSONAL
+					<h5>Modificar Personal</h5>
 				</div>
 			</div>
 			<br />
@@ -44,7 +44,7 @@
 						<p>
 							<label>Nombre Completo</label>
 							<br />
-							<input id="Nombre" name="Nombre" class="col-md required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombre : string.Empty)" />
+							<input id="Nombre" name="Nombre" class="col-md required" style="text-align:left; text-transform:uppercase; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombre : string.Empty)" />
 							<label id="SalidaNombre" name="ValidacionNombre"> </label>
 						</p>
 					</div>
@@ -142,7 +142,7 @@
 			<br />
 			<div class="card bg-info text-white">
 				<div class="card-header">
-					LISTA PERSONAL
+					<h5>Lista Personal</h5>
 				</div>
 			</div>
 			<br />
@@ -179,7 +179,7 @@
 			<br />
 			<div class="card bg-info text-white">
 				<div class="card-header">
-					SERVICIOS DE PERSONAL
+					<h5>Servicios de Personal</h5>
 				</div>
 			</div>
 			<br />
@@ -192,7 +192,7 @@
 				</div>
 				<div class="col-xl-5">
 					<label>Detalle</label>
-					<input id="DetalleSrv" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<input id="DetalleSrv" class="col-xl" style="text-align:left; text-transform:uppercase; border-radius:0.3rem; width:100%; height:40px;" />
 					<label id="SalidaDetalleSrv" name="ValidacionDetalleSrv"> </label>
 				</div>
 				<div class="col-xl-2">

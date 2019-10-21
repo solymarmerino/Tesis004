@@ -59,7 +59,7 @@ $("#Cedula").change(function () {
         }
     } else {
         //imprimimos inválida si la cedula tiene mas o menos de 10 digitos
-        $("#Salida").append("Cédula Inválida");
+        $("#Salida").append("Cédula Inválida: debe tener 10 caracteres");
     }
 });
 
@@ -84,6 +84,7 @@ $("#Nombre").change(function () {
 		}
 	}
 });
+
 
 //validar el numero de telefono ingresado al sistema
 $("#Telefono").change(function () {
@@ -193,3 +194,4 @@ $("#ValorSrv").change(function () {
 	}
 });
 
+$("#")

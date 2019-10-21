@@ -23,5 +23,11 @@ namespace Tesis004.Controllers
             ViewData["paciente"] = pacienteBDD.PacientePorId(idPaciente);
             return View();
 		}
+
+		// GET: HistoricoSignosVitales
+		public ActionResult HistoricoSignosVitales()
+		{
+			return View();
+		}
 	}
 }

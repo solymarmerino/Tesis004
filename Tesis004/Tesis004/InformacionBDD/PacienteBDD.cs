@@ -26,7 +26,7 @@ namespace Tesis004.InformacionBDD
             switch (opcionBusqueda)
             {
                 case "Nombre":
-                    sentenciaSql = "SELECT TOP(10) NombreCompleto " +
+                    sentenciaSql = "SELECT NombreCompleto " +
                                    "FROM Paciente " +
                                    $"WHERE NombreCompleto LIKE '%{parametroBusqueda}%' "+
                                    "ORDER BY PacienteID desc ";
@@ -43,7 +43,7 @@ namespace Tesis004.InformacionBDD
                     break;
 
                 case "Cedula":
-                    sentenciaSql = "SELECT TOP(10) Cedula " +
+                    sentenciaSql = "SELECT Cedula " +
                                    "FROM Paciente " +
                                    $"WHERE Cedula LIKE '{parametroBusqueda}%' " +
                                    "ORDER BY PacienteID desc ";
@@ -60,7 +60,7 @@ namespace Tesis004.InformacionBDD
                     break;
 
                 case "HCPaciente":
-                    sentenciaSql = "SELECT TOP(10) NumHistoriaClinica " +
+                    sentenciaSql = "SELECT NumHistoriaClinica " +
                                    "FROM Paciente " +
                                    $"WHERE NumHistoriaClinica LIKE '{parametroBusqueda}%' " +
                                    "ORDER BY PacienteID desc ";
