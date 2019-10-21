@@ -296,6 +296,7 @@
     <Content Include="Views\Personal\ModificarPersonal.cshtml" />
     <Content Include="Views\Enfermeria\GestionEnfermeria.cshtml" />
     <Content Include="Views\Facturacion\IngresoFactura.cshtml" />
+    <Content Include="Views\HistoriaClinica\HistoricoSignosVitales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
