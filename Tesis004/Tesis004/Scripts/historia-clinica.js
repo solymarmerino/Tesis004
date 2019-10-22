@@ -1,5 +1,24 @@
-﻿function limpiarTablas() {
+﻿function limpiarTablaSubjetivo() {
+    $("#descripcionsubjetivo").val("");
+    document.getElementById("sltSubjetivo").selectedIndex = 0;
+    $("#tblSubjetivo").empty();
+    var cabecera = "<tr>" +
+                   "<th scope=\"col\">Subjetivo</th>" +
+                   "<th scope=\"col\">Descripcción</th>" +
+                   "<th scope=\"col\"></th>" +
+                   "</tr>";
+    $("#tblSubjetivo").append(cabecera);
+}
 
+function limpiarTablaObjetivo() {
+    document.getElementById("sltObjetivo").selectedIndex = 0;
+    $("#tblObjetivo").empty();
+    var cabecera = "<tr>" +
+        "<th scope=\"col\">Region</th>" +
+        "<th scope=\"col\">Descripcción</th>" +
+        "<th scope=\"col\"></th>" +
+        "</tr>";
+    $("#tblObjetivo").append(cabecera);
 }
 
 function consultarSignosVitales() {
@@ -62,6 +81,67 @@ function actualizarDatosConsulta() {
     $.ajax(DatosConsulta);
 }
 
+function ingresarSubjetivo() {
+    var IngresarSubjetivo = {};
+    IngresarSubjetivo.url = "/HistoriaClinica/IngresarSubjetivo";
+    IngresarSubjetivo.type = "POST";
+    IngresarSubjetivo.data = JSON.stringify({
+        itemSubjetivo: $("#sltSubjetivo").val(),              
+        descripcionSubjetivo: $("#descripcionsubjetivo").val(),
+        consultaMedicaID: $("#ConsultaMedicaID").val()
+    });
+    IngresarSubjetivo.datatype = "json";
+    IngresarSubjetivo.contentType = "application/json";
+    IngresarSubjetivo.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Subjetivo ingresado");
+            limpiarTablaSubjetivo();
+            consultarSubjetivo();
+        }
+        else {
+            toastr.error("Subjetivo NO ingresado");
+        }
+    };
+    IngresarSubjetivo.error = function () {
+        toastr.error("Error al ingresar subjetivo");
+    };
+    $.ajax(IngresarSubjetivo);
+}
+
+function consultarSubjetivo() {
+    var ConsultarSubjetivo = {};
+    ConsultarSubjetivo.url = "/HistoriaClinica/ConsultarSubjetivo";
+    ConsultarSubjetivo.type = "POST";
+    ConsultarSubjetivo.data = JSON.stringify({
+        ConsultaMedicaID: $("#ConsultaMedicaID").val()
+    });
+    ConsultarSubjetivo.datatype = "json";
+    ConsultarSubjetivo.contentType = "application/json";
+    ConsultarSubjetivo.success = function (resultado) {
+        if (resultado.length > 0) {
+            for (var i = 0; i < resultado.length; i++) {
+                var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["NombreSubjetivo"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["DescripcionSubjetivo"] + "</td>";
+                fila += "<td scope=\"col\"> <button name=\"btnEliminarSubjetivo\" id=\"btnEliminarSubjetivo\" onclick=\"eliminarSubjetivo(" + resultado[i]["SubjetivoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+                $("#tblSubjetivo").append("<tr>" + fila + "</tr>");
+            }
+        }
+    };
+    ConsultarSubjetivo.error = function () {
+        toastr.error("Error al consultar los subjetivos");
+    };
+    $.ajax(ConsultarSubjetivo);
+
+}
+
 $(document).ready(function () {
+    limpiarTablaSubjetivo();
+    limpiarTablaObjetivo();
     consultarSignosVitales();
+    consultarSubjetivo();
+});
+
+$("#btnSubjetivo").click(function () {
+    ingresarSubjetivo();
 });

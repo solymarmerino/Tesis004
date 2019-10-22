@@ -103,5 +103,55 @@ namespace Tesis004.InformacionBDD
 
             return consultaMedicaResultado;
         }
+
+        public bool InsertarSubjetivo(SubjetivoModel subjetivo)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO Subjetivo (ItemSubjetivo, DetalleSubjetivo, ConsultaMedicaID) " +
+                                  "VALUES (@ItemSubjetivo, @DetalleSubjetivo, @ConsultaMedicaID); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@ItemSubjetivo", subjetivo.ItemSubjetivo);
+            sentenciaSQL.Parameters.AddWithValue("@DetalleSubjetivo", subjetivo.DescripcionSubjetivo);
+            sentenciaSQL.Parameters.AddWithValue("@ConsultaMedicaID", subjetivo.ConsultaMedicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public List<SubjetivoModel> ListarSubjetivo(int consultaMedicaID)
+        {
+            List<SubjetivoModel> listaSubjetivo = new List<SubjetivoModel>();
+
+            string sentenciaSql = "SELECT s.SubjetivoID, s.ItemSubjetivo, s.DetalleSubjetivo, s.ConsultaMedicaID, p.Valor " +
+                                  "FROM Subjetivo s " +
+                                  "INNER JOIN Parametro p ON s.ItemSubjetivo = p.ParametroID " +
+                                  $"WHERE s.ConsultaMedicaID = {consultaMedicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for(int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                SubjetivoModel subjetivo = new SubjetivoModel();
+                subjetivo.SubjetivoID = tablaDatos.Rows[i].Field<int>("SubjetivoID");
+                subjetivo.ItemSubjetivo = tablaDatos.Rows[i].Field<int>("ItemSubjetivo");
+                subjetivo.DescripcionSubjetivo = tablaDatos.Rows[i].Field<string>("DetalleSubjetivo");
+                subjetivo.ConsultaMedicaID = tablaDatos.Rows[i].Field<int>("ConsultaMedicaID");
+                subjetivo.NombreSubjetivo = tablaDatos.Rows[i].Field<string>("Valor");
+
+                listaSubjetivo.Add(subjetivo);
+            }   
+
+            return listaSubjetivo;
+        }
     }
 }
