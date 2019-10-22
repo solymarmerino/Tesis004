@@ -19,7 +19,7 @@
         <p>
             <label>Nombre Completo</label>
             <input class="col-xl required" id="IptNombreCompleto" name="NombreCompleto" placeholder=" NOMBRES APELLIDOS" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" required value="@(Model!=null ? Model.nombreCompleto : string.Empty)" />
-			<label id="SalidaNombre" name="ValidacionNombre"> </label>
+			<label id="ValidacionNombrePaciente" name="ValidacionNombrePaciente"> </label>
 		</p>
     </div>
     <div class="col-xl-3">
@@ -27,7 +27,7 @@
             <label>Cedula</label>
             <br />
             <input id="IptCedula" name="Cedula" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-            <label id="Salida" name="ValidacionCedula" />
+            <label id="ValidacionCedulaPaciente" name="ValidacionCedulaPaciente" />
         </p>
     </div>
     <div class="col-xl-3">
@@ -45,14 +45,15 @@
             <label>Dirección</label>
             <br />
             <input id="IptDireccion" name="Direccion" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.direccion : string.Empty)">
-        </p>
+		</p>
     </div>
     <div class="col-xl-6">
         <p>
             <label>Email</label>
             <br />
             <input id ="IptEmail" name="EmailPaciente" type="email" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-        </p>
+			<label id="ValidacionEmailPaciente" name="ValidacionEmailPaciente" />
+		</p>
     </div>
 </div>
 <div class="row">
@@ -61,14 +62,16 @@
             <label>Telefono</label>
             <br />
             <input id="IptTelefono" name="Telefono" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-        </p>
+			<label id="ValidacionTelefonoPaciente" name="ValidacionTelefonoPaciente" />
+		</p>
     </div>
     <div class="col-xl-3">
         <p>
             <label>Ocupación</label>
             <br />
             <input id="IptOcupacion" name="Ocupacion" class="required number" style="text-align:left; text-transform: uppercase; border-radius:0.3rem; width:100%; height:40px;" />
-        </p>
+			<label id="ValidacionOcupacionPaciente" name="ValidacionOcupacionPaciente" />
+		</p>
     </div>
     <div class="col-xl-3">
         <p>

@@ -1,4 +1,4 @@
-﻿//Validacion de cedulas ingresadas en el sistema
+﻿///// INICIO Validacion de cedulas ingresadas en el sistema //////
 $("#Cedula").change(function () {
     $("#Salida").empty();
     var cedula = $("#Cedula").val();
@@ -64,7 +64,75 @@ $("#Cedula").change(function () {
 });
 
 
-//validacion de nombres ingresados en el sistema
+/////PACIENTE
+$("#IptCedula").change(function () {
+	$("#ValidacionCedulaPaciente").empty();
+	var cedula = $("#IptCedula").val();
+	//Preguntamos si la cedula consta de 10 digitos
+	if (cedula.length == 10) {
+		//Obtenemos el digito de la region que sonlos dos primeros digitos
+		var digito_region = cedula.substring(0, 2);
+		//Pregunto si la region existe ecuador se divide en 24 regiones
+		if (digito_region >= 1 && digito_region <= 24) {
+			// Extraigo el ultimo digito
+			var ultimo_digito = cedula.substring(9, 10);
+			//Agrupo todos los pares y los sumo
+			var pares = parseInt(cedula.substring(1, 2)) + parseInt(cedula.substring(3, 4)) + parseInt(cedula.substring(5, 6)) + parseInt(cedula.substring(7, 8));
+
+			//Agrupo los impares, los multiplico por un factor de 2, si la resultante es > que 9 le restamos el 9 a la resultante
+			var numero1 = cedula.substring(0, 1);
+			var numero1 = (numero1 * 2);
+			if (numero1 > 9) { var numero1 = (numero1 - 9); }
+
+			var numero3 = cedula.substring(2, 3);
+			var numero3 = (numero3 * 2);
+			if (numero3 > 9) { var numero3 = (numero3 - 9); }
+
+			var numero5 = cedula.substring(4, 5);
+			var numero5 = (numero5 * 2);
+			if (numero5 > 9) { var numero5 = (numero5 - 9); }
+
+			var numero7 = cedula.substring(6, 7);
+			var numero7 = (numero7 * 2);
+			if (numero7 > 9) { var numero7 = (numero7 - 9); }
+
+			var numero9 = cedula.substring(8, 9);
+			var numero9 = (numero9 * 2);
+			if (numero9 > 9) { var numero9 = (numero9 - 9); }
+
+			var impares = numero1 + numero3 + numero5 + numero7 + numero9;
+
+			//Suma total
+			var suma_total = (pares + impares);
+			//extraemos el primero digito
+			var primer_digito_suma = String(suma_total).substring(0, 1);
+			//Obtenemos la decena inmediata
+			var decena = (parseInt(primer_digito_suma) + 1) * 10;
+			//Obtenemos la resta de la decena inmediata - la suma_total esto nos da el digito validador
+			var digito_validador = decena - suma_total;
+			//Si el digito validador es = a 10 toma el valor de 0
+			if (digito_validador == 10)
+				var digito_validador = 0;
+			//Validamos que el digito validador sea igual al de la cedula
+			if (digito_validador == ultimo_digito) {
+				$("#ValidacionCedulaPaciente").prop("disable", true);
+			} else {
+				$("#ValidacionCedulaPaciente").append("Cédula Inválida");
+			}
+		} else {
+			// imprimimos inválida si la region no pertenece
+			$("#ValidacionCedulaPaciente").append("Cédula Inválida");
+		}
+	} else {
+		//imprimimos inválida si la cedula tiene mas o menos de 10 digitos
+		$("#ValidacionCedulaPaciente").append("Cédula Inválida: debe tener 10 caracteres");
+	}
+});
+
+// FIN Validacion de cedulas ingresadas en el sistema //////
+
+
+//////INICIO validacion de nombres ingresados en el sistema ////
 $("#Nombre").change(function () {
 	$("#SalidaNombre").empty();
 	var nombre = $("#Nombre").val();
@@ -85,8 +153,30 @@ $("#Nombre").change(function () {
 	}
 });
 
+$("#IptNombreCompleto").change(function () {
+	$("#ValidacionNombrePaciente").empty();
+	var nombre = $("#IptNombreCompleto").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionNombrePaciente").append("Ingresar Nombre");
+	}
+	else {
+		$("#ValidacionNombrePaciente").prop("disable", true);
 
-//validar el numero de telefono ingresado al sistema
+		//preguntar si contiene solo letras
+		if (/[A-Za-z]/.test(nombre) && !(/[0-9]/.test(nombre)) && !(/[-_.;:*/+!·$%&()=]/.test(nombre))) {
+			$("#ValidacionNombrePaciente").prop("disable", true);
+		}
+		else {
+			$("#ValidacionNombrePaciente").append("Ingresar solo letras");
+		}
+	}
+});
+
+
+//// FIN validacion de nombres ingresados en el sistema ///
+
+//// INICIO validar el numero de telefono ingresado al sistema
 $("#Telefono").change(function () {
 	$("#SalidaTelefono").empty();
 	var telefono = $("#Telefono").val();
@@ -95,14 +185,14 @@ $("#Telefono").change(function () {
 		$("#SalidaTelefono").append("Ingresar numero de telefono");
 	}
 	else {
-		$("#SalidaNombre").prop("disable", true);
+		$("#SalidaTelefono").prop("disable", true);
 		//preguntar si es de la longitud correcta
 		if (telefono.length > 6) {
-			$("#SalidaNombre").prop("disable", true);
+			$("#SalidaTelefono").prop("disable", true);
 
 			//preguntar si contiene solo numeros
 			if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
-				$("#Salida").prop("disable", true);
+				$("#SalidaTelefono").prop("disable", true);
 			}
 			else {
 				$("#SalidaTelefono").append("Ingresar solo numeros");
@@ -113,6 +203,35 @@ $("#Telefono").change(function () {
 		}
 	}
 });
+
+$("#IptTelefono").change(function () {
+	$("#ValidacionTelefonoPaciente").empty();
+	var telefono = $("#IptTelefono").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#ValidacionTelefonoPaciente").append("Ingresar numero de telefono");
+	}
+	else {
+		$("#SalidValidacionTelefonoPacienteaNombre").prop("disable", true);
+		//preguntar si es de la longitud correcta
+		if (telefono.length > 6 && telefono.length < 11) {
+			$("#ValidacionTelefonoPaciente").prop("disable", true);
+
+			//preguntar si contiene solo numeros
+			if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
+				$("#ValidacionTelefonoPaciente").prop("disable", true);
+			}
+			else {
+				$("#ValidacionTelefonoPaciente").append("Ingresar solo numeros");
+			}
+		}
+		else {
+			$("#ValidacionTelefonoPaciente").append("Numero de telefono incompleto");
+		}
+	}
+});
+//// FIN validar el numero de telefono ingresado al sistema
+
 
 //validar contraseña
 $("#Contrasena").change(function () {
@@ -194,4 +313,40 @@ $("#ValorSrv").change(function () {
 	}
 });
 
-$("#")
+////INICIO validacion de email  
+$('#IptEmail').change(function () {
+
+	$("#ValidacionEmailPaciente").empty();
+
+	var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+	
+	if (regex.test($('#IptEmail').val())) {
+		$("#ValidacionEmailPaciente").prop("disable", true);
+	}
+	else {
+		$("#ValidacionEmailPaciente").append('La dirección de correo no es válida');
+	}
+});
+
+////FIN validacion de email
+
+//////INICIO validacion de ocupacion ingresados en el sistema ////
+$("#IptOcupacion").change(function () {
+	$("#ValidacionOcupacionPaciente").empty();
+	var nombre = $("#IptOcupacion").val();
+	// preguntar si el campo esta vacio
+
+		//preguntar si contiene solo letras
+		if (/[A-Za-z]/.test(nombre) && !(/[0-9]/.test(nombre)) && !(/[-_.;:*/+!·$%&()=]/.test(nombre))) {
+			$("#ValidacionOcupacionPaciente").prop("disable", true);
+		}
+		else {
+			$("#ValidacionOcupacionPaciente").append("Ingresar solo letras");
+		}
+	
+});
+//////FIN validacion de ocupacion ingresados en el sistema ////
+
+////INICIO validacion de fecha de nacimieto/////
+
+////FIN validacion de fecha de nacimieto/////
