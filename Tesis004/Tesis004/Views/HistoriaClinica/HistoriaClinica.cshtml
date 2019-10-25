@@ -13,7 +13,7 @@
     var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
     var consulta = ViewData["consulta"] as Tesis004.Models.ConsultaMedicaModel;
     var fechaString = paciente.FechaNacimiento.ToString("yyyy-MM-dd");
-    var tipoConsulta = consulta.TipoConsulta.Equals("primera") ? 1 : 2 ;
+    var tipoConsulta = (consulta.TipoConsulta != null ? (consulta.TipoConsulta.Equals("primera") ? 1 : 2 ) : 0);
 
     <div class="row">
         <div class="col-xl-6">
@@ -331,19 +331,26 @@
                     <div class="col-xl-3">
                         <label>Subjetivo</label>
                         <br />
-                        <select name="Subjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> ----- </option>
+                        <select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
+                                foreach (var subjetivo in subjetivos)
+                                {
+                                    <option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="col-xl-8">
                         <label>Descripción</label>
                         <br />
-                        <input name="descripcionsubjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="descripcionsubjetivo" name="descripcionsubjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                     </div>
                     <div class="col-xl-1">
                         <p>
                             <br />
-                            <button name="Identificador" title="Ingresar subjetivo especifico" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+                            <button id="btnSubjetivo" name="Identificador" title="Ingresar subjetivo especifico" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" >
                                 <i class="fas fa-plus-square"></i>
                             </button>
                         </p>
@@ -351,21 +358,8 @@
                     <br />
                     <div class="table-responsive">
                         <br />
-                        <table class="table">
-                            <tr>
-                                <th scope="col">Subjetivo</th>
-                                <th scope="col">Descripcción</th>
-                                <th scope="col"></th>
-                            </tr>
-                            <tr>
-                                <td scope="col">AAAAAAA</td>
-                                <td scope="col">AAAAAAA</td>
-                                <td scope="col">
-                                    <button name="Identificador" title="Eliminar subjetivo" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                                        <i class="fas fa-minus-square"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                        <table id="tblSubjetivo" class="table">
+                           
                         </table>
                     </div>
                 </div>
@@ -394,8 +388,15 @@
                     <div class="col-xl-3">
                         <label>Objetivo</label>
                         <br />
-                        <select name="Objetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> ----- </option>
+                        <select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
+                                foreach (var objetivo in objetivos)
+                                {
+                                    <option value="@objetivo.Identificador"> @objetivo.Valor </option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="col-xl-8">
@@ -406,28 +407,15 @@
                     <div class="col-xl-1">
                         <p>
                             <br />
-                            <button name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <button name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" >
                                 <i class="fas fa-plus-square"></i>
                             </button>
                         </p>
                     </div>
                     <div class="table-responsive">
                         <br />
-                        <table class="table">
-                            <tr>
-                                <th scope="col">Region</th>
-                                <th scope="col">Descriocción</th>
-                                <th scope="col"></th>
-                            </tr>
-                            <tr>
-                                <td scope="col">AAAAAAA</td>
-                                <td scope="col">AAAAAAA</td>
-                                <td scope="col">
-                                    <button name="Identificador" title="Eliminar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                                        <i class="fas fa-minus-square"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                        <table id="tblObjetivo"class="table">
+                            
                         </table>
                     </div>
                 </div>

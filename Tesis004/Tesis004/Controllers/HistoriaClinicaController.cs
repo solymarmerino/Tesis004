@@ -37,6 +37,8 @@ namespace Tesis004.Controllers
             ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
             ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");
             ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
+            ViewData["subjetivos"] = informacionGeneral.ObtenerInformacionParametro("subjetivo");
+            ViewData["objetivos"] = informacionGeneral.ObtenerInformacionParametro("objetivo");
             ViewData["paciente"] = pacienteBDD.PacientePorId(cita.PacienteID);
             return View();
 		}
@@ -47,6 +49,22 @@ namespace Tesis004.Controllers
             List<bool> ingresado = new List<bool>();
             ingresado.Add(this.historiaClinicaBDD.ActualizarConsultaMedica(consultaMedica));
             return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult IngresarSubjetivo(SubjetivoModel subjetivo)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.InsertarSubjetivo(subjetivo));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarSubjetivo(int consultaMedicaID)
+        {
+            List<SubjetivoModel> resultado = new List<SubjetivoModel>();
+            resultado = this.historiaClinicaBDD.ListarSubjetivo(consultaMedicaID);
+            return Json(resultado);
         }
     }
 }
