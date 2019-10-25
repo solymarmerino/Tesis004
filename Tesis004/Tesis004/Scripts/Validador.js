@@ -153,6 +153,8 @@ $("#Nombre").change(function () {
 	}
 });
 
+///////PACIENTE
+
 $("#IptNombreCompleto").change(function () {
 	$("#ValidacionNombrePaciente").empty();
 	var nombre = $("#IptNombreCompleto").val();
@@ -172,8 +174,6 @@ $("#IptNombreCompleto").change(function () {
 		}
 	}
 });
-
-
 //// FIN validacion de nombres ingresados en el sistema ///
 
 //// INICIO validar el numero de telefono ingresado al sistema
@@ -230,6 +230,36 @@ $("#IptTelefono").change(function () {
 		}
 	}
 });
+
+//////TELEFONO CONTACTO DE EMERGENCIA
+
+$("#IptTelefonoContactoEmergencia").change(function () {
+	$("#ValidacionTelefonoContactoEmergencia").empty();
+	var telefono = $("#IptTelefonoContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#ValidacionTelefonoContactoEmergencia").append("Ingresar numero de telefono");
+	}
+	else {
+		$("#SalidValidacionTelefonoPacienteaNombre").prop("disable", true);
+		//preguntar si es de la longitud correcta
+		if (telefono.length > 6 && telefono.length < 11) {
+			$("#ValidacionTelefonoContactoEmergencia").prop("disable", true);
+
+			//preguntar si contiene solo numeros
+			if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
+				$("#ValidacionTelefonoContactoEmergencia").prop("disable", true);
+			}
+			else {
+				$("#ValidacionTelefonoContactoEmergencia").append("Numero de telefono incorrecto");
+			}
+		}
+		else {
+			$("#ValidacionTelefonoContactoEmergencia").append("Numero de telefono incorrecto");
+		}
+	}
+});
+
 //// FIN validar el numero de telefono ingresado al sistema
 
 
@@ -347,6 +377,107 @@ $("#IptOcupacion").change(function () {
 });
 //////FIN validacion de ocupacion ingresados en el sistema ////
 
-////INICIO validacion de fecha de nacimieto/////
+////INICIO validacion de fecha de nacimiento/////
+$("#IptFechaNacimiento").change(function () {
+	$("#ValidacionFechaNacimientoPaciente").empty();
+	var fechanacimiento = $("#IptFechaNacimiento").val();
+	var fechamaxima = new Date();
+	var fechacomparacion = (fechamaxima.getFullYear() + "-" + (fechamaxima.getMonth() + 1) + "-" + fechamaxima.getDate());
 
+	if (fechanacimiento == null || fechanacimiento.length == 0 || /^\s+$/.test(fechanacimiento)) {
+		$("#ValidacionFechaNacimientoPaciente").append("Fecha de nacimiento no valida");
+	}
+	else {
+		$("#ValidacionFechaNacimientoPaciente").prop("disable", true);
+		if (fechanacimiento > fechacomparacion) {
+			$("#ValidacionFechaNacimientoPaciente").append("Fecha de nacimiento no valida");
+		}
+		else {
+			$("#ValidacionFechaNacimientoPaciente").prop("disable", true);
+		}
+	}
+});
 ////FIN validacion de fecha de nacimieto/////
+
+//////INICIO validacion de nombre de contacto de emergencia ingresados en el sistema ////
+$("#IptNombreContactoEmergencia").change(function () {
+	$("#ValidacionNombreContactoEmergencia").empty();
+	var nombre = $("#IptNombreContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo letras
+	if (/[A-Za-z]/.test(nombre) && !(/[0-9]/.test(nombre)) && !(/[-_.;:*/+!·$%&()=]/.test(nombre))) {
+		$("#ValidacionNombreContactoEmergencia").prop("disable", true);
+	}
+	else {
+		$("#ValidacionNombreContactoEmergencia").append("Ingresar solo letras");
+	}
+
+});
+//////FIN validacion de nombre de contacto de emergencia ingresados en el sistema ////
+
+//////INICIO validacion de afinidad de contacto de emergencia ingresados en el sistema ////
+$("#IptAfinidadContactoEmergencia").change(function () {
+	$("#ValidacionAfinidadContactoEmergencia").empty();
+	var nombre = $("#IptAfinidadContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo letras
+	if (/[A-Za-z]/.test(nombre) && !(/[0-9]/.test(nombre)) && !(/[-_.;:*/+!·$%&()=]/.test(nombre))) {
+		$("#ValidacionAfinidadContactoEmergencia").prop("disable", true);
+	}
+	else {
+		$("#ValidacionAfinidadContactoEmergencia").append("Ingresar solo letras");
+	}
+
+});
+//////FIN validacion de afinidad de contacto de emergencia ingresados en el sistema ////
+
+//////INICIO validacion de campos obligatorios ////
+$('#btnGuardarPacienteNuevo').click(function () {
+
+	/////NOMBRE
+	$("#ValidacionNombrePaciente").empty();
+	var nombre = $("#IptNombreCompleto").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionNombrePaciente").append("***Ingresar Nombre");
+	}
+
+	/////CEDULA
+	$("#ValidacionCedulaPaciente").empty();
+	var cedula = $("#IptCedula").val();
+	// preguntar si el campo esta vacio
+	if (cedula == null || cedula.length == 0 || /^\s+$/.test(cedula)) {
+		$("#ValidacionCedulaPaciente").append("***Ingresar Cedula");
+	}
+
+	/////DIRECCION
+	$("#ValidacionDireccionPaciente").empty();
+	var direccion = $("#IptDireccion").val();
+	// preguntar si el campo esta vacio
+	if (direccion == null || direccion.length == 0 || /^\s+$/.test(direccion)) {
+		$("#ValidacionDireccionPaciente").append("***Ingresar Dirección");
+	}
+
+	/////FECHA NACIMIENTO
+	$("#ValidacionFechaNacimientoPaciente").empty();
+	var fechanacimiento = $("#IptFechaNacimiento").val();
+	// preguntar si el campo esta vacio
+	if (fechanacimiento == null || fechanacimiento.length == 0 || /^\s+$/.test(fechanacimiento)) {
+		$("#ValidacionFechaNacimientoPaciente").append("***Ingresar Fecha de Nacimiento");
+	}
+
+
+///	$("#ValidacionGeneroPaciente").append($('#SltGenero').val());
+	/////GENERO
+	if ($('#SltGenero').val() == 0) {
+		$("#ValidacionGeneroPaciente").append("***Seleccionar Genero");
+	}
+
+	/////ESTADO CIVIL
+	if ($('#SltEstadoCivil').val() == 0) {
+		$("#ValidacionEstadoCivilPaciente").append("***Seleccionar Estado Civil");
+	}
+});
+//////FIN validacion de campos obligatorios ////

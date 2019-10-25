@@ -45,6 +45,7 @@
             <label>Dirección</label>
             <br />
             <input id="IptDireccion" name="Direccion" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.direccion : string.Empty)">
+			<label id="ValidacionDireccionPaciente" name="ValidacionDireccionPaciente" />
 		</p>
     </div>
     <div class="col-xl-6">
@@ -102,40 +103,43 @@
         <p>
             <label>Fecha de Nacimiento</label>
             <br />
-            <input id="IptFechaNacimiento" name="FechaNacimiento" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-        </p>
+            <input id="IptFechaNacimiento" name="FechaNacimiento" class="required" type="date" max="@DateTime.Now.ToString("yyyy-MM-dd")" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+			<label id="ValidacionFechaNacimientoPaciente" name="ValidacionFechaNacimientoPaciente" />
+		</p>
     </div>
     <div class="col-xl-3">
-        <p>
-            <label>Genero</label>
-            <br>
-            <select id="SltGenero" name="Sexo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                <option value="0"> Seleccionar </option>
-                @{
-                    var generos = ViewData["generos"] as List<Tesis004.Models.ParametroModel>;
-                    foreach (var genero in generos)
-                    {
-                        <option value="@genero.Identificador"> @genero.Valor </option>
-                    }
-                }
-            </select>
-        </p>
+		<p>
+			<label>Genero</label>
+			<br>
+			<select id="SltGenero" name="Sexo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+				<option value="0"> Seleccionar </option>
+				@{
+					var generos = ViewData["generos"] as List<Tesis004.Models.ParametroModel>;
+					foreach (var genero in generos)
+					{
+						<option value="@genero.Identificador"> @genero.Valor </option>
+					}
+				}
+			</select>
+			<label id="ValidacionGeneroPaciente" name="ValidacionGeneroPaciente" />
+		</p>
     </div>
     <div class="col-md-3">
-        <p>
-            <label>Estado Civil</label>
-            <br />
-            <select id="SltEstadoCivil" name="EstadoCivil" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                <option value="0"> Seleccionar </option>
-                @{
-                    var estados = ViewData["estados"] as List<Tesis004.Models.ParametroModel>;
-                    foreach (var estado in estados)
-                    {
-                        <option value="@estado.Identificador"> @estado.Valor </option>
-                    }
-                }
-            </select>
-        </p>
+		<p>
+			<label>Estado Civil</label>
+			<br />
+			<select id="SltEstadoCivil" name="EstadoCivil" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+				<option value="0"> Seleccionar </option>
+				@{
+					var estados = ViewData["estados"] as List<Tesis004.Models.ParametroModel>;
+					foreach (var estado in estados)
+					{
+						<option value="@estado.Identificador"> @estado.Valor </option>
+					}
+				}
+			</select>
+			<label id="ValidacionEstadoCivilPaciente" name="ValidacionEstadoCivilPaciente" >
+		</p>
     </div>
     <div class="col-md-3">
         <p>
@@ -163,25 +167,28 @@
             <label>Nombre</label>
             <br />
             <input id="IptNombreContactoEmergencia"name="NombreContactoEmergencia" class="col-xl required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.nombreContactoEmergencia : string.Empty)" />
-        </p>
+			<label id="ValidacionNombreContactoEmergencia" name="ValidacionNombreContactoEmergencia" />
+		</p>
     </div>
     <div class="col-xl-3">
         <p>
             <label>Afinidad</label>
             <input id="IptAfinidadContactoEmergencia" name="AfinidadContactoEmergencia" class="required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.afinidadContactoEmergencia : string.Empty)" />
-        </p>
+			<label id="ValidacionAfinidadContactoEmergencia" name="ValidacionAfinidadContactoEmergencia" />
+		</p>
     </div>
     <div class="col-xl-3">
         <p>
             <label>Telefono</label>
             <input id="IptTelefonoContactoEmergencia" name="TelefonoContactoEmergencia" class="required" style="text-transform: uppercase; text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@(Model!=null ? Model.telefono : string.Empty)" />
-        </p>
+			<label id="ValidacionTelefonoContactoEmergencia" name="ValidacionTelefonoContactoEmergencia" />
+		</p>
     </div>
 </div>
 
 <div class="text-center">
     <br />
-    <button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="guardarPaciente()">GUARDAR</button>
+    <button id="btnGuardarPacienteNuevo" name="btnGuardarPacienteNuevo" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="guardarPaciente()">GUARDAR</button>
 </div>
 
 <script src="~/Scripts/Validador.js"></script>
