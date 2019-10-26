@@ -128,6 +128,52 @@ namespace Tesis004.InformacionBDD
             return ingresado;
         }
 
+        public bool EliminarSubjetivo(SubjetivoModel subjetivo)
+        {
+            bool eliminado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "DELETE FROM Subjetivo " +
+                                  "WHERE SubjetivoID = @SubjetivoID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@SubjetivoID", subjetivo.SubjetivoID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                eliminado = true;
+            }
+
+            return eliminado;
+        }
+
+        public bool ModificarSubjetivo(SubjetivoModel subjetivo)
+        {
+            bool modificado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "UPDATE Subjetivo " +
+                                  "SET DetalleSubjetivo = @DetalleSubjetivo " +
+                                  "WHERE SubjetivoID = @SubjetivoID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@DetalleSubjetivo", subjetivo.DescripcionSubjetivo);
+            sentenciaSQL.Parameters.AddWithValue("@SubjetivoID", subjetivo.SubjetivoID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                modificado = true;
+            }
+
+            return modificado;
+        }
+
         public List<SubjetivoModel> ListarSubjetivo(int consultaMedicaID)
         {
             List<SubjetivoModel> listaSubjetivo = new List<SubjetivoModel>();
@@ -152,6 +198,102 @@ namespace Tesis004.InformacionBDD
             }   
 
             return listaSubjetivo;
+        }
+
+        public bool InsertarObjetivo(ObjetivoModel objetivo)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO Objetivo (ItemObjetivo, DetalleObjetivo, ConsultaMedicaID) " +
+                                  "VALUES (@ItemObjetivo, @DetalleObjetivo, @ConsultaMedicaID); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@ItemObjetivo", objetivo.ItemObjetivo);
+            sentenciaSQL.Parameters.AddWithValue("@DetalleObjetivo", objetivo.DetalleObjetivo);
+            sentenciaSQL.Parameters.AddWithValue("@ConsultaMedicaID", objetivo.ConsultaMedicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public bool EliminarObjetivo(ObjetivoModel objetivo)
+        {
+            bool eliminado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "DELETE FROM Objetivo " +
+                                  "WHERE ObjetivoID = @ObjetivoID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@ObjetivoID", objetivo.ObjetivoID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                eliminado = true;
+            }
+
+            return eliminado;
+        }
+
+        public bool ModificarObjetivo(ObjetivoModel objetivo)
+        {
+            bool modificado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "UPDATE Objetivo " +
+                                  "SET DetalleObjetivo = @DetalleObjetivo " +
+                                  "WHERE ObjetivoID = @ObjetivoID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@DetalleObjetivo", objetivo.DetalleObjetivo);
+            sentenciaSQL.Parameters.AddWithValue("@ObjetivoID", objetivo.ObjetivoID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                modificado = true;
+            }
+
+            return modificado;
+        }
+
+        public List<ObjetivoModel> ListarObjetivo(int consultaMedicaID)
+        {
+            List<ObjetivoModel> listaObjetivo = new List<ObjetivoModel>();
+
+            string sentenciaSql = "SELECT o.ObjetivoID, o.ItemObjetivo, o.DetalleObjetivo, o.ConsultaMedicaID, p.Valor " +
+                                  "FROM Objetivo o " +
+                                  "INNER JOIN Parametro p ON o.ItemObjetivo = p.ParametroID " +
+                                  $"WHERE o.ConsultaMedicaID = {consultaMedicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                ObjetivoModel objetivo = new ObjetivoModel();
+                objetivo.ObjetivoID = tablaDatos.Rows[i].Field<int>("ObjetivoID");
+                objetivo.ItemObjetivo = tablaDatos.Rows[i].Field<int>("ItemObjetivo");
+                objetivo.DetalleObjetivo = tablaDatos.Rows[i].Field<string>("DetalleObjetivo");
+                objetivo.ConsultaMedicaID = tablaDatos.Rows[i].Field<int>("ConsultaMedicaID");
+                objetivo.NombreObjetivo = tablaDatos.Rows[i].Field<string>("Valor");
+
+                listaObjetivo.Add(objetivo);
+            }
+
+            return listaObjetivo;
         }
     }
 }
