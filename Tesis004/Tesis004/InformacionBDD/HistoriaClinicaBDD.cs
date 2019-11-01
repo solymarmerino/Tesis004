@@ -295,5 +295,128 @@ namespace Tesis004.InformacionBDD
 
             return listaObjetivo;
         }
+
+        public List<CIE10Model> ListarSugerenciaEnfermedad(string enfermedad)
+        {
+            List<CIE10Model> listaSugerenciaEnfermedad = new List<CIE10Model>();
+
+            string sentenciaSql = "SELECT TOP(10) cie10id, detalle, codigo " +
+                                  "FROM cie10 " +
+                                  $"WHERE detalle LIKE '%{enfermedad}%' ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                CIE10Model cie10 = new CIE10Model();
+                cie10.CIE10ID = tablaDatos.Rows[i].Field<int>("cie10id");
+                cie10.Detalle = tablaDatos.Rows[i].Field<string>("detalle");
+                cie10.Codigo = tablaDatos.Rows[i].Field<string>("codigo");
+
+                listaSugerenciaEnfermedad.Add(cie10);
+            }
+
+            return listaSugerenciaEnfermedad;
+        }
+
+        public CIE10Model ConsultarEnfermedad(CIE10Model cie10)
+        {
+            string sentenciaSql = "";
+            if(cie10.Detalle != null)
+            {
+                sentenciaSql = "SELECT TOP(10) cie10id, detalle, codigo " +
+                               "FROM cie10 " +
+                               $"WHERE detalle LIKE '%{cie10.Detalle}%' ";
+            }
+            if (cie10.Codigo != null)
+            {
+                sentenciaSql = "SELECT TOP(10) cie10id, detalle, codigo " +
+                               "FROM cie10 " +
+                               $"WHERE codigo LIKE '%{cie10.Codigo}' ";
+            }
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+            CIE10Model cie10Resultado = new CIE10Model();
+            if (tablaDatos.Rows.Count > 0)
+            {
+                cie10Resultado.CIE10ID = tablaDatos.Rows[0].Field<int>("cie10id");
+                cie10Resultado.Detalle = tablaDatos.Rows[0].Field<string>("detalle");
+                cie10Resultado.Codigo = tablaDatos.Rows[0].Field<string>("codigo");
+            }
+
+            return cie10Resultado;
+        }
+
+        public bool InsertarDiagnostico(DiagnosticoModel diagnostico)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO Diagnostico (ConsultaMedicaID, CIE10ID, Estado) " +
+                                  "VALUES (@ConsultaMedicaID, @CIE10ID, @Estado); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@ConsultaMedicaID", diagnostico.ConsultaMedicaID);
+            sentenciaSQL.Parameters.AddWithValue("@CIE10ID", diagnostico.CIE10ID);
+            sentenciaSQL.Parameters.AddWithValue("@Estado", diagnostico.EstadoDiagnostico);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public List<DiagnosticoModel> ListarDiagnostico(int consultaMedicaID)
+        {
+            List<DiagnosticoModel> listaDiagnostico = new List<DiagnosticoModel>();
+
+            string sentenciaSql = "SELECT d.DiagnosticoID, c.Detalle, c.Codigo, p.Valor " +
+                                  "FROM Diagnostico d " +
+                                  "INNER JOIN Cie10 c ON d.CIE10ID = c.CIE10ID " +
+                                  "INNER JOIN Parametro p ON d.Estado = p.ParametroID " +
+                                  $"WHERE d.ConsultaMedicaID = {consultaMedicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                DiagnosticoModel diagnostico = new DiagnosticoModel();
+                diagnostico.DiagnosticoID = tablaDatos.Rows[i].Field<int>("DiagnosticoID");
+                diagnostico.Cie10Detalle = tablaDatos.Rows[i].Field<string>("Detalle");
+                diagnostico.Cie10Codigo = tablaDatos.Rows[i].Field<string>("Codigo");
+                diagnostico.TipoDiagnostico = tablaDatos.Rows[i].Field<string>("Valor");
+
+                listaDiagnostico.Add(diagnostico);
+            }
+
+            return listaDiagnostico;
+        }
+
+        public bool EliminarDiagnostico(DiagnosticoModel diagnostico)
+        {
+            bool eliminado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "DELETE FROM Diagnostico " +
+                                  "WHERE DiagnosticoID = @DiagnosticoID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@DiagnosticoID", diagnostico.DiagnosticoID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                eliminado = true;
+            }
+
+            return eliminado;
+        }
     }
 }
