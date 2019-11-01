@@ -878,7 +878,7 @@ $("#Peso").change(function () {
 	else {
 		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
 			$("#ValidacionPeso").prop("disable", true);
-			if (precionarterial.length < 4) {
+			if (precionarterial.length < 5) {
 				$("#ValidacionPeso").prop("disable", true);
 			}
 			else {
