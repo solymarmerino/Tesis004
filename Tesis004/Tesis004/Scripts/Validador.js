@@ -789,4 +789,195 @@ $("#Temperatura").change(function () {
 });
 ////////////FIN validacion TEMPERATURA
 
+////////////INICIO validacion de PRESION ARTERIAL
+$("#PrecionArterial").change(function () {
+	$("#ValidacionPrecionArterial").empty();
+	var precionarterial = $("#PrecionArterial").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionPrecionArterial").append("Ingresar Preción Arterial");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionPrecionArterial").prop("disable", true);
+		}
+		else {
+			$("#ValidacionPrecionArterial").append("Ingresar solo numeros");
+		}
+	}
+});
+////////////FIN validacion de PRESION ARTERIAL
+
+////////////INICIO validacion de FRECUENCIA RESPIRATORIA FR
+$("#Fr").change(function () {
+	$("#ValidacionFR").empty();
+	var precionarterial = $("#Fr").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionFR").append("Ingresar Frecuencia Respiratoria");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionFR").prop("disable", true);
+			if (precionarterial.length < 4) {
+				$("#ValidacionFR").prop("disable", true);
+			}
+			else
+			{
+				$("#ValidacionFR").append("Frecuencia respiratoria erronea");
+			}
+		}
+		else {
+			$("#ValidacionFR").append("Ingresar solo numeros");
+		}
+	}
+});
+////////////FIN validacion de FRECUENCIA RESPIRATORIA FR
+
+////////////INICIO validacion de FRECUENCIA CARDIACA FC
+$("#Fc").change(function () {
+	$("#ValidacionFC").empty();
+	var precionarterial = $("#Fc").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionFC").append("Ingresar Frecuencia Cardiaca");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionFC").prop("disable", true);
+			if (precionarterial.length < 4) {
+				$("#ValidacionFC").prop("disable", true);
+			}
+			else {
+				$("#ValidacionFC").append("Frecuencia cardiaca erronea");
+			}
+		}
+		else {
+			$("#ValidacionFC").append("Ingresar solo numeros");
+		}
+	}
+});
+////////////FIN validacion de FRECUENCIA CARDIACA FC
+
+////////////INICIO validacion de PESO
+$("#Peso").change(function () {
+	$("#ValidacionPeso").empty();
+	var precionarterial = $("#Peso").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionPeso").append("Ingresar Peso");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionPeso").prop("disable", true);
+			if (precionarterial.length < 4) {
+				$("#ValidacionPeso").prop("disable", true);
+			}
+			else {
+				$("#ValidacionPeso").append("Peso erroneo");
+			}
+		}
+		else {
+			$("#ValidacionPeso").append("Ingresar solo numeros");
+		}
+	}
+});
+////////////FIN validacion de PESO
+
+////////////INICIO validacion de TALLA
+$("#Talla").change(function () {
+	$("#ValidacionTalla").empty();
+	var precionarterial = $("#Talla").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionTalla").append("Ingresar Talla");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionPeso").prop("disable", true);
+			if (precionarterial.length < 6) {
+				$("#ValidacionTalla").prop("disable", true);
+			}
+			else {
+				$("#ValidacionTalla").append("Talla erronea");
+			}
+		}
+		else {
+			$("#ValidacionTalla").append("Ingresar solo numeros");
+		}
+	}
+});
+////////////FIN validacion de TALLA
+
+////////////INICIO validacion de SATURACION DE OXIGENO
+$("#Saturacion").change(function () {
+	$("#ValidacionSaturacion").empty();
+	var precionarterial = $("#Saturacion").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionSaturacion").append("Ingresar Saturación");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionSaturacion").prop("disable", true);
+			if (precionarterial.length < 4) {
+				$("#ValidacionSaturacion").prop("disable", true);
+			}
+			else {
+				$("#ValidacionSaturacion").append("Saturación erronea");
+			}
+		}
+		else {
+			$("#ValidacionSaturacion").append("Ingresar solo numeros");
+		}
+	}
+});
+////////////FIN validacion de TALLA
+
 ////////////FIN validacion de signos vitales
+
+
+////////INICIO CALCULO DE INDICE DE MASA CORPORAL
+
+$("#Talla").change(function () {
+
+	var talla = $("#Talla").val();
+	var peso = $("#Peso").val();
+
+	if (talla.length != 0 && peso.length != 0) {
+		var imc = peso / (talla * talla);
+		$("#IMC").val(imc.toFixed(2));
+	}
+	else {
+		$("#IMC").val(0);
+	}
+
+});
+
+$("#Peso").change(function () {
+
+	var talla = $("#Talla").val();
+	var peso = $("#Peso").val();
+
+	if (talla.length != 0 && peso.length != 0) {
+		var imc = peso / (talla * talla);
+		$("#IMC").val(imc.toFixed(2));
+	}
+	else {
+		$("#IMC").val(0);
+	}
+
+});
+////////FIN CALCULO DE INDICE DE MASA CORPORAL

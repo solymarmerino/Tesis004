@@ -22,7 +22,7 @@ function atencionEnfermeriaCita() {
             toastr.success("Cita actualizada");
         }
         else {
-            toastr.error("Cita NO actualizadaA");
+            toastr.error("Cita NO actualizada");
         }
     };
     ActualizarCita.error = function () {
@@ -31,17 +31,6 @@ function atencionEnfermeriaCita() {
     $.ajax(ActualizarCita);
 }
 
-$("#Talla").change(function () {
-    if ($("#Peso").val() != "") {
-        $("#IMC").val(($("#Peso").val() / ($("#Talla").val() * $("#Talla").val())).toFixed(2));
-    }
-});
-
-$("#Peso").change(function () {
-    if ($("#Talla").val() != "") {
-        $("#IMC").val(($("#Peso").val() / ($("#Talla").val() * $("#Talla").val())).toFixed(2));
-    }
-});
 
 $("#btnGuardarSignosVitales").click(function () {
     var SignosVitales = {};
