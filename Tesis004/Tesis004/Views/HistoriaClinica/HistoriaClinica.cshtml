@@ -323,7 +323,18 @@
                     </div>
                     <br />
                     <div class="col-xl-12">
-                        <textarea name="descripcionsubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                        <input id="idSubjetivo" hidden />
+                        @{
+                            var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
+                            foreach (var subjetivo in subjetivos)
+                            {
+                                if (subjetivo.Valor.Equals("General"))
+                                {
+                                    <input id="idSubjetivoGeneral" value="@subjetivo.Identificador" hidden />
+                                }
+                            }
+                        }
+                        <textarea id="descripcionSubjetivo" name="descripcionSubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
                     </div>
                 </div>
                 <br />
@@ -334,10 +345,12 @@
                         <select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
                             <option value="0"> Seleccionar </option>
                             @{
-                                var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
                                 foreach (var subjetivo in subjetivos)
                                 {
-                                    <option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
+                                    if (!subjetivo.Valor.Equals("General"))
+                                    {
+                                        <option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
+                                    }
                                 }
                             }
                         </select>
@@ -380,7 +393,18 @@
                     </div>
                     <br />
                     <div class="col-xl-12">
-                        <textarea name="descripcionobjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                        <input id="idObjetivo" hidden />
+                        @{
+                            var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
+                            foreach (var objetivo in objetivos)
+                            {
+                                if (objetivo.Valor.Equals("General"))
+                                {
+                                    <input id="idObjetivoGeneral" value="@objetivo.Identificador" hidden />
+                                }
+                            }
+                        }
+                        <textarea id="descripcionObjetivoGeneral" name="descripcionObjetivoGeneral" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
                     </div>
                 </div>
                 <br />
@@ -391,10 +415,12 @@
                         <select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
                             <option value="0"> Seleccionar </option>
                             @{
-                                var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
                                 foreach (var objetivo in objetivos)
                                 {
-                                    <option value="@objetivo.Identificador"> @objetivo.Valor </option>
+                                    if (!objetivo.Valor.Equals("General"))
+                                    {
+                                        <option value="@objetivo.Identificador"> @objetivo.Valor </option>
+                                    }
                                 }
                             }
                         </select>
@@ -402,12 +428,12 @@
                     <div class="col-xl-8">
                         <label>Descripción</label>
                         <br />
-                        <input name="descripcionobjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="descripcionObjetivo" name="descripcionObjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                     </div>
                     <div class="col-xl-1">
                         <p>
                             <br />
-                            <button name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" >
+                            <button id="btnObjetivo" name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" >
                                 <i class="fas fa-plus-square"></i>
                             </button>
                         </p>
@@ -460,49 +486,46 @@
                 </div>
                 <br />
                 <div class="row">
+                    <input id="idCie10" hidden>
                     <div class="col-xl-6">
                         <label>Diagnostico</label>
                         <br />
-                        <input name="enfermedad" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="enfermedad" name="enfermedad" list="sugerenciaEnfermedad" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <datalist id="sugerenciaEnfermedad">
+                        </datalist>
                     </div>
                     <div class="col-xl-2">
                         <label>CIE-10</label>
                         <br />
-                        <input name="cie10" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="cie10" name="cie10" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <datalist id="sugerenciaCie10">
+                        </datalist>
                     </div>
                     <div class="col-xl-3">
                         <label>Tipo</label>
                         <br />
-                        <select name="tipoenfermedad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> ----- </option>
+                        <select id="tipodiagnostico" name="tipodiagnostico" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                var diagnosticos = ViewData["diagnosticos"] as List<Tesis004.Models.ParametroModel>;
+                                foreach (var diagnostico in diagnosticos)
+                                {
+                                    <option value="@diagnostico.Identificador"> @diagnostico.Valor </option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="col-xl-1">
                         <br />
-                        <button name="Identificador" title="Ingresar diagnostico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                        <button id="btnDiagnostico" name="btnDiagnostico" title="Ingresar diagnostico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
                             <i class="fas fa-plus-square"></i>
                         </button>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <br />
-                    <table class="table">
-                        <tr>
-                            <th scope="col">Diagnostico</th>
-                            <th scope="col">CIE-10</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col"></th>
-                        </tr>
-                        <tr>
-                            <td scope="col">AAAAAAA</td>
-                            <td scope="col">AAA111</td>
-                            <td scope="col">AAAAAAA</td>
-                            <td scope="col">
-                                <button name="Identificador" title="Eliminar diagnostico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                                    <i class="fas fa-minus-square"></i>
-                                </button>
-                            </td>
-                        </tr>
+                    <table id="tblDiagnostico" class="table">
+                        
                     </table>
                 </div>
                 <!--Creacion de seccion de ingreso de receta-->

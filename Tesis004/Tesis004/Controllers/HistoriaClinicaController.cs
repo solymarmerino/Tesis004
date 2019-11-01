@@ -39,6 +39,7 @@ namespace Tesis004.Controllers
             ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
             ViewData["subjetivos"] = informacionGeneral.ObtenerInformacionParametro("subjetivo");
             ViewData["objetivos"] = informacionGeneral.ObtenerInformacionParametro("objetivo");
+            ViewData["diagnosticos"] = informacionGeneral.ObtenerInformacionParametro("tipo diagnostico");
             ViewData["paciente"] = pacienteBDD.PacientePorId(cita.PacienteID);
             return View();
 		}
@@ -52,19 +53,106 @@ namespace Tesis004.Controllers
         }
 
         [HttpPost]
-        public JsonResult IngresarSubjetivo(SubjetivoModel subjetivo)
+        public JsonResult ValidarSubjetivo(SubjetivoModel subjetivo)
         {
             List<bool> ingresado = new List<bool>();
-            ingresado.Add(this.historiaClinicaBDD.InsertarSubjetivo(subjetivo));
+            if(subjetivo.SubjetivoID == 0)
+            {
+                ingresado.Add(this.historiaClinicaBDD.InsertarSubjetivo(subjetivo));
+            }
+            else
+            {
+                ingresado.Add(this.historiaClinicaBDD.ModificarSubjetivo(subjetivo));
+            }       
             return Json(ingresado);
         }
 
-        [HttpPost]
+        [HttpPost]  
         public JsonResult ConsultarSubjetivo(int consultaMedicaID)
         {
             List<SubjetivoModel> resultado = new List<SubjetivoModel>();
             resultado = this.historiaClinicaBDD.ListarSubjetivo(consultaMedicaID);
             return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult EliminarSubjetivo(SubjetivoModel subjetivo)
+        {
+            List<bool> eliminado = new List<bool>();
+            eliminado.Add(this.historiaClinicaBDD.EliminarSubjetivo(subjetivo));
+            return Json(eliminado);
+        }
+
+        [HttpPost]
+        public JsonResult ValidarObjetivo(ObjetivoModel objetivo)
+        {
+            List<bool> ingresado = new List<bool>();
+            if (objetivo.ObjetivoID == 0)
+            {
+                ingresado.Add(this.historiaClinicaBDD.InsertarObjetivo(objetivo));
+            }
+            else
+            {
+                ingresado.Add(this.historiaClinicaBDD.ModificarObjetivo(objetivo));
+            }
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarObjetivo(int consultaMedicaID)
+        {
+            List<ObjetivoModel> resultado = new List<ObjetivoModel>();
+            resultado = this.historiaClinicaBDD.ListarObjetivo(consultaMedicaID);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult EliminarObjetivo(ObjetivoModel objetivo)
+        {
+            List<bool> eliminado = new List<bool>();
+            eliminado.Add(this.historiaClinicaBDD.EliminarObjetivo(objetivo));
+            return Json(eliminado);
+        }
+
+        [HttpPost]
+        public JsonResult ListarSugerenciaEnfermedad(CIE10Model cie10)
+        {
+            List<CIE10Model> listaSugenrenciaEnfermedad = new List<CIE10Model>();
+            listaSugenrenciaEnfermedad = this.historiaClinicaBDD.ListarSugerenciaEnfermedad(cie10.Detalle);
+            return Json(listaSugenrenciaEnfermedad);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarCie10(CIE10Model cie10)
+        {
+            CIE10Model cie10Resultado = new CIE10Model();
+            cie10Resultado = this.historiaClinicaBDD.ConsultarEnfermedad(cie10);
+            return Json(cie10Resultado);
+        }
+
+        [HttpPost]
+        public JsonResult IngresarDiagnostico(DiagnosticoModel diagnostico)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.InsertarDiagnostico(diagnostico));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarDiagnostico(int consultaMedicaID)
+        {
+            List<DiagnosticoModel> resultado = new List<DiagnosticoModel>();
+            resultado = this.historiaClinicaBDD.ListarDiagnostico(consultaMedicaID);
+            return Json(resultado);
+        }
+
+
+        [HttpPost]
+        public JsonResult EliminarDiagnostico(DiagnosticoModel diagnostico)
+        {
+            List<bool> eliminado = new List<bool>();
+            eliminado.Add(this.historiaClinicaBDD.EliminarDiagnostico(diagnostico));
+            return Json(eliminado);
         }
     }
 }
