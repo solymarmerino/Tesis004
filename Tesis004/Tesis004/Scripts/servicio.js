@@ -32,8 +32,8 @@ function consultarCitaPaciente() {
             }            
         }
     };
-    ListarPersonal.error = function () {
-        alert("Error al listar citas del paciente!!");
+	ListarPersonal.error = function () {
+		toastr.error("Error al listar citas del paciente!!");
     };
     $.ajax(ListarPersonal);
 }
@@ -48,19 +48,19 @@ function eliminarCita(idCitaMedica) {
     ListarPersonal.datatype = "json";
     ListarPersonal.contentType = "application/json";
     ListarPersonal.success = function (resultado) {
-        if (resultado[0] == true) {
-            alert("Cita eliminada");
+		if (resultado[0] == true) {
+			toastr.success("Cita eliminada");
             limpiarTablaCita();
             consultarCitaPaciente();
         }
-        else {
-            alert("Cita NO eliminada");
+		else {
+			toastr.error("Cita NO eliminada");
             limpiarTablaCita();
             consultarCitaPaciente();
         }
     };
-    ListarPersonal.error = function () {
-        alert("Error al eliminar cita del paciente!!");
+	ListarPersonal.error = function () {
+		toastr.error("Error al eliminar cita del paciente!!");
     };
     $.ajax(ListarPersonal);
 }
@@ -81,8 +81,8 @@ $("#sltEspecialidad").change(function () {
             $("#sltIdentificadorPersonal").append("<option value=\"" + listaPersonalPorEspecialidad[i]["PersonalID"] +"\"> "+ listaPersonalPorEspecialidad[i]["Nombre"] +" </option>");
         }
     };
-    ListarPersonal.error = function () {
-        alert("Error al listar personal!!");
+	ListarPersonal.error = function () {
+		toastr.error("Error al listar personal!!");
     };
     $.ajax(ListarPersonal);
 });
@@ -100,19 +100,19 @@ $("#btnGuardarCita").click(function () {
     ListarPersonal.datatype = "json";
     ListarPersonal.contentType = "application/json";
     ListarPersonal.success = function (resultado) {
-        if (resultado[0] == true) {
-            alert("Cita guardada");
+		if (resultado[0] == true) {
+			toastr.success("Cita guardada");
             limpiarTablaCita();
             consultarCitaPaciente();
         }
-        else {
-            alert("Cita NO guardada");
+		else {
+		    toastr.error("Cita NO guardada");
             limpiarTablaCita();
             consultarCitaPaciente();
         }
     };
-    ListarPersonal.error = function () {
-        alert("Error al guardar cita!!");
+	ListarPersonal.error = function () {
+		toastr.error("Error al guardar cita!!");
         limpiarTablaCita();
         consultarCitaPaciente();
     };

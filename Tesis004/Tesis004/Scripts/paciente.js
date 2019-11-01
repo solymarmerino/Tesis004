@@ -26,8 +26,8 @@
             $("#sugerenciaPaciente").append("<option value=\""+ listaSugenrenciaPaciente[i]["ParametroBusqueda"] +"\"></option>");
         }
     };
-    ConsultarPaciente.error = function () {
-        alert("Error al consultar sugerencias del paciente!!");
+	ConsultarPaciente.error = function () {
+		toastr.error("Error al consultar sugerencias del paciente!!");
     };
     $.ajax(ConsultarPaciente);
 });
@@ -77,7 +77,7 @@ function buscarPaciente() {
         }
     };
     ConsultarPaciente.error = function () {
-        alert("Error al consultar paciente!!");
+		toastr.error("Error al consultar paciente!!");
     };
     $.ajax(ConsultarPaciente);
 }
@@ -116,16 +116,16 @@ function guardarPaciente() {
     GuardarPaciente.datatype = "json";
     GuardarPaciente.contentType = "application/json";
     GuardarPaciente.success = function (ingresado) {
-        if (ingresado[0] == true) {
-            alert("Paciente ingresado!!");
+		if (ingresado[0] == true) {
+			toastr.success("Paciente ingresado!!");
         }
         else {
-            alert("Paciente NO ingresado!!!!");
+			toastr.error("Paciente NO ingresado!!!!");
         }
         
     };
-    GuardarPaciente.error = function () {
-        alert("Error al guardar paciente!!");
+	GuardarPaciente.error = function () {
+		toastr.error("Error al guardar paciente!!");
     };
     $.ajax(GuardarPaciente);
 }

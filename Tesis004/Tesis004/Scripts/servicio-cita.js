@@ -43,8 +43,8 @@ function consultarCita() {
             $("#tblCita").append("<tr>" + fila + "</tr>");
         }
     };
-    ConsultarCita.error = function () {
-        alert("Error al listar cita!!");
+	ConsultarCita.error = function () {
+		toastr.error("Error al listar cita!!");
     };
     $.ajax(ConsultarCita);
 }
@@ -59,19 +59,19 @@ function pagarCita(idCitaMedica) {
     ListarPersonal.datatype = "json";
     ListarPersonal.contentType = "application/json";
     ListarPersonal.success = function (resultado) {
-        if (resultado[0] == true) {
-            alert("Cita pagada");
+		if (resultado[0] == true) {
+			toastr.success("Cita pagada");
             limpiarTablaCita();
             consultarCita();
         }
-        else {
-            alert("Cita NO pagada");
+		else {
+			toastr.error("Cita NO pagada");
             limpiarTablaCita();
             consultarCita();
         }
     };
-    ListarPersonal.error = function () {
-        alert("Error al eliminar al pagar!!");
+	ListarPersonal.error = function () {
+		toastr.error("Error al eliminar al pagar!!");
         limpiarTablaCita();
         consultarCita();
     };

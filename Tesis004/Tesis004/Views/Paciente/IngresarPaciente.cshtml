@@ -88,7 +88,8 @@
                     }
                 }
             </select>
-        </p>
+			<label id="ValidacionEtniaPaciente" name="ValidacionEtniaPaciente" />
+		</p>
     </div>
     <div class="col-xl-3">
         <p>
@@ -138,24 +139,25 @@
 					}
 				}
 			</select>
-			<label id="ValidacionEstadoCivilPaciente" name="ValidacionEstadoCivilPaciente" >
+			<label id="ValidacionEstadoCivilPaciente" name="ValidacionEstadoCivilPaciente" />
 		</p>
     </div>
     <div class="col-md-3">
-        <p>
-            <label>Tipo de Sangre</label>
-            <br />
-            <select id="SltTipoSangre" name="TipoSangre" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                <option value="0"> Seleccionar </option>
-                @{
-                    var tipos = ViewData["tipos"] as List<Tesis004.Models.ParametroModel>;
-                    foreach (var tipo in tipos)
-                    {
-                        <option value="@tipo.Identificador"> @tipo.Valor </option>
-                    }
-                }
-            </select>
-        </p>
+		<p>
+			<label>Tipo de Sangre</label>
+			<br />
+			<select id="SltTipoSangre" name="TipoSangre" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+				<option value="0"> Seleccionar </option>
+				@{
+					var tipos = ViewData["tipos"] as List<Tesis004.Models.ParametroModel>;
+					foreach (var tipo in tipos)
+					{
+						<option value="@tipo.Identificador"> @tipo.Valor </option>
+					}
+				}
+			</select>
+			<label id="ValidacionTipoSangrePaciente" name="ValidacionTipoSangrePaciente" />
+		</p>
     </div>
 </div>
 <div class="row">

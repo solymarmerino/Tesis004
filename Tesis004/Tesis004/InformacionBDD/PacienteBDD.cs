@@ -217,20 +217,22 @@ namespace Tesis004.InformacionBDD
             if (resultado > 0)
             {
                 ingresado = true;
-            }
 
-            paciente.PacienteID = this.ObtenerIdPacientePorHC(paciente.NumHistoriaClinica);
+				paciente.PacienteID = this.ObtenerIdPacientePorHC(paciente.NumHistoriaClinica);
 
-            sentenciaSql = "SET IDENTITY_INSERT HistoriaClinica ON; "+
-                           "INSERT INTO HistoriaClinica (HistoriaClinicaID, PacienteID) " +
-                           "VALUES (@HistoriaClinicaID, @PacienteID); ";
+				sentenciaSql = "SET IDENTITY_INSERT HistoriaClinica ON; " +
+							   "INSERT INTO HistoriaClinica (HistoriaClinicaID, PacienteID) " +
+							   "VALUES (@HistoriaClinicaID, @PacienteID); ";
 
-            sentenciaSQL = new SqlCommand(sentenciaSql);
+				sentenciaSQL = new SqlCommand(sentenciaSql);
 
-            sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", paciente.NumHistoriaClinica);
-            sentenciaSQL.Parameters.AddWithValue("@PacienteID", paciente.PacienteID);
+				sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", paciente.NumHistoriaClinica);
+				sentenciaSQL.Parameters.AddWithValue("@PacienteID", paciente.PacienteID);
 
-            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+				resultado = conexion.ComandoModificacion(sentenciaSQL);
+			}
+
+            
 
             if (resultado > 0)
             {

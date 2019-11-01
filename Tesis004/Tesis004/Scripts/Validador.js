@@ -64,7 +64,7 @@ $("#Cedula").change(function () {
 });
 
 
-/////PACIENTE
+/////PACIENTE NUEVO
 $("#IptCedula").change(function () {
 	$("#ValidacionCedulaPaciente").empty();
 	var cedula = $("#IptCedula").val();
@@ -129,6 +129,72 @@ $("#IptCedula").change(function () {
 	}
 });
 
+/////PACIENTE MODIFICAR
+$("#IptCedula").change(function () {
+	$("#ValidacionCedulaPaciente").empty();
+	var cedula = $("#IptCedula").val();
+	//Preguntamos si la cedula consta de 10 digitos
+	if (cedula.length == 10) {
+		//Obtenemos el digito de la region que sonlos dos primeros digitos
+		var digito_region = cedula.substring(0, 2);
+		//Pregunto si la region existe ecuador se divide en 24 regiones
+		if (digito_region >= 1 && digito_region <= 24) {
+			// Extraigo el ultimo digito
+			var ultimo_digito = cedula.substring(9, 10);
+			//Agrupo todos los pares y los sumo
+			var pares = parseInt(cedula.substring(1, 2)) + parseInt(cedula.substring(3, 4)) + parseInt(cedula.substring(5, 6)) + parseInt(cedula.substring(7, 8));
+
+			//Agrupo los impares, los multiplico por un factor de 2, si la resultante es > que 9 le restamos el 9 a la resultante
+			var numero1 = cedula.substring(0, 1);
+			var numero1 = (numero1 * 2);
+			if (numero1 > 9) { var numero1 = (numero1 - 9); }
+
+			var numero3 = cedula.substring(2, 3);
+			var numero3 = (numero3 * 2);
+			if (numero3 > 9) { var numero3 = (numero3 - 9); }
+
+			var numero5 = cedula.substring(4, 5);
+			var numero5 = (numero5 * 2);
+			if (numero5 > 9) { var numero5 = (numero5 - 9); }
+
+			var numero7 = cedula.substring(6, 7);
+			var numero7 = (numero7 * 2);
+			if (numero7 > 9) { var numero7 = (numero7 - 9); }
+
+			var numero9 = cedula.substring(8, 9);
+			var numero9 = (numero9 * 2);
+			if (numero9 > 9) { var numero9 = (numero9 - 9); }
+
+			var impares = numero1 + numero3 + numero5 + numero7 + numero9;
+
+			//Suma total
+			var suma_total = (pares + impares);
+			//extraemos el primero digito
+			var primer_digito_suma = String(suma_total).substring(0, 1);
+			//Obtenemos la decena inmediata
+			var decena = (parseInt(primer_digito_suma) + 1) * 10;
+			//Obtenemos la resta de la decena inmediata - la suma_total esto nos da el digito validador
+			var digito_validador = decena - suma_total;
+			//Si el digito validador es = a 10 toma el valor de 0
+			if (digito_validador == 10)
+				var digito_validador = 0;
+			//Validamos que el digito validador sea igual al de la cedula
+			if (digito_validador == ultimo_digito) {
+				$("#ValidacionCedulaPaciente").prop("disable", true);
+			} else {
+				$("#ValidacionCedulaPaciente").append("Cédula Inválida");
+			}
+		} else {
+			// imprimimos inválida si la region no pertenece
+			$("#ValidacionCedulaPaciente").append("Cédula Inválida");
+		}
+	} else {
+		//imprimimos inválida si la cedula tiene mas o menos de 10 digitos
+		$("#ValidacionCedulaPaciente").append("Cédula Inválida: debe tener 10 caracteres");
+	}
+});
+
+
 // FIN Validacion de cedulas ingresadas en el sistema //////
 
 
@@ -153,7 +219,7 @@ $("#Nombre").change(function () {
 	}
 });
 
-///////PACIENTE
+///////PACIENTE NUEVO
 
 $("#IptNombreCompleto").change(function () {
 	$("#ValidacionNombrePaciente").empty();
@@ -174,9 +240,32 @@ $("#IptNombreCompleto").change(function () {
 		}
 	}
 });
+
+///////PACIENTE MODIFICAR
+
+$("#IptNombreCompleto").change(function () {
+	$("#ValidacionModificarNombrePaciente").empty();
+	var nombre = $("#IptNombreCompleto").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionModificarNombrePaciente").append("Ingresar Nombre");
+	}
+	else {
+		$("#ValidacionModificarNombrePaciente").prop("disable", true);
+
+		//preguntar si contiene solo letras
+		if (/[A-Za-z]/.test(nombre) && !(/[0-9]/.test(nombre)) && !(/[-_.;:*/+!·$%&()=]/.test(nombre))) {
+			$("#ValidacionModificarNombrePaciente").prop("disable", true);
+		}
+		else {
+			$("#ValidacionModificarNombrePaciente").append("Ingresar solo letras");
+		}
+	}
+});
 //// FIN validacion de nombres ingresados en el sistema ///
 
 //// INICIO validar el numero de telefono ingresado al sistema
+/////EMPLEADO
 $("#Telefono").change(function () {
 	$("#SalidaTelefono").empty();
 	var telefono = $("#Telefono").val();
@@ -204,6 +293,7 @@ $("#Telefono").change(function () {
 	}
 });
 
+/////PACIENTE
 $("#IptTelefono").change(function () {
 	$("#ValidacionTelefonoPaciente").empty();
 	var telefono = $("#IptTelefono").val();
@@ -433,7 +523,8 @@ $("#IptAfinidadContactoEmergencia").change(function () {
 });
 //////FIN validacion de afinidad de contacto de emergencia ingresados en el sistema ////
 
-//////INICIO validacion de campos obligatorios ////
+//////INICIO validacion de campos obligatorios de MODULO PACIENTE////
+//////NUEVO PACIENTE
 $('#btnGuardarPacienteNuevo').click(function () {
 
 	/////NOMBRE
@@ -460,6 +551,35 @@ $('#btnGuardarPacienteNuevo').click(function () {
 		$("#ValidacionDireccionPaciente").append("***Ingresar Dirección");
 	}
 
+	/////EMAIL
+	$("#ValidacionEmailPaciente").empty();
+	var email = $("#IptEmail").val();
+	// preguntar si el campo esta vacio
+	if (email == null || email.length == 0 || /^\s+$/.test(email)) {
+		$("#ValidacionEmailPaciente").append("***Ingresar Email");
+	}
+
+	/////TELEFONE
+	$("#ValidacionTelefonoPaciente").empty();
+	var telefono = $("#IptTelefono").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#ValidacionTelefonoPaciente").append("***Ingresar Teléfono");
+	}
+
+	/////OCUPACION
+	$("#ValidacionOcupacionPaciente").empty();
+	var ocupacion = $("#IptOcupacion").val();
+	// preguntar si el campo esta vacio
+	if (ocupacion == null || ocupacion.length == 0 || /^\s+$/.test(ocupacion)) {
+		$("#ValidacionOcupacionPaciente").append("***Ingresar Ocupación");
+	}
+
+	/////ETNIA
+	if ($('#SltEtnia').val() == 0) {
+		$("#ValidacionEtniaPaciente").append("***Seleccionar Etnia");
+	}
+
 	/////FECHA NACIMIENTO
 	$("#ValidacionFechaNacimientoPaciente").empty();
 	var fechanacimiento = $("#IptFechaNacimiento").val();
@@ -468,8 +588,6 @@ $('#btnGuardarPacienteNuevo').click(function () {
 		$("#ValidacionFechaNacimientoPaciente").append("***Ingresar Fecha de Nacimiento");
 	}
 
-
-///	$("#ValidacionGeneroPaciente").append($('#SltGenero').val());
 	/////GENERO
 	if ($('#SltGenero').val() == 0) {
 		$("#ValidacionGeneroPaciente").append("***Seleccionar Genero");
@@ -479,5 +597,196 @@ $('#btnGuardarPacienteNuevo').click(function () {
 	if ($('#SltEstadoCivil').val() == 0) {
 		$("#ValidacionEstadoCivilPaciente").append("***Seleccionar Estado Civil");
 	}
+
+	/////TIPO DE SANGRE
+	if ($('#SltEstadoCivil').val() == 0) {
+		$("#ValidacionTipoSangrePaciente").append("***Seleccionar Tipo de sangre");
+	}
+
+	/////NOMBRE CONTACTO
+	$("#ValidacionNombreContactoEmergencia").empty();
+	var nombre = $("#IptNombreContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionNombreContactoEmergencia").append("***Ingresar Nombre de contacto");
+	}
+
+	/////AFINIDAD CONTACTO
+	$("#ValidacionAfinidadContactoEmergencia").empty();
+	var nombre = $("#IptAfinidadContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionAfinidadContactoEmergencia").append("***Ingresar Afinidad de contacto");
+	}
+
+	/////TELEFONE CONTACTO
+	$("#ValidacionTelefonoContactoEmergencia").empty();
+	var telefono = $("#IptTelefonoContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#ValidacionTelefonoContactoEmergencia").append("***Ingresar Teléfono de contacto");
+	}
 });
-//////FIN validacion de campos obligatorios ////
+/////// MODIFICAR PACIENTE
+$('#btnGuardar').click(function () {
+
+	/////NOMBRE
+	$("#ValidacionNombrePaciente").empty();
+	var nombre = $("#IptNombreCompleto").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionNombrePaciente").append("***Ingresar Nombre");
+	}
+
+	/////CEDULA
+	$("#ValidacionCedulaPaciente").empty();
+	var cedula = $("#IptCedula").val();
+	// preguntar si el campo esta vacio
+	if (cedula == null || cedula.length == 0 || /^\s+$/.test(cedula)) {
+		$("#ValidacionCedulaPaciente").append("***Ingresar Cedula");
+	}
+
+	/////DIRECCION
+	$("#ValidacionDireccionPaciente").empty();
+	var direccion = $("#IptDireccion").val();
+	// preguntar si el campo esta vacio
+	if (direccion == null || direccion.length == 0 || /^\s+$/.test(direccion)) {
+		$("#ValidacionDireccionPaciente").append("***Ingresar Dirección");
+	}
+
+	/////EMAIL
+	$("#ValidacionEmailPaciente").empty();
+	var email = $("#IptEmail").val();
+	// preguntar si el campo esta vacio
+	if (email == null || email.length == 0 || /^\s+$/.test(email)) {
+		$("#ValidacionEmailPaciente").append("***Ingresar Email");
+	}
+
+	/////TELEFONE
+	$("#ValidacionTelefonoPaciente").empty();
+	var telefono = $("#IptTelefono").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#ValidacionTelefonoPaciente").append("***Ingresar Teléfono");
+	}
+
+	/////OCUPACION
+	$("#ValidacionOcupacionPaciente").empty();
+	var ocupacion = $("#IptOcupacion").val();
+	// preguntar si el campo esta vacio
+	if (ocupacion == null || ocupacion.length == 0 || /^\s+$/.test(ocupacion)) {
+		$("#ValidacionOcupacionPaciente").append("***Ingresar Ocupación");
+	}
+
+	/////ETNIA
+	if ($('#SltEtnia').val() == 0) {
+		$("#ValidacionEtniaPaciente").append("***Seleccionar Etnia");
+	}
+
+	/////FECHA NACIMIENTO
+	$("#ValidacionFechaNacimientoPaciente").empty();
+	var fechanacimiento = $("#IptFechaNacimiento").val();
+	// preguntar si el campo esta vacio
+	if (fechanacimiento == null || fechanacimiento.length == 0 || /^\s+$/.test(fechanacimiento)) {
+		$("#ValidacionFechaNacimientoPaciente").append("***Ingresar Fecha de Nacimiento");
+	}
+
+	/////GENERO
+	if ($('#SltGenero').val() == 0) {
+		$("#ValidacionGeneroPaciente").append("***Seleccionar Genero");
+	}
+
+	/////ESTADO CIVIL
+	if ($('#SltEstadoCivil').val() == 0) {
+		$("#ValidacionEstadoCivilPaciente").append("***Seleccionar Estado Civil");
+	}
+
+	/////TIPO DE SANGRE
+	if ($('#SltEstadoCivil').val() == 0) {
+		$("#ValidacionTipoSangrePaciente").append("***Seleccionar Tipo de sangre");
+	}
+
+	/////NOMBRE CONTACTO
+	$("#ValidacionNombreContactoEmergencia").empty();
+	var nombre = $("#IptNombreContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionNombreContactoEmergencia").append("***Ingresar Nombre de contacto");
+	}
+
+	/////AFINIDAD CONTACTO
+	$("#ValidacionAfinidadContactoEmergencia").empty();
+	var nombre = $("#IptAfinidadContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionAfinidadContactoEmergencia").append("***Ingresar Afinidad de contacto");
+	}
+
+	/////TELEFONE CONTACTO
+	$("#ValidacionTelefonoContactoEmergencia").empty();
+	var telefono = $("#IptTelefonoContactoEmergencia").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#ValidacionTelefonoContactoEmergencia").append("***Ingresar Teléfono de contacto");
+	}
+});
+
+//////FIN validacion de campos obligatorios de MMODULO PACIENTE////
+
+////////////INICIO validacion campos obligatorios en NUEVA CITA
+$('#btnGuardarCita').click(function () {
+
+	$("#ValidacionEspecialidad").empty();
+	$("#ValidacionMedico").empty();
+	$("#ValidacionTipoCita").empty();
+
+	var prueba = $("#sltIdentificadorPersonal").val();
+
+	/////ESPECIALIDAD
+	if ($('#sltEspecialidad').val() == 0) {
+		$("#ValidacionEspecialidad").append("***Seleccionar Especialidad");
+	} 
+
+	/////MEDICO
+	if ($('#sltIdentificadorPersonal').val() == 0) {
+		$("#ValidacionMedico").append("***Seleccionar Médico");
+	} 
+
+	/////TIPO CITA
+	if ($('#TipoCita').val() == 0) {
+		$("#ValidacionTipoCita").append("***Seleccionar Tipo de cita");
+	} 
+});
+
+////////////FIN validacion campos obligatorios en NUEVA CITA
+////////////INICIO validacion de signos vitales
+
+////////////INICIO validacion TEMPERATURA
+$("#Temperatura").change(function () {
+	$("#ValidacionTemperatura").empty();
+	var temperatura = $("#Temperatura").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (temperatura == null || temperatura.length == 0 || /^\s+$/.test(temperatura)) {
+		$("#ValidacionTemperatura").append("Ingresar Temperatura");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(temperatura)) && (/[0-9]/.test(temperatura)) && !(/[-_;:*/+!$%&()=]/.test(temperatura))) {
+			$("#ValidacionTemperatura").prop("disable", true);
+			//validar temperatura maxima
+			if (temperatura < 40) {
+				$("#ValidacionTemperatura").prop("disable", true);
+			}
+			else {
+				$("#ValidacionTemperatura").append("Temperatura erronea");
+			}
+		}
+		else {
+			$("#ValidacionTemperatura").append("Ingresar solo numeros");
+		}
+	}
+});
+////////////FIN validacion TEMPERATURA
+
+////////////FIN validacion de signos vitales

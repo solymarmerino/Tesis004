@@ -58,49 +58,52 @@
                     <p>
                         <label>Fecha</label>
                         <br />
-                        <input id="Fecha" name="Fecha" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        <input id="Fecha" name="Fecha" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@DateTime.Now.ToString("yyyy-MM-dd")" disabled />
                     </p>
                 </div>
                 <div class="col-md-3">
-                    <p>
-                        <label>Especialidad</label>
-                        <br />
-                        <select id="sltEspecialidad" name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option value="0"> Seleccionar </option>
-                            @{
-                                var especialidades = ViewData["especialidades"] as List<Tesis004.Models.ParametroModel>;
-                                foreach (var especialidad in especialidades)
-                                {
-                                    <option value="@especialidad.Identificador"> @especialidad.Valor </option>
-                                }
-                            }
-                        </select>
-                    </p>
+					<p>
+						<label>Especialidad</label>
+						<br />
+						<select id="sltEspecialidad" name="Especialidad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option value="0"> Seleccionar </option>
+							@{
+								var especialidades = ViewData["especialidades"] as List<Tesis004.Models.ParametroModel>;
+								foreach (var especialidad in especialidades)
+								{
+									<option value="@especialidad.Identificador"> @especialidad.Valor </option>
+								}
+							}
+						</select>
+						<label id="ValidacionEspecialidad" name="ValidacionEspecialidad"> </label>
+					</p>
                 </div>
                 <div class="col-md-3">
-                    <p>
-                        <label>Medico</label>
-                        <br />
-                        <select id="sltIdentificadorPersonal" name="IdentificadorPersonal" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> Seleccionar </option>
-                        </select>
-                    </p>
+					<p>
+						<label>Médico</label>
+						<br />
+						<select id="sltIdentificadorPersonal" name="IdentificadorPersonal" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option> Seleccionar </option>
+						</select>
+						<label id="ValidacionMedico" name="ValidacionMedico"> </label>
+					</p>
                 </div>
                 <div class="col-md-3">
-                    <p>
-                        <label>Tipo cita</label>
-                        <br />
-                        <select id="TipoCita" name="TipoCita" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option value="0"> Seleccionar </option>
-                            @{
-                                var citas = ViewData["citas"] as List<Tesis004.Models.ParametroModel>;
-                                foreach (var cita in citas)
-                                {
-                                    <option value="@cita.Identificador"> @cita.Valor </option>
-                                }
-                            }
-                        </select>
-                    </p>
+					<p>
+						<label>Tipo cita</label>
+						<br />
+						<select id="TipoCita" name="TipoCita" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option value="0"> Seleccionar </option>
+							@{
+								var citas = ViewData["citas"] as List<Tesis004.Models.ParametroModel>;
+								foreach (var cita in citas)
+								{
+									<option value="@cita.Identificador"> @cita.Valor </option>
+								}
+							}
+						</select>
+						<label id="ValidacionTipoCita" name="ValidacionTipoCita"> </label>
+					</p>
                 </div>
                 <div class="col-md-1">
                     <br />
@@ -114,6 +117,7 @@
             <table id="tbltablaCita" class="table">
             </table>
         </div>
+		
         <div id="pedidoexamen" class="container tab-pane fade">
             <br>
             <h2 style="text-align:center">Pedido de Laboratorio Clinico</h2>
@@ -348,4 +352,6 @@
     </div>
 </div>
 
+
+<script src="~/Scripts/Validador.js"></script>
 <script src="~/Scripts/servicio.js"></script>
