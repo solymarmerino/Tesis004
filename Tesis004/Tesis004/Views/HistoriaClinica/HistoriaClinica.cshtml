@@ -463,46 +463,38 @@
                     <div class="col-xl-6">
                         <label>Diagnostico</label>
                         <br />
-                        <input name="enfermedad" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="enfermedad" name="enfermedad" list="sugerenciaEnfermedad" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <datalist id="sugerenciaEnfermedad"></datalist>
                     </div>
                     <div class="col-xl-2">
                         <label>CIE-10</label>
                         <br />
-                        <input name="cie10" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="cie10" name="cie10" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                     </div>
                     <div class="col-xl-3">
                         <label>Tipo</label>
                         <br />
-                        <select name="tipoenfermedad" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> ----- </option>
+                        <select id="tipodiagnostico" name="tipodiagnostico" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                var diagnosticos = ViewData["diagnosticos"] as List<Tesis004.Models.ParametroModel>;
+                                foreach (var diagnostico in diagnosticos)
+                                {
+                                    <option value="@diagnostico.Identificador"> @diagnostico.Valor </option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="col-xl-1">
                         <br />
-                        <button name="Identificador" title="Ingresar diagnostico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                        <button id="btnDiagnostico" name="btnDiagnostico" title="Ingresar diagnostico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
                             <i class="fas fa-plus-square"></i>
                         </button>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <br />
-                    <table class="table">
-                        <tr>
-                            <th scope="col">Diagnostico</th>
-                            <th scope="col">CIE-10</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col"></th>
-                        </tr>
-                        <tr>
-                            <td scope="col">AAAAAAA</td>
-                            <td scope="col">AAA111</td>
-                            <td scope="col">AAAAAAA</td>
-                            <td scope="col">
-                                <button name="Identificador" title="Eliminar diagnostico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                                    <i class="fas fa-minus-square"></i>
-                                </button>
-                            </td>
-                        </tr>
+                    <table class="table" id="tblDiagnostico">
                     </table>
                 </div>
                 <!--Creacion de seccion de ingreso de receta-->
@@ -519,7 +511,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <br />
-                            <textarea name="medicamento" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></textarea>
+                            <textarea id="medicamento" name="medicamento" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></textarea>
                             <br />
                         </div>
                     </div>
