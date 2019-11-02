@@ -322,25 +322,38 @@
 						</a>
 					</div>
 					<br />
-					<div class="col-xl-12">
-						<textarea name="descripcionsubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-					</div>
+                    <div class="col-xl-12">
+                        <input id="idSubjetivo" hidden />
+                        @{
+                            var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
+                            foreach (var subjetivo in subjetivos)
+                            {
+                                if (subjetivo.Valor.Equals("General"))
+                                {
+                                    <input id="idSubjetivoGeneral" value="@subjetivo.Identificador" hidden />
+                                }
+                            }
+                        }
+                        <textarea id="descripcionSubjetivo" name="descripcionSubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                    </div>
 				</div>
 				<br />
 				<div class="row">
 					<div class="col-xl-3">
 						<label>Subjetivo</label>
 						<br />
-						<select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-							<option value="0"> Seleccionar </option>
-							@{
-								var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
-								foreach (var subjetivo in subjetivos)
-								{
-									<option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
-								}
-							}
-						</select>
+                        <select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                foreach (var subjetivo in subjetivos)
+                                {
+                                    if (!subjetivo.Valor.Equals("General"))
+                                    {
+                                        <option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
+                                    }
+                                }
+                            }
+                        </select>
 					</div>
 					<div class="col-xl-8">
 						<label>Descripción</label>
@@ -377,38 +390,51 @@
 						</a>
 					</div>
 					<br />
-					<div class="col-xl-12">
-						<textarea name="descripcionobjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-					</div>
+                    <div class="col-xl-12">
+                        <input id="idObjetivo" hidden />
+                        @{
+                            var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
+                            foreach (var objetivo in objetivos)
+                            {
+                                if (objetivo.Valor.Equals("General"))
+                                {
+                                    <input id="idObjetivoGeneral" value="@objetivo.Identificador" hidden />
+                                }
+                            }
+                        }
+                        <textarea id="descripcionObjetivoGeneral" name="descripcionObjetivoGeneral" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                    </div>
 				</div>
 				<br />
 				<div class="row">
 					<div class="col-xl-3">
 						<label>Objetivo</label>
 						<br />
-						<select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-							<option value="0"> Seleccionar </option>
-							@{
-								var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
-								foreach (var objetivo in objetivos)
-								{
-									<option value="@objetivo.Identificador"> @objetivo.Valor </option>
-								}
-							}
-						</select>
+                        <select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                foreach (var objetivo in objetivos)
+                                {
+                                    if (!objetivo.Valor.Equals("General"))
+                                    {
+                                        <option value="@objetivo.Identificador"> @objetivo.Valor </option>
+                                    }
+                                }
+                            }
+                        </select>
 					</div>
-					<div class="col-xl-8">
-						<label>Descripción</label>
-						<br />
-						<input name="descripcionobjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
+                    <div class="col-xl-8">
+                        <label>Descripción</label>
+                        <br />
+                        <input id="descripcionObjetivo" name="descripcionObjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
 					<div class="col-xl-1">
-						<p>
-							<br />
-							<button name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
-								<i class="fas fa-plus-square"></i>
-							</button>
-						</p>
+                        <p>
+                            <br />
+                            <button id="btnObjetivo" name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
+                                <i class="fas fa-plus-square"></i>
+                            </button>
+                        </p>
 					</div>
 					<div class="table-responsive">
 						<br />
@@ -469,6 +495,7 @@
 					</div>
 					<div class="col-xl-3">
 						<label>Tipo</label>
+                        <input id="idCie10" hidden/>
 						<br />
 						<select id="tipodiagnostico" name="tipodiagnostico" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
 							<option value="0"> Seleccionar </option>
