@@ -25,7 +25,7 @@ namespace Tesis004.InformacionBDD
                                   $"WHERE ConsultaMedicaID = '{consultaMedicaID}' ";
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
-            if(tablaDatos.Rows.Count > 0)
+            if (tablaDatos.Rows.Count > 0)
             {
                 resultado = true;
             }
@@ -99,7 +99,7 @@ namespace Tesis004.InformacionBDD
             consultaMedicaResultado.MotivoConsulta = tablaDatos.Rows[0].Field<string>("MotivoConsulta");
             consultaMedicaResultado.Analisis = tablaDatos.Rows[0].Field<string>("Analisis");
             consultaMedicaResultado.PlanTratamiento = tablaDatos.Rows[0].Field<string>("PlanTratamiento");
-            consultaMedicaResultado.TipoConsulta = tablaDatos.Rows[0].Field<string>("TipoConsulta");            
+            consultaMedicaResultado.TipoConsulta = tablaDatos.Rows[0].Field<string>("TipoConsulta");
 
             return consultaMedicaResultado;
         }
@@ -185,7 +185,7 @@ namespace Tesis004.InformacionBDD
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
-            for(int i = 0; i < tablaDatos.Rows.Count; i++)
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
             {
                 SubjetivoModel subjetivo = new SubjetivoModel();
                 subjetivo.SubjetivoID = tablaDatos.Rows[i].Field<int>("SubjetivoID");
@@ -195,7 +195,7 @@ namespace Tesis004.InformacionBDD
                 subjetivo.NombreSubjetivo = tablaDatos.Rows[i].Field<string>("Valor");
 
                 listaSubjetivo.Add(subjetivo);
-            }   
+            }
 
             return listaSubjetivo;
         }
@@ -322,7 +322,7 @@ namespace Tesis004.InformacionBDD
         public CIE10Model ConsultarEnfermedad(CIE10Model cie10)
         {
             string sentenciaSql = "";
-            if(cie10.Detalle != null)
+            if (cie10.Detalle != null)
             {
                 sentenciaSql = "SELECT TOP(10) cie10id, detalle, codigo " +
                                "FROM cie10 " +
@@ -417,6 +417,159 @@ namespace Tesis004.InformacionBDD
             }
 
             return eliminado;
+        }
+
+        public bool ValidarReceta(RecetaModel receta)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+            string sentenciaSql = "";
+            SqlCommand sentenciaSQL = null;
+
+            if (receta.RecetaID == 0)
+            {
+                sentenciaSql = "INSERT INTO Receta (Receta, ConsultaMedicaID) " +
+                                "VALUES (@Receta, @ConsultaMedicaID) ";
+
+                sentenciaSQL = new SqlCommand(sentenciaSql);
+
+                sentenciaSQL.Parameters.AddWithValue("@Receta", receta.RecetaTexto);
+                sentenciaSQL.Parameters.AddWithValue("@ConsultaMedicaID", receta.ConsultaMedicaID);
+            }
+            else
+            {
+                sentenciaSql = "UPDATE Receta " +
+                               "SET Receta = @Receta " +
+                               "WHERE RecetaID= @RecetaID) ";
+
+                sentenciaSQL = new SqlCommand(sentenciaSql);
+
+                sentenciaSQL.Parameters.AddWithValue("@Receta", receta.RecetaTexto);
+                sentenciaSQL.Parameters.AddWithValue("@RecetaID", receta.RecetaID);
+            }
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public RecetaModel ConsultarReceta(int consultaMedicaID)
+        {
+            string sentenciaSql = "SELECT RecetaID, Receta, ConsultaMedicaID " +
+                                  "FROM Receta " +
+                                  $"WHERE ConsultaMedicaID = {consultaMedicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+            RecetaModel receta = new RecetaModel();
+
+            if (tablaDatos.Rows.Count > 0)
+            {
+                receta.RecetaID = tablaDatos.Rows[0].Field<int>("RecetaID");
+                receta.RecetaTexto = tablaDatos.Rows[0].Field<string>("Receta");
+                receta.ConsultaMedicaID = tablaDatos.Rows[0].Field<int>("ConsultaMedicaID");
+            }
+
+            return receta;
+        }
+
+        public bool InsertarProcedimiento(ProcedimientoModel procedimiento)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO Procedimiento (Procedimiento, Detalle, ConsultaMedicaID) " +
+                                  "VALUES (@Procedimiento, @Detalle, @ConsultaMedicaID); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@Procedimiento", procedimiento.ProcedimientoTexto);
+            sentenciaSQL.Parameters.AddWithValue("@Detalle", procedimiento.Detalle);
+            sentenciaSQL.Parameters.AddWithValue("@ConsultaMedicaID", procedimiento.ConsultaMedicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public List<ProcedimientoModel> ListarProcedimiento(int consultaMedicaID)
+        {
+            List<ProcedimientoModel> listaProcedimiento = new List<ProcedimientoModel>();
+
+            string sentenciaSql = "SELECT ProcedimientoID, Procedimiento, Detalle " +
+                                  "FROM Procedimiento " +
+                                  $"WHERE ConsultaMedicaID = {consultaMedicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                ProcedimientoModel procedimiento = new ProcedimientoModel();
+                procedimiento.ProcedimientoID = tablaDatos.Rows[i].Field<int>("ProcedimientoID");
+                procedimiento.ProcedimientoTexto = tablaDatos.Rows[i].Field<string>("Procedimiento");
+                procedimiento.Detalle = tablaDatos.Rows[i].Field<string>("Detalle");
+
+                listaProcedimiento.Add(procedimiento);
+            }
+
+            return listaProcedimiento;
+        }
+
+        public bool EliminarProcedimiento(ProcedimientoModel procedimiento)
+        {
+            bool eliminado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "DELETE FROM Procedimiento " +
+                                  "WHERE ProcedimientoID = @ProcedimientoID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@ProcedimientoID", procedimiento.ProcedimientoID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                eliminado = true;
+            }
+
+            return eliminado;
+        }
+
+        public bool InsertarCertificado(CertificadoMedicoModel certificado)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO CertificadoMedico (FechaInicio, FechaFin, FechaCertificado, Observaciones, ConsultaMedicaID) " +
+                                  "VALUES (@FechaInicio, @FechaFin, @FechaCertificado, @Observaciones, @ConsultaMedicaID); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@FechaInicio", certificado.FechaInicio);
+            sentenciaSQL.Parameters.AddWithValue("@FechaFin", certificado.FechaFin);
+            sentenciaSQL.Parameters.AddWithValue("@FechaCertificado", certificado.FechaCertificado);
+            sentenciaSQL.Parameters.AddWithValue("@Observaciones", certificado.Observaciones);
+            sentenciaSQL.Parameters.AddWithValue("@ConsultaMedicaID", certificado.ConsultaMedicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
         }
     }
 }

@@ -527,13 +527,14 @@
 					<br />
 					<div class="row">
 						<div class="col-xl-10">
-							<label>Medicamento</label>
+							<label>Receta</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xl-12">
+                            <input id="idReceta" hidden/>
 							<br />
-							<textarea id="medicamento" name="medicamento" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></textarea>
+							<textarea id="txtReceta" name="txtReceta" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></textarea>
 							<br />
 						</div>
 					</div>
@@ -551,43 +552,27 @@
 						<div class="col-xl-3">
 							<label>Procedimiento</label>
 							<br />
-							<select name="procedimiento" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-								<option> ----- </option>
-							</select>
+                            <input id="descripcionTexto" name="descripcionTexto" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 						</div>
 						<div class="col-xl-8">
 							<label>Descripción</label>
 							<br />
-							<input name="descripcionprocedimiento" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<input id="descripcionProcedimiento" name="descripcionProcedimiento" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 						</div>
 						<div class="col-xl-1">
 							<br />
-							<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+							<button id="btnProcedimiento" name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
 								<i class="fas fa-plus-square"></i>
 							</button>
 						</div>
 					</div>
 					<div class="table-responsive">
 						<br />
-						<table class="table">
-							<tr>
-								<th scope="col">Procedimiento</th>
-								<th scope="col">Descripción</th>
-								<th scope="col"></th>
-							</tr>
-							<tr>
-								<td scope="col">AAAAAAA</td>
-								<td scope="col">AAAAAAA</td>
-								<td scope="col">
-									<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-										<i class="fas fa-minus-square"></i>
-									</button>
-								</td>
-							</tr>
+						<table id="tblProcedimiento" class="table">
+
 						</table>
 					</div>
-				</div>
-				
+				</div>				
 
 				<!--Creacion de seccion de ingreso de datos para certificado medico-->
 				<button data-toggle="collapse" data-target="#certificadomedico" name="Identificador" title="Ingresar datos para certificado médico" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
@@ -600,26 +585,26 @@
 							<div class="col-md-auto">
 								<label>Fecha de atención</label>
 								<br />
-								<input name="fechaatencion" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+								<input id="fechaAtencion" name="fechaAtencion" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
 							</div>
 							<div class="col-md-auto">
 								<label>Desde</label>
 								<br />
-								<input name="fechainicio" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+								<input id="fechaInicio" name="fechaInicio" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
 							</div>
 							<div class="col-md-auto">
 								<label>Hasta</label>
 								<br />
-								<input name="fechafin" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+								<input id="fechaFin" name="fechaFin" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
 							</div>
 							<div class="col-md-4">
 								<label>Observaciones</label>
 								<br />
-								<input name="observacioncertificado" class="col-md required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+								<input id="observacionCertificado" name="observacionCertificado" class="col-md required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 							</div>
 							<div class="col-md-1">
 								<br />
-								<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+								<button id="btnCertificado" name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
 									<i class="fa fa-plus-square"></i>
 								</button>
 							</div>

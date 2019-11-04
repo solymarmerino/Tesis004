@@ -154,5 +154,53 @@ namespace Tesis004.Controllers
             eliminado.Add(this.historiaClinicaBDD.EliminarDiagnostico(diagnostico));
             return Json(eliminado);
         }
+
+        [HttpPost]
+        public JsonResult ValidarReceta(RecetaModel receta)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.ValidarReceta(receta));
+            return Json(ingresado);
+        }
+        
+        [HttpPost]
+        public JsonResult ConsultarReceta(int consultaMedicaID)
+        {
+            RecetaModel resultado = new RecetaModel();
+            resultado = this.historiaClinicaBDD.ConsultarReceta(consultaMedicaID);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult IngresarProcedimiento(ProcedimientoModel procedimiento)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.InsertarProcedimiento(procedimiento));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarProcedimiento(int consultaMedicaID)
+        {
+            List<ProcedimientoModel> resultado = new List<ProcedimientoModel>();
+            resultado = this.historiaClinicaBDD.ListarProcedimiento(consultaMedicaID);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult EliminarProcedimiento(ProcedimientoModel procedimiento)
+        {
+            List<bool> eliminado = new List<bool>();
+            eliminado.Add(this.historiaClinicaBDD.EliminarProcedimiento(procedimiento));
+            return Json(eliminado);
+        }
+
+        [HttpPost]
+        public JsonResult IngresarCertificado(CertificadoMedicoModel certificado)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.InsertarCertificado(certificado));
+            return Json(ingresado);
+        }
     }
 }
