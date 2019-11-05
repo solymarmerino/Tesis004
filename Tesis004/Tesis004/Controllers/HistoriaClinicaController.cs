@@ -202,5 +202,13 @@ namespace Tesis004.Controllers
             ingresado.Add(this.historiaClinicaBDD.InsertarCertificado(certificado));
             return Json(ingresado);
         }
+
+        [HttpPost]
+        public JsonResult ConsultarAtencionPrevia(int pacienteID)
+        {
+            List<CitaModel> resultado = new List<CitaModel>();
+            resultado = this.historiaClinicaBDD.ListarAtencionPrevia(pacienteID);
+            return Json(resultado);
+        }
     }
 }

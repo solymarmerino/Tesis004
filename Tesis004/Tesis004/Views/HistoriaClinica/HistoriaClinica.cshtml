@@ -17,6 +17,7 @@
 
     <div class="row">
         <div class="col-xl-6">
+            <input id="IptIdPaciente"  value="@paciente.PacienteID" hidden/>
             <p>
                 <label>Nombre Completo</label>
                 <br />
@@ -49,7 +50,7 @@
                 <a class="nav-link" data-toggle="tab" href="#antecedentes">Antecedentes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#atencionesprevias">Atenciones Previas</a>
+                <a class="nav-link" data-toggle="tab" href="#atencionesprevias" onclick="consultarAtencionPrevia">Atenciones Previas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#tablasimc">Tablas de IMC</a>
@@ -912,23 +913,8 @@
                 </div>
                 <br />
                 <div class="table-responsive">
-                    <table class="table">
-                        <tr>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Medico</th>
-                            <th scope="col">Diagnostico</th>
-                            <th scope="col"></th>
-                        </tr>
-                        <tr>
-                            <td scope="col">AAAAAAA</td>
-                            <td scope="col">AAAAAAA</td>
-                            <td scope="col">AAAAAA AA11</td>
-                            <td scope="col">
-                                <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
+                    <table id="tblAtencionPrevia" class="table">
+                        
                     </table>
                 </div>
             </div>

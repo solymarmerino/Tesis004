@@ -571,5 +571,32 @@ namespace Tesis004.InformacionBDD
 
             return ingresado;
         }
+
+        public List<CitaModel> ListarAtencionPrevia(int pacienteID)
+        {
+            List<CitaModel> listaProcedimiento = new List<CitaModel>();
+
+            string sentenciaSql = "SELECT c.CitaMedicaID, c.Fecha, per.Nombre, cie.Detalle " +
+                                  "FROM Cita c" +
+                                  "INNER JOIN Personal per ON c.PersonalID = per.PersonalID " +
+                                  "INNER JOIN ConsultaMedica cm ON c.ConsultaMedicaID = cm.ConsultaMedicaID" +
+                                  "INNER JOIN CIE10 cie ON cm.CIE10ID = cie.CIE10ID " +
+                                  $"WHERE c.PacienteID = {pacienteID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                CitaModel cita = new CitaModel();
+                cita.CitaMedicaID = tablaDatos.Rows[i].Field<int>("CitaMedicaID");
+                cita.Fecha = tablaDatos.Rows[i].Field<DateTime>("Fecha");
+                cita.NombreMedico = tablaDatos.Rows[i].Field<string>("Nombre");
+                cita.DetalleDiagnostico = tablaDatos.Rows[i].Field<string>("Detalle");
+
+                listaProcedimiento.Add(cita);
+            }
+
+            return listaProcedimiento;
+        }
     }
 }

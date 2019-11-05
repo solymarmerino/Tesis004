@@ -55,6 +55,17 @@ function limpiarTablaCertificado() {
     $("#observacionCertificado").val("");
 }
 
+function limpiarTablaAtencionPrevia() {
+    $("#tblAtencionPrevia").empty();
+    var cabecera = "<tr>" +
+        "<th scope=\"col\">Fecha</th>" +
+        "<th scope=\"col\">Medico</th>" +
+        "<th scope=\"col\">Diagnostico</th>" +
+        "<th scope=\"col\"></th>" +
+        "</tr>";
+    $("#tblAtencionPrevia").append(cabecera);
+}
+
 function consultarSignosVitales() {
     var ConsultarSignosVitales = {};
     ConsultarSignosVitales.url = "/Enfermeria/ConsultarUltimoSignosVitales";
@@ -569,6 +580,35 @@ function ingresarCertificado() {
         toastr.error("Error al ingresar certificado");
     };
     $.ajax(IngresarCertificado);
+}
+
+
+function consultarAtencionPrevia() {
+    limpiarTablaAtencionPrevia();
+    var ConsultarAtencionesPrevias = {};
+    ConsultarAtencionesPrevias.url = "/HistoriaClinica/ConsultarAtencionPrevia";
+    ConsultarAtencionesPrevias.type = "POST";
+    ConsultarAtencionesPrevias.data = JSON.stringify({
+        PacienteID: $("#IptIdPaciente").val()
+    });
+    ConsultarAtencionesPrevias.datatype = "json";
+    ConsultarAtencionesPrevias.contentType = "application/json";
+    ConsultarAtencionesPrevias.success = function (resultado) {
+        if (resultado.length > 0) {
+            for (var i = 0; i < resultado.length; i++) {
+                var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["Fecha"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["DetalleDiagnostico"] + "</td>";
+                fila += "<td scope=\"col\"> <button name=\"\" id=\"\" onclick=\"(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-eye\"></i></button></th >";
+                $("#tblProcedimiento").append("<tr>" + fila + "</tr>");
+            }
+        }
+    };
+    ConsultarAtencionesPrevias.error = function () {
+        toastr.error("Error al consultar los procedimientos");
+    };
+    $.ajax(ConsultarAtencionesPrevias);
 }
 
 $(document).ready(function () {
