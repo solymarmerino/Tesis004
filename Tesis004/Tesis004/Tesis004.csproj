@@ -169,6 +169,7 @@
     <Compile Include="Models\DetalleFacturaModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
     <Compile Include="Models\ClienteModel.cs" />
+    <Compile Include="Models\ProcedimientoModel.cs" />
     <Compile Include="Models\RecetaModel.cs" />
     <Compile Include="Models\SubjetivoModel.cs" />
     <Compile Include="Models\ObjetivoModel.cs" />

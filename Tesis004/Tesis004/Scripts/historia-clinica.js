@@ -35,6 +35,37 @@ function limpiarTablaDiagnostico() {
     $("#tblDiagnostico").append(cabecera);
 }
 
+function limpiarTablaReceta() {
+    $("#txtReceta").val("");
+}
+
+function limpiarTablaProcedimiento() {
+    $("#descripcionTexto").val("");
+    $("#descripcionProcedimiento").val("");
+    $("#tblProcedimiento").empty();
+    var cabecera = "<tr>" +
+        "<th scope=\"col\">Procedimiento</th>" +
+        "<th scope=\"col\">Descripción</th>" +
+        "<th scope=\"col\"></th>" +
+        "</tr>";
+    $("#tblProcedimiento").append(cabecera);
+}
+
+function limpiarTablaCertificado() {
+    $("#observacionCertificado").val("");
+}
+
+function limpiarTablaAtencionPrevia() {
+    $("#tblAtencionPrevia").empty();
+    var cabecera = "<tr>" +
+        "<th scope=\"col\">Fecha</th>" +
+        "<th scope=\"col\">Medico</th>" +
+        "<th scope=\"col\">Diagnostico</th>" +
+        "<th scope=\"col\"></th>" +
+        "</tr>";
+    $("#tblAtencionPrevia").append(cabecera);
+}
+
 function consultarSignosVitales() {
     var ConsultarSignosVitales = {};
     ConsultarSignosVitales.url = "/Enfermeria/ConsultarUltimoSignosVitales";
@@ -347,17 +378,17 @@ function consultarDiagnostico() {
 }
 
 function ingresarDiagnostico() {
-    var IngresarObjetivo = {};
-    IngresarObjetivo.url = "/HistoriaClinica/IngresarDiagnostico";
-    IngresarObjetivo.type = "POST";
-    IngresarObjetivo.data = JSON.stringify({
+    var IngresarDiagnostico = {};
+    IngresarDiagnostico.url = "/HistoriaClinica/IngresarDiagnostico";
+    IngresarDiagnostico.type = "POST";
+    IngresarDiagnostico.data = JSON.stringify({
         consultaMedicaID: $("#ConsultaMedicaID").val(),
         CIE10ID: $("#idCie10").val(),
         EstadoDiagnostico: $("#tipodiagnostico").val(),
     });
-    IngresarObjetivo.datatype = "json";
-    IngresarObjetivo.contentType = "application/json";
-    IngresarObjetivo.success = function (resultado) {
+    IngresarDiagnostico.datatype = "json";
+    IngresarDiagnostico.contentType = "application/json";
+    IngresarDiagnostico.success = function (resultado) {
         if (resultado[0] == true) {
             toastr.success("Diagnostico ingresado");
             limpiarTablaDiagnostico();
@@ -367,22 +398,22 @@ function ingresarDiagnostico() {
             toastr.error("Diagnostico NO ingresado");
         }
     };
-    IngresarObjetivo.error = function () {
+    IngresarDiagnostico.error = function () {
         toastr.error("Error al ingresar diagnostico");
     };
-    $.ajax(IngresarObjetivo);
+    $.ajax(IngresarDiagnostico);
 }
 
 function eliminarDiagnostico(idDiagnostico) {
-    var EliminarObjetivo = {};
-    EliminarObjetivo.url = "/HistoriaClinica/EliminarDiagnostico";
-    EliminarObjetivo.type = "POST";
-    EliminarObjetivo.data = JSON.stringify({
+    var EliminarDiagnostico = {};
+    EliminarDiagnostico.url = "/HistoriaClinica/EliminarDiagnostico";
+    EliminarDiagnostico.type = "POST";
+    EliminarDiagnostico.data = JSON.stringify({
         diagnosticoID: idDiagnostico
     });
-    EliminarObjetivo.datatype = "json";
-    EliminarObjetivo.contentType = "application/json";
-    EliminarObjetivo.success = function (resultado) {
+    EliminarDiagnostico.datatype = "json";
+    EliminarDiagnostico.contentType = "application/json";
+    EliminarDiagnostico.success = function (resultado) {
         if (resultado[0] == true) {
             toastr.success("Diagnostico eliminado");
             limpiarTablaDiagnostico();
@@ -392,20 +423,207 @@ function eliminarDiagnostico(idDiagnostico) {
             toastr.error("Diagnostico NO eliminado");
         }
     };
-    EliminarObjetivo.error = function () {
+    EliminarDiagnostico.error = function () {
         toastr.error("Error al eliminar diagnostico");
     };
-    $.ajax(EliminarObjetivo);
+    $.ajax(EliminarDiagnostico);
+}
+
+function consultarReceta() {
+    var ConsultarReceta = {};
+    ConsultarReceta.url = "/HistoriaClinica/ConsultarReceta";
+    ConsultarReceta.type = "POST";
+    ConsultarReceta.data = JSON.stringify({
+        ConsultaMedicaID: $("#ConsultaMedicaID").val()
+    });
+    ConsultarReceta.datatype = "json";
+    ConsultarReceta.contentType = "application/json";
+    ConsultarReceta.success = function (resultado) {
+        $("#txtReceta").val(resultado["RecetaTexto"]);
+        $("#idReceta").val(resultado["RecetaID"]);
+    };
+    ConsultarReceta.error = function () {
+        toastr.error("Error al consultar la receta");
+    };
+    $.ajax(ConsultarReceta);
+}
+
+function validarReceta() {
+    var IngresarReceta = {};
+    IngresarReceta.url = "/HistoriaClinica/ValidarReceta";
+    IngresarReceta.type = "POST";
+    IngresarReceta.data = JSON.stringify({
+        recetaID: $("#idReceta").val(),        
+        recetaTexto: $("#txtReceta").val(),
+        consultaMedicaID: $("#ConsultaMedicaID").val()        
+    });
+    IngresarReceta.datatype = "json";
+    IngresarReceta.contentType = "application/json";
+    IngresarReceta.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Receta ingresada");
+            limpiarTablaReceta();
+            consultarReceta();
+        }
+        else {
+            toastr.error("Receta NO ingresada");
+        }
+    };
+    IngresarReceta.error = function () {
+        toastr.error("Error al ingresar receta");
+    };
+    $.ajax(IngresarReceta);
+}
+
+function consultarProcedimiento() {
+    var ConsultarProcedimiento = {};
+    ConsultarProcedimiento.url = "/HistoriaClinica/ConsultarProcedimiento";
+    ConsultarProcedimiento.type = "POST";
+    ConsultarProcedimiento.data = JSON.stringify({
+        ConsultaMedicaID: $("#ConsultaMedicaID").val()
+    });
+    ConsultarProcedimiento.datatype = "json";
+    ConsultarProcedimiento.contentType = "application/json";
+    ConsultarProcedimiento.success = function (resultado) {
+        if (resultado.length > 0) {
+            for (var i = 0; i < resultado.length; i++) {
+                var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["ProcedimientoTexto"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["Detalle"] + "</td>";
+                fila += "<td scope=\"col\"> <button name=\"btnEliminarProcedimiento\" id=\"btnEliminarProcedimiento\" onclick=\"eliminarProcedimiento(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+                $("#tblProcedimiento").append("<tr>" + fila + "</tr>");
+            }
+        }
+    };
+    ConsultarProcedimiento.error = function () {
+        toastr.error("Error al consultar los procedimientos");
+    };
+    $.ajax(ConsultarProcedimiento);
+}
+
+function ingresarProcedimiento() {
+    var IngresarProcedimiento = {};
+    IngresarProcedimiento.url = "/HistoriaClinica/IngresarProcedimiento";
+    IngresarProcedimiento.type = "POST";
+    IngresarProcedimiento.data = JSON.stringify({
+        procedimientoTexto: $("#descripcionTexto").val(),
+        detalle: $("#descripcionProcedimiento").val(),
+        consultaMedicaID: $("#ConsultaMedicaID").val()
+    });
+    IngresarProcedimiento.datatype = "json";
+    IngresarProcedimiento.contentType = "application/json";
+    IngresarProcedimiento.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Procedimiento ingresado");
+            limpiarTablaProcedimiento();
+            consultarProcedimiento();
+        }
+        else {
+            toastr.error("Procedimiento NO ingresado");
+        }
+    };
+    IngresarProcedimiento.error = function () {
+        toastr.error("Error al ingresar procedimiento");
+    };
+    $.ajax(IngresarProcedimiento);
+}
+
+function eliminarProcedimiento(idProcedimiento) {
+    var EliminarProcedimiento = {};
+    EliminarProcedimiento.url = "/HistoriaClinica/EliminarProcedimiento";
+    EliminarProcedimiento.type = "POST";
+    EliminarProcedimiento.data = JSON.stringify({
+        procedimientoID: idProcedimiento
+    });
+    EliminarProcedimiento.datatype = "json";
+    EliminarProcedimiento.contentType = "application/json";
+    EliminarProcedimiento.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Procedimiento eliminado");
+            limpiarTablaProcedimiento();
+            consultarProcedimiento();
+        }
+        else {
+            toastr.error("Procedimiento NO eliminado");
+        }
+    };
+    EliminarProcedimiento.error = function () {
+        toastr.error("Error al eliminar procedimiento");
+    };
+    $.ajax(EliminarProcedimiento);
+}
+
+function ingresarCertificado() {
+    var IngresarCertificado = {};
+    IngresarCertificado.url = "/HistoriaClinica/IngresarCertificado";
+    IngresarCertificado.type = "POST";
+    IngresarCertificado.data = JSON.stringify({
+        fechaInicio: $("#fechaInicio").val(),
+        fechaFin: $("#fechaFin").val(),
+        FechaCertificado: $("#fechaAtencion").val(),
+        Observaciones: $("#observacionCertificado").val(),
+        consultaMedicaID: $("#ConsultaMedicaID").val()
+    });
+    IngresarCertificado.datatype = "json";
+    IngresarCertificado.contentType = "application/json";
+    IngresarCertificado.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Certificado ingresado");
+            limpiarTablaReceta();
+            consultarReceta();
+        }
+        else {
+            toastr.error("Certificado NO ingresado");
+        }
+    };
+    IngresarCertificado.error = function () {
+        toastr.error("Error al ingresar certificado");
+    };
+    $.ajax(IngresarCertificado);
+}
+
+
+function consultarAtencionPrevia() {
+    limpiarTablaAtencionPrevia();
+    var ConsultarAtencionesPrevias = {};
+    ConsultarAtencionesPrevias.url = "/HistoriaClinica/ConsultarAtencionPrevia";
+    ConsultarAtencionesPrevias.type = "POST";
+    ConsultarAtencionesPrevias.data = JSON.stringify({
+        PacienteID: $("#IptIdPaciente").val()
+    });
+    ConsultarAtencionesPrevias.datatype = "json";
+    ConsultarAtencionesPrevias.contentType = "application/json";
+    ConsultarAtencionesPrevias.success = function (resultado) {
+        if (resultado.length > 0) {
+            for (var i = 0; i < resultado.length; i++) {
+                var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["Fecha"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["DetalleDiagnostico"] + "</td>";
+                fila += "<td scope=\"col\"> <button name=\"\" id=\"\" onclick=\"(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-eye\"></i></button></th >";
+                $("#tblProcedimiento").append("<tr>" + fila + "</tr>");
+            }
+        }
+    };
+    ConsultarAtencionesPrevias.error = function () {
+        toastr.error("Error al consultar los procedimientos");
+    };
+    $.ajax(ConsultarAtencionesPrevias);
 }
 
 $(document).ready(function () {
     limpiarTablaSubjetivo();
     limpiarTablaObjetivo();
     limpiarTablaDiagnostico();
+    limpiarTablaReceta();
+    limpiarTablaProcedimiento();
+    limpiarTablaCertificado();
     consultarSignosVitales();
     consultarSubjetivo();
     consultarObjetivo();
     consultarDiagnostico();
+    consultarReceta();
+    consultarProcedimiento();
 });
 
 $("#btnSubjetivo").click(function () {
@@ -418,6 +636,14 @@ $("#btnObjetivo").click(function () {
 
 $("#btnDiagnostico").click(function () {
     ingresarDiagnostico();
+});
+
+$("#btnProcedimiento").click(function () {
+    ingresarProcedimiento();
+});
+
+$("#btnCertificado").click(function () {
+    ingresarCertificado();
 });
 
 $("#enfermedad").keypress(function () {

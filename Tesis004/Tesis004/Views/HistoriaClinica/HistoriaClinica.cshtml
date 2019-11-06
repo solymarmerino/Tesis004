@@ -1,7 +1,7 @@
 ﻿@using Tesis004.Models
 @{
-	ViewBag.Title = "HistoriaClinica";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "HistoriaClinica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -10,67 +10,68 @@
 
 <br />
 @{
-	var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
-	var consulta = ViewData["consulta"] as Tesis004.Models.ConsultaMedicaModel;
-	var fechaString = paciente.FechaNacimiento.ToString("yyyy-MM-dd");
-	var tipoConsulta = (consulta.TipoConsulta != null ? (consulta.TipoConsulta.Equals("primera") ? 1 : 2) : 0);
+    var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
+    var consulta = ViewData["consulta"] as Tesis004.Models.ConsultaMedicaModel;
+    var fechaString = paciente.FechaNacimiento.ToString("yyyy-MM-dd");
+    var tipoConsulta = (consulta.TipoConsulta != null ? (consulta.TipoConsulta.Equals("primera") ? 1 : 2 ) : 0);
 
-	<div class="row">
-		<div class="col-xl-6">
-			<p>
-				<label>Nombre Completo</label>
-				<br />
-				<input id="IptNombreCompleto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.NombreCompleto" disabled />
-			</p>
-		</div>
-		<div class="col-md-3">
-			<p>
-				<label>Cedula</label>
-				<br />
-				<input id="IptCedula" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" value="@paciente.Cedula" disabled />
-			</p>
-		</div>
-		<div class="col-md-3">
-			<p>
-				<label>Nº Historia Clinica</label>
-				<br />
-				<input id="IptNumeroHistoriaClinica" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" value="@paciente.NumHistoriaClinica" disabled />
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-xl-6">
+            <input id="IptIdPaciente"  value="@paciente.PacienteID" hidden/>
+            <p>
+                <label>Nombre Completo</label>
+                <br />
+                <input id="IptNombreCompleto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.NombreCompleto" disabled />
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p>
+                <label>Cedula</label>
+                <br />
+                <input id="IptCedula" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" value="@paciente.Cedula" disabled />
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p>
+                <label>Nº Historia Clinica</label>
+                <br />
+                <input id="IptNumeroHistoriaClinica" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" value="@paciente.NumHistoriaClinica" disabled />
+        </div>
+    </div>
 
-	<div class="container">
-		<br>
-		<!-- Creación de barra de navegacion de la historia clinica -->
-		<ul class="nav nav-tabs" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link active" data-toggle="tab" href="#fichamedica">Ficha Médica</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#antecedentes">Antecedentes</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#atencionesprevias">Atenciones Previas</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#tablasimc">Tablas de IMC</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#curvascrecimiento">Pediatria</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#vacunas">Vacunas</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#odontograma">Odontograma</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#resultadoexamenes">Resultado de Examenes</a>
-			</li>
-		</ul>
+    <div class="container">
+        <br>
+        <!-- Creación de barra de navegacion de la historia clinica -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#fichamedica">Ficha Médica</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#antecedentes">Antecedentes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#atencionesprevias" onclick="consultarAtencionPrevia">Atenciones Previas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tablasimc">Tablas de IMC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#curvascrecimiento">Pediatria</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#vacunas">Vacunas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#odontograma">Odontograma</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#resultadoexamenes">Resultado de Examenes</a>
+            </li>
+        </ul>
 
-		<!-- Contenido de cada sección de la historia clinica -->
-		<div class="tab-content">
-			<!-- Creacion de sección de ficha medica-->
+        <!-- Contenido de cada sección de la historia clinica -->
+        <div class="tab-content">
+            <!-- Creacion de sección de ficha medica-->
 			<div id="fichamedica" class="container tab-pane active">
 				<br />
 				<!--Creacion de seccion de revicion de datos personles-->
@@ -322,38 +323,38 @@
 						</a>
 					</div>
 					<br />
-					<div class="col-xl-12">
-						<input id="idSubjetivo" hidden />
-						@{
-							var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
-							foreach (var subjetivo in subjetivos)
-							{
-								if (subjetivo.Valor.Equals("General"))
-								{
-									<input id="idSubjetivoGeneral" value="@subjetivo.Identificador" hidden />
-								}
-							}
-						}
-						<textarea id="descripcionSubjetivo" name="descripcionSubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-					</div>
+                    <div class="col-xl-12">
+                        <input id="idSubjetivo" hidden />
+                        @{
+                            var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
+                            foreach (var subjetivo in subjetivos)
+                            {
+                                if (subjetivo.Valor.Equals("General"))
+                                {
+                                    <input id="idSubjetivoGeneral" value="@subjetivo.Identificador" hidden />
+                                }
+                            }
+                        }
+                        <textarea id="descripcionSubjetivo" name="descripcionSubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                    </div>
 				</div>
 				<br />
 				<div class="row">
 					<div class="col-xl-3">
 						<label>Subjetivo</label>
 						<br />
-						<select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-							<option value="0"> Seleccionar </option>
-							@{
-								foreach (var subjetivo in subjetivos)
-								{
-									if (!subjetivo.Valor.Equals("General"))
-									{
-										<option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
-									}
-								}
-							}
-						</select>
+                        <select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                foreach (var subjetivo in subjetivos)
+                                {
+                                    if (!subjetivo.Valor.Equals("General"))
+                                    {
+                                        <option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
+                                    }
+                                }
+                            }
+                        </select>
 					</div>
 					<div class="col-xl-8">
 						<label>Descripción</label>
@@ -390,51 +391,51 @@
 						</a>
 					</div>
 					<br />
-					<div class="col-xl-12">
-						<input id="idObjetivo" hidden />
-						@{
-							var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
-							foreach (var objetivo in objetivos)
-							{
-								if (objetivo.Valor.Equals("General"))
-								{
-									<input id="idObjetivoGeneral" value="@objetivo.Identificador" hidden />
-								}
-							}
-						}
-						<textarea id="descripcionObjetivoGeneral" name="descripcionObjetivoGeneral" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-					</div>
+                    <div class="col-xl-12">
+                        <input id="idObjetivo" hidden />
+                        @{
+                            var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
+                            foreach (var objetivo in objetivos)
+                            {
+                                if (objetivo.Valor.Equals("General"))
+                                {
+                                    <input id="idObjetivoGeneral" value="@objetivo.Identificador" hidden />
+                                }
+                            }
+                        }
+                        <textarea id="descripcionObjetivoGeneral" name="descripcionObjetivoGeneral" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                    </div>
 				</div>
 				<br />
 				<div class="row">
 					<div class="col-xl-3">
 						<label>Objetivo</label>
 						<br />
-						<select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-							<option value="0"> Seleccionar </option>
-							@{
-								foreach (var objetivo in objetivos)
-								{
-									if (!objetivo.Valor.Equals("General"))
-									{
-										<option value="@objetivo.Identificador"> @objetivo.Valor </option>
-									}
-								}
-							}
-						</select>
+                        <select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                foreach (var objetivo in objetivos)
+                                {
+                                    if (!objetivo.Valor.Equals("General"))
+                                    {
+                                        <option value="@objetivo.Identificador"> @objetivo.Valor </option>
+                                    }
+                                }
+                            }
+                        </select>
 					</div>
-					<div class="col-xl-8">
-						<label>Descripción</label>
-						<br />
-						<input id="descripcionObjetivo" name="descripcionObjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
+                    <div class="col-xl-8">
+                        <label>Descripción</label>
+                        <br />
+                        <input id="descripcionObjetivo" name="descripcionObjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
 					<div class="col-xl-1">
-						<p>
-							<br />
-							<button id="btnObjetivo" name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
-								<i class="fas fa-plus-square"></i>
-							</button>
-						</p>
+                        <p>
+                            <br />
+                            <button id="btnObjetivo" name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
+                                <i class="fas fa-plus-square"></i>
+                            </button>
+                        </p>
 					</div>
 					<div class="table-responsive">
 						<br />
@@ -495,7 +496,7 @@
 					</div>
 					<div class="col-xl-3">
 						<label>Tipo</label>
-						<input id="idCie10" hidden />
+                        <input id="idCie10" hidden/>
 						<br />
 						<select id="tipodiagnostico" name="tipodiagnostico" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
 							<option value="0"> Seleccionar </option>
@@ -527,13 +528,14 @@
 					<br />
 					<div class="row">
 						<div class="col-xl-10">
-							<label>Medicamento</label>
+							<label>Receta</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xl-12">
+                            <input id="idReceta" hidden/>
 							<br />
-							<textarea id="medicamento" name="medicamento" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></textarea>
+							<textarea id="txtReceta" name="txtReceta" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></textarea>
 							<br />
 						</div>
 					</div>
@@ -551,43 +553,27 @@
 						<div class="col-xl-3">
 							<label>Procedimiento</label>
 							<br />
-							<select name="procedimiento" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-								<option> ----- </option>
-							</select>
+                            <input id="descripcionTexto" name="descripcionTexto" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 						</div>
 						<div class="col-xl-8">
 							<label>Descripción</label>
 							<br />
-							<input name="descripcionprocedimiento" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<input id="descripcionProcedimiento" name="descripcionProcedimiento" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 						</div>
 						<div class="col-xl-1">
 							<br />
-							<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+							<button id="btnProcedimiento" name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
 								<i class="fas fa-plus-square"></i>
 							</button>
 						</div>
 					</div>
 					<div class="table-responsive">
 						<br />
-						<table class="table">
-							<tr>
-								<th scope="col">Procedimiento</th>
-								<th scope="col">Descripción</th>
-								<th scope="col"></th>
-							</tr>
-							<tr>
-								<td scope="col">AAAAAAA</td>
-								<td scope="col">AAAAAAA</td>
-								<td scope="col">
-									<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-										<i class="fas fa-minus-square"></i>
-									</button>
-								</td>
-							</tr>
+						<table id="tblProcedimiento" class="table">
+
 						</table>
 					</div>
-				</div>
-
+				</div>				
 
 				<!--Creacion de seccion de ingreso de datos para certificado medico-->
 				<button data-toggle="collapse" data-target="#certificadomedico" name="Identificador" title="Ingresar datos para certificado médico" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
@@ -600,26 +586,26 @@
 							<div class="col-md-auto">
 								<label>Fecha de atención</label>
 								<br />
-								<input name="fechaatencion" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+								<input id="fechaAtencion" name="fechaAtencion" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
 							</div>
 							<div class="col-md-auto">
 								<label>Desde</label>
 								<br />
-								<input name="fechainicio" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+								<input id="fechaInicio" name="fechaInicio" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
 							</div>
 							<div class="col-md-auto">
 								<label>Hasta</label>
 								<br />
-								<input name="fechafin" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+								<input id="fechaFin" name="fechaFin" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
 							</div>
 							<div class="col-md-4">
 								<label>Observaciones</label>
 								<br />
-								<input id="observacioncertificado" name="observacioncertificado" class="col-md required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+								<input id="observacionCertificado" name="observacionCertificado" class="col-md required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 							</div>
 							<div class="col-md-1">
 								<br />
-								<button id="btnagregarcertifica" name="btnagregarcertifica" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+								<button id="btnCertificado" name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
 									<i class="fa fa-plus-square"></i>
 								</button>
 							</div>
@@ -629,667 +615,650 @@
 				</div>
 			</div>
 
-			<!-- Creacion de sección de antecedentes del paciente-->
-			<div id="antecedentes" class="container tab-pane fade">
-				<!-- Creacion de sección de antecedentes del personales -->
-				<br />
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						PERSONALES
-					</div>
-				</div>
-				<br />
-				<div class="row">
-					<br />
-					<div class="col-xl-3">
-						<label>Antecedentes especificos</label>
-						<br />
-						<select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-							<option> ----- </option>
-						</select>
-					</div>
-					<div class="col-xl-8">
-						<label>Detalles</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-1">
-						<br />
-						<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-plus-square"></i>
-						</button>
-					</div>
-				</div>
-				<div class="row">
-					<br />
-					<div class="col-xl-3">
-						<label>Otros</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-8">
-						<label>Detalles</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-1">
-						<br />
-						<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-plus-square"></i>
-						</button>
-					</div>
-				</div>
-				<br />
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Antecedente</th>
-							<th scope="col">Descriocción</th>
-							<th scope="col"></th>
-						</tr>
-						<tr>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">
-								<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-									<i class="fas fa-trash-alt"></i>
-								</button>
-							</td>
-						</tr>
-					</table>
-				</div>
+            <!-- Creacion de sección de antecedentes del paciente-->
+            <div id="antecedentes" class="container tab-pane fade">
+                <!-- Creacion de sección de antecedentes del personales -->
+                <br />
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        PERSONALES
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <br />
+                    <div class="col-xl-3">
+                        <label>Antecedentes especificos</label>
+                        <br />
+                        <select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option> ----- </option>
+                        </select>
+                    </div>
+                    <div class="col-xl-8">
+                        <label>Detalles</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-1">
+                        <br />
+                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <br />
+                    <div class="col-xl-3">
+                        <label>Otros</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-8">
+                        <label>Detalles</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-1">
+                        <br />
+                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Antecedente</th>
+                            <th scope="col">Descriocción</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">
+                                <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-				<!-- Creacion de sección de antecedentes famimiliares -->
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						FAMILIARES
-					</div>
-				</div>
-				<br />
-				<div class="row">
-					<br />
-					<div class="col-xl-3">
-						<label>Antecedentes especificos</label>
-						<br />
-						<select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-							<option> ----- </option>
-						</select>
-					</div>
-					<div class="col-xl-8">
-						<label>Detalles</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-1">
-						<br />
-						<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-plus-square"></i>
-						</button>
-					</div>
-				</div>
-				<div class="row">
-					<br />
-					<div class="col-xl-3">
-						<label>Otros</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-8">
-						<label>Detalles</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-1">
-						<br />
-						<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-plus-square"></i>
-						</button>
-					</div>
-				</div>
-				<br />
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Antecedente</th>
-							<th scope="col">Descriocción</th>
-							<th scope="col"></th>
-						</tr>
-						<tr>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">
-								<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-									<i class="fas fa-trash-alt"></i>
-								</button>
-							</td>
-						</tr>
-					</table>
-				</div>
+                <!-- Creacion de sección de antecedentes famimiliares -->
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        FAMILIARES
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <br />
+                    <div class="col-xl-3">
+                        <label>Antecedentes especificos</label>
+                        <br />
+                        <select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option> ----- </option>
+                        </select>
+                    </div>
+                    <div class="col-xl-8">
+                        <label>Detalles</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-1">
+                        <br />
+                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <br />
+                    <div class="col-xl-3">
+                        <label>Otros</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-8">
+                        <label>Detalles</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-1">
+                        <br />
+                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Antecedente</th>
+                            <th scope="col">Descriocción</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">
+                                <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-				<!-- Creacion de sección de antecedentes sociales -->
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						SOCIALES
-					</div>
-				</div>
-				<br />
-				<div class="row">
-					<br />
-					<div class="col-xl-3">
-						<label>Antecedentes especificos</label>
-						<br />
-						<select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-							<option> ----- </option>
-						</select>
-					</div>
-					<div class="col-xl-8">
-						<label>Detalles</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-1">
-						<br />
-						<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-plus-square"></i>
-						</button>
-					</div>
-				</div>
-				<div class="row">
-					<br />
-					<div class="col-xl-3">
-						<label>Otros</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-8">
-						<label>Detalles</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-1">
-						<br />
-						<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-plus-square"></i>
-						</button>
-					</div>
-				</div>
-				<br />
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Antecedente</th>
-							<th scope="col">Descriocción</th>
-							<th scope="col"></th>
-						</tr>
-						<tr>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">
-								<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-									<i class="fas fa-trash-alt"></i>
-								</button>
-							</td>
-						</tr>
-					</table>
-				</div>
+                <!-- Creacion de sección de antecedentes sociales -->
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        SOCIALES
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <br />
+                    <div class="col-xl-3">
+                        <label>Antecedentes especificos</label>
+                        <br />
+                        <select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option> ----- </option>
+                        </select>
+                    </div>
+                    <div class="col-xl-8">
+                        <label>Detalles</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-1">
+                        <br />
+                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <br />
+                    <div class="col-xl-3">
+                        <label>Otros</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-8">
+                        <label>Detalles</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-1">
+                        <br />
+                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Antecedente</th>
+                            <th scope="col">Descriocción</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">
+                                <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-				<!-- Creacion de sección de habitos -->
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						HABITOS
-					</div>
-				</div>
-				<br />
-				<div class="row">
-					<br />
-					<div class="col-xl-3">
-						<label>Antecedentes especificos</label>
-						<br />
-						<select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-							<option> ----- </option>
-						</select>
-					</div>
-					<div class="col-xl-8">
-						<label>Detalles</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-1">
-						<br />
-						<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-plus-square"></i>
-						</button>
-					</div>
-				</div>
-				<div class="row">
-					<br />
-					<div class="col-xl-3">
-						<label>Otros</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-8">
-						<label>Detalles</label>
-						<br />
-						<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					</div>
-					<div class="col-xl-1">
-						<br />
-						<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-plus-square"></i>
-						</button>
-					</div>
-				</div>
-				<br />
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Antecedente</th>
-							<th scope="col">Descriocción</th>
-							<th scope="col"></th>
-						</tr>
-						<tr>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">
-								<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-									<i class="fas fa-trash-alt"></i>
-								</button>
-							</td>
-						</tr>
-					</table>
-				</div>
+                <!-- Creacion de sección de habitos -->
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        HABITOS
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <br />
+                    <div class="col-xl-3">
+                        <label>Antecedentes especificos</label>
+                        <br />
+                        <select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option> ----- </option>
+                        </select>
+                    </div>
+                    <div class="col-xl-8">
+                        <label>Detalles</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-1">
+                        <br />
+                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <br />
+                    <div class="col-xl-3">
+                        <label>Otros</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-8">
+                        <label>Detalles</label>
+                        <br />
+                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                    </div>
+                    <div class="col-xl-1">
+                        <br />
+                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Antecedente</th>
+                            <th scope="col">Descriocción</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">
+                                <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-				<!-- Creacion de sección de alergias -->
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						ALERGIAS
-					</div>
-				</div>
-				<br />
-				<div class="row">
-					<div class="col-xl-8">
-						<label>Descripción</label>
-					</div>
-					<div class="col-xl-12">
-						<textarea name="descripcionplan" class="col-xl required number text-danger" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-					</div>
-				</div>
-			</div>
+                <!-- Creacion de sección de alergias -->
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        ALERGIAS
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xl-8">
+                        <label>Descripción</label>
+                    </div>
+                    <div class="col-xl-12">
+                        <textarea name="descripcionplan" class="col-xl required number text-danger" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                    </div>
+                </div>
+            </div>
 
-			<!-- Creacion de sección de atenciones previas-->
-			<div id="atencionesprevias" class="container tab-pane fade">
-				<br />
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						LISTA DE ATENCIONES PREVIAS
-					</div>
-				</div>
-				<br />
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Fecha</th>
-							<th scope="col">Medico</th>
-							<th scope="col">Diagnostico</th>
-							<th scope="col"></th>
-						</tr>
-						<tr>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">AAAAAA AA11</td>
-							<td scope="col">
-								<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit" onclick="location='../HistoriaClinica/MostrarFichaMedica'">
-									<i class="fas fa-eye"></i>
-								</button>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
+            <!-- Creacion de sección de atenciones previas-->
+            <div id="atencionesprevias" class="container tab-pane fade">
+                <br />
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        LISTA DE ATENCIONES PREVIAS
+                    </div>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table id="tblAtencionPrevia" class="table">
+                        
+                    </table>
+                </div>
+            </div>
 
-			<!-- Creacion de sección de tablas de indice de masa corporal-->
-			<div id="tablasimc" class="container tab-pane fade">
-				<br />
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						INDICE DE MASA CORPORAL
-					</div>
-				</div>
-				<br />
-				<div class="row">
-					<div class="col-md-12">
-						<img src="~/Imagenes/imc_bmi_indice_massa_corpor.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-					</div>
-				</div>
-				<br />
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Fecha</th>
-							<th scope="col">Peso(kg)</th>
-							<th scope="col">Talla(cm)</th>
-							<th scope="col">IMC</th>
-							<th scope="col">Nivel</th>
-						</tr>
-						<tr>
-							<td scope="col">01/01/1111</td>
-							<td scope="col">xx</td>
-							<td scope="col">xx.xx</td>
-							<td scope="col">xx.xx</td>
-							<td scope="col">normal</td>
-						</tr>
-					</table>
-				</div>
-				<br />
-			</div>
+            <!-- Creacion de sección de tablas de indice de masa corporal-->
+            <div id="tablasimc" class="container tab-pane fade">
+                <br />
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        INDICE DE MASA CORPORAL
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="~/Imagenes/imc_bmi_indice_massa_corpor.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
+                    </div>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Peso(kg)</th>
+                            <th scope="col">Talla(cm)</th>
+                            <th scope="col">IMC</th>
+                            <th scope="col">Nivel</th>
+                        </tr>
+                        <tr>
+                            <td scope="col">01/01/1111</td>
+                            <td scope="col">xx</td>
+                            <td scope="col">xx.xx</td>
+                            <td scope="col">xx.xx</td>
+                            <td scope="col">normal</td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+            </div>
 
-			<!-- Creacion de sección de curvas de crecimiento-->
-			<div id="curvascrecimiento" class="container tab-pane fade">
-				<br />
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						CURVAS DE CRECIENTO
-					</div>
-				</div>
-				<br />
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Fecha</th>
-							<th scope="col">Peso(kg)</th>
-							<th scope="col">Talla(cm)</th>
-							<th scope="col">Edad</th>
-						</tr>
-						<tr>
-							<td scope="col">01/01/1111</td>
-							<td scope="col">xx</td>
-							<td scope="col">xx.xx</td>
-							<td scope="col">xx años xx meses</td>
-						</tr>
-					</table>
-				</div>
-				<br />
+            <!-- Creacion de sección de curvas de crecimiento-->
+            <div id="curvascrecimiento" class="container tab-pane fade">
+                <br />
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        CURVAS DE CRECIENTO
+                    </div>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Peso(kg)</th>
+                            <th scope="col">Talla(cm)</th>
+                            <th scope="col">Edad</th>
+                        </tr>
+                        <tr>
+                            <td scope="col">01/01/1111</td>
+                            <td scope="col">xx</td>
+                            <td scope="col">xx.xx</td>
+                            <td scope="col">xx años xx meses</td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
 
-				<button data-toggle="collapse" data-target="#tablasestatura" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
-					TABLAS DE ESTATURA 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
-				</button>
-				<div id="tablasestatura" class="collapse">
-					<div class="row">
-						<div class="col-md-12">
-							<img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-						</div>
-					</div>
-				</div>
+                <button data-toggle="collapse" data-target="#tablasestatura" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
+                    TABLAS DE ESTATURA 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
+                </button>
+                <div id="tablasestatura" class="collapse">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
+                        </div>
+                    </div>
+                </div>
 
-				<button data-toggle="collapse" data-target="#tablaspeso" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
-					TABLAS DE PESO 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
-				</button>
-				<div id="tablaspeso" class="collapse">
-					<div class="row">
-						<div class="col-md-12">
-							<img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-						</div>
-					</div>
-				</div>
-			</div>
+                <button data-toggle="collapse" data-target="#tablaspeso" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
+                    TABLAS DE PESO 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
+                </button>
+                <div id="tablaspeso" class="collapse">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<!-- Creacion de sección de vacunas-->
-			<div id="vacunas" class="container tab-pane fade">
-				<br />
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						INFORMACIÓN VACUNAS
-					</div>
-				</div>
-				<br />
-				<div class="row">
-					<div class="col-xl-3">
-						<p>
-							<label>Vacunas</label>
-							<br />
-							<select name="Vacunas" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-								<option> ----- </option>
-							</select>
-						</p>
-					</div>
-					<div class="col-xl-5">
-						<p>
-							<label>Descripción</label>
-							<br />
-							<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						</p>
-					</div>
-					<div class="col-xl-3">
-						<p>
-							<label>Edad</label>
-							<br />
-							<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
-						</p>
-					</div>
+            <!-- Creacion de sección de vacunas-->
+            <div id="vacunas" class="container tab-pane fade">
+                <br />
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        INFORMACIÓN VACUNAS
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xl-3">
+                        <p>
+                            <label>Vacunas</label>
+                            <br />
+                            <select name="Vacunas" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                                <option> ----- </option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="col-xl-5">
+                        <p>
+                            <label>Descripción</label>
+                            <br />
+                            <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        </p>
+                    </div>
+                    <div class="col-xl-3">
+                        <p>
+                            <label>Edad</label>
+                            <br />
+                            <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
+                        </p>
+                    </div>
 
-					<div class="col-xl-3">
-						<p>
-							<label>Lote</label>
-							<br />
-							<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
-						</p>
-					</div>
-					<div class="col-xl-4">
-						<p>
-							<label>Responsable</label>
-							<br />
-							<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
-						</p>
-					</div>
-					<div class="col-xl-1">
-						<p>
-							<br />
-							<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-								<i class="fas fa-plus-square"></i>
-							</button>
-						</p>
-					</div>
-				</div>
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Vacunas</th>
-							<th scope="col">Descriocción</th>
-							<th scope="col">Edad</th>
-							<th scope="col">Fecha</th>
-							<th scope="col">Lote</th>
-							<th scope="col">Responsable</th>
-						</tr>
-						<tr>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">X AÑOS X MESES</td>
-							<td scope="col">01/01/99</td>
-							<td scope="col">AAA111</td>
-							<td scope="col">AAAA AAAA</td>
-						</tr>
-					</table>
-				</div>
-			</div>
+                    <div class="col-xl-3">
+                        <p>
+                            <label>Lote</label>
+                            <br />
+                            <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
+                        </p>
+                    </div>
+                    <div class="col-xl-4">
+                        <p>
+                            <label>Responsable</label>
+                            <br />
+                            <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" />
+                        </p>
+                    </div>
+                    <div class="col-xl-1">
+                        <p>
+                            <br />
+                            <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                                <i class="fas fa-plus-square"></i>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Vacunas</th>
+                            <th scope="col">Descriocción</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Lote</th>
+                            <th scope="col">Responsable</th>
+                        </tr>
+                        <tr>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">X AÑOS X MESES</td>
+                            <td scope="col">01/01/99</td>
+                            <td scope="col">AAA111</td>
+                            <td scope="col">AAAA AAAA</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-			<!-- Creacion de sección de odontograma-->
-			<div id="odontograma" class="container tab-pane fade">
-				<br />
-				<div class="row">
-					<div class="col-md-12">
-						<img src="~/Imagenes/Odontograma.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-					</div>
-				</div>
-				<br />
-				<div class="row">
-					<div class="col-xl-1 required">
-						<p>
-							<label>Pieza</label>
-							<br />
-							<select name="Pieza" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-								<option> ----- </option>
-							</select>
-						</p>
-					</div>
-					<div class="col-xl-1">
-						<p>
-							<label>Cara</label>
-							<br />
-							<select name="Cara" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-								<option> ----- </option>
-							</select>
-						</p>
-					</div>
-					<div class="col-xl-5">
-						<p>
-							<label>Diagnostico</label>
-							<br />
-							<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						</p>
-					</div>
+            <!-- Creacion de sección de odontograma-->
+            <div id="odontograma" class="container tab-pane fade">
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="~/Imagenes/Odontograma.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xl-1 required">
+                        <p>
+                            <label>Pieza</label>
+                            <br />
+                            <select name="Pieza" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                                <option> ----- </option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="col-xl-1">
+                        <p>
+                            <label>Cara</label>
+                            <br />
+                            <select name="Cara" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                                <option> ----- </option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="col-xl-5">
+                        <p>
+                            <label>Diagnostico</label>
+                            <br />
+                            <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        </p>
+                    </div>
 
-					<div class="col-xl-1">
-						<p>
-							<label>CIE-10</label>
-							<br />
-							<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						</p>
-					</div>
-					<div class="col-xl-3">
-						<p>
-							<label>Procedimiento</label>
-							<br />
-							<select name="ProcedimientoOdontologico" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-								<option> ----- </option>
-							</select>
-						</p>
-					</div>
-					<div class="col-xl-1">
-						<p>
-							<br />
-							<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-								<i class="fas fa-plus-square"></i>
-							</button>
-						</p>
-					</div>
-				</div>
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Diagnostico</th>
-							<th scope="col">CIE-10</th>
-							<th scope="col">Procedimiento</th>
-							<th scope="col">Pieza</th>
-							<th scope="col">Cara</th>
-							<th scope="col"></th>
-						</tr>
-						<tr>
-							<td scope="col">AAAAAAA</td>
-							<td scope="col">Axx</td>
-							<td scope="col">AAAAAAAAAA</td>
-							<td scope="col">xx</td>
-							<td scope="col">AAAAA</td>
-							<td scope="col">
-								<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-									<i class="fas fa-times-circle"></i>
-								</button>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div class="row">
-					<div class="col-xl-4">
-						<label>Enfermedad Periodontal</label>
-						<br />
-						<div class="table-responsive">
-							<table class="table">
-								<tr>
-									<th scope="col">Tipo</th>
-									<th scope="col"></th>
-								</tr>
-								<tr>
-									<td scope="col">AAAAAAA</td>
-									<td scope="col">
-										<input type="checkbox" />
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="col-xl-4">
-						<label>Endodoncia</label>
-						<br />
-						<div class="table-responsive">
-							<table class="table">
-								<tr>
-									<th scope="col">Tipo</th>
-									<th scope="col"></th>
-								</tr>
-								<tr>
-									<td scope="col">AAAAAAA</td>
-									<td scope="col">
-										<input type="checkbox" />
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="col-xl-4">
-						<label>Oclusion</label>
-						<br />
-						<div class="table-responsive">
-							<table class="table">
-								<tr>
-									<th scope="col">Tipo</th>
-									<th scope="col"></th>
-								</tr>
-								<tr>
-									<td scope="col">AAAAAAA</td>
-									<td scope="col">
-										<input type="checkbox" />
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
+                    <div class="col-xl-1">
+                        <p>
+                            <label>CIE-10</label>
+                            <br />
+                            <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        </p>
+                    </div>
+                    <div class="col-xl-3">
+                        <p>
+                            <label>Procedimiento</label>
+                            <br />
+                            <select name="ProcedimientoOdontologico" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                                <option> ----- </option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="col-xl-1">
+                        <p>
+                            <br />
+                            <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                                <i class="fas fa-plus-square"></i>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Diagnostico</th>
+                            <th scope="col">CIE-10</th>
+                            <th scope="col">Procedimiento</th>
+                            <th scope="col">Pieza</th>
+                            <th scope="col">Cara</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr>
+                            <td scope="col">AAAAAAA</td>
+                            <td scope="col">Axx</td>
+                            <td scope="col">AAAAAAAAAA</td>
+                            <td scope="col">xx</td>
+                            <td scope="col">AAAAA</td>
+                            <td scope="col">
+                                <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4">
+                        <label>Enfermedad Periodontal</label>
+                        <br />
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                <tr>
+                                    <td scope="col">AAAAAAA</td>
+                                    <td scope="col">
+                                        <input type="checkbox" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <label>Endodoncia</label>
+                        <br />
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                <tr>
+                                    <td scope="col">AAAAAAA</td>
+                                    <td scope="col">
+                                        <input type="checkbox" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <label>Oclusion</label>
+                        <br />
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                <tr>
+                                    <td scope="col">AAAAAAA</td>
+                                    <td scope="col">
+                                        <input type="checkbox" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<!-- Creacion de sección de resultados medicos-->
-			<div id="resultadoexamenes" class="container tab-pane fade">
-				<br />
-				<div class="card bg-info text-white">
-					<div class="card-header">
-						EXÁMENES MÉDICOS
-					</div>
-				</div>
-				<br />
-				<div class="table-responsive">
-					<table class="table">
-						<tr>
-							<th scope="col">Fecha</th>
-							<th scope="col">Codigo</th>
-							<th scope="col">Paciente</th>
-							<th scope="col"></th>
-						</tr>
-						<tr>
-							<td scope="col">DD/MM/AAAA</td>
-							<td scope="col">xxxxx</td>
-							<td scope="col">AAAAAA</td>
-							<td scope="col">
-								<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-									<i class="fa fa-file"></i>
-								</button>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+            <!-- Creacion de sección de resultados medicos-->
+            <div id="resultadoexamenes" class="container tab-pane fade">
+                <br />
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        EXÁMENES MÉDICOS
+                    </div>
+                </div>
+                <br />
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr>
+                            <td scope="col">DD/MM/AAAA</td>
+                            <td scope="col">xxxxx</td>
+                            <td scope="col">AAAAAA</td>
+                            <td scope="col">
+                                <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                                    <i class="fa fa-file"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 <script src="~/Scripts/historia-clinica.js"></script>
-<script src="~/Scripts/generarpdf.js"></script>
-<script src="~/Scripts/jsPDF-1.3.2/dist/jspdf.min.js"></script>
