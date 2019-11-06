@@ -154,5 +154,11 @@ namespace Tesis004.Controllers
             eliminado.Add(this.historiaClinicaBDD.EliminarDiagnostico(diagnostico));
             return Json(eliminado);
         }
-    }
+
+		[HttpPost]
+		public ActionResult MostrarFichaMedica()
+		{
+			return View();
+		}
+	}
 }

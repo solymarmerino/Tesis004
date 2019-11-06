@@ -1,0 +1,431 @@
+﻿
+@{
+	ViewBag.Title = "MostrarFichaMedica";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MostrarFichaMedica</h2>
+
+<!--Creacion de seccion de revicion de signos vitales-->
+<div class="card bg-info text-white">
+	<div class="card-header">
+		SIGNOS VITALES
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-md-3">
+		<p>
+			<label>Peso (kg)</label>
+			<input id="Peso" name="Peso" class="col-sm required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>Talla (cm)</label>
+			<input id="Talla" name="Talla" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>Presion Arterial</label>
+			<input id="PA" name="PA" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>Temperatura</label>
+			<input id="Temperatura" name="Temperatura" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>FC</label>
+			<input id="FC" name="FC" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>FR</label>
+			<input id="FR" name="FR" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>IMC</label>
+			<input id="IMC" name="IMC" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>
+			<label>Saturacion</label>
+			<input id="Saturacion" name="Saturacion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xl-12">
+		<p>
+			<label>Observaciones Enfermeria</label>
+			<br />
+			<textarea id="ObservacionesEnfermeria" class="col-xl required number" type="text" rows="2" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;" disabled></textarea>
+		</p>
+	</div>
+</div>
+<div class="text-center">
+	<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">HISTORICO</button>
+	<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">PESO</button>
+	<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">TALLA</button>
+	<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">TA</button>
+</div>
+<br />
+<!--Creacion de seccion de ingreso de datos de consulta-->
+<div class="card bg-info text-white">
+	<div class="card-header">
+		DATOS DE CONSULTA
+	</div>
+</div>
+<input id="ConsultaMedicaID" hidden />
+<br />
+<div class="row">
+	<div class="col-xl-3">
+		<label>Tipo de consulta:</label>
+	</div>
+	<div class="col-xl-3">
+		<input id="Primera" name="TipoConsulta" value="primera" type="radio" /> Primera
+	</div>
+	<div class="col-xl-3">
+		<input id="Subsecuente" name="TipoConsulta" value="subsecuente" type="radio" /> Subsecuente
+	</div>
+</div>
+<div class="row">
+	<div class="col-xl-3">
+		<label>Motivo de consulta</label>
+	</div>
+	<br />
+	<div class="col-xl-12">
+		<textarea id="motivoconsulta" name="motivoconsulta" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+	</div>
+</div>
+<br />
+<!--Creacion de seccion de ingreso de subjetivo-->
+<div class="card bg-info text-white">
+	<div class="card-header">
+		SUBJETIVOS (REVISIÓN ACTUAL DE ORGANOS Y SISTEMAS)
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xl-3">
+		<label>Descripción General</label>
+		<a name="Identificador" title="Describir lo mencionado por el paciente">
+			<i class="fa fa-info-circle" style="color:dodgerblue"></i>
+		</a>
+	</div>
+	<br />
+	<div class="col-xl-12">
+		<input id="idSubjetivo" hidden />
+		@{
+			var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
+			foreach (var subjetivo in subjetivos)
+			{
+				if (subjetivo.Valor.Equals("General"))
+				{
+					<input id="idSubjetivoGeneral" value="@subjetivo.Identificador" hidden />
+				}
+			}
+		}
+		<textarea id="descripcionSubjetivo" name="descripcionSubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xl-3">
+		<label>Subjetivo</label>
+		<br />
+		<select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+			<option value="0"> Seleccionar </option>
+			@{
+				foreach (var subjetivo in subjetivos)
+				{
+					if (!subjetivo.Valor.Equals("General"))
+					{
+						<option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
+					}
+				}
+			}
+		</select>
+	</div>
+	<div class="col-xl-8">
+		<label>Descripción</label>
+		<br />
+		<input id="descripcionsubjetivo" name="descripcionsubjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+	</div>
+	<div class="col-xl-1">
+		<p>
+			<br />
+			<button id="btnSubjetivo" name="Identificador" title="Ingresar subjetivo especifico" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer">
+				<i class="fas fa-plus-square"></i>
+			</button>
+		</p>
+	</div>
+	<br />
+	<div class="table-responsive">
+		<br />
+		<table id="tblSubjetivo" class="table"></table>
+	</div>
+</div>
+<br />
+<!--Creacion de seccion de ingreso de objetivo-->
+<div class="card bg-info text-white">
+	<div class="card-header">
+		OBJETIVO (EXAMEN FISICO REGIONAL SISTEMATICO)
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xl-3">
+		<label>Descripción General</label>
+		<a name="Identificador" title="Describir de lo evaluado por el medico">
+			<i class="fa fa-info-circle" style="color:dodgerblue"></i>
+		</a>
+	</div>
+	<br />
+	<div class="col-xl-12">
+		<input id="idObjetivo" hidden />
+		@{
+			var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
+			foreach (var objetivo in objetivos)
+			{
+				if (objetivo.Valor.Equals("General"))
+				{
+					<input id="idObjetivoGeneral" value="@objetivo.Identificador" hidden />
+				}
+			}
+		}
+		<textarea id="descripcionObjetivoGeneral" name="descripcionObjetivoGeneral" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xl-3">
+		<label>Objetivo</label>
+		<br />
+		<select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+			<option value="0"> Seleccionar </option>
+			@{
+				foreach (var objetivo in objetivos)
+				{
+					if (!objetivo.Valor.Equals("General"))
+					{
+						<option value="@objetivo.Identificador"> @objetivo.Valor </option>
+					}
+				}
+			}
+		</select>
+	</div>
+	<div class="col-xl-8">
+		<label>Descripción</label>
+		<br />
+		<input id="descripcionObjetivo" name="descripcionObjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+	</div>
+	<div class="col-xl-1">
+		<p>
+			<br />
+			<button id="btnObjetivo" name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
+				<i class="fas fa-plus-square"></i>
+			</button>
+		</p>
+	</div>
+	<div class="table-responsive">
+		<br />
+		<table id="tblObjetivo" class="table"></table>
+	</div>
+</div>
+<br />
+<!--Creacion de seccion de ingreso de analisis del paciente-->
+<div class="card bg-info text-white">
+	<div class="card-header">
+		ANÁLISIS
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xl-8">
+		<label>Descripción</label>
+	</div>
+	<div class="col-xl-12">
+		<textarea id="descripcionanalisis" name="descripcionanalisis" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+	</div>
+</div>
+<br />
+<!--Creacion de seccion de ingreso del plan para el paciente-->
+<div class="card bg-info text-white">
+	<div class="card-header">
+		PLAN
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xl-8">
+		<label>Descripción</label>
+	</div>
+	<div class="col-xl-12">
+		<textarea id="descripcionplan" name="descripcionplan" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+	</div>
+</div>
+<br />
+<!--Creacion de seccion de ingreso de diagnostico-->
+<div class="card bg-info text-white">
+	<div class="card-header">
+		DIAGNOSTICO
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-xl-6">
+		<label>Diagnostico</label>
+		<br />
+		<input id="enfermedad" name="enfermedad" list="sugerenciaEnfermedad" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+		<datalist id="sugerenciaEnfermedad"></datalist>
+	</div>
+	<div class="col-xl-2">
+		<label>CIE-10</label>
+		<br />
+		<input id="cie10" name="cie10" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+	</div>
+	<div class="col-xl-3">
+		<label>Tipo</label>
+		<input id="idCie10" hidden />
+		<br />
+		<select id="tipodiagnostico" name="tipodiagnostico" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+			<option value="0"> Seleccionar </option>
+			@{
+				var diagnosticos = ViewData["diagnosticos"] as List<Tesis004.Models.ParametroModel>;
+				foreach (var diagnostico in diagnosticos)
+				{
+					<option value="@diagnostico.Identificador"> @diagnostico.Valor </option>
+				}
+			}
+		</select>
+	</div>
+	<div class="col-xl-1">
+		<br />
+		<button id="btnDiagnostico" name="btnDiagnostico" title="Ingresar diagnostico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
+			<i class="fas fa-plus-square"></i>
+		</button>
+	</div>
+</div>
+<div class="table-responsive">
+	<br />
+	<table class="table" id="tblDiagnostico"></table>
+</div>
+<!--Creacion de seccion de ingreso de receta-->
+<button data-toggle="collapse" data-target="#receta" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
+	RECETA 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
+</button>
+<div id="receta" class="collapse">
+	<br />
+	<div class="row">
+		<div class="col-xl-10">
+			<label>Medicamento</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xl-12">
+			<br />
+			<textarea id="medicamento" name="medicamento" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></textarea>
+			<br />
+		</div>
+	</div>
+</div>
+<br />
+<!--Creacion de seccion de ingreso de procedimientos-->
+<button data-toggle="collapse" data-target="#procedimiento" name="Identificador" title="Ingresar procedimientos realizados al paciente" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
+	PROCEDIMIENTO 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
+</button>
+<br />
+<div id="procedimiento" class="collapse">
+	<br />
+	<div class="row">
+		<br />
+		<div class="col-xl-3">
+			<label>Procedimiento</label>
+			<br />
+			<select name="procedimiento" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+				<option> ----- </option>
+			</select>
+		</div>
+		<div class="col-xl-8">
+			<label>Descripción</label>
+			<br />
+			<input name="descripcionprocedimiento" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+		</div>
+		<div class="col-xl-1">
+			<br />
+			<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+				<i class="fas fa-plus-square"></i>
+			</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<br />
+		<table class="table">
+			<tr>
+				<th scope="col">Procedimiento</th>
+				<th scope="col">Descripción</th>
+				<th scope="col"></th>
+			</tr>
+			<tr>
+				<td scope="col">AAAAAAA</td>
+				<td scope="col">AAAAAAA</td>
+				<td scope="col">
+					<button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+						<i class="fas fa-minus-square"></i>
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+<!--Creacion de seccion de ingreso de datos para certificado medico-->
+<button data-toggle="collapse" data-target="#certificadomedico" name="Identificador" title="Ingresar datos para certificado médico" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
+	CERTIFICADO MÉDICO 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
+</button>
+<div id="certificadomedico" class="collapse">
+	<div>
+		<br />
+		<div class="row">
+			<div class="col-md-auto">
+				<label>Fecha de atención</label>
+				<br />
+				<input name="fechaatencion" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+			</div>
+			<div class="col-md-auto">
+				<label>Desde</label>
+				<br />
+				<input name="fechainicio" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+			</div>
+			<div class="col-md-auto">
+				<label>Hasta</label>
+				<br />
+				<input name="fechafin" class="col-md required number" type="date" style="text-align:left; border-radius:0.3rem; width:180px; height:40px;" />
+			</div>
+			<div class="col-md-4">
+				<label>Observaciones</label>
+				<br />
+				<input id="observacioncertificado" name="observacioncertificado" class="col-md required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+			</div>
+			<div class="col-md-1">
+				<br />
+				<button id="btnagregarcertifica" name="btnagregarcertifica" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+					<i class="fa fa-plus-square"></i>
+				</button>
+			</div>
+		</div>
+		<br />
+	</div>
+</div>
+			
