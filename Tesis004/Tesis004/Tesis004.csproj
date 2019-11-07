@@ -163,6 +163,10 @@
     <Compile Include="InformacionBDD\PersonalBDD.cs" />
     <Compile Include="InformacionBDD\ServicioBDD.cs" />
     <Compile Include="InformacionBDD\SignosVitalesBDD.cs" />
+    <Compile Include="Models\HabitoModel.cs" />
+    <Compile Include="Models\AntecedenteSocialModel.cs" />
+    <Compile Include="Models\AntecedentePersonalModel.cs" />
+    <Compile Include="Models\AntecedenteFamiliarModel.cs" />
     <Compile Include="Models\CertificadoMedicoModel.cs" />
     <Compile Include="Models\EgresoModel.cs" />
     <Compile Include="Models\IngresoModel.cs" />
