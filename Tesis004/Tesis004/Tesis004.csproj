@@ -434,6 +434,7 @@
     <Content Include="Scripts\jsPDF-1.3.2\test\test_harness.js" />
     <Content Include="Scripts\jsPDF-1.3.2\test\test_min.html" />
     <Content Include="Scripts\jsPDF-1.3.2\todo.txt" />
+    <Content Include="Scripts\JSPrintManager.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\paciente-actualizar.js" />
     <Content Include="Scripts\paciente.js" />
@@ -533,6 +534,7 @@
     <Content Include="Scripts\jsPDF-1.3.2\test\012_multiplelines.pdf" />
     <Content Include="Scripts\jsPDF-1.3.2\test\013_sillysvgrenderer.pdf" />
     <Content Include="Scripts\jsPDF-1.3.2\test\015_splittext.pdf" />
+    <Content Include="Views\HistoriaClinica\MostrarFichaMedica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -545,6 +547,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\JSPrintManager.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
