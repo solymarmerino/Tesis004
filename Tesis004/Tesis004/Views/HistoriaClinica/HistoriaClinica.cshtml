@@ -50,7 +50,7 @@
                 <a class="nav-link" data-toggle="tab" href="#antecedentes">Antecedentes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#atencionesprevias" onclick="consultarAtencionPrevia">Atenciones Previas</a>
+                <a class="nav-link" data-toggle="tab" href="#atencionesprevias" onclick="consultarAtencionPrevia()">Atenciones Previas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#tablasimc">Tablas de IMC</a>
@@ -630,18 +630,25 @@
                     <div class="col-xl-3">
                         <label>Antecedentes especificos</label>
                         <br />
-                        <select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> ----- </option>
+                        <select id="atecedentePersonal" name="atecedentePersonal" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                var antecedentesp = ViewData["antecedentepersonal"] as List<Tesis004.Models.ParametroModel>;
+                                foreach (var antecedentep in antecedentesp)
+                                {
+                                   <option value="@antecedentep.Identificador"> @antecedentep.Valor </option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="col-xl-8">
                         <label>Detalles</label>
                         <br />
-                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="atecedentePersonalTexto" name="atecedentePersonalTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                     </div>
                     <div class="col-xl-1">
                         <br />
-                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                        <button id="btnAntecedentePersonal" name="btnAntecedentePersonal" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
                             <i class="fas fa-plus-square"></i>
                         </button>
                     </div>
@@ -667,7 +674,7 @@
                 </div>
                 <br />
                 <div class="table-responsive">
-                    <table class="table">
+                    <table id="tblAntecedentePersonal" class="table">
                         <tr>
                             <th scope="col">Antecedente</th>
                             <th scope="col">Descriocción</th>
@@ -697,18 +704,25 @@
                     <div class="col-xl-3">
                         <label>Antecedentes especificos</label>
                         <br />
-                        <select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> ----- </option>
+                        <select id="atecedenteFamiliar" name="atecedenteFamiliar" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                var antecedentesf = ViewData["antecedentefamiliar"] as List<Tesis004.Models.ParametroModel>;
+                                foreach (var antecedentef in antecedentesf)
+                                {
+                                    <option value="@antecedentef.Identificador"> @antecedentef.Valor </option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="col-xl-8">
                         <label>Detalles</label>
                         <br />
-                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="atecedenteFamiliarTexto" name="atecedenteFamiliarTexto"class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                     </div>
                     <div class="col-xl-1">
                         <br />
-                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                        <button id="btnAntecedenteFamiliar" name="btnAntecedenteFamiliar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
                             <i class="fas fa-plus-square"></i>
                         </button>
                     </div>
@@ -733,7 +747,7 @@
                     </div>
                 </div>
                 <br />
-                <div class="table-responsive">
+                <div id="tblAntecedenteFamiliar" class="table-responsive">
                     <table class="table">
                         <tr>
                             <th scope="col">Antecedente</th>
@@ -764,18 +778,25 @@
                     <div class="col-xl-3">
                         <label>Antecedentes especificos</label>
                         <br />
-                        <select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> ----- </option>
+                        <select id="atecedenteSocial" name="atecedenteSocial" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                var antecedentess = ViewData["antecedentesociales"] as List<Tesis004.Models.ParametroModel>;
+                                foreach (var antecedentes in antecedentess)
+                                {
+                                    <option value="@antecedentes.Identificador"> @antecedentes.Valor </option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="col-xl-8">
                         <label>Detalles</label>
                         <br />
-                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="atecedenteSocialTexto" name="atecedenteSocialTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                     </div>
                     <div class="col-xl-1">
                         <br />
-                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                        <button id="btnAntecedenteSocial" name="btnAntecedenteSocial" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
                             <i class="fas fa-plus-square"></i>
                         </button>
                     </div>
@@ -801,7 +822,7 @@
                 </div>
                 <br />
                 <div class="table-responsive">
-                    <table class="table">
+                    <table id="tblAntecedenteSocial" class="table">
                         <tr>
                             <th scope="col">Antecedente</th>
                             <th scope="col">Descriocción</th>
@@ -831,18 +852,25 @@
                     <div class="col-xl-3">
                         <label>Antecedentes especificos</label>
                         <br />
-                        <select name="tipoexamen" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option> ----- </option>
+                        <select id="habito" name="habito" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+                            <option value="0"> Seleccionar </option>
+                            @{
+                                var habitos = ViewData["habito"] as List<Tesis004.Models.ParametroModel>;
+                                foreach (var habito in habitos)
+                                {
+                                    <option value="@habito.Identificador"> @habito.Valor </option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="col-xl-8">
                         <label>Detalles</label>
                         <br />
-                        <input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+                        <input id="habitoTexto" name="habitoTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
                     </div>
                     <div class="col-xl-1">
                         <br />
-                        <button name="Identificador" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+                        <button id="btnHabito" name="btnHabito" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
                             <i class="fas fa-plus-square"></i>
                         </button>
                     </div>
@@ -868,7 +896,7 @@
                 </div>
                 <br />
                 <div class="table-responsive">
-                    <table class="table">
+                    <table id="tblHabito" class="table">
                         <tr>
                             <th scope="col">Antecedente</th>
                             <th scope="col">Descriocción</th>
@@ -898,7 +926,7 @@
                         <label>Descripción</label>
                     </div>
                     <div class="col-xl-12">
-                        <textarea name="descripcionplan" class="col-xl required number text-danger" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+                        <textarea id="txtAlergia" name="txtAlergia"  class="col-xl required number text-danger" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
                     </div>
                 </div>
             </div>

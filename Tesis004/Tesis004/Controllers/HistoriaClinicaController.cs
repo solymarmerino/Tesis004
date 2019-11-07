@@ -39,6 +39,10 @@ namespace Tesis004.Controllers
             ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
             ViewData["subjetivos"] = informacionGeneral.ObtenerInformacionParametro("subjetivo");
             ViewData["objetivos"] = informacionGeneral.ObtenerInformacionParametro("objetivo");
+            ViewData["antecedentepersonal"] = informacionGeneral.ObtenerInformacionParametro("antecedentepersonal");
+            ViewData["antecedentefamiliar"] = informacionGeneral.ObtenerInformacionParametro("antecedentefamiliar");
+            ViewData["antecedentesociales"] = informacionGeneral.ObtenerInformacionParametro("antecedentesociales");
+            ViewData["habito"] = informacionGeneral.ObtenerInformacionParametro("Habito");
             ViewData["diagnosticos"] = informacionGeneral.ObtenerInformacionParametro("tipo diagnostico");
             ViewData["paciente"] = pacienteBDD.PacientePorId(cita.PacienteID);
             return View();

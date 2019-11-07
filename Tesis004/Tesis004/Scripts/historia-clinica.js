@@ -66,6 +66,50 @@ function limpiarTablaAtencionPrevia() {
     $("#tblAtencionPrevia").append(cabecera);
 }
 
+function limpiarTablaAtecedentePersonal() {
+    $("#tblAntecedentePersonal").empty();
+    var cabecera = "<tr>" +
+        "<th scope=\"col\">Antecedente</th>" +
+        "<th scope=\"col\">Descripcción</th>" +
+        "<th scope=\"col\"></th>" +
+        "</tr>";
+    $("#tblAntecedentePersonal").append(cabecera);
+}
+
+function limpiarTablaAtecedenteFamiliar() {
+    $("#tblAntecedenteFamiliar").empty();
+    var cabecera = "<tr>" +
+        "<th scope=\"col\">Antecedente</th>" +
+        "<th scope=\"col\">Descripcción</th>" +
+        "<th scope=\"col\"></th>" +
+        "</tr>";
+    $("#tblAntecedenteFamiliar").append(cabecera);
+}
+
+function limpiarTablaAtecedenteSocial() {
+    $("#tblAntecedenteSocial").empty();
+    var cabecera = "<tr>" +
+        "<th scope=\"col\">Antecedente</th>" +
+        "<th scope=\"col\">Descripcción</th>" +
+        "<th scope=\"col\"></th>" +
+        "</tr>";
+    $("#tblAntecedenteSocial").append(cabecera);
+}
+
+function limpiarTablaHabito() {
+    $("#tblHabito").empty();
+    var cabecera = "<tr>" +
+        "<th scope=\"col\">Antecedente</th>" +
+        "<th scope=\"col\">Descripcción</th>" +
+        "<th scope=\"col\"></th>" +
+        "</tr>";
+    $("#tblHabito").append(cabecera);
+}
+
+function limpiarAlergia() {
+    $("#txtAlergia").text("");
+}
+
 function consultarSignosVitales() {
     var ConsultarSignosVitales = {};
     ConsultarSignosVitales.url = "/Enfermeria/ConsultarUltimoSignosVitales";
@@ -618,12 +662,19 @@ $(document).ready(function () {
     limpiarTablaReceta();
     limpiarTablaProcedimiento();
     limpiarTablaCertificado();
+    limpiarTablaAtencionPrevia();
+    limpiarTablaAtecedentePersonal();
+    limpiarTablaAtecedenteFamiliar();
+    limpiarTablaAtecedenteSocial();
+    limpiarTablaHabito();
+    limpiarAlergia();
     consultarSignosVitales();
     consultarSubjetivo();
     consultarObjetivo();
     consultarDiagnostico();
     consultarReceta();
     consultarProcedimiento();
+    consultarAtencionPrevia();
 });
 
 $("#btnSubjetivo").click(function () {
