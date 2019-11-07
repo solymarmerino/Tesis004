@@ -210,5 +210,10 @@ namespace Tesis004.Controllers
             resultado = this.historiaClinicaBDD.ListarAtencionPrevia(pacienteID);
             return Json(resultado);
         }
-    }
+
+		[HttpPost]
+		public ActionResult MostrarFichaMedica()
+		{
+			return View();
+		}
 }
