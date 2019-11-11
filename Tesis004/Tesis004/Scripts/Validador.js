@@ -199,6 +199,7 @@ $("#IptCedula").change(function () {
 
 
 //////INICIO validacion de nombres ingresados en el sistema ////
+/////PERSONAL
 $("#Nombre").change(function () {
 	$("#SalidaNombre").empty();
 	var nombre = $("#Nombre").val();
@@ -399,6 +400,29 @@ $("#Cargo").change(function () {
 		document.getElementById("Especialidad").selectedIndex = 0;
 	}
 });
+
+/////INICIO VALIDAR CAMPO CODIGO//////////
+$("#Cargo").change(function () {
+	if ($("#Cargo").val() == 21) {
+		$("#iptCodigoPersona").prop('disabled', false);
+
+		///INICIO VALIDAR INGRESO DEL CAMPO CODIGO/////
+		var codigo = $("#Cargo");
+
+		if (codigo == null || codigo.length == 0 || /^\s+$/.test(codigo)) {
+			$("#ValidacionCodigoPersona").append("Ingresar codigo del empleado");
+		}
+		else {
+			$("#ValidacionCodigoPersona").prop("disable", true);
+		}
+		///FIN VALIDAR INGRESO DEL CAMPO CODIGO/////
+	}
+	else {
+		$("#iptCodigoPersona").prop('disabled', true);
+		document.getElementById("iptCodigoPersona").selectedIndex = 0;
+	}
+});
+/////FIN VALIDAR CAMPO CODIGO/////////////
 
 //validar campo de detalle lleno
 $("#DetalleSrv").change(function () {
