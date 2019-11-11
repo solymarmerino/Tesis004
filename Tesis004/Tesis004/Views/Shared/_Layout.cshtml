@@ -20,28 +20,39 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="menuPrincipal">
-            <ul class="navbar-nav mr-2">
-                <li class="nav-item">
-                    @Html.ActionLink("Personal", "GestionPersonal", "Personal", new { area = "" }, new { @class = "nav-link" })
-                </li>
-            </ul>
-            <ul class="navbar-nav mr-2">
-                <li class="nav-item">
-                    @Html.ActionLink("Paciente", "BuscarPaciente", "Paciente", new { area = "" }, new { @class = "nav-link" })
-                </li>
-            </ul>
-            <ul class="navbar-nav mr-2">
-                <li class="nav-item">
-                    @Html.ActionLink("Cita", "ListarCita", "Servicio", new { area = "" }, new { @class = "nav-link" })
-                </li>
-            </ul>
-			 <ul class="navbar-nav mr-2">
-				 <li class="nav-item">
-				 	@Html.ActionLink("Contabilidad", "GestionContabilidad", "Contabilidad", new { area = "" }, new { @class = "nav-link" })
-				 </li>
-            </ul>
-        </div>
+		<div class="collapse navbar-collapse" id="menuPrincipal">
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item">
+					@Html.ActionLink("Personal", "GestionPersonal", "Personal", new { area = "" }, new { @class = "nav-link" })
+				</li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item">
+					@Html.ActionLink("Paciente", "BuscarPaciente", "Paciente", new { area = "" }, new { @class = "nav-link" })
+				</li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item">
+					@Html.ActionLink("Cita", "ListarCita", "Servicio", new { area = "" }, new { @class = "nav-link" })
+				</li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item">
+					@Html.ActionLink("Contabilidad", "GestionContabilidad", "Contabilidad", new { area = "" }, new { @class = "nav-link" })
+				</li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item">
+					@Html.ActionLink("Inventario", "GestionInventario", "Inventario", new { area = "" }, new { @class = "nav-link" })
+				</li>
+			</ul>
+			<ul class="navbar-nav mr-2">
+				<li class="nav-item">
+					@Html.ActionLink("Facturacion", "IngresoFactura", "Facturacion", new { area = "" }, new { @class = "nav-link" })
+				</li>
+			</ul>
+
+		</div>
     </nav>
 
     <div class="container body-content">

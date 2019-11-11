@@ -981,3 +981,623 @@ $("#Peso").change(function () {
 
 });
 ////////FIN CALCULO DE INDICE DE MASA CORPORAL
+
+
+////////INICIO VALIDACION CONTABILIDAD//////////////
+////////INICIO VALIDACION CAMPOS INGRESOS
+//////INICIO validacion de servicio
+$("#IptIngresoServicio").change(function () {
+	$("#ValidacionIngresoServicio").empty();
+	var nombre = $("#IptIngresoServicio").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionIngresoServicio").append("Ingresar Servicio");
+	}
+	else {
+		$("#ValidacionIngresoServicio").prop("disable", true);
+	}
+});
+//////FIN validacion de servicio
+
+//////INICIO validacion de detelle de ingreso
+$("#IptIngresoDetalle").change(function () {
+	$("#ValidacionIngresoDetalle").empty();
+	var nombre = $("#IptIngresoDetalle").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionIngresoDetalle").append("Ingresar Detalle");
+	}
+	else {
+		$("#ValidacionIngresoDetalle").prop("disable", true);
+	}
+});
+//////FIN validacion de servicio
+
+////////INICIO VALIDACION CAMPO MONTO
+$("#IptIngresoMonto").change(function () {
+	$("#ValidacionIngresoMonto").empty();
+	var precionarterial = $("#IptIngresoMonto").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionIngresoMonto").append("Ingresar Monto");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionIngresoMonto").prop("disable", true);
+		}
+		else {
+			$("#ValidacionIngresoMonto").append("Ingresar solo numeros");
+		}
+	}
+});
+////////FIN VALIDACION CAMPO MONTO
+
+//////INICIO VALIDACION BOTON GUARDAR INGRESO 
+$("#btnAgregarIngreso").click(function () {
+	$("#ValidacionIngresoServicio").empty();
+	var nombre = $("#IptIngresoServicio").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionIngresoServicio").append("Ingresar Servicio");
+	}
+	else {
+		$("#ValidacionIngresoServicio").prop("disable", true);
+	}
+
+
+		$("#ValidacionIngresoDetalle").empty();
+		var nombre = $("#IptIngresoDetalle").val();
+		// preguntar si el campo esta vacio
+		if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+			$("#ValidacionIngresoDetalle").append("Ingresar Detalle");
+		}
+		else {
+			$("#ValidacionIngresoDetalle").prop("disable", true);
+		}
+
+		$("#ValidacionIngresoMonto").empty();
+	var precionarterial = $("#IptIngresoMonto").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionIngresoMonto").append("Ingresar Monto");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionIngresoMonto").prop("disable", true);
+		}
+		else {
+			$("#ValidacionIngresoMonto").append("Ingresar solo numeros");
+		}
+	}
+});
+
+/////FIN VALIDACION BOTON GUARDAR INGRESO 
+////////FIN VALIDACION CAMPOS INGRESOS
+///////////////////////////////////////////////
+////////INICIO VALIDACION CAMPOS EGRESOS
+//////INICIO validacion de servicio
+$("#iptEgresoServicio").change(function () {
+	$("#ValidacionEgresoServicio").empty();
+	var nombre = $("#iptEgresoServicio").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionEgresoServicio").append("Ingresar Servicio");
+	}
+	else {
+		$("#ValidacionEgresoServicio").prop("disable", true);
+	}
+});
+//////FIN validacion de servicio
+
+//////INICIO validacion de detelle de Egreso
+$("#iptEgresoDetalle").change(function () {
+	$("#ValidacionEgresoDetalle").empty();
+	var nombre = $("#iptEgresoDetalle").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionEgresoDetalle").append("Ingresar Detalle");
+	}
+	else {
+		$("#ValidacionEgresoDetalle").prop("disable", true);
+	}
+});
+//////FIN validacion de servicio
+
+////////INICIO VALIDACION CAMPO MONTO
+$("#iptEgresoMonto").change(function () {
+	$("#ValidacionEgresoMonto").empty();
+	var precionarterial = $("#iptEgresoMonto").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionEgresoMonto").append("Ingresar Monto");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionEgresoMonto").prop("disable", true);
+		}
+		else {
+			$("#ValidacionEgresoMonto").append("Ingresar solo numeros");
+		}
+	}
+});
+////////FIN VALIDACION CAMPO MONTO
+
+//////INICIO VALIDACION BOTON GUARDAR INGRESO 
+$("#btnAgregarEgreso").click(function () {
+	$("#ValidacionEgresoServicio").empty();
+	var nombre = $("#iptEgresoServicio").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionEgresoServicio").append("Ingresar Servicio");
+	}
+	else {
+		$("#ValidacionEgresoServicio").prop("disable", true);
+	}
+
+
+	$("#ValidacionEgresoDetalle").empty();
+	var nombre = $("#iptEgresoDetalle").val();
+	// preguntar si el campo esta vacio
+	if (nombre == null || nombre.length == 0 || /^\s+$/.test(nombre)) {
+		$("#ValidacionEgresoDetalle").append("Ingresar Detalle");
+	}
+	else {
+		$("#ValidacionEgresoDetalle").prop("disable", true);
+	}
+
+	$("#ValidacionEgresoMonto").empty();
+	var precionarterial = $("#iptEgresoMonto").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (precionarterial == null || precionarterial.length == 0 || /^\s+$/.test(precionarterial)) {
+		$("#ValidacionEgresoMonto").append("Ingresar Monto");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(precionarterial)) && (/[0-9]/.test(precionarterial)) && !(/[-_;:*/+!$%&()=]/.test(precionarterial))) {
+			$("#ValidacionEgresoMonto").prop("disable", true);
+		}
+		else {
+			$("#ValidacionEgresoMonto").append("Ingresar solo numeros");
+		}
+	}
+});
+
+/////FIN VALIDACION BOTON GUARDAR INGRESO 
+////////FIN VALIDACION CAMPOS INGRESOS
+////////FIN VALIDACION CONTABILIDAD ////////////////
+
+////////INICIO VALIDACION INVENTARIO////////////////
+////////INICIO VALIDACION CAMPOS
+////////INICIO VALIDACION CANTIDAD
+$("#iptCantidad").change(function () {
+	$("#ValidacionCantidad").empty();
+	var cantidadproducto = $("#iptCantidad").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (cantidadproducto == null || cantidadproducto.length == 0 || /^\s+$/.test(cantidadproducto)) {
+		$("#ValidacionCantidad").append("Campo Obligatorio");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(cantidadproducto)) && (/[0-9]/.test(cantidadproducto)) && !(/[-_;:*/+!$%&()=]/.test(cantidadproducto))) {
+			$("#ValidacionCantidad").prop("disable", true);
+		}
+		else {
+			$("#ValidacionCantidad").append("Ingresar solo numeros");
+		}
+	}
+});
+////////FIN VALIDACION CANTIDAD
+////INICIO validacion FECHA DE VENCIMIENTO
+$("#iptFechaVencimiento").change(function () {
+	$("#ValidacionFechaVencimiento").empty();
+	var fechavencimiento = $("#iptFechaVencimiento").val();
+	///calcualar fecha actual corta
+	var fechamaxima = new Date();
+	var fechacomparacion = (fechamaxima.getFullYear() + "-" + (fechamaxima.getMonth() + 1) + "-" + fechamaxima.getDate());
+
+	///el campo fecha no este vacio
+
+	if (fechavencimiento == null || fechavencimiento.length == 0 || /^\s+$/.test(fechavencimiento)) {
+		$("#ValidacionFechaVencimiento").append("Fecha no valida");
+	}
+	else {
+		$("#ValidacionFechaVencimiento").prop("disable", true);
+		//fecha mayor a la fecha actual
+		if (fechavencimiento < fechacomparacion) {
+			$("#ValidacionFechaVencimiento").append("Fecha no valida");
+		}
+		else {
+			$("#ValidacionFechaVencimiento").prop("disable", true);
+		}
+	}
+});
+////FIN validacion de FECHA DE VENCIMIENTO/////
+////////INICIO VALIDACION BOTON GUARDAR////////
+$("#btnGuardarProducto").click(function () {
+	$("#ValidacionProducto").empty();
+	var producto = $("#iptProducto").val();
+	// preguntar si el campo esta vacio
+	if (producto == null || producto.length == 0 || /^\s+$/.test(producto)) {
+		$("#ValidacionProducto").append("Ingresar Producto");
+	}
+	else {
+		$("#ValidacionProducto").prop("disable", true);
+	}
+
+	$("#ValidacionTipoProducto").empty();
+	var tipoProducto = $("#sltTipoProducto").val();
+	// preguntar si el campo esta vacio
+	if (tipoProducto == null || tipoProducto.length == 0 || /^\s+$/.test(tipoProducto)) {
+		$("#ValidacionTipoProducto").append("Seleccionar tipo producto");
+	}
+	else {
+		$("#ValidacionTipoProducto").prop("disable", true);
+	}
+
+	$("#ValidacionCantidad").empty();
+	var cabtidadproducto = $("#iptCantidad").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (cabtidadproducto == null || cabtidadproducto.length == 0 || /^\s+$/.test(cabtidadproducto)) {
+		$("#ValidacionCantidad").append("Campo obligatorio");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(cabtidadproducto)) && (/[0-9]/.test(cabtidadproducto)) && !(/[-_;:*/+!$%&()=]/.test(cabtidadproducto))) {
+			$("#ValidacionCantidad").prop("disable", true);
+		}
+		else {
+			$("#ValidacionCantidad").append("Ingresar solo numeros");
+		}
+	}
+});
+////////FIN VALIDACION BOTON GUARDAR///////////
+////////INICIO VALIDACION BOTON BUSCAR///////////
+$("#btnBuscarProducto").click(function () {
+	$("#ValidacionProducto").empty();
+	var producto = $("#iptProducto").val();
+	// preguntar si el campo esta vacio
+	if (producto == null || producto.length == 0 || /^\s+$/.test(producto)) {
+		$("#ValidacionProducto").append("Ingresar Producto");
+	}
+	else {
+		$("#ValidacionProducto").prop("disable", true);
+	}
+});
+////////FIN VALIDACION BOTON BUSCAR///////////
+////////FIN VALIDACION CAMPOS
+////////FIN VALIDACION INVENTARIO////////////////
+////////INICIO VALIDACION INVENTARIO/////////////
+////////INICIO VALIDACION CLIENTE////////
+$("#iptClienteFactura").change(function () {
+	$("#ValidacionClienteFactura").empty();
+	var clientenombre = $("#iptClienteFactura").val();
+	// preguntar si el campo esta vacio
+	if (clientenombre == null || clientenombre.length == 0 || /^\s+$/.test(clientenombre)) {
+		$("#ValidacionClienteFactura").append("Ingresar Nombre");
+	}
+	else {
+		$("#ValidacionClienteFactura").prop("disable", true);
+
+		//preguntar si contiene solo letras
+		if (/[A-Za-z]/.test(clientenombre) && !(/[0-9]/.test(clientenombre)) && !(/[-_.;:*/+!·$%&()=]/.test(clientenombre))) {
+			$("#ValidacionClienteFactura").prop("disable", true);
+		}
+		else {
+			$("#ValidacionClienteFactura").append("Ingresar solo letras");
+		}
+	}
+});
+////////FIN VALIDACION CLIENTE////////
+////////INICIO VALIDACION CEDULA O RUC ///////
+$("#iptClienteCI").change(function () {
+	$("#ValidacionClienteCedula").empty();
+	var cedula = $("#iptClienteCI").val();
+	//Preguntamos si la cedula consta de 10 digitos
+	if (cedula.length < 14) {
+		//Obtenemos el digito de la region que sonlos dos primeros digitos
+		var digito_region = cedula.substring(0, 2);
+		//Pregunto si la region existe ecuador se divide en 24 regiones
+		if (digito_region >= 1 && digito_region <= 24) {
+			// Extraigo el ultimo digito
+			var ultimo_digito = cedula.substring(9, 10);
+			//Agrupo todos los pares y los sumo
+			var pares = parseInt(cedula.substring(1, 2)) + parseInt(cedula.substring(3, 4)) + parseInt(cedula.substring(5, 6)) + parseInt(cedula.substring(7, 8));
+
+			//Agrupo los impares, los multiplico por un factor de 2, si la resultante es > que 9 le restamos el 9 a la resultante
+			var numero1 = cedula.substring(0, 1);
+			var numero1 = (numero1 * 2);
+			if (numero1 > 9) { var numero1 = (numero1 - 9); }
+
+			var numero3 = cedula.substring(2, 3);
+			var numero3 = (numero3 * 2);
+			if (numero3 > 9) { var numero3 = (numero3 - 9); }
+
+			var numero5 = cedula.substring(4, 5);
+			var numero5 = (numero5 * 2);
+			if (numero5 > 9) { var numero5 = (numero5 - 9); }
+
+			var numero7 = cedula.substring(6, 7);
+			var numero7 = (numero7 * 2);
+			if (numero7 > 9) { var numero7 = (numero7 - 9); }
+
+			var numero9 = cedula.substring(8, 9);
+			var numero9 = (numero9 * 2);
+			if (numero9 > 9) { var numero9 = (numero9 - 9); }
+
+			var impares = numero1 + numero3 + numero5 + numero7 + numero9;
+
+			//Suma total
+			var suma_total = (pares + impares);
+			//extraemos el primero digito
+			var primer_digito_suma = String(suma_total).substring(0, 1);
+			//Obtenemos la decena inmediata
+			var decena = (parseInt(primer_digito_suma) + 1) * 10;
+			//Obtenemos la resta de la decena inmediata - la suma_total esto nos da el digito validador
+			var digito_validador = decena - suma_total;
+			//Si el digito validador es = a 10 toma el valor de 0
+			if (digito_validador == 10)
+				var digito_validador = 0;
+			//Validamos que el digito validador sea igual al de la cedula
+			if (digito_validador == ultimo_digito) {
+				$("#ValidacionClienteCedula").prop("disable", true);
+			} else {
+				$("#ValidacionClienteCedula").append("Cédula Inválida");
+			}
+		} else {
+			// imprimimos inválida si la region no pertenece
+			$("#ValidacionClienteCedula").append("Cédula Inválida");
+		}
+	} else {
+		//imprimimos inválida si la cedula tiene mas o menos de 10 digitos
+		$("#ValidacionClienteCedula").append("Cédula Inválida: debe tener 10 caracteres");
+	}
+});
+////////FIN VALIDACION CEDULA O RUC ///////
+////////INICIO VALIDACION TELEFONO////////
+$("#iptClienteTelefono").change(function () {
+	$("#ValidacionClienteTelefono").empty();
+	var telefono = $("#iptClienteTelefono").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#ValidacionClienteTelefono").append("Ingresar numero de telefono");
+	}
+	else {
+		$("#ValidacionClienteTelefono").prop("disable", true);
+		//preguntar si es de la longitud correcta
+		if (telefono.length > 6) {
+			$("#ValidacionClienteTelefono").prop("disable", true);
+
+			//preguntar si contiene solo numeros
+			if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
+				$("#ValidacionClienteTelefono").prop("disable", true);
+			}
+			else {
+				$("#ValidacionClienteTelefono").append("Ingresar solo numeros");
+			}
+		}
+		else {
+			$("#ValidacionClienteTelefono").append("Numero de telefono incompleto");
+		}
+	}
+});
+////////FIN VALIDACION TELEFONO////////
+////////INICIO VALIDACION BOTON IMPRIMIR//////
+$("#btnImprimirFactura").click(function () {
+
+	///cliente
+	$("#ValidacionClienteFactura").empty();
+	var clientenombre = $("#iptClienteFactura").val();
+	// preguntar si el campo esta vacio
+	if (clientenombre == null || clientenombre.length == 0 || /^\s+$/.test(clientenombre)) {
+		$("#ValidacionClienteFactura").append("Ingresar Nombre");
+	}
+	else {
+		$("#ValidacionClienteFactura").prop("disable", true);
+
+		//preguntar si contiene solo letras
+		if (/[A-Za-z]/.test(clientenombre) && !(/[0-9]/.test(clientenombre)) && !(/[-_.;:*/+!·$%&()=]/.test(clientenombre))) {
+			$("#ValidacionClienteFactura").prop("disable", true);
+		}
+		else {
+			$("#ValidacionClienteFactura").append("Ingresar solo letras");
+		}
+	}
+
+	///cedula
+	$("#ValidacionClienteCedula").empty();
+	var cedula = $("#iptClienteCI").val();
+	//Preguntamos si la cedula consta de 10 digitos
+	if (cedula.length < 14) {
+		//Obtenemos el digito de la region que sonlos dos primeros digitos
+		var digito_region = cedula.substring(0, 2);
+		//Pregunto si la region existe ecuador se divide en 24 regiones
+		if (digito_region >= 1 && digito_region <= 24) {
+			// Extraigo el ultimo digito
+			var ultimo_digito = cedula.substring(9, 10);
+			//Agrupo todos los pares y los sumo
+			var pares = parseInt(cedula.substring(1, 2)) + parseInt(cedula.substring(3, 4)) + parseInt(cedula.substring(5, 6)) + parseInt(cedula.substring(7, 8));
+
+			//Agrupo los impares, los multiplico por un factor de 2, si la resultante es > que 9 le restamos el 9 a la resultante
+			var numero1 = cedula.substring(0, 1);
+			var numero1 = (numero1 * 2);
+			if (numero1 > 9) { var numero1 = (numero1 - 9); }
+
+			var numero3 = cedula.substring(2, 3);
+			var numero3 = (numero3 * 2);
+			if (numero3 > 9) { var numero3 = (numero3 - 9); }
+
+			var numero5 = cedula.substring(4, 5);
+			var numero5 = (numero5 * 2);
+			if (numero5 > 9) { var numero5 = (numero5 - 9); }
+
+			var numero7 = cedula.substring(6, 7);
+			var numero7 = (numero7 * 2);
+			if (numero7 > 9) { var numero7 = (numero7 - 9); }
+
+			var numero9 = cedula.substring(8, 9);
+			var numero9 = (numero9 * 2);
+			if (numero9 > 9) { var numero9 = (numero9 - 9); }
+
+			var impares = numero1 + numero3 + numero5 + numero7 + numero9;
+
+			//Suma total
+			var suma_total = (pares + impares);
+			//extraemos el primero digito
+			var primer_digito_suma = String(suma_total).substring(0, 1);
+			//Obtenemos la decena inmediata
+			var decena = (parseInt(primer_digito_suma) + 1) * 10;
+			//Obtenemos la resta de la decena inmediata - la suma_total esto nos da el digito validador
+			var digito_validador = decena - suma_total;
+			//Si el digito validador es = a 10 toma el valor de 0
+			if (digito_validador == 10)
+				var digito_validador = 0;
+			//Validamos que el digito validador sea igual al de la cedula
+			if (digito_validador == ultimo_digito) {
+				$("#ValidacionClienteCedula").prop("disable", true);
+			} else {
+				$("#ValidacionClienteCedula").append("Cédula Inválida");
+			}
+		} else {
+			// imprimimos inválida si la region no pertenece
+			$("#ValidacionClienteCedula").append("Cédula Inválida");
+		}
+	} else {
+		//imprimimos inválida si la cedula tiene mas o menos de 10 digitos
+		$("#ValidacionClienteCedula").append("Cédula Inválida: debe tener 10 caracteres");
+	}
+
+	///direccion
+	$("#ValidacionDireccionPaciente").empty();
+	var direccion = $("#IptDireccion").val();
+	// preguntar si el campo esta vacio
+	if (direccion == null || direccion.length == 0 || /^\s+$/.test(direccion)) {
+		$("#ValidacionDireccionPaciente").append("***Ingresar Dirección");
+	}
+
+	///telefono
+	$("#ValidacionClienteTelefono").empty();
+	var telefono = $("#iptClienteTelefono").val();
+	// preguntar si el campo esta vacio
+	if (telefono == null || telefono.length == 0 || /^\s+$/.test(telefono)) {
+		$("#ValidacionClienteTelefono").append("Ingresar numero de telefono");
+	}
+	else {
+		$("#ValidacionClienteTelefono").prop("disable", true);
+		//preguntar si es de la longitud correcta
+		if (telefono.length > 6) {
+			$("#ValidacionClienteTelefono").prop("disable", true);
+
+			//preguntar si contiene solo numeros
+			if (!(/[A-Za-z]/.test(telefono)) && (/[0-9]/.test(telefono)) && !(/[-_.;*:/+!·$%&()=]/.test(telefono))) {
+				$("#ValidacionClienteTelefono").prop("disable", true);
+			}
+			else {
+				$("#ValidacionClienteTelefono").append("Ingresar solo numeros");
+			}
+		}
+		else {
+			$("#ValidacionClienteTelefono").append("Numero de telefono incompleto");
+		}
+	}
+
+});
+////////FIN VALIDACION BOTON IMPRIMIR//////
+////////INICIO VALIDACION CANTIDAD/////////
+$("#iptCantidadProductoFactura").change(function () {
+	$("#ValidacionCantidadProductoFactura").empty();
+	var cantidadproducto = $("#iptCantidadProductoFactura").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (cantidadproducto == null || cantidadproducto.length == 0 || /^\s+$/.test(cantidadproducto)) {
+		$("#ValidacionCantidadProductoFactura").append("Campo Obligatorio");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(cantidadproducto)) && (/[0-9]/.test(cantidadproducto)) && !(/[-_;:*/+!$%&()=]/.test(cantidadproducto))) {
+			$("#ValidacionCantidadProductoFactura").prop("disable", true);
+		}
+		else {
+			$("#ValidacionCantidadProductoFactura").append("Ingresar solo numeros");
+		}
+	}
+});
+////////FIN VALIDACION CANTIDAD/////////
+////////INICIO VALIDACION VALOR ////////
+$("#iptValorProductoFactura").change(function () {
+	$("#ValidacionValorProductoFactura").empty();
+	var valorsrv = $("#iptValorProductoFactura").val();
+	//preguntar si valor es nulo
+	if (valorsrv == null || valorsrv.length == 0 || /^\s+$/.test(valorsrv)) {
+		$("#ValidacionValorProductoFactura").append("Ingresar valor del servicio");
+	}
+	else {
+		$("#ValidacionValorProductoFactura").prop("disable", true);
+		//preguntar si contiene solo numeros
+		if (!(/[A-Za-z]/.test(valorsrv)) && (/[0-9]/.test(valorsrv)) && !(/[-_;*:/+!·$%&()=]/.test(valorsrv))) {
+			$("#ValidacionValorProductoFactura").prop("disable", true);
+		}
+		else {
+			$("#ValidacionValorProductoFactura").append("Ingresar solo numeros");
+		}
+	}
+});
+////////FIN VALIDACION VALOR ////////
+////////INICIO VALIDACION BOTON AGREGAR DETALLE///////
+$("#btnAgregarDetalleFactura").click(function () {
+
+	///DETALLE
+	$("#ValidacionDetalleFactura").empty();
+	var detalle = $("#iptDetalleFactura").val();
+	// preguntar si el campo esta vacio
+	if (detalle == null || detalle.length == 0 || /^\s+$/.test(detalle)) {
+		$("#ValidacionDetalleFactura").append("***Ingresar Dirección");
+	}
+
+	///CANTIDAD
+	$("#ValidacionCantidadProductoFactura").empty();
+	var cantidadproducto = $("#iptCantidadProductoFactura").val();
+	// preguntar si el campo esta vacio
+
+	//preguntar si contiene solo numeros
+	if (cantidadproducto == null || cantidadproducto.length == 0 || /^\s+$/.test(cantidadproducto)) {
+		$("#ValidacionCantidadProductoFactura").append("Campo Obligatorio");
+	}
+	else {
+		if (!(/[A-Za-z]/.test(cantidadproducto)) && (/[0-9]/.test(cantidadproducto)) && !(/[-_;:*/+!$%&()=]/.test(cantidadproducto))) {
+			$("#ValidacionCantidadProductoFactura").prop("disable", true);
+		}
+		else {
+			$("#ValidacionCantidadProductoFactura").append("Ingresar solo numeros");
+		}
+	}
+
+	///VALOR
+	$("#ValidacionValorProductoFactura").empty();
+	var valorsrv = $("#iptValorProductoFactura").val();
+	//preguntar si valor es nulo
+	if (valorsrv == null || valorsrv.length == 0 || /^\s+$/.test(valorsrv)) {
+		$("#ValidacionValorProductoFactura").append("Ingresar valor del servicio");
+	}
+	else {
+		$("#ValidacionValorProductoFactura").prop("disable", true);
+		//preguntar si contiene solo numeros
+		if (!(/[A-Za-z]/.test(valorsrv)) && (/[0-9]/.test(valorsrv)) && !(/[-_;*:/+!·$%&()=]/.test(valorsrv))) {
+			$("#ValidacionValorProductoFactura").prop("disable", true);
+		}
+		else {
+			$("#ValidacionValorProductoFactura").append("Ingresar solo numeros");
+		}
+	}
+
+});
+////////FIN VALIDACION BOTON AGREGAR DETALLE///////
+////////FIN VALIDACION INVENTARIO////////////
