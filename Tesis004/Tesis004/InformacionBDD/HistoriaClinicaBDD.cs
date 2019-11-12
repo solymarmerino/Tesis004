@@ -598,5 +598,329 @@ namespace Tesis004.InformacionBDD
 
             return listaProcedimiento;
         }
+
+        /////////////////////////**************PERSONAL
+        public bool InsertarAntecedentePersonal(AntecedentePersonalModel antecedente)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO AntecedentePersonal (AntecedentePersonal, DescripcionAP, HistoriaClinicaID) " +
+                                  "VALUES (@AntecedentePersonal, @DescripcionAP, @HistoriaClinicaID); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@AntecedentePersonal", antecedente.NumAntecedentePersonal);
+            sentenciaSQL.Parameters.AddWithValue("@DescripcionAP", antecedente.DescripcionAP);
+            sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", antecedente.HistoriaClinicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public List<AntecedentePersonalModel> ListarAntecedentePersonal(int historiaClinicaID)
+        {
+            List<AntecedentePersonalModel> listaAntecedente = new List<AntecedentePersonalModel>();
+
+            string sentenciaSql = "SELECT ap.AntecedentePersonalID, ap.AntecedentePersonal, ap.DescripcionAP, p.Valor " +
+                                  "FROM AntecedentePersonal ap " +
+                                  "INNER JOIN Parametro p ON ap.AntecedentePersonal = p.ParametroID " +
+                                  $"WHERE ap.HistoriaClinicaID = {historiaClinicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                AntecedentePersonalModel antecedente = new AntecedentePersonalModel();
+                antecedente.AntecedentePersonalID = tablaDatos.Rows[i].Field<int>("AntecedentePersonalID");
+                antecedente.NombreAntecedentePersonal = tablaDatos.Rows[i].Field<string>("Valor");
+                antecedente.DescripcionAP = tablaDatos.Rows[i].Field<string>("DescripcionAP");
+
+                listaAntecedente.Add(antecedente);
+            }
+
+            return listaAntecedente;
+        }
+
+        public bool EliminarAntecedentePersonal(AntecedentePersonalModel antecedente)
+        {
+            bool eliminado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "DELETE FROM AntecedentePersonal " +
+                                  "WHERE AntecedentePersonalID = @AntecedentePersonalID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@AntecedentePersonalID", antecedente.AntecedentePersonalID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                eliminado = true;
+            }
+
+            return eliminado;
+        }
+
+        /////////////////////////**************FAMILIAR
+        public bool InsertarAntecedenteFamiliar(AntecedenteFamiliarModel antecedente)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO AntecedenteFamiliar (AntecedenteFamiliar, DescripcionAF, HistoriaClinicaID) " +
+                                  "VALUES (@AntecedenteFamiliar, @DescripcionAF, @HistoriaClinicaID); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@AntecedenteFamiliar", antecedente.NumAntecedenteFamiliar);
+            sentenciaSQL.Parameters.AddWithValue("@DescripcionAF", antecedente.DescripcionAF);
+            sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", antecedente.HistoriaClinicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public List<AntecedenteFamiliarModel> ListarAntecedenteFamiliar(int historiaClinicaID)
+        {
+            List<AntecedenteFamiliarModel> listaAntecedente = new List<AntecedenteFamiliarModel>();
+
+            string sentenciaSql = "SELECT af.AntecedenteFamiliarID, af.AntecedenteFamiliar, af.DescripcionAF, p.Valor " +
+                                  "FROM AntecedenteFamiliar af " +
+                                  "INNER JOIN Parametro p ON af.AntecedenteFamiliar = p.ParametroID " +
+                                  $"WHERE af.HistoriaClinicaID = {historiaClinicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                AntecedenteFamiliarModel antecedente = new AntecedenteFamiliarModel();
+                antecedente.AntecedenteFamiliarID = tablaDatos.Rows[i].Field<int>("AntecedenteFamiliarID");
+                antecedente.NombreAntecedenteFamiliar = tablaDatos.Rows[i].Field<string>("Valor");
+                antecedente.DescripcionAF = tablaDatos.Rows[i].Field<string>("DescripcionAF");
+
+                listaAntecedente.Add(antecedente);
+            }
+
+            return listaAntecedente;
+        }
+
+        public bool EliminarAntecedenteFamiliar(AntecedenteFamiliarModel antecedente)
+        {
+            bool eliminado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "DELETE FROM AntecedenteFamiliar " +
+                                  "WHERE AntecedenteFamiliarID = @AntecedenteFamiliarID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@AntecedenteFamiliarID", antecedente.AntecedenteFamiliarID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                eliminado = true;
+            }
+
+            return eliminado;
+        }
+
+        /////////////////////////**************SOCIAL
+        public bool InsertarAntecedenteSocial(AntecedenteSocialModel antecedente)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO AntecedenteSocial (AntecedenteSocial, DescripcionAS, HistoriaClinicaID) " +
+                                  "VALUES (@AntecedenteSocial, @DescripcionAS, @HistoriaClinicaID); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@AntecedenteSocial", antecedente.NumAntecedenteSocial);
+            sentenciaSQL.Parameters.AddWithValue("@DescripcionAS", antecedente.DescripcionAS);
+            sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", antecedente.HistoriaClinicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public List<AntecedenteSocialModel> ListarAntecedenteSocial(int historiaClinicaID)
+        {
+            List<AntecedenteSocialModel> listaAntecedente = new List<AntecedenteSocialModel>();
+
+            string sentenciaSql = "SELECT aso.AntecedenteSocialID, aso.AntecedenteSocial, aso.DescripcionAS, p.Valor " +
+                                  "FROM AntecedenteSocial aso " +
+                                  "INNER JOIN Parametro p ON aso.AntecedenteSocial = p.ParametroID " +
+                                  $"WHERE aso.HistoriaClinicaID = {historiaClinicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                AntecedenteSocialModel antecedente = new AntecedenteSocialModel();
+                antecedente.AntecedenteSocialID = tablaDatos.Rows[i].Field<int>("AntecedenteSocialID");
+                antecedente.NombreAntecedenteSocial = tablaDatos.Rows[i].Field<string>("Valor");
+                antecedente.DescripcionAS = tablaDatos.Rows[i].Field<string>("DescripcionAS");
+
+                listaAntecedente.Add(antecedente);
+            }
+
+            return listaAntecedente;
+        }
+
+        public bool EliminarAntecedenteSocial(AntecedenteSocialModel antecedente)
+        {
+            bool eliminado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "DELETE FROM AntecedenteSocial " +
+                                  "WHERE AntecedenteSocialID = @AntecedenteSocialID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@AntecedenteSocialID", antecedente.AntecedenteSocialID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                eliminado = true;
+            }
+
+            return eliminado;
+        }
+
+        /////////////////////////**************HABITO
+        public bool InsertarHabito(HabitoModel habito)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "INSERT INTO Habito (Habito, HabitoDetalle, HistoriaClinicaID) " +
+                                  "VALUES (@Habito, @HabitoDetalle, @HistoriaClinicaID); ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@Habito", habito.NumHabito);
+            sentenciaSQL.Parameters.AddWithValue("@HabitoDetalle", habito.DescripcionHabito);
+            sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", habito.HistoriaClinicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public List<HabitoModel> ListarHabito(int historiaClinicaID)
+        {
+            List<HabitoModel> listaHabito = new List<HabitoModel>();
+
+            string sentenciaSql = "SELECT h.HabitoID, h.Habito, h.HabitoDetalle, p.Valor " +
+                                  "FROM Habito h " +
+                                  "INNER JOIN Parametro p ON h.Habito = p.ParametroID " +
+                                  $"WHERE HistoriaClinicaID = {historiaClinicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                HabitoModel habito = new HabitoModel();
+                habito.HabitoID = tablaDatos.Rows[i].Field<int>("HabitoID");
+                habito.NombreHabito = tablaDatos.Rows[i].Field<string>("Valor");
+                habito.DescripcionHabito = tablaDatos.Rows[i].Field<string>("HabitoDetalle");
+
+                listaHabito.Add(habito);
+            }
+
+            return listaHabito;
+        }
+
+        public bool EliminarHabito(HabitoModel habito)
+        {
+            bool eliminado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "DELETE FROM Habito " +
+                                  "WHERE HabitoID = @HabitoID; ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@HabitoID", habito.HabitoID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                eliminado = true;
+            }
+
+            return eliminado;
+        }
+
+        public bool ModificarAlergia(HistoriaClinicaModel historiaClinica)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+            string sentenciaSql = "UPDATE HistoriaClinica " +
+                                  "SET Alergias = @Alergias " +
+                                  "WHERE HistoriaClinicaID= @HistoriaClinicaID ";
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@Alergias", historiaClinica.Alergias);
+            sentenciaSQL.Parameters.AddWithValue("@HistoriaClinicaID", historiaClinica.HistoriaClinicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
+        public HistoriaClinicaModel ConsultarAlergia(int historiaClinicaID)
+        {
+            string sentenciaSql = "SELECT HistoriaClinicaID, Alergias " +
+                                  "FROM HistoriaClinica " +
+                                  $"WHERE HistoriaClinicaID = {historiaClinicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+            HistoriaClinicaModel historiaClinica = new HistoriaClinicaModel();
+
+            if (tablaDatos.Rows.Count > 0)
+            {
+                historiaClinica.HistoriaClinicaID = tablaDatos.Rows[0].Field<int>("HistoriaClinicaID");
+                historiaClinica.Alergias = tablaDatos.Rows[0].Field<string>("Alergias");
+            }
+
+            return historiaClinica;
+        }
     }
 }
