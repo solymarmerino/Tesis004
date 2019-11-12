@@ -67,6 +67,8 @@ function limpiarTablaAtencionPrevia() {
 }
 
 function limpiarTablaAtecedentePersonal() {
+    document.getElementById("atecedentePersonal").selectedIndex = 0;
+    $("#atecedentePersonalTexto").val("");
     $("#tblAntecedentePersonal").empty();
     var cabecera = "<tr>" +
         "<th scope=\"col\">Antecedente</th>" +
@@ -77,6 +79,8 @@ function limpiarTablaAtecedentePersonal() {
 }
 
 function limpiarTablaAtecedenteFamiliar() {
+    document.getElementById("atecedenteFamiliar").selectedIndex = 0;
+    $("#atecedenteFamiliarTexto").val("");
     $("#tblAntecedenteFamiliar").empty();
     var cabecera = "<tr>" +
         "<th scope=\"col\">Antecedente</th>" +
@@ -87,6 +91,8 @@ function limpiarTablaAtecedenteFamiliar() {
 }
 
 function limpiarTablaAtecedenteSocial() {
+    document.getElementById("atecedenteSocial").selectedIndex = 0;
+    $("#atecedenteSocialTexto").val("");
     $("#tblAntecedenteSocial").empty();
     var cabecera = "<tr>" +
         "<th scope=\"col\">Antecedente</th>" +
@@ -97,6 +103,8 @@ function limpiarTablaAtecedenteSocial() {
 }
 
 function limpiarTablaHabito() {
+    document.getElementById("habito").selectedIndex = 0;
+    $("#habitoTexto").val("");
     $("#tblHabito").empty();
     var cabecera = "<tr>" +
         "<th scope=\"col\">Antecedente</th>" +
@@ -597,6 +605,366 @@ function eliminarProcedimiento(idProcedimiento) {
     $.ajax(EliminarProcedimiento);
 }
 
+//////////////////////////////AP
+function consultarAntecedentePersonal() {
+    var ConsultarAntececente = {};
+    ConsultarAntececente.url = "/HistoriaClinica/ConsultarAntecedentePersonal";
+    ConsultarAntececente.type = "POST";
+    ConsultarAntececente.data = JSON.stringify({
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    ConsultarAntececente.datatype = "json";
+    ConsultarAntececente.contentType = "application/json";
+    ConsultarAntececente.success = function (resultado) {
+        if (resultado.length > 0) {
+            for (var i = 0; i < resultado.length; i++) {
+                var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["NombreAntecedentePersonal"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["DescripcionAP"] + "</td>";
+                fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedentePersonal\" id=\"btnEliminarAntecedentePersonal\" onclick=\"eliminarAntecedentePersonal(" + resultado[i]["AntecedentePersonalID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+                $("#tblAntecedentePersonal").append("<tr>" + fila + "</tr>");
+            }
+        }
+    };
+    ConsultarAntececente.error = function () {
+        toastr.error("Error al consultar los antecedentes personales");
+    };
+    $.ajax(ConsultarAntececente);
+}
+
+function ingresarAntecedentePersonal() {
+    var IngresarAntecedente = {};
+    IngresarAntecedente.url = "/HistoriaClinica/IngresarAntecedentePersonal";
+    IngresarAntecedente.type = "POST";
+    IngresarAntecedente.data = JSON.stringify({
+        NumAntecedentePersonal: $("#atecedentePersonal").val(),
+        DescripcionAP: $("#atecedentePersonalTexto").val(),
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    IngresarAntecedente.datatype = "json";
+    IngresarAntecedente.contentType = "application/json";
+    IngresarAntecedente.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Antecedente personal ingresado");
+            limpiarTablaAtecedentePersonal();
+            consultarAntecedentePersonal();
+        }
+        else {
+            toastr.error("Antecedente personal NO ingresado");
+        }
+    };
+    IngresarAntecedente.error = function () {
+        toastr.error("Error al ingresar antecedente personal");
+    };
+    $.ajax(IngresarAntecedente);
+}
+
+function eliminarAntecedentePersonal(idAntecedentePersonal) {
+    var EliminarAntecedente = {};
+    EliminarAntecedente.url = "/HistoriaClinica/EliminarAntecedentePersonal";
+    EliminarAntecedente.type = "POST";
+    EliminarAntecedente.data = JSON.stringify({
+        antecedentePersonalID: idAntecedentePersonal
+    });
+    EliminarAntecedente.datatype = "json";
+    EliminarAntecedente.contentType = "application/json";
+    EliminarAntecedente.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Antecedente personal eliminado");
+            limpiarTablaAtecedentePersonal();
+            consultarAntecedentePersonal();
+        }
+        else {
+            toastr.error("Antecedente personal NO eliminado");
+        }
+    };
+    EliminarAntecedente.error = function () {
+        toastr.error("Error al eliminar antecedente personal");
+    };
+    $.ajax(EliminarAntecedente);
+}
+
+//////////////////////////////AF
+function consultarAntecedenteFamiliar() {
+    var ConsultarAntececente = {};
+    ConsultarAntececente.url = "/HistoriaClinica/ConsultarAntecedenteFamiliar";
+    ConsultarAntececente.type = "POST";
+    ConsultarAntececente.data = JSON.stringify({
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    ConsultarAntececente.datatype = "json";
+    ConsultarAntececente.contentType = "application/json";
+    ConsultarAntececente.success = function (resultado) {
+        if (resultado.length > 0) {
+            for (var i = 0; i < resultado.length; i++) {
+                var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["NombreAntecedenteFamiliar"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["DescripcionAF"] + "</td>";
+                fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedenteFamiliar\" id=\"btnEliminarAntecedenteFamiliar\" onclick=\"eliminarAntecedenteFamiliar(" + resultado[i]["AntecedenteFamiliarID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+                $("#tblAntecedenteFamiliar").append("<tr>" + fila + "</tr>");
+            }
+        }
+    };
+    ConsultarAntececente.error = function () {
+        toastr.error("Error al consultar los antecedentes familiares");
+    };
+    $.ajax(ConsultarAntececente);
+}
+
+function ingresarAntecedenteFamiliar() {
+    var IngresarAntecedente = {};
+    IngresarAntecedente.url = "/HistoriaClinica/IngresarAntecedenteFamiliar";
+    IngresarAntecedente.type = "POST";
+    IngresarAntecedente.data = JSON.stringify({
+        NumAntecedenteFamiliar: $("#atecedenteFamiliar").val(),
+        DescripcionAF: $("#atecedenteFamiliarTexto").val(),
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    IngresarAntecedente.datatype = "json";
+    IngresarAntecedente.contentType = "application/json";
+    IngresarAntecedente.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Antecedente familiar ingresado");
+            limpiarTablaAtecedenteFamiliar();
+            consultarAntecedenteFamiliar();
+        }
+        else {
+            toastr.error("Antecedente familiar NO ingresado");
+        }
+    };
+    IngresarAntecedente.error = function () {
+        toastr.error("Error al ingresar antecedente familiar");
+    };
+    $.ajax(IngresarAntecedente);
+}
+
+function eliminarAntecedenteFamiliar(idAntecedenteFamiliar) {
+    var EliminarAntecedente = {};
+    EliminarAntecedente.url = "/HistoriaClinica/EliminarAntecedenteFamiliar";
+    EliminarAntecedente.type = "POST";
+    EliminarAntecedente.data = JSON.stringify({
+        antecedenteFamiliarID: idAntecedenteFamiliar
+    });
+    EliminarAntecedente.datatype = "json";
+    EliminarAntecedente.contentType = "application/json";
+    EliminarAntecedente.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Antecedente familiar eliminado");
+            limpiarTablaAtecedenteFamiliar();
+            consultarAntecedenteFamiliar();
+        }
+        else {
+            toastr.error("Antecedente familiar NO eliminado");
+        }
+    };
+    EliminarAntecedente.error = function () {
+        toastr.error("Error al eliminar antecedente familiar");
+    };
+    $.ajax(EliminarAntecedente);
+}
+
+//////////////////////////////AS
+function consultarAntecedenteSocial() {
+    var ConsultarAntececente = {};
+    ConsultarAntececente.url = "/HistoriaClinica/ConsultarAntecedenteSocial";
+    ConsultarAntececente.type = "POST";
+    ConsultarAntececente.data = JSON.stringify({
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    ConsultarAntececente.datatype = "json";
+    ConsultarAntececente.contentType = "application/json";
+    ConsultarAntececente.success = function (resultado) {
+        if (resultado.length > 0) {
+            for (var i = 0; i < resultado.length; i++) {
+                var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["NombreAntecedenteSocial"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["DescripcionAS"] + "</td>";
+                fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedenteSocial\" id=\"btnEliminarAntecedenteSocial\" onclick=\"eliminarAntecedenteSocial(" + resultado[i]["AntecedenteSocialID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+                $("#tblAntecedenteSocial").append("<tr>" + fila + "</tr>");
+            }
+        }
+    };
+    ConsultarAntececente.error = function () {
+        toastr.error("Error al consultar los antecedentes social");
+    };
+    $.ajax(ConsultarAntececente);
+}
+
+function ingresarAntecedenteSocial() {
+    var IngresarAntecedente = {};
+    IngresarAntecedente.url = "/HistoriaClinica/IngresarAntecedenteSocial";
+    IngresarAntecedente.type = "POST";
+    IngresarAntecedente.data = JSON.stringify({
+        NumAntecedenteSocial: $("#atecedenteSocial").val(),
+        DescripcionAS: $("#atecedenteSocialTexto").val(),
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    IngresarAntecedente.datatype = "json";
+    IngresarAntecedente.contentType = "application/json";
+    IngresarAntecedente.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Antecedente social ingresado");
+            limpiarTablaAtecedenteSocial();
+            consultarAntecedenteSocial();
+        }
+        else {
+            toastr.error("Antecedente social NO ingresado");
+        }
+    };
+    IngresarAntecedente.error = function () {
+        toastr.error("Error al ingresar antecedente social");
+    };
+    $.ajax(IngresarAntecedente);
+}
+
+function eliminarAntecedenteSocial(idAntecedenteSocial) {
+    var EliminarAntecedente = {};
+    EliminarAntecedente.url = "/HistoriaClinica/EliminarAntecedenteSocial";
+    EliminarAntecedente.type = "POST";
+    EliminarAntecedente.data = JSON.stringify({
+        AntecedenteSocialID: idAntecedenteSocial
+    });
+    EliminarAntecedente.datatype = "json";
+    EliminarAntecedente.contentType = "application/json";
+    EliminarAntecedente.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Antecedente social eliminado");
+            limpiarTablaAtecedenteSocial();
+            consultarAntecedenteSocial();
+        }
+        else {
+            toastr.error("Antecedente social NO eliminado");
+        }
+    };
+    EliminarAntecedente.error = function () {
+        toastr.error("Error al eliminar antecedente social");
+    };
+    $.ajax(EliminarAntecedente);
+}
+
+//////////////////////////////H
+function consultarHabito() {
+    var ConsultarHabito = {};
+    ConsultarHabito.url = "/HistoriaClinica/ConsultarHabito";
+    ConsultarHabito.type = "POST";
+    ConsultarHabito.data = JSON.stringify({
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    ConsultarHabito.datatype = "json";
+    ConsultarHabito.contentType = "application/json";
+    ConsultarHabito.success = function (resultado) {
+        if (resultado.length > 0) {
+            for (var i = 0; i < resultado.length; i++) {
+                var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["NombreHabito"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["DescripcionHabito"] + "</td>";
+                fila += "<td scope=\"col\"> <button name=\"btnEliminarHabito\" id=\"btnEliminarHabito\" onclick=\"eliminarHabito(" + resultado[i]["HabitoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+                $("#tblHabito").append("<tr>" + fila + "</tr>");
+            }
+        }
+    };
+    ConsultarHabito.error = function () {
+        toastr.error("Error al consultar los habitos");
+    };
+    $.ajax(ConsultarHabito);
+}
+
+function ingresarHabito() {
+    var IngresarHabito = {};
+    IngresarHabito.url = "/HistoriaClinica/IngresarHabito";
+    IngresarHabito.type = "POST";
+    IngresarHabito.data = JSON.stringify({
+        NumHabito: $("#habito").val(),
+        DescripcionHabito: $("#habitoTexto").val(),
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    IngresarHabito.datatype = "json";
+    IngresarHabito.contentType = "application/json";
+    IngresarHabito.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Habito ingresado");
+            limpiarTablaHabito();
+            consultarHabito();
+        }
+        else {
+            toastr.error("Habito NO ingresado");
+        }
+    };
+    IngresarHabito.error = function () {
+        toastr.error("Error al ingresar habito");
+    };
+    $.ajax(IngresarHabito);
+}
+
+function eliminarHabito(idHabito) {
+    var EliminarHabito = {};
+    EliminarHabito.url = "/HistoriaClinica/EliminarHabito";
+    EliminarHabito.type = "POST";
+    EliminarHabito.data = JSON.stringify({
+        habitoID: idHabito
+    });
+    EliminarHabito.datatype = "json";
+    EliminarHabito.contentType = "application/json";
+    EliminarHabito.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Habito eliminado");
+            limpiarTablaHabito();
+            consultarHabito();
+        }
+        else {
+            toastr.error("Habito NO eliminado");
+        }
+    };
+    EliminarHabito.error = function () {
+        toastr.error("Error al eliminar habito");
+    };
+    $.ajax(EliminarHabito);
+}
+
+function consultarAlergia() {
+    var ConsultarAlergia = {};
+    ConsultarAlergia.url = "/HistoriaClinica/ConsultarAlergia";
+    ConsultarAlergia.type = "POST";
+    ConsultarAlergia.data = JSON.stringify({
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    ConsultarAlergia.datatype = "json";
+    ConsultarAlergia.contentType = "application/json";
+    ConsultarAlergia.success = function (resultado) {
+        $("#txtAlergia").val(resultado["Alergias"]);
+    };
+    ConsultarAlergia.error = function () {
+        toastr.error("Error al consultar las alergias");
+    };
+    $.ajax(ConsultarAlergia);
+}
+
+function modificarAlergia() {
+    var ModificarAlergia = {};
+    ModificarAlergia.url = "/HistoriaClinica/ModificarAlergia";
+    ModificarAlergia.type = "POST";
+    ModificarAlergia.data = JSON.stringify({
+        Alergias: $("#txtAlergia").val(),
+        HistoriaClinicaID: $("#IptNumeroHistoriaClinica").val()
+    });
+    ModificarAlergia.datatype = "json";
+    ModificarAlergia.contentType = "application/json";
+    ModificarAlergia.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Alergia ingresada");
+            limpiarAlergia();
+            consultarAlergia();
+        }
+        else {
+            toastr.error("Alergia NO ingresada");
+        }
+    };
+    ModificarAlergia.error = function () {
+        toastr.error("Error al ingresar alergia");
+    };
+    $.ajax(ModificarAlergia);
+}
+
 function ingresarCertificado() {
     var IngresarCertificado = {};
     IngresarCertificado.url = "/HistoriaClinica/IngresarCertificado";
@@ -626,7 +994,6 @@ function ingresarCertificado() {
     $.ajax(IngresarCertificado);
 }
 
-
 function consultarAtencionPrevia() {
     limpiarTablaAtencionPrevia();
     var ConsultarAtencionesPrevias = {};
@@ -645,7 +1012,7 @@ function consultarAtencionPrevia() {
                 fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["DetalleDiagnostico"] + "</td>";
                 fila += "<td scope=\"col\"> <button name=\"\" id=\"\" onclick=\"(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-eye\"></i></button></th >";
-                $("#tblProcedimiento").append("<tr>" + fila + "</tr>");
+                $("#tblAtencionPrevia").append("<tr>" + fila + "</tr>");
             }
         }
     };
@@ -675,6 +1042,11 @@ $(document).ready(function () {
     consultarReceta();
     consultarProcedimiento();
     consultarAtencionPrevia();
+    consultarAntecedentePersonal();
+    consultarAntecedenteFamiliar();
+    consultarAntecedenteSocial();
+    consultarHabito();
+    consultarAlergia();
 });
 
 $("#btnSubjetivo").click(function () {
@@ -695,6 +1067,22 @@ $("#btnProcedimiento").click(function () {
 
 $("#btnCertificado").click(function () {
     ingresarCertificado();
+});
+
+$("#btnAntecedentePersonal").click(function () {
+    ingresarAntecedentePersonal();
+});
+
+$("#btnAntecedenteFamiliar").click(function () {
+    ingresarAntecedenteFamiliar();
+});
+
+$("#btnAntecedenteSocial").click(function () {
+    ingresarAntecedenteSocial();
+});
+
+$("#btnHabito").click(function () {
+    ingresarHabito();
 });
 
 $("#enfermedad").keypress(function () {

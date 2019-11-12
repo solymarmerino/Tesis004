@@ -18,9 +18,9 @@ namespace Tesis004.Controllers
         //public ActionResult HistoriaClinica(int idPaciente)
         //public ActionResult HistoriaClinica()
         public ActionResult HistoriaClinica(CitaModel cita)
-		{
+        {
             ConsultaMedicaModel consultaMedica = new ConsultaMedicaModel();
-            
+
             if (historiaClinicaBDD.ValidarConsultaMedica(cita.CitaMedicaID))
             {
                 consultaMedica = historiaClinicaBDD.ConsultarConsultaMedica(cita.CitaMedicaID);
@@ -46,7 +46,7 @@ namespace Tesis004.Controllers
             ViewData["diagnosticos"] = informacionGeneral.ObtenerInformacionParametro("tipo diagnostico");
             ViewData["paciente"] = pacienteBDD.PacientePorId(cita.PacienteID);
             return View();
-		}
+        }
 
         [HttpPost]
         public JsonResult ActualizarDatosConsulta(ConsultaMedicaModel consultaMedica)
@@ -60,18 +60,18 @@ namespace Tesis004.Controllers
         public JsonResult ValidarSubjetivo(SubjetivoModel subjetivo)
         {
             List<bool> ingresado = new List<bool>();
-            if(subjetivo.SubjetivoID == 0)
+            if (subjetivo.SubjetivoID == 0)
             {
                 ingresado.Add(this.historiaClinicaBDD.InsertarSubjetivo(subjetivo));
             }
             else
             {
                 ingresado.Add(this.historiaClinicaBDD.ModificarSubjetivo(subjetivo));
-            }       
+            }
             return Json(ingresado);
         }
 
-        [HttpPost]  
+        [HttpPost]
         public JsonResult ConsultarSubjetivo(int consultaMedicaID)
         {
             List<SubjetivoModel> resultado = new List<SubjetivoModel>();
@@ -166,7 +166,7 @@ namespace Tesis004.Controllers
             ingresado.Add(this.historiaClinicaBDD.ValidarReceta(receta));
             return Json(ingresado);
         }
-        
+
         [HttpPost]
         public JsonResult ConsultarReceta(int consultaMedicaID)
         {
@@ -215,10 +215,122 @@ namespace Tesis004.Controllers
             return Json(resultado);
         }
 
-		[HttpPost]
-		public ActionResult MostrarFichaMedica()
-		{
-			return View();
-		}
-}
+        [HttpPost]
+        public JsonResult IngresarAntecedentePersonal(AntecedentePersonalModel antecedente)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.InsertarAntecedentePersonal(antecedente));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarAntecedentePersonal(int historiaClinicaID)
+        {
+            List<AntecedentePersonalModel> resultado = new List<AntecedentePersonalModel>();
+            resultado = this.historiaClinicaBDD.ListarAntecedentePersonal(historiaClinicaID);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult EliminarAntecedentePersonal(AntecedentePersonalModel antecedente)
+        {
+            List<bool> eliminado = new List<bool>();
+            eliminado.Add(this.historiaClinicaBDD.EliminarAntecedentePersonal(antecedente));
+            return Json(eliminado);
+        }
+
+        [HttpPost]
+        public JsonResult IngresarAntecedenteFamiliar(AntecedenteFamiliarModel antecedente)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.InsertarAntecedenteFamiliar(antecedente));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarAntecedenteFamiliar(int historiaClinicaID)
+        {
+            List<AntecedenteFamiliarModel> resultado = new List<AntecedenteFamiliarModel>();
+            resultado = this.historiaClinicaBDD.ListarAntecedenteFamiliar(historiaClinicaID);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult EliminarAntecedenteFamiliar(AntecedenteFamiliarModel antecedente)
+        {
+            List<bool> eliminado = new List<bool>();
+            eliminado.Add(this.historiaClinicaBDD.EliminarAntecedenteFamiliar(antecedente));
+            return Json(eliminado);
+        }
+
+        [HttpPost]
+        public JsonResult IngresarAntecedenteSocial(AntecedenteSocialModel antecedente)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.InsertarAntecedenteSocial(antecedente));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarAntecedenteSocial(int historiaClinicaID)
+        {
+            List<AntecedenteSocialModel> resultado = new List<AntecedenteSocialModel>();
+            resultado = this.historiaClinicaBDD.ListarAntecedenteSocial(historiaClinicaID);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult EliminarAntecedenteSocial(AntecedenteSocialModel antecedente)
+        {
+            List<bool> eliminado = new List<bool>();
+            eliminado.Add(this.historiaClinicaBDD.EliminarAntecedenteSocial(antecedente));
+            return Json(eliminado);
+        }
+
+        [HttpPost]
+        public JsonResult IngresarHabito(HabitoModel habito)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.InsertarHabito(habito));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarHabito(int historiaClinicaID)
+        {
+            List<HabitoModel> resultado = new List<HabitoModel>();
+            resultado = this.historiaClinicaBDD.ListarHabito(historiaClinicaID);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult EliminarHabito(HabitoModel habito)
+        {
+            List<bool> eliminado = new List<bool>();
+            eliminado.Add(this.historiaClinicaBDD.EliminarHabito(habito));
+            return Json(eliminado);
+        }
+
+        [HttpPost]
+        public JsonResult ModificarAlergia(HistoriaClinicaModel historiaClinica)
+        {
+            List<bool> ingresado = new List<bool>();
+            ingresado.Add(this.historiaClinicaBDD.ModificarAlergia(historiaClinica));
+            return Json(ingresado);
+        }
+
+        [HttpPost]
+        public JsonResult ConsultarAlergia(int historiaClinicaID)
+        {
+            HistoriaClinicaModel resultado = new HistoriaClinicaModel();
+            resultado = this.historiaClinicaBDD.ConsultarAlergia(historiaClinicaID);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public ActionResult MostrarFichaMedica()
+        {
+            return View();
+        }
+    }
 }
