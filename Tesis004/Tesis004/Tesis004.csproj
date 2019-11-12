@@ -203,6 +203,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Imagenes\crecimiento_mas.PNG" />
     <Content Include="Imagenes\imc_bmi_indice_massa_corpor.png" />
+    <Content Include="Imagenes\logovacari.jpg" />
     <Content Include="Imagenes\Odontograma.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

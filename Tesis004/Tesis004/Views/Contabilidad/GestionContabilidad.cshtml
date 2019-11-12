@@ -37,22 +37,34 @@
 				</div>
 			</div>
 			<br />
+			<div class="text-right">
+				<div>
+					<p>
+						<label class="text-left">Fecha</label>
+						<br />
+						<input id="iptFechaIngreso" name="iptFechaIngreso" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+					</p>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-xl-4">
 					<label>Servicio</label>
-					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<input id="IptIngresoServicio" name="IptIngresoServicio" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label id="ValidacionIngresoServicio" name="ValidacionIngresoServicio"> </label>
 				</div>
 				<div class="col-xl-5">
 					<label>Detalle</label>
-					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<input id="IptIngresoDetalle" name="IptIngresoDetalle" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label id="ValidacionIngresoDetalle" name="ValidacionIngresoDetalle"> </label>
 				</div>
 				<div class="col-xl-2">
 					<label>Monto</label>
-					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<input id="IptIngresoMonto" name="IptIngresoMonto" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label id="ValidacionIngresoMonto" name="ValidacionIngresoMonto"> </label>
 				</div>
 				<div class="col-xl-1">
 					<br />
-					<button name="Identificador" title="Ingresar nuevo ingreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+					<button id="btnAgregarIngreso" name="btnAgregarIngreso" title="Ingresar nuevo ingreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
 						<i class="fas fa-plus-square"></i>
 					</button>
 				</div>
@@ -77,7 +89,7 @@
 							</button>
 						</td>
 						<td scope="col">
-							<button name="Identificador" title="Eliminar ingreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+							<button id="btnEliminarIngreso" name="btnEliminarIngreso" title="Eliminar ingreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
 								<i class="fas fa-trash-alt"></i>
 							</button>
 						</td>
@@ -96,20 +108,23 @@
 			<br />
 			<div class="row">
 				<div class="col-xl-4">
-					<label>Provedores</label>
-					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label>Servicio</label>
+					<input id="iptEgresoServicio" name="intEgresoServicio" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label id="ValidacionEgresoServicio" name="ValidacionEgresoServicio"> </label>
 				</div>
 				<div class="col-xl-5">
 					<label>Detalle</label>
-					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<input id="iptEgresoDetalle" name="iptEgresoDetalle" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label id="ValidacionEgresoDetalle" name="ValidacionEgresoDetalle"> </label>
 				</div>
 				<div class="col-xl-2">
 					<label>Monto</label>
-					<input class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<input id="iptEgresoMonto" name="iptEgresoMonto" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label id="ValidacionEgresoMonto" name="ValidacionEgresoMonto"> </label>
 				</div>
 				<div class="col-xl-1">
 					<br />
-					<button name="Identificador" title="Ingresar nuevo egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+					<button id="btnAgregarEgreso" name="btnAgregarEgreso" title="Ingresar nuevo egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
 						<i class="fas fa-plus-square"></i>
 					</button>
 				</div>
@@ -142,6 +157,8 @@
 			</div>
 			<br />
 		</div>
+
+		<!--Seccion de informe de ingresos y egresos-->
 
 		<div id="informecontable" class="container tab-pane fade">
 			<br />
@@ -212,9 +229,11 @@
 								<i class="fas fa-trash-alt"></i>
 							</button>
 						</td>
-</table>
+				</table>
 			</div>
 		</div>
+
+		<!--Seccion de pago a medicos-->
 
 		<div id="pagomedico" class="container tab-pane fade">
 			<br />
@@ -252,3 +271,5 @@
 	</div>
 
 </div>
+
+<script src="~/Scripts/validador.js"></script>
