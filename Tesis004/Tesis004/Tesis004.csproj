@@ -162,6 +162,7 @@
     <Compile Include="InformacionBDD\PacienteBDD.cs" />
     <Compile Include="InformacionBDD\PersonalBDD.cs" />
     <Compile Include="InformacionBDD\ServicioBDD.cs" />
+    <Compile Include="InformacionBDD\ContabilidadBDD.cs" />
     <Compile Include="InformacionBDD\SignosVitalesBDD.cs" />
     <Compile Include="Models\HabitoModel.cs" />
     <Compile Include="Models\AntecedenteSocialModel.cs" />
@@ -449,6 +450,7 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\servicio.js" />
     <Content Include="Scripts\servicio-cita.js" />
+    <Content Include="Scripts\contabilidad.js" />
     <Content Include="Scripts\signos-vitales.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

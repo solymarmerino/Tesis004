@@ -42,7 +42,7 @@
 					<p>
 						<label class="text-left">Fecha</label>
 						<br />
-						<input id="iptFechaIngreso" name="iptFechaIngreso" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+						<input id="iptFechaIngreso" name="iptFechaIngreso" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled value="@DateTime.Now.ToString("yyyy-MM-dd")" />
 					</p>
 				</div>
 			</div>
@@ -58,7 +58,7 @@
 					<label id="ValidacionIngresoDetalle" name="ValidacionIngresoDetalle"> </label>
 				</div>
 				<div class="col-xl-2">
-					<label>Monto</label>
+					<label>Valor</label>
 					<input id="IptIngresoMonto" name="IptIngresoMonto" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 					<label id="ValidacionIngresoMonto" name="ValidacionIngresoMonto"> </label>
 				</div>
