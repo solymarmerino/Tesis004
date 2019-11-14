@@ -41,7 +41,30 @@ namespace Tesis004.InformacionBDD
 			return ingresado;
 		}
 
+		public List<IngresoModel> ListaIngreso(DateTime fechaIngreso)
+		{
+			List<IngresoModel> listaIngresoResultado = new List<IngresoModel>();
 
+			string sentenciaSql = "SELECT IngresoID, DescripcionIngreso, ServicioIngreso, ValorIngreso, FechaIngreso"+
+                                  "FROM Ingreso"+
+								   $"WHERE FechaIngreso = '{fechaIngreso}'";
+
+			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+			for (int i = 0; i < tablaDatos.Rows.Count; i++)
+			{
+				IngresoModel ingresoResultado = new IngresoModel();
+				ingresoResultado.IngresoID = tablaDatos.Rows[i].Field<int>("IngresoID");
+				ingresoResultado.DescripcionIngreso = tablaDatos.Rows[i].Field<string>("DescripcionIngreso");
+				ingresoResultado.ServicioIngreso = tablaDatos.Rows[i].Field<string>("ServicioIngreso");
+				ingresoResultado.ValorIngreso = tablaDatos.Rows[i].Field<decimal>("ValorIngreso");
+				ingresoResultado.FechaIngreso = tablaDatos.Rows[i].Field<DateTime>("FechaIngreso");
+
+				listaIngresoResultado.Add(ingresoResultado);
+			}
+
+			return listaIngresoResultado;
+		}
 
 
 	}

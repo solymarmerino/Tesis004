@@ -33,7 +33,7 @@ namespace Tesis004.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult ListarIngresos()
+		public JsonResult ListarIngreso()
 		{
 			List<IngresoModel> listaIngreso = new List<IngresoModel>();
 			listaIngreso = this.contabilidadBDD.ListaIngreso();
