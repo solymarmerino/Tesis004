@@ -41,7 +41,7 @@ namespace Tesis004.InformacionBDD
 			return ingresado;
 		}
 
-		public List<IngresoModel> ListaIngreso(DateTime fechaIngreso)
+		public List<IngresoModel> ListarIngreso(DateTime fechaIngreso)
 		{
 			List<IngresoModel> listaIngresoResultado = new List<IngresoModel>();
 
