@@ -111,6 +111,29 @@ namespace Tesis004.InformacionBDD
             return ingresado;
         }
 
+        public bool AtencionMedicoCita(int citaMedicaID)
+        {
+            bool ingresado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "UPDATE CITAMEDICA " +
+                                  "SET atencion = 1 " +
+                                  "WHERE CitaMedicaID = @CitaMedicaID";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@CitaMedicaID", citaMedicaID);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                ingresado = true;
+            }
+
+            return ingresado;
+        }
+
         public List<CitaModel> ListarCita()
         {
             List<CitaModel> listaCitaResultado = new List<CitaModel>();

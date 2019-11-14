@@ -440,7 +440,7 @@ namespace Tesis004.InformacionBDD
             {
                 sentenciaSql = "UPDATE Receta " +
                                "SET Receta = @Receta " +
-                               "WHERE RecetaID= @RecetaID) ";
+                               "WHERE RecetaID = @RecetaID ";
 
                 sentenciaSQL = new SqlCommand(sentenciaSql);
 
