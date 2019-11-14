@@ -39,31 +39,31 @@
         </div>
     </div>
 
-    <div class="container">
-        <br>
-        <!-- Creación de barra de navegacion de la historia clinica -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#fichamedica">Ficha Médica</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#antecedentes">Antecedentes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#atencionesprevias" onclick="consultarAtencionPrevia()">Atenciones Previas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tablasimc">Tablas de IMC</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#curvascrecimiento">Pediatria</a>
-            </li>
+	<div class="container">
+		<br>
+		<!-- Creación de barra de navegacion de la historia clinica -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" data-toggle="tab" href="#fichamedica">Ficha Médica</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#antecedentes">Antecedentes</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#atencionesprevias" onclick="consultarAtencionPrevia()">Atenciones Previas</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#tablasimc">Tablas de IMC</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#curvascrecimiento">Pediatria</a>
+			</li>
 
-        </ul>
+		</ul>
 
-        <!-- Contenido de cada sección de la historia clinica -->
-        <div class="tab-content">
-            <!-- Creacion de sección de ficha medica-->
+		<!-- Contenido de cada sección de la historia clinica -->
+		<div class="tab-content">
+			<!-- Creacion de sección de ficha medica-->
 			<div id="fichamedica" class="container tab-pane active">
 				<br />
 				<!--Creacion de seccion de revicion de datos personles-->
@@ -315,38 +315,38 @@
 						</a>
 					</div>
 					<br />
-                    <div class="col-xl-12">
-                        <input id="idSubjetivo" hidden />
-                        @{
-                            var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
-                            foreach (var subjetivo in subjetivos)
-                            {
-                                if (subjetivo.Valor.Equals("General"))
-                                {
-                                    <input id="idSubjetivoGeneral" value="@subjetivo.Identificador" hidden />
-                                }
-                            }
-                        }
-                        <textarea id="descripcionSubjetivo" name="descripcionSubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-                    </div>
+					<div class="col-xl-12">
+						<input id="idSubjetivo" hidden />
+						@{
+							var subjetivos = ViewData["subjetivos"] as List<Tesis004.Models.ParametroModel>;
+							foreach (var subjetivo in subjetivos)
+							{
+								if (subjetivo.Valor.Equals("General"))
+								{
+									<input id="idSubjetivoGeneral" value="@subjetivo.Identificador" hidden />
+								}
+							}
+						}
+						<textarea id="descripcionSubjetivo" name="descripcionSubjetivo" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+					</div>
 				</div>
 				<br />
 				<div class="row">
 					<div class="col-xl-3">
 						<label>Subjetivo</label>
 						<br />
-                        <select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option value="0"> Seleccionar </option>
-                            @{
-                                foreach (var subjetivo in subjetivos)
-                                {
-                                    if (!subjetivo.Valor.Equals("General"))
-                                    {
-                                        <option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
-                                    }
-                                }
-                            }
-                        </select>
+						<select id="sltSubjetivo" name="sltSubjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option value="0"> Seleccionar </option>
+							@{
+								foreach (var subjetivo in subjetivos)
+								{
+									if (!subjetivo.Valor.Equals("General"))
+									{
+										<option value="@subjetivo.Identificador"> @subjetivo.Valor </option>
+									}
+								}
+							}
+						</select>
 					</div>
 					<div class="col-xl-8">
 						<label>Descripción</label>
@@ -383,51 +383,51 @@
 						</a>
 					</div>
 					<br />
-                    <div class="col-xl-12">
-                        <input id="idObjetivo" hidden />
-                        @{
-                            var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
-                            foreach (var objetivo in objetivos)
-                            {
-                                if (objetivo.Valor.Equals("General"))
-                                {
-                                    <input id="idObjetivoGeneral" value="@objetivo.Identificador" hidden />
-                                }
-                            }
-                        }
-                        <textarea id="descripcionObjetivoGeneral" name="descripcionObjetivoGeneral" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-                    </div>
+					<div class="col-xl-12">
+						<input id="idObjetivo" hidden />
+						@{
+							var objetivos = ViewData["objetivos"] as List<Tesis004.Models.ParametroModel>;
+							foreach (var objetivo in objetivos)
+							{
+								if (objetivo.Valor.Equals("General"))
+								{
+									<input id="idObjetivoGeneral" value="@objetivo.Identificador" hidden />
+								}
+							}
+						}
+						<textarea id="descripcionObjetivoGeneral" name="descripcionObjetivoGeneral" class="col-xl required number" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+					</div>
 				</div>
 				<br />
 				<div class="row">
 					<div class="col-xl-3">
 						<label>Objetivo</label>
 						<br />
-                        <select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option value="0"> Seleccionar </option>
-                            @{
-                                foreach (var objetivo in objetivos)
-                                {
-                                    if (!objetivo.Valor.Equals("General"))
-                                    {
-                                        <option value="@objetivo.Identificador"> @objetivo.Valor </option>
-                                    }
-                                }
-                            }
-                        </select>
+						<select id="sltObjetivo" name="sltObjetivo" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option value="0"> Seleccionar </option>
+							@{
+								foreach (var objetivo in objetivos)
+								{
+									if (!objetivo.Valor.Equals("General"))
+									{
+										<option value="@objetivo.Identificador"> @objetivo.Valor </option>
+									}
+								}
+							}
+						</select>
 					</div>
-                    <div class="col-xl-8">
-                        <label>Descripción</label>
-                        <br />
-                        <input id="descripcionObjetivo" name="descripcionObjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-                    </div>
+					<div class="col-xl-8">
+						<label>Descripción</label>
+						<br />
+						<input id="descripcionObjetivo" name="descripcionObjetivo" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					</div>
 					<div class="col-xl-1">
-                        <p>
-                            <br />
-                            <button id="btnObjetivo" name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
-                                <i class="fas fa-plus-square"></i>
-                            </button>
-                        </p>
+						<p>
+							<br />
+							<button id="btnObjetivo" name="Identificador" title="Ingresar objetivo especifico" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer">
+								<i class="fas fa-plus-square"></i>
+							</button>
+						</p>
 					</div>
 					<div class="table-responsive">
 						<br />
@@ -488,7 +488,7 @@
 					</div>
 					<div class="col-xl-3">
 						<label>Tipo</label>
-                        <input id="idCie10" hidden/>
+						<input id="idCie10" hidden />
 						<br />
 						<select id="tipodiagnostico" name="tipodiagnostico" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
 							<option value="0"> Seleccionar </option>
@@ -525,7 +525,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xl-12">
-                            <input id="idReceta" hidden/>
+							<input id="idReceta" hidden />
 							<br />
 							<textarea id="txtReceta" name="txtReceta" class="col-xl required number" type="text" rows="5" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;"></textarea>
 							<br />
@@ -545,7 +545,7 @@
 						<div class="col-xl-3">
 							<label>Procedimiento</label>
 							<br />
-                            <input id="descripcionTexto" name="descripcionTexto" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<input id="descripcionTexto" name="descripcionTexto" class="col-xl required number" type="text" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
 						</div>
 						<div class="col-xl-8">
 							<label>Descripción</label>
@@ -561,11 +561,9 @@
 					</div>
 					<div class="table-responsive">
 						<br />
-						<table id="tblProcedimiento" class="table">
-
-						</table>
+						<table id="tblProcedimiento" class="table"></table>
 					</div>
-				</div>				
+				</div>
 
 				<!--Creacion de seccion de ingreso de datos para certificado medico-->
 				<button data-toggle="collapse" data-target="#certificadomedico" name="Identificador" title="Ingresar datos para certificado médico" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
@@ -607,298 +605,291 @@
 				</div>
 			</div>
 
-            <!-- Creacion de sección de antecedentes del paciente-->
-            <div id="antecedentes" class="container tab-pane fade">
-                <!-- Creacion de sección de antecedentes del personales -->
-                <br />
-                <div class="card bg-info text-white">
-                    <div class="card-header">
-                        PERSONALES
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <br />
-                    <div class="col-xl-3">
-                        <label>Antecedentes especificos</label>
-                        <br />
-                        <select id="atecedentePersonal" name="atecedentePersonal" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option value="0"> Seleccionar </option>
-                            @{
-                                var antecedentesp = ViewData["antecedentepersonal"] as List<Tesis004.Models.ParametroModel>;
-                                foreach (var antecedentep in antecedentesp)
-                                {
-                                   <option value="@antecedentep.Identificador"> @antecedentep.Valor </option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    <div class="col-xl-8">
-                        <label>Detalles</label>
-                        <br />
-                        <input id="atecedentePersonalTexto" name="atecedentePersonalTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-                    </div>
-                    <div class="col-xl-1">
-                        <br />
-                        <button id="btnAntecedentePersonal" name="btnAntecedentePersonal" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                            <i class="fas fa-plus-square"></i>
-                        </button>
-                    </div>
-                </div>
-                <br />
-                <div class="table-responsive">
-                    <table id="tblAntecedentePersonal" class="table">
-                    </table>
-                </div>
+			<!-- Creacion de sección de antecedentes del paciente-->
+			<div id="antecedentes" class="container tab-pane fade">
+				<!-- Creacion de sección de antecedentes del personales -->
+				<br />
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						PERSONALES
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<br />
+					<div class="col-xl-3">
+						<label>Antecedentes especificos</label>
+						<br />
+						<select id="atecedentePersonal" name="atecedentePersonal" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option value="0"> Seleccionar </option>
+							@{
+								var antecedentesp = ViewData["antecedentepersonal"] as List<Tesis004.Models.ParametroModel>;
+								foreach (var antecedentep in antecedentesp)
+								{
+									<option value="@antecedentep.Identificador"> @antecedentep.Valor </option>
+								}
+							}
+						</select>
+					</div>
+					<div class="col-xl-8">
+						<label>Detalles</label>
+						<br />
+						<input id="atecedentePersonalTexto" name="atecedentePersonalTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					</div>
+					<div class="col-xl-1">
+						<br />
+						<button id="btnAntecedentePersonal" name="btnAntecedentePersonal" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+							<i class="fas fa-plus-square"></i>
+						</button>
+					</div>
+				</div>
+				<br />
+				<div class="table-responsive">
+					<table id="tblAntecedentePersonal" class="table"></table>
+				</div>
 
-                <!-- Creacion de sección de antecedentes famimiliares -->
-                <div class="card bg-info text-white">
-                    <div class="card-header">
-                        FAMILIARES
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <br />
-                    <div class="col-xl-3">
-                        <label>Antecedentes especificos</label>
-                        <br />
-                        <select id="atecedenteFamiliar" name="atecedenteFamiliar" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option value="0"> Seleccionar </option>
-                            @{
-                                var antecedentesf = ViewData["antecedentefamiliar"] as List<Tesis004.Models.ParametroModel>;
-                                foreach (var antecedentef in antecedentesf)
-                                {
-                                    <option value="@antecedentef.Identificador"> @antecedentef.Valor </option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    <div class="col-xl-8">
-                        <label>Detalles</label>
-                        <br />
-                        <input id="atecedenteFamiliarTexto" name="atecedenteFamiliarTexto"class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-                    </div>
-                    <div class="col-xl-1">
-                        <br />
-                        <button id="btnAntecedenteFamiliar" name="btnAntecedenteFamiliar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                            <i class="fas fa-plus-square"></i>
-                        </button>
-                    </div>
-                </div>
-                <br />
-                <div class="table-responsive">
-                    <table id="tblAntecedenteFamiliar" class="table">
-                    </table>
-                </div>
+				<!-- Creacion de sección de antecedentes famimiliares -->
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						FAMILIARES
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<br />
+					<div class="col-xl-3">
+						<label>Antecedentes especificos</label>
+						<br />
+						<select id="atecedenteFamiliar" name="atecedenteFamiliar" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option value="0"> Seleccionar </option>
+							@{
+								var antecedentesf = ViewData["antecedentefamiliar"] as List<Tesis004.Models.ParametroModel>;
+								foreach (var antecedentef in antecedentesf)
+								{
+									<option value="@antecedentef.Identificador"> @antecedentef.Valor </option>
+								}
+							}
+						</select>
+					</div>
+					<div class="col-xl-8">
+						<label>Detalles</label>
+						<br />
+						<input id="atecedenteFamiliarTexto" name="atecedenteFamiliarTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					</div>
+					<div class="col-xl-1">
+						<br />
+						<button id="btnAntecedenteFamiliar" name="btnAntecedenteFamiliar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+							<i class="fas fa-plus-square"></i>
+						</button>
+					</div>
+				</div>
+				<br />
+				<div class="table-responsive">
+					<table id="tblAntecedenteFamiliar" class="table"></table>
+				</div>
 
-                <!-- Creacion de sección de antecedentes sociales -->
-                <div class="card bg-info text-white">
-                    <div class="card-header">
-                        SOCIALES
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <br />
-                    <div class="col-xl-3">
-                        <label>Antecedentes especificos</label>
-                        <br />
-                        <select id="atecedenteSocial" name="atecedenteSocial" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option value="0"> Seleccionar </option>
-                            @{
-                                var antecedentess = ViewData["antecedentesociales"] as List<Tesis004.Models.ParametroModel>;
-                                foreach (var antecedentes in antecedentess)
-                                {
-                                    <option value="@antecedentes.Identificador"> @antecedentes.Valor </option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    <div class="col-xl-8">
-                        <label>Detalles</label>
-                        <br />
-                        <input id="atecedenteSocialTexto" name="atecedenteSocialTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-                    </div>
-                    <div class="col-xl-1">
-                        <br />
-                        <button id="btnAntecedenteSocial" name="btnAntecedenteSocial" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                            <i class="fas fa-plus-square"></i>
-                        </button>
-                    </div>
-                </div>
-                <br />
-                <div class="table-responsive">
-                    <table id="tblAntecedenteSocial" class="table">
-                    </table>
-                </div>
+				<!-- Creacion de sección de antecedentes sociales -->
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						SOCIALES
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<br />
+					<div class="col-xl-3">
+						<label>Antecedentes especificos</label>
+						<br />
+						<select id="atecedenteSocial" name="atecedenteSocial" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option value="0"> Seleccionar </option>
+							@{
+								var antecedentess = ViewData["antecedentesociales"] as List<Tesis004.Models.ParametroModel>;
+								foreach (var antecedentes in antecedentess)
+								{
+									<option value="@antecedentes.Identificador"> @antecedentes.Valor </option>
+								}
+							}
+						</select>
+					</div>
+					<div class="col-xl-8">
+						<label>Detalles</label>
+						<br />
+						<input id="atecedenteSocialTexto" name="atecedenteSocialTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					</div>
+					<div class="col-xl-1">
+						<br />
+						<button id="btnAntecedenteSocial" name="btnAntecedenteSocial" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+							<i class="fas fa-plus-square"></i>
+						</button>
+					</div>
+				</div>
+				<br />
+				<div class="table-responsive">
+					<table id="tblAntecedenteSocial" class="table"></table>
+				</div>
 
-                <!-- Creacion de sección de habitos -->
-                <div class="card bg-info text-white">
-                    <div class="card-header">
-                        HABITOS
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <br />
-                    <div class="col-xl-3">
-                        <label>Antecedentes especificos</label>
-                        <br />
-                        <select id="habito" name="habito" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
-                            <option value="0"> Seleccionar </option>
-                            @{
-                                var habitos = ViewData["habito"] as List<Tesis004.Models.ParametroModel>;
-                                foreach (var habito in habitos)
-                                {
-                                    <option value="@habito.Identificador"> @habito.Valor </option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    <div class="col-xl-8">
-                        <label>Detalles</label>
-                        <br />
-                        <input id="habitoTexto" name="habitoTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-                    </div>
-                    <div class="col-xl-1">
-                        <br />
-                        <button id="btnHabito" name="btnHabito" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-                            <i class="fas fa-plus-square"></i>
-                        </button>
-                    </div>
-                </div>
-                <br />
-                <div class="table-responsive">
-                    <table id="tblHabito" class="table">
-                    </table>
-                </div>
+				<!-- Creacion de sección de habitos -->
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						HABITOS
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<br />
+					<div class="col-xl-3">
+						<label>Antecedentes especificos</label>
+						<br />
+						<select id="habito" name="habito" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+							<option value="0"> Seleccionar </option>
+							@{
+								var habitos = ViewData["habito"] as List<Tesis004.Models.ParametroModel>;
+								foreach (var habito in habitos)
+								{
+									<option value="@habito.Identificador"> @habito.Valor </option>
+								}
+							}
+						</select>
+					</div>
+					<div class="col-xl-8">
+						<label>Detalles</label>
+						<br />
+						<input id="habitoTexto" name="habitoTexto" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					</div>
+					<div class="col-xl-1">
+						<br />
+						<button id="btnHabito" name="btnHabito" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+							<i class="fas fa-plus-square"></i>
+						</button>
+					</div>
+				</div>
+				<br />
+				<div class="table-responsive">
+					<table id="tblHabito" class="table"></table>
+				</div>
 
-                <!-- Creacion de sección de alergias -->
-                <div class="card bg-info text-white">
-                    <div class="card-header">
-                        ALERGIAS
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-xl-8">
-                        <label>Descripción</label>
-                    </div>
-                    <div class="col-xl-12">
-                        <textarea id="txtAlergia" name="txtAlergia"  class="col-xl required number text-danger" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-                    </div>
-                </div>
-            </div>
+				<!-- Creacion de sección de alergias -->
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						ALERGIAS
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-xl-8">
+						<label>Descripción</label>
+					</div>
+					<div class="col-xl-12">
+						<textarea id="txtAlergia" name="txtAlergia" class="col-xl required number text-danger" type="text" rows="3" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+					</div>
+				</div>
+			</div>
 
-            <!-- Creacion de sección de atenciones previas-->
-            <div id="atencionesprevias" class="container tab-pane fade">
-                <br />
-                <div class="card bg-info text-white">
-                    <div class="card-header">
-                        LISTA DE ATENCIONES PREVIAS
-                    </div>
-                </div>
-                <br />
-                <div class="table-responsive">
-                    <table id="tblAtencionPrevia" class="table">
-                        
-                    </table>
-                </div>
-            </div>
+			<!-- Creacion de sección de atenciones previas-->
+			<div id="atencionesprevias" class="container tab-pane fade">
+				<br />
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						LISTA DE ATENCIONES PREVIAS
+					</div>
+				</div>
+				<br />
+				<div class="table-responsive">
+					<table id="tblAtencionPrevia" class="table"></table>
+				</div>
+			</div>
 
-            <!-- Creacion de sección de tablas de indice de masa corporal-->
-            <div id="tablasimc" class="container tab-pane fade">
-                <br />
-                <div class="card bg-info text-white">
-                    <div class="card-header">
-                        INDICE DE MASA CORPORAL
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-12">
-                        <img src="~/Imagenes/imc_bmi_indice_massa_corpor.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-                    </div>
-                </div>
-                <br />
-                <div class="table-responsive">
-                    <table class="table">
-                        <tr>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Peso(kg)</th>
-                            <th scope="col">Talla(cm)</th>
-                            <th scope="col">IMC</th>
-                            <th scope="col">Nivel</th>
-                        </tr>
-                        <tr>
-                            <td scope="col">01/01/1111</td>
-                            <td scope="col">xx</td>
-                            <td scope="col">xx.xx</td>
-                            <td scope="col">xx.xx</td>
-                            <td scope="col">normal</td>
-                        </tr>
-                    </table>
-                </div>
-                <br />
-            </div>
+			<!-- Creacion de sección de tablas de indice de masa corporal-->
+			<div id="tablasimc" class="container tab-pane fade">
+				<br />
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						INDICE DE MASA CORPORAL
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-md-12">
+						<img src="~/Imagenes/imc_bmi_indice_massa_corpor.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
+					</div>
+				</div>
+				<br />
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th scope="col">Fecha</th>
+							<th scope="col">Peso(kg)</th>
+							<th scope="col">Talla(cm)</th>
+							<th scope="col">IMC</th>
+							<th scope="col">Nivel</th>
+						</tr>
+						<tr>
+							<td scope="col">01/01/1111</td>
+							<td scope="col">xx</td>
+							<td scope="col">xx.xx</td>
+							<td scope="col">xx.xx</td>
+							<td scope="col">normal</td>
+						</tr>
+					</table>
+				</div>
+				<br />
+			</div>
 
-            <!-- Creacion de sección de curvas de crecimiento-->
-            <div id="curvascrecimiento" class="container tab-pane fade">
-                <br />
-                <div class="card bg-info text-white">
-                    <div class="card-header">
-                        CURVAS DE CRECIENTO
-                    </div>
-                </div>
-                <br />
-                <div class="table-responsive">
-                    <table class="table">
-                        <tr>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Peso(kg)</th>
-                            <th scope="col">Talla(cm)</th>
-                            <th scope="col">Edad</th>
-                        </tr>
-                        <tr>
-                            <td scope="col">01/01/1111</td>
-                            <td scope="col">xx</td>
-                            <td scope="col">xx.xx</td>
-                            <td scope="col">xx años xx meses</td>
-                        </tr>
-                    </table>
-                </div>
-                <br />
+			<!-- Creacion de sección de curvas de crecimiento-->
+			<div id="curvascrecimiento" class="container tab-pane fade">
+				<br />
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						CURVAS DE CRECIENTO
+					</div>
+				</div>
+				<br />
+				<div class="table-responsive">
+					<table class="table">
+						<tr>
+							<th scope="col">Fecha</th>
+							<th scope="col">Peso(kg)</th>
+							<th scope="col">Talla(cm)</th>
+							<th scope="col">Edad</th>
+						</tr>
+						<tr>
+							<td scope="col">01/01/1111</td>
+							<td scope="col">xx</td>
+							<td scope="col">xx.xx</td>
+							<td scope="col">xx años xx meses</td>
+						</tr>
+					</table>
+				</div>
+				<br />
 
-                <button data-toggle="collapse" data-target="#tablasestatura" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
-                    TABLAS DE ESTATURA 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
-                </button>
-                <div id="tablasestatura" class="collapse">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-                        </div>
-                    </div>
-                </div>
+				<button data-toggle="collapse" data-target="#tablasestatura" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
+					TABLAS DE ESTATURA 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
+				</button>
+				<div id="tablasestatura" class="collapse">
+					<div class="row">
+						<div class="col-md-12">
+							<img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
+						</div>
+					</div>
+				</div>
 
-                <button data-toggle="collapse" data-target="#tablaspeso" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
-                    TABLAS DE PESO 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
-                </button>
-                <div id="tablaspeso" class="collapse">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-         
-           
-
-            
-        </div>
-    </div>
+				<button data-toggle="collapse" data-target="#tablaspeso" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
+					TABLAS DE PESO 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
+				</button>
+				<div id="tablaspeso" class="collapse">
+					<div class="row">
+						<div class="col-md-12">
+							<img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="text-center">
+				<br />
+				<button id="btnGuardarHC" name="btnGuardarHC" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit">GUARDAR</button>
+			</div>
+	</div>
 }
 
 <script src="~/Scripts/historia-clinica.js"></script>
