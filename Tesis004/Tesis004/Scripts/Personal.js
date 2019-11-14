@@ -36,6 +36,7 @@ function modificar(PersonalID) {
         }
         $("#Especialidad").prop("value",personal["Especialidad"]);
         $("#Usuario").prop("value",personal["Usuario"]);
+        $("#iptCodigoPersona").prop("value",personal["Codigo"]);
     };
 	ConsultarPersonal.error = function () {
 		toastr.error("Error al consultar personal!!");
@@ -56,6 +57,7 @@ function ingresar() {
         usuario: $("#Usuario").val(),
         contrasena: $("#Contrasena").val(),
         confcontrasena: $("#ConfContrasena").val(),
+        Codigo: $("#iptCodigoPersona").val(),
     });
     IngresarPersonal.datatype = "json";
     IngresarPersonal.contentType = "application/json";
@@ -127,6 +129,7 @@ function guardarModificado() {
         usuario: $("#Usuario").val(),
         contrasena: $("#Contrasena").val(),
         confcontrasena: $("#ConfContrasena").val(),
+        codigo: $("#iptCodigoPersona").val()
     });
     ModificarPersonal.datatype = "json";
     ModificarPersonal.contentType = "application/json";
@@ -141,6 +144,7 @@ function guardarModificado() {
             $("#Usuario").empty();
             $("#Contrasena").empty();
             $("#ConfContrasena").empty();
+            $("#iptCodigoPersona").empty();
         }
 		else {
 			toastr.error("Personal NO modificado!!!!");

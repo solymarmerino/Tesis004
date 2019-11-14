@@ -29,8 +29,8 @@ namespace Tesis004.InformacionBDD
             bool ingresado = false;
             int resultado = 0;
 
-            string sentenciaSql = "INSERT INTO PERSONAL (Nombre, Cedula, Telefono, Cargo, Usuario, Contrasena, Especialidad) " +
-                         "VALUES (@Nombre, @Cedula, @Telefono, @Cargo, @Usuario, @Contrasena, @Especialidad)";
+            string sentenciaSql = "INSERT INTO PERSONAL (Nombre, Cedula, Telefono, Cargo, Usuario, Contrasena, Especialidad, Codigo) " +
+                         "VALUES (@Nombre, @Cedula, @Telefono, @Cargo, @Usuario, @Contrasena, @Especialidad, @Codigo)";
             SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
 
             sentenciaSQL.Parameters.AddWithValue("@Nombre", personal.Nombre);
@@ -40,6 +40,7 @@ namespace Tesis004.InformacionBDD
             sentenciaSQL.Parameters.AddWithValue("@Usuario", personal.Usuario);
             sentenciaSQL.Parameters.AddWithValue("@Contrasena", personal.Contrasena);
             sentenciaSQL.Parameters.AddWithValue("@Especialidad", personal.Especialidad);
+            sentenciaSQL.Parameters.AddWithValue("@Codigo", personal.Codigo);
 
             resultado = this.conexion.ComandoModificacion(sentenciaSQL);
 
@@ -101,7 +102,7 @@ namespace Tesis004.InformacionBDD
         {
             PersonalModel personalResultado = new PersonalModel();
 
-            string sentenciaSql = "SELECT TOP(1) PersonalID, Nombre, Cedula, Telefono , Cargo, Usuario, Especialidad " +
+            string sentenciaSql = "SELECT TOP(1) PersonalID, Nombre, Cedula, Telefono , Cargo, Usuario, Especialidad, Codigo " +
                                   "FROM Personal " +
                                   $"WHERE PersonalID = {idPersonal} ";
 
@@ -114,6 +115,7 @@ namespace Tesis004.InformacionBDD
             personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
             personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
             personalResultado.Especialidad = tablaDatos.Rows[0].Field<int>("Especialidad");
+            personalResultado.Codigo = tablaDatos.Rows[0].Field<int>("Codigo");
 
             return personalResultado;
         }
@@ -124,7 +126,7 @@ namespace Tesis004.InformacionBDD
             int resultado = 0;
 
             string sentenciaSql = "UPDATE Personal "+
-                                  "SET Nombre = @Nombre, Cedula = @Cedula, Telefono = @Telefono, Cargo = @Cargo, Usuario = @Usuario, Especialidad = @Especialidad, Contrasena = @Contrasena " +
+                                  "SET Nombre = @Nombre, Cedula = @Cedula, Telefono = @Telefono, Cargo = @Cargo, Usuario = @Usuario, Especialidad = @Especialidad, Contrasena = @Contrasena, Codigo = @Codigo  " +
                                   "WHERE PersonalID = @PersonalID ";
 
             SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
@@ -137,6 +139,7 @@ namespace Tesis004.InformacionBDD
             sentenciaSQL.Parameters.AddWithValue("@Usuario", personal.Usuario);
             sentenciaSQL.Parameters.AddWithValue("@Contrasena", personal.Contrasena);
             sentenciaSQL.Parameters.AddWithValue("@Especialidad", personal.Especialidad);
+            sentenciaSQL.Parameters.AddWithValue("@Codigo", personal.Codigo);
 
             resultado = this.conexion.ComandoModificacion(sentenciaSQL);
 
