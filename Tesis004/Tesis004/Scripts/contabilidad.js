@@ -6,13 +6,13 @@
 
 $("#btnAgregarIngreso").click(function () {
     var ContabilidadIngreso = {};
-	ContabilidadIngreso.url = "/Contabilidad/GestionContabilidad";
+	ContabilidadIngreso.url = "/Contabilidad/GuardarIngreso";
     ContabilidadIngreso.type = "POST";
     ContabilidadIngreso.data = JSON.stringify({
 		DescripcionIngreso: $("#IptIngresoServicio").val(),
 		ServicioIngreso: $("#IptIngresoDetalle").val(),
 		ValorIngreso: $("#IptIngresoDetalle").val(),
-		FechaIngreso: $("#iptFechaIngreso").val(),
+		FechaIngreso: $("#iptFechaIngreso").val()
 
     });
     ContabilidadIngreso.datatype = "json";

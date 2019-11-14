@@ -71,20 +71,20 @@
 			</div>
 			<br />
 			<div>
-				<table class="table">
+				<table id="tblIngresos" class="table">
 					<tr>
 						<th scope="col">Servicio</th>
 						<th scope="col">Detalle</th>
-						<th scope="col">Egreso</th>
+						<th scope="col">Ingreso</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
 					<tr>
-						<td scope="col">JUAN DAVID MOLINA PEREZ</td>
-						<td scope="col">AAA</td>
-						<td scope="col">99</td>
+						<td scope="col"></td>
+						<td scope="col"></td>
+						<td scope="col"></td>
 						<td scope="col">
-							<button name="Identificador" title="Modificar ingreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+							<button id="btnEditarIngreso" name="btnEditarIngreso" title="Modificar ingreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
 								<i class="fa fa-edit"></i>
 							</button>
 						</td>
@@ -253,7 +253,7 @@
 			</div>
 			<br />
 			<div class="table-responsive">
-				<table class="table">
+				<table id="tblPagoPersonal" name="tblPagoPersonal" class="table">
 					<tr>
 						<th scope="col">Personal</th>
 						<th scope="col">Citas</th>
@@ -282,3 +282,4 @@
 </div>
 
 <script src="~/Scripts/validador.js"></script>
+<script src="~/Scripts/contabilidad.js"></script>
