@@ -2,6 +2,15 @@
 	$("#IptIngresoServicio").val("");
 	$("#IptIngresoDetalle").val("");
 	$("#IptIngresoMonto").val("");
+	$("#tblIngresos").empty();
+	var cabecera = "<tr>" +
+		"<th scope=\"col\">Servicio</th>" +
+		"<th scope=\"col\">Detalle</th>" +
+		"<th scope=\"col\">Ingreso</th>" +
+		"<th scope=\"col\"></th>" +
+		"<th scope=\"col\"></th>" +
+		"</tr>";
+	$("#tblIngresos").append(cabecera);
 }
 
 
@@ -13,6 +22,7 @@ function listarIngreso() {
 	ListarIngreso.url = "/Contabilidad/ListarIngreso";
 	ListarIngreso.type = "POST";
 	ListarIngreso.data = JSON.stringify({
+		FechaIngreso: $("#iptFechaIngreso").val()
 	});
 	ListarIngreso.datatype = "json";
 	ListarIngreso.contentType = "application/json";
@@ -110,4 +120,5 @@ $("#btnAgregarEgreso").click(function () {
 
 $(document).ready(function () {
 	limpiarTablaIngreso();
+	listarIngreso();
 });

@@ -43,12 +43,15 @@ namespace Tesis004.InformacionBDD
 			return ingresado;
 		}
 
-		public List<IngresoModel> ListarIngreso()
+		public List<IngresoModel> ListarIngreso(DateTime fechaIngreso)
 		{
 			List<IngresoModel> listaIngresoResultado = new List<IngresoModel>();
 
-			string sentenciaSql = "SELECT IngresoID, DescripcionIngreso, ServicioIngreso, ValorIngreso, FechaIngreso"+
-                                  "FROM Ingreso";
+			var fechaconsulta = fechaIngreso.ToString("yyyy-MM-dd");
+
+			string sentenciaSql = "SELECT IngresoID, DescripcionIngreso, ServicioIngreso, ValorIngreso, FechaIngreso "+
+                                  "FROM Ingreso "+
+								  $"WHERE FechaIngreso = '{fechaconsulta}'";
 
 			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -74,14 +77,14 @@ namespace Tesis004.InformacionBDD
 			bool ingresado = false;
 			int resultado = 0;
 
-			string sentenciaSql = "INSERT INTO EGRESO (DescripcionEgreso,ServicioEgreso,ValorEgreso,FechaEgreso) " +
-								  "VALUES (@DescripcionEgreso,@ServicioEgreso,@ValorEgreso,@FechaEgreso)";
+			string sentenciaSql = "INSERT INTO EGRESO (DescripcionEgreso,ServicioEgreso,MontoEgreso,FechaEgreso) " +
+								  "VALUES (@DescripcionEgreso,@ServicioEgreso,@MontoEgreso,@FechaEgreso)";
 
 			SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
 
 			sentenciaSQL.Parameters.AddWithValue("@DescripcionEgreso", egreso.DescripcionEgreso);
 			sentenciaSQL.Parameters.AddWithValue("@ServicioEgreso", egreso.ServicioEgreso);
-			sentenciaSQL.Parameters.AddWithValue("@ValorEgreso", egreso.ValorEgreso);
+			sentenciaSQL.Parameters.AddWithValue("@MontoEgreso", egreso.ValorEgreso);
 			sentenciaSQL.Parameters.AddWithValue("@FechaEgreso", egreso.FechaEgreso);
 
 			resultado = this.conexion.ComandoModificacion(sentenciaSQL);
