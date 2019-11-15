@@ -9,7 +9,8 @@ namespace Tesis004.Models
 	{
         public int EgresoID { get; set; }
 		public string ServicioEgreso { get; set; }
-		public string DetalleEgreso { get; set; }
+		public string DescripcionEgreso { get; set; }
 		public decimal ValorEgreso { get; set; }
+		public DateTime FechaEgreso { get; set; }
 	}
 }

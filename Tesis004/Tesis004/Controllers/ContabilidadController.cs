@@ -19,10 +19,12 @@ namespace Tesis004.Controllers
 			return View();
 		}
 
-		public ActionResult IngresarIngreso()
+		public ActionResult GuardarIngreso()
 		{
 			return View();
 		}
+
+		//INGRESOS
 
 		[HttpPost]
 		public JsonResult GuardarIngreso(IngresoModel ingreso)
@@ -33,11 +35,21 @@ namespace Tesis004.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult ListarIngreso(IngresoModel ingresoContabilidad)
+		public JsonResult ListarIngreso()
 		{
-			List<IngresoModel> listaIngreso = new List<IngresoModel>();
-			listaIngreso = this.contabilidadBDD.ListarIngreso(ingresoContabilidad.FechaIngreso);
-			return Json(listaIngreso);
+			List<IngresoModel> ingresoResultado = new List<IngresoModel>();
+			ingresoResultado = this.contabilidadBDD.ListarIngreso();
+			return Json(ingresoResultado);
+		}
+
+		////EGRESOS
+
+		[HttpPost]
+		public JsonResult GuardarEgreso(EgresoModel egreso)
+		{
+			List<bool> ingresado = new List<bool>();
+			ingresado.Add(this.contabilidadBDD.IngresarEgreso(egreso));
+			return Json(ingresado);
 		}
 	}
 }

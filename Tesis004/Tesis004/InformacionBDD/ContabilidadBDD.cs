@@ -16,6 +16,8 @@ namespace Tesis004.InformacionBDD
 
         }
 
+		///INGRESO
+
 		public bool IngresarIngreso(IngresoModel ingreso)
 		{
 			bool ingresado = false;
@@ -41,13 +43,12 @@ namespace Tesis004.InformacionBDD
 			return ingresado;
 		}
 
-		public List<IngresoModel> ListarIngreso(DateTime fechaIngreso)
+		public List<IngresoModel> ListarIngreso()
 		{
 			List<IngresoModel> listaIngresoResultado = new List<IngresoModel>();
 
 			string sentenciaSql = "SELECT IngresoID, DescripcionIngreso, ServicioIngreso, ValorIngreso, FechaIngreso"+
-                                  "FROM Ingreso"+
-								   $"WHERE FechaIngreso = '{fechaIngreso}'";
+                                  "FROM Ingreso";
 
 			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -66,6 +67,32 @@ namespace Tesis004.InformacionBDD
 			return listaIngresoResultado;
 		}
 
+		///EGRESO
+
+		public bool IngresarEgreso(EgresoModel egreso)
+		{
+			bool ingresado = false;
+			int resultado = 0;
+
+			string sentenciaSql = "INSERT INTO EGRESO (DescripcionEgreso,ServicioEgreso,ValorEgreso,FechaEgreso) " +
+								  "VALUES (@DescripcionEgreso,@ServicioEgreso,@ValorEgreso,@FechaEgreso)";
+
+			SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+			sentenciaSQL.Parameters.AddWithValue("@DescripcionEgreso", egreso.DescripcionEgreso);
+			sentenciaSQL.Parameters.AddWithValue("@ServicioEgreso", egreso.ServicioEgreso);
+			sentenciaSQL.Parameters.AddWithValue("@ValorEgreso", egreso.ValorEgreso);
+			sentenciaSQL.Parameters.AddWithValue("@FechaEgreso", egreso.FechaEgreso);
+
+			resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+			if (resultado > 0)
+			{
+				ingresado = true;
+			}
+
+			return ingresado;
+		}
 
 	}
 }
