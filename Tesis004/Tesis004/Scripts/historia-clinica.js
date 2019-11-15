@@ -1085,6 +1085,14 @@ $("#btnHabito").click(function () {
     ingresarHabito();
 });
 
+$("#btnGuardarHC").click(function () {
+    actualizarDatosConsulta();
+    validarSubjetivoGeneral();
+    validarObjetivoGeneral();
+    validarReceta();
+    modificarAlergia();
+});
+
 $("#enfermedad").keypress(function () {
     var ConsultarEnfermedad = {};
     ConsultarEnfermedad.url = "/HistoriaClinica/ListarSugerenciaEnfermedad";
@@ -1142,4 +1150,28 @@ $("#cie10").change(function () {
         toastr.error("Error al consultar la enfermedad");
     };
     $.ajax(ConsultarEnfermedad);
+});
+
+$("#btnFinalizarHC").click(function () {
+    var ListarPersonal = {};
+    ListarPersonal.url = "/Servicio/AtencionMedicoCita";
+    ListarPersonal.type = "POST";
+    ListarPersonal.data = JSON.stringify({
+        CitaMedicaID: $("#ConsultaMedicaID").val()
+    });
+    ListarPersonal.datatype = "json";
+    ListarPersonal.contentType = "application/json";
+    ListarPersonal.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Cita atendida");
+            setTimeout("location.href='../Servicio/ListarCita'", 3000);
+        }
+        else {
+            toastr.error("Cita NO atendida");
+        }
+    };
+    ListarPersonal.error = function () {
+        toastr.error("Error al atender cita");
+    };
+    $.ajax(ListarPersonal);
 });
