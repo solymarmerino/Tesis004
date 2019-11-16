@@ -13,6 +13,35 @@
 	$("#tblIngresos").append(cabecera);
 }
 
+$("#btnEditarIngreso").click(function () {
+
+	var ModificarIngreso = {};
+	ModificarIngreso.url = "/Contabilidad/ModificarIngreso";
+	ModificarIngreso.type = "POST";
+	ModificarIngreso.data = JSON.stringify({
+		DescripcionIngreso: $("#IptIngresoServicio").val(),
+		ServicioIngreso: $("#IptIngresoDetalle").val(),
+		ValorIngreso: $("#IptIngresoMonto").val(),
+		FechaIngreso: $("#iptFechaIngreso").val()
+	});
+	ModificarIngreso.datatype = "json";
+	ModificarIngreso.contentType = "application/json";
+	ModificarIngreso.success = function (ingresado) {
+		if (ingresado[0] == true) {
+			toastr.success("Ingreso modificado");
+			location.reload();
+		}
+		else {
+			toastr.error("Ingreso NO modificado");
+		}
+	};
+	ModificarIngreso.error = function () {
+		toastr.error("Error al modificar ingreso");
+	};
+	$.ajax(ModificarIngreso);
+});
+
+
 
 //////////INICIO FUNCIONES DE USO DE INGRESOS//////////////////////////////////
 
@@ -33,7 +62,7 @@ function listarIngreso() {
 			fila += "<td scope=\"col\">" + ingresoResultado[i]["DescripcionIngreso"] + "</th >";
 			fila += "<td scope=\"col\">" + ingresoResultado[i]["ValorIngreso"] + "</th >";
 			fila += "<td scope=\"col\"> <button name=\"btnEditarIngreso\" id=\"btnEditarIngreso\" value=\"" + ingresoResultado[i]["IngresoID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"modificar(" + ingresoResultado[i]["IngresoID"] + ")\"><i class=\"fas fa-edit\"></i></button></th >"
-			fila += "<td scope=\"col\"> <button name=\"btnEliminarIngreso\" id=\"btnEliminarIngreso\" value=\"" + ingresoResultado[i]["IngresoID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"eliminar(" + ingresoResultado[i]["IngresoID"] + ")\"><i class=\"fas fa-trash-alt\"></i></button></th >"
+			fila += "<td scope=\"col\"> <button name=\"btnEliminarIngreso\" id=\"btnEliminarIngreso\"  value=\"" + ingresoResultado[i]["IngresoID"] + "\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"eliminarIngreso(" + ingresoResultado[i]["IngresoID"] + ")\"><i class=\"fas fa-trash-alt\"></i></button></th >"
 			$("#tblIngresos").append("<tr>" + fila + "</tr>");
 		}
 	};
@@ -41,6 +70,32 @@ function listarIngreso() {
 		toastr.error("Error al listar ingreso!!");
 	};
 	$.ajax(ListarIngreso);
+}
+
+function eliminarIngreso(ingresoID) {
+	var ListarPersonal = {};
+	ListarPersonal.url = "/Contabilidad/EliminarIngreso";
+	ListarPersonal.type = "POST";
+	ListarPersonal.data = JSON.stringify({
+		IngresoID: ingresoID
+	});
+	ListarPersonal.datatype = "json";
+	ListarPersonal.contentType = "application/json";
+	ListarPersonal.success = function (resultado) {
+		if (resultado[0] == true) {
+			toastr.success("Ingreso eliminada");
+			limpiarTablaIngreso();
+			listarIngreso();
+		}
+		else {
+			toastr.error("Ingreso NO eliminada");
+
+		}
+	};
+	ListarPersonal.error = function () {
+		toastr.error("Error al eliminar ingreso!!");
+	};
+	$.ajax(ListarPersonal);
 }
 ///////////FIN LISTAR INGRESOS////////////////////////////
 

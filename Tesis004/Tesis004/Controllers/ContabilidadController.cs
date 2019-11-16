@@ -42,6 +42,23 @@ namespace Tesis004.Controllers
 			return Json(ingresoResultado);
 		}
 
+		[HttpPost]
+		public JsonResult EliminarIngreso(int ingresoID)
+		{
+			List<bool> resultado = new List<bool>();
+			resultado.Add(contabilidadBDD.EliminarIngreso(ingresoID));
+			return Json(resultado);
+		}
+
+		[HttpPost]
+		public JsonResult ModificarIngreso(IngresoModel ingreso)
+		{
+			List<bool> ingresado = new List<bool>();
+			ingresado.Add(this.contabilidadBDD.ModificarIngreso(ingreso));
+			ingresado.Add(false);
+			return Json(ingresado);
+		}
+
 		////EGRESOS
 
 		[HttpPost]

@@ -70,6 +70,57 @@ namespace Tesis004.InformacionBDD
 			return listaIngresoResultado;
 		}
 
+		public bool EliminarIngreso(int ingresoID)
+		{
+			bool ingresado = false;
+			int resultado = 0;
+
+			string sentenciaSql = "DELETE FROM INGRESO " +
+								  "WHERE IngresoID = @IngresoID";
+
+			SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+			sentenciaSQL.Parameters.AddWithValue("@IngresoID", ingresoID);
+
+			resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+			if (resultado > 0)
+			{
+				ingresado = true;
+			}
+
+			return ingresado;
+		}
+
+		public bool ModificarIngreso(IngresoModel ingreso)
+		{
+			bool ingresado = false;
+			int resultado = 0;
+
+			string sentenciaSql = "UPDATE Ingreso " +
+								  "SET DescripcionIngreso = @DescripcionIngreso, ServicioIngreso = @ServicioIngreso, ValorIngreso = @ValorIngreso, FechaIngreso = @FechaIngreso " +
+								  "WHERE IngresoID = @IngresoID ";
+
+			SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+			sentenciaSQL.Parameters.AddWithValue("@IngresoID", ingreso.IngresoID);
+			sentenciaSQL.Parameters.AddWithValue("@DescripcionIngreso", ingreso.DescripcionIngreso);
+			sentenciaSQL.Parameters.AddWithValue("@ServicioIngreso", ingreso.ServicioIngreso);
+			sentenciaSQL.Parameters.AddWithValue("@ValorIngreso", ingreso.ValorIngreso);
+			sentenciaSQL.Parameters.AddWithValue("@FechaIngreso", ingreso.FechaIngreso);
+
+			resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+			if (resultado > 0)
+			{
+				ingresado = true;
+			}
+
+			return ingresado;
+		}
+
+
+
 		///EGRESO
 
 		public bool IngresarEgreso(EgresoModel egreso)
