@@ -64,7 +64,7 @@
 				</div>
 				<div class="col-xl-1">
 					<br />
-					<button id="btnAgregarIngreso" name="btnAgregarIngreso" title="Ingresar nuevo ingreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+					<button id="btnAgregarIngreso" name="btnAgregarIngreso" title="Ingresar nuevo ingreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit" onclick="agregarIngreso()">
 						<i class="fas fa-plus-square"></i>
 					</button>
 				</div>
@@ -112,14 +112,14 @@
 				</div>
 				<div class="col-xl-1">
 					<br />
-					<button id="btnAgregarEgreso" name="btnAgregarEgreso" title="Ingresar nuevo egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
+					<button id="btnAgregarEgreso" name="btnAgregarEgreso" title="Ingresar nuevo egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit" onclick="AgregarEgreso()">
 						<i class="fas fa-plus-square"></i>
 					</button>
 				</div>
 			</div>
 			<br />
 			<div>
-				<table class="table">
+				<table id="tblEgresos" class="table">
 					<tr>
 						<th scope="col">Provedor</th>
 						<th scope="col">Detalle</th>
@@ -127,20 +127,6 @@
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
-					<tr>
-						<td scope="col">JUAN DAVID MOLINA PEREZ</td>
-						<td scope="col">AAA</td>
-						<td scope="col">99</td>
-						<td scope="col">
-							<button name="Identificador" title="Modificar egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
-								<i class="fa fa-edit"></i>
-							</button>
-						</td>
-						<td scope="col">
-							<button name="Identificador" title="Eliminar egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
-								<i class="fas fa-trash-alt"></i>
-							</button>
-						</td>
 				</table>
 			</div>
 			<br />
@@ -157,66 +143,48 @@
 			</div>
 			<br />
 			<div class="row">
-				<div class=" col-md-6">
-					<div class="container">
-						<div class="form-check-inline">
-							<label class="form-check-label" for="radio1">
-								<input type="radio" id="radio1" class="form-check-input" name="tipoinforme" value="diario">Diario
-							</label>
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label" for="radio2">
-								<input type="radio" id="radio2" class="form-check-input" name="tipoinforme" value="mensual">Mensual
-							</label>
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label" for="radio3">
-								<input type="radio" id="radio3" class="form-check-input" name="tipoinforme" value="anual">Anual
-							</label>
-						</div>
-					</div>
+				<div class=" col-md-3">
+					<label>Fecha Inicio</label>
+					<input id="iptFechaInicio" name="iptFechaInicio" type="date" class="col-xl" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label id="ValidacionFechaInicio" name="ValidacionFechaInicio"> </label>
 				</div>
-				<div class=" col-md-6">
+				<div class=" col-md-3">
+					<label>Fecha Fin</label>
+					<input id="iptFechaFin" name="iptFechaFin" class="col-xl" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+					<label id="ValidacionFechaFin" name="ValidacionFechaFin"> </label>
+				</div>
+				<div class=" col-md-3">
+					<label>Tipo</label>
 					<div class="container">
 						<div class="form-check-inline">
 							<label class="form-check-label" for="radio1">
-								<input type="radio" id="radio1" class="form-check-input" name="detalleinforme" value="ingresos">Ingresos
+								<input type="radio" id="rdIngreso" class="form-check-input" name="detalleinforme" value="ingreso">Ingresos
 							</label>
 						</div>
 						<div class="form-check-inline">
 							<label class="form-check-label" for="radio2">
-								<input type="radio" id="radio2" class="form-check-input" name="detalleinforme" value="egresos">Egresos
+								<input type="radio" id="rdEgreso" class="form-check-input" name="detalleinforme" value="egreso">Egresos
 							</label>
 						</div>
 					</div>
+					<label id="ValidacionInformeIE" name="ValidacionInformeIE"> </label>
+				</div>
+				<div class="col-md-3">
+					<label> </label>
+					<br />
+					<button id="btnConsultarInforme" name="btnConsultarInforme" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="Informe()">CONSULTAR</button>
 				</div>
 			</div>
+			
 			<br />
 			<div>
-				<table class="table">
+				<table id="tblInforme" class="table">
 					<tr>
 						<th scope="col">Fechas</th>
-						<th scope="col">Provedor</th>
+						<th scope="col">Servicio</th>
 						<th scope="col">Detalle</th>
 						<th scope="col">Monto</th>
-						<th scope="col"></th>
-						<th scope="col"></th>
 					</tr>
-					<tr>
-						<td scope="col">01/01/1999</td>
-						<td scope="col">JUAN DAVID MOLINA PEREZ</td>
-						<td scope="col">AAA</td>
-						<td scope="col">99</td>
-						<td scope="col">
-							<button name="Identificador" title="Modificar egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
-								<i class="fa fa-edit"></i>
-							</button>
-						</td>
-						<td scope="col">
-							<button name="Identificador" title="Eliminar egreso" style="align-content:center; background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:35px; cursor: pointer" type="submit">
-								<i class="fas fa-trash-alt"></i>
-							</button>
-						</td>
 				</table>
 			</div>
 		</div>

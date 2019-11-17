@@ -189,7 +189,7 @@ function obtenerServicio(idServicio) {
     ObtenerServicio.success = function (servicioResultado) {
         $("#DetalleSrv").prop("value", servicioResultado["Detalle"]);
         $("#ValorSrv").prop("value", servicioResultado["Valor"]);      
-        $("#IdentificadorSrv").attr("onclick", "editarServicio(" + servicioResultado["ServicioID"] +")");      
+        $("#IdentificadorSrv").attr("onclick", "editarServicio(" + servicioResultado["ServicioID"] +")");      ///cambia la llamada de la funcion agragar a editar 
         $("#IdentificadorSrv").prop("title", "Modificar servicio");      
         
     };

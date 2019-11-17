@@ -1099,11 +1099,11 @@ $("#btnAgregarIngreso").click(function () {
 	}
 });
 
-/////FIN VALIDACION BOTON GUARDAR INGRESO 
-////////FIN VALIDACION CAMPOS INGRESOS
-///////////////////////////////////////////////
-////////INICIO VALIDACION CAMPOS EGRESOS
-//////INICIO validacion de servicio
+/////FIN VALIDACION BOTON GUARDAR INGRESO ////////////////
+////////FIN VALIDACION CAMPOS INGRESOS/////////////////
+
+////////INICIO VALIDACION CAMPOS EGRESOS////////////
+//////INICIO validacion de servicio///////////////
 $("#iptEgresoServicio").change(function () {
 	$("#ValidacionEgresoServicio").empty();
 	var nombre = $("#iptEgresoServicio").val();
@@ -1115,9 +1115,9 @@ $("#iptEgresoServicio").change(function () {
 		$("#ValidacionEgresoServicio").prop("disable", true);
 	}
 });
-//////FIN validacion de servicio
+//////FIN validacion de servicio////////
 
-//////INICIO validacion de detelle de Egreso
+//////INICIO validacion de detelle de Egreso///////
 $("#iptEgresoDetalle").change(function () {
 	$("#ValidacionEgresoDetalle").empty();
 	var nombre = $("#iptEgresoDetalle").val();
@@ -1129,9 +1129,9 @@ $("#iptEgresoDetalle").change(function () {
 		$("#ValidacionEgresoDetalle").prop("disable", true);
 	}
 });
-//////FIN validacion de servicio
+//////FIN validacion de servicio///////
 
-////////INICIO VALIDACION CAMPO MONTO
+////////INICIO VALIDACION CAMPO MONTO///////////
 $("#iptEgresoMonto").change(function () {
 	$("#ValidacionEgresoMonto").empty();
 	var precionarterial = $("#iptEgresoMonto").val();
@@ -1152,7 +1152,7 @@ $("#iptEgresoMonto").change(function () {
 });
 ////////FIN VALIDACION CAMPO MONTO
 
-//////INICIO VALIDACION BOTON GUARDAR INGRESO 
+//////INICIO VALIDACION BOTON GUARDAR EGRESO /////////////
 $("#btnAgregarEgreso").click(function () {
 	$("#ValidacionEgresoServicio").empty();
 	var nombre = $("#iptEgresoServicio").val();
@@ -1193,8 +1193,64 @@ $("#btnAgregarEgreso").click(function () {
 	}
 });
 
-/////FIN VALIDACION BOTON GUARDAR INGRESO 
-////////FIN VALIDACION CAMPOS INGRESOS
+/////FIN VALIDACION BOTON GUARDAR INGRESO //////////////
+////////FIN VALIDACION CAMPOS INGRESOS/////////
+
+////////INICIO VALIDACION CAMPOS INFORME I/E//////////
+
+///INICIO VALIDACION RANGO FECHA///////
+$("#iptFechaFin").change(function () {
+	$("#ValidacionFechaInicio").empty();
+	var fecha1 = $("#iptFechaInicio").val();
+	var fecha2 = $("#iptFechaFin").val();
+
+	if (fecha2 <= fecha1) {
+		$("#ValidacionFechaInicio").append("Fecha fin mayor a fecha inicio");
+	}
+	else {
+		$("#ValidacionFechaInicio").prop("disable", true);
+	}
+});
+
+///FIN VALIDACION RANGO FECHA///////
+////////INICIO VALIDACION FECHA INICIO/////////////
+$("#btnConsultarInforme").click(function () {
+	$("#ValidacionFechaInicio").empty();
+	$("#ValidacionFechaFin").empty();
+	$("#ValidacionInformeIE").empty();
+	///VALIDACION FECHA INICIO
+	var fechaInicio = $("#iptFechaInicio").val();
+	///el campo fecha no este vacio
+	if (fechaInicio == null || fechaInicio.length == 0 || /^\s+$/.test(fechaInicio)) {
+		$("#ValidacionFechaInicio").append("Fecha no valida");
+	}
+	else {
+		$("#ValidacionFechaInicio").prop("disable", true);
+	}
+
+	///VALIDACION FECHA FIN
+	var fechaFin = $("#iptFechaFin").val();
+	///el campo fecha no este vacio
+	if (fechaFin == null || fechaFin.length == 0 || /^\s+$/.test(fechaFin)) {
+		$("#ValidacionFechaFin").append("Fecha no valida");
+	}
+	else {
+		$("#ValidacionFechaFin").prop("disable", true);
+	}
+	
+	///VALIDACION CHECK
+
+	///el campo fecha no este vacio
+	if ($('#rdIngreso')[0].checked == false && $('#rdEgreso')[0].checked == false) {
+		$("#ValidacionInformeIE").append("Seleccionar una opcion");
+	}
+	else {
+		$("#ValidacionInformeIE").prop("disable", true);
+	}
+
+
+});
+////////FIN VALIDACION CAMPOS INFORME I/E//////////
 ////////FIN VALIDACION CONTABILIDAD ////////////////
 
 ////////INICIO VALIDACION INVENTARIO////////////////
