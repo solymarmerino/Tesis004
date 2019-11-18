@@ -120,6 +120,24 @@ namespace Tesis004.InformacionBDD
             return personalResultado;
         }
 
+        public PersonalModel OptenerPersonalPorUsuario(string usuario)
+        {
+            PersonalModel personalResultado = new PersonalModel();
+
+            string sentenciaSql = "SELECT TOP(1) PersonalID, Cargo, Usuario, Contrasena " +
+                                  "FROM Personal " +
+                                  $"WHERE PersonalID = {usuario} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            personalResultado.PersonalID = tablaDatos.Rows[0].Field<int>("PersonalID");
+            personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
+            personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
+            personalResultado.Especialidad = tablaDatos.Rows[0].Field<int>("Contrasena");
+
+            return personalResultado;
+        }
+
         public bool GuardarPersonalModificado(PersonalModel personal)
         {
             bool modificado = false;
