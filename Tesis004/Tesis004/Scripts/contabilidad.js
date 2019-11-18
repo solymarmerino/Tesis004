@@ -330,16 +330,16 @@ function AgregarEgreso() {
 function limpiarTablaInforme() {
 	$("#tblInforme").empty();
 	var cabecera = "<tr>" +
+		"<th scope=\"col\">Fecha</th>" +
 		"<th scope=\"col\">Servicio</th>" +
 		"<th scope=\"col\">Detalle</th>" +
 		"<th scope=\"col\">Ingreso</th>" +
-		"<th scope=\"col\"></th>" +
-		"<th scope=\"col\"></th>" +
 		"</tr>";
 	$("#tblInforme").append(cabecera);
 }
 ///////////FIN LIMPIAR TABLA INGRESOS////////////////////////////
 
+///////////INICIO INFORME I/E ///////////////////////////
 function Informe() {
 	limpiarTablaInforme();
 		var ListarInforme = {};
@@ -387,6 +387,7 @@ function Informe() {
 		};
 		$.ajax(ListarInforme);	
 }
+///////////FIN INFORME I/E ///////////////////////////
 
 //////////FIN FUNCIONES DE INFORME I/E//////////////////////////////////
 

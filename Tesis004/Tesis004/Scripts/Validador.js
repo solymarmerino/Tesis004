@@ -1204,7 +1204,7 @@ $("#iptFechaFin").change(function () {
 	var fecha1 = $("#iptFechaInicio").val();
 	var fecha2 = $("#iptFechaFin").val();
 
-	if (fecha2 <= fecha1) {
+	if (fecha2 < fecha1) {
 		$("#ValidacionFechaInicio").append("Fecha fin mayor a fecha inicio");
 	}
 	else {

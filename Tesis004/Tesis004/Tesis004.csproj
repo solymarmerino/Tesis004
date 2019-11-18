@@ -145,7 +145,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ContabilidadController.cs" />
     <Compile Include="Controllers\EnfermeriaController.cs" />
-    <Compile Include="Controllers\FacturacionController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HistoriaClinicaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngresoController.cs" />
@@ -157,8 +157,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="InformacionBDD\ConexionBDD.cs" />
+    <Compile Include="InformacionBDD\FacturaBDD.cs" />
     <Compile Include="InformacionBDD\HistoriaClinicaBDD.cs" />
     <Compile Include="InformacionBDD\InformacionGeneralBDD.cs" />
+    <Compile Include="InformacionBDD\InventarioBDD.cs" />
     <Compile Include="InformacionBDD\PacienteBDD.cs" />
     <Compile Include="InformacionBDD\PersonalBDD.cs" />
     <Compile Include="InformacionBDD\ServicioBDD.cs" />
@@ -174,6 +176,7 @@
     <Compile Include="Models\DetalleFacturaModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
     <Compile Include="Models\ClienteModel.cs" />
+    <Compile Include="Models\InventarioModel.cs" />
     <Compile Include="Models\ProcedimientoModel.cs" />
     <Compile Include="Models\RecetaModel.cs" />
     <Compile Include="Models\SubjetivoModel.cs" />
@@ -220,6 +223,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\factura.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -443,6 +447,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\paciente-actualizar.js" />
     <Content Include="Scripts\paciente.js" />
+    <Content Include="Scripts\inventario.js" />
     <Content Include="Scripts\personal.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -502,7 +507,6 @@
     <Content Include="Views\Personal\GestionPersonal.cshtml" />
     <Content Include="Views\Personal\ModificarPersonal.cshtml" />
     <Content Include="Views\Enfermeria\GestionEnfermeria.cshtml" />
-    <Content Include="Views\Facturacion\IngresoFactura.cshtml" />
     <Content Include="Views\HistoriaClinica\HistoricoSignosVitales.cshtml" />
     <Content Include="Scripts\jsPDF-1.3.2\bower.json" />
     <Content Include="Scripts\jsPDF-1.3.2\CNAME" />
@@ -541,6 +545,7 @@
     <Content Include="Scripts\jsPDF-1.3.2\test\013_sillysvgrenderer.pdf" />
     <Content Include="Scripts\jsPDF-1.3.2\test\015_splittext.pdf" />
     <Content Include="Views\HistoriaClinica\MostrarFichaMedica.cshtml" />
+    <Content Include="Views\Factura\IngresoFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

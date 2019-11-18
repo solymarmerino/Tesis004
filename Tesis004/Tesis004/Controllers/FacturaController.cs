@@ -8,24 +8,23 @@ using Tesis004.Models;
 
 namespace Tesis004.Controllers
 {
-    public class InventarioController : Controller
+    public class FacturaController : Controller
     {
 		InformacionGeneralBDD informacionGeneral = new InformacionGeneralBDD();
-		InventarioBDD inventarioBDD = new InventarioBDD();
+		FacturaBDD facturaBDD = new FacturaBDD();
 
-		// GET: Inventario
-		public ActionResult GestionInventario()
+		// GET: Facturacion
+		public ActionResult IngresoFactura()
         {
             return View();
         }
 
 		[HttpPost]
-		public JsonResult GuardarProducto(InventarioModel producto)
+		public JsonResult GuardarCliente(ClienteModel ingreso)
 		{
 			List<bool> ingresado = new List<bool>();
-			ingresado.Add(this.inventarioBDD.IngresarProducto(producto));
+			ingresado.Add(this.facturaBDD.IngresarCliente(ingreso));
 			return Json(ingresado);
 		}
-
 	}
 }
