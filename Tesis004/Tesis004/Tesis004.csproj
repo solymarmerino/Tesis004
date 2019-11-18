@@ -166,6 +166,7 @@
     <Compile Include="InformacionBDD\ServicioBDD.cs" />
     <Compile Include="InformacionBDD\ContabilidadBDD.cs" />
     <Compile Include="InformacionBDD\SignosVitalesBDD.cs" />
+    <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\HabitoModel.cs" />
     <Compile Include="Models\AntecedenteSocialModel.cs" />
     <Compile Include="Models\AntecedentePersonalModel.cs" />
@@ -175,7 +176,6 @@
     <Compile Include="Models\IngresoModel.cs" />
     <Compile Include="Models\DetalleFacturaModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
-    <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\InventarioModel.cs" />
     <Compile Include="Models\ProcedimientoModel.cs" />
     <Compile Include="Models\RecetaModel.cs" />

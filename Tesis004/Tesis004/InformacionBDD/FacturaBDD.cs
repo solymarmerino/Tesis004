@@ -76,7 +76,7 @@ namespace Tesis004.InformacionBDD
 			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
 			ClienteModel ingresoResultado = new ClienteModel();
-			ingresoResultado.IngresoID = tablaDatos.Rows[0].Field<int>("IngresoID");
+			ingresoResultado.ClienteID = tablaDatos.Rows[0].Field<int>("ClienteID");
 
 			return ingresoResultado;
 		}

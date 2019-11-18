@@ -27,7 +27,7 @@ namespace Tesis004.Controllers
 		//INGRESOS
 
 		[HttpPost]
-		public JsonResult GuardarIngreso(ClienteModel ingreso)
+		public JsonResult GuardarIngreso(ClientesModel ingreso)
 		{
 			List<bool> ingresado = new List<bool>();
 			ingresado.Add(this.contabilidadBDD.IngresarIngreso(ingreso));
@@ -35,9 +35,9 @@ namespace Tesis004.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult ListarIngreso(ClienteModel listaIngreso) 
+		public JsonResult ListarIngreso(ClientesModel listaIngreso) 
 		{
-			List<ClienteModel> ingresoResultado = new List<ClienteModel>();
+			List<ClientesModel> ingresoResultado = new List<ClientesModel>();
 			ingresoResultado = this.contabilidadBDD.ListarIngreso(listaIngreso.FechaIngreso);
 			return Json(ingresoResultado);
 		}
@@ -51,15 +51,15 @@ namespace Tesis004.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult ObtenerIngreso(ClienteModel ingreso)
+		public JsonResult ObtenerIngreso(ClientesModel ingreso)
 		{
-			ClienteModel ingresoResultado = new ClienteModel();
+			ClientesModel ingresoResultado = new ClientesModel();
 			ingresoResultado = this.contabilidadBDD.ObtenerIngreso(ingreso.IngresoID);
 			return Json(ingresoResultado);
 		}
 
 		[HttpPost]
-		public JsonResult ModificarIngreso(ClienteModel ingreso)
+		public JsonResult ModificarIngreso(ClientesModel ingreso)
 		{
 			List<bool> ingresado = new List<bool>();
 			ingresado.Add(this.contabilidadBDD.ModificarIngreso(ingreso));
@@ -115,7 +115,7 @@ namespace Tesis004.Controllers
 		[HttpPost]
 		public JsonResult InformeIngreso(DateTime fechaInicio,DateTime fechaFin)
 		{
-			List<ClienteModel> ingresoResultado = new List<ClienteModel>();
+			List<ClientesModel> ingresoResultado = new List<ClientesModel>();
 			ingresoResultado = this.contabilidadBDD.InformeIngreso(fechaInicio,fechaFin);
 			return Json(ingresoResultado);
 		}
