@@ -26,5 +26,22 @@ namespace Tesis004.Controllers
 			ingresado.Add(this.facturaBDD.IngresarCliente(ingreso));
 			return Json(ingresado);
 		}
+		/*
+		[HttpPost]
+		public JsonResult ListarSugerenciaCliente(ClienteModel cliente)
+		{
+			List<ClienteModel> listaSugenrenciaPaciente = new List<ClienteModel>();
+			listaSugenrenciaPaciente = this.facturaBDD.ListaSugerenciaCliente(cliente.NombreCliente);
+			return Json(listaSugenrenciaPaciente);
+		}
+		*/
+
+		[HttpPost]
+		public JsonResult ObtenerIdCliente(ClienteModel cliente)
+		{
+			ClienteModel ingresoResultado = new ClienteModel();
+			ingresoResultado = this.facturaBDD.ConsultarIdCliente(cliente.CedulaCliente);
+			return Json(ingresoResultado);
+		}
 	}
 }

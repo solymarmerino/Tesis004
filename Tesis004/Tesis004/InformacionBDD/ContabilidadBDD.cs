@@ -18,7 +18,7 @@ namespace Tesis004.InformacionBDD
 
 		///INGRESO
 
-		public bool IngresarIngreso(IngresoModel ingreso)
+		public bool IngresarIngreso(ClienteModel ingreso)
 		{
 			bool ingresado = false;
 			int resultado = 0;
@@ -43,9 +43,9 @@ namespace Tesis004.InformacionBDD
 			return ingresado;
 		}
 
-		public List<IngresoModel> ListarIngreso(DateTime fechaIngreso)
+		public List<ClienteModel> ListarIngreso(DateTime fechaIngreso)
 		{
-			List<IngresoModel> listaIngresoResultado = new List<IngresoModel>();
+			List<ClienteModel> listaIngresoResultado = new List<ClienteModel>();
 
 			var fechaconsulta = fechaIngreso.ToString("yyyy-MM-dd");
 
@@ -57,7 +57,7 @@ namespace Tesis004.InformacionBDD
 
 			for (int i = 0; i < tablaDatos.Rows.Count; i++)
 			{
-				IngresoModel ingresoResultado = new IngresoModel();
+				ClienteModel ingresoResultado = new ClienteModel();
 				ingresoResultado.IngresoID = tablaDatos.Rows[i].Field<int>("IngresoID");
 				ingresoResultado.DescripcionIngreso = tablaDatos.Rows[i].Field<string>("DescripcionIngreso");
 				ingresoResultado.ServicioIngreso = tablaDatos.Rows[i].Field<string>("ServicioIngreso");
@@ -92,7 +92,7 @@ namespace Tesis004.InformacionBDD
 			return ingresado;
 		}
 
-		public IngresoModel ObtenerIngreso(int IngresoID)
+		public ClienteModel ObtenerIngreso(int IngresoID)
 		{
 
 			string sentenciaSql = "SELECT TOP(1) IngresoID, DescripcionIngreso, ServicioIngreso, ValorIngreso, FechaIngreso " +
@@ -101,7 +101,7 @@ namespace Tesis004.InformacionBDD
 
 			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
-			IngresoModel ingresoResultado = new IngresoModel();
+			ClienteModel ingresoResultado = new ClienteModel();
 			ingresoResultado.IngresoID = tablaDatos.Rows[0].Field<int>("IngresoID");
 			ingresoResultado.DescripcionIngreso = tablaDatos.Rows[0].Field<string>("DescripcionIngreso");
 			ingresoResultado.ServicioIngreso = tablaDatos.Rows[0].Field<string>("ServicioIngreso");
@@ -111,7 +111,7 @@ namespace Tesis004.InformacionBDD
 			return ingresoResultado;
 		}
 
-		public bool ModificarIngreso(IngresoModel ingreso)
+		public bool ModificarIngreso(ClienteModel ingreso)
 		{
 			bool ingresado = false;
 			int resultado = 0;
@@ -264,9 +264,9 @@ namespace Tesis004.InformacionBDD
 
 		///INFORME I/E
 
-		public List<IngresoModel> InformeIngreso(DateTime fechaInicio, DateTime fechaFin)
+		public List<ClienteModel> InformeIngreso(DateTime fechaInicio, DateTime fechaFin)
 		{
-			List<IngresoModel> listaEgresoResultado = new List<IngresoModel>();
+			List<ClienteModel> listaEgresoResultado = new List<ClienteModel>();
 
 			var fecha1 = fechaInicio.ToString("yyyy-MM-dd");
 			var fecha2 = fechaFin.ToString("yyyy-MM-dd");
@@ -279,7 +279,7 @@ namespace Tesis004.InformacionBDD
 
 			for (int i = 0; i < tablaDatos.Rows.Count; i++)
 			{
-				IngresoModel egresoResultado = new IngresoModel();
+				ClienteModel egresoResultado = new ClienteModel();
 				egresoResultado.IngresoID = tablaDatos.Rows[i].Field<int>("IngresoID");
 				egresoResultado.DescripcionIngreso = tablaDatos.Rows[i].Field<string>("DescripcionIngreso");
 				egresoResultado.ServicioIngreso = tablaDatos.Rows[i].Field<string>("ServicioIngreso");

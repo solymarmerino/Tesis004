@@ -30,38 +30,84 @@ function agregarCliente() {
 ///////////FIN AGREGAR CLIENTE////////////////////////////
 
 ////////////INICIO BUSCAR CLIENTE/////////////////////////
-$("#parametroBusqueda").keypress(function () {
-	var OpcionConsulta = "";
-	if ($("#SltNombrePaciente").is(':checked')) {
-		OpcionConsulta = $("#SltNombrePaciente").val();
-	}
-	if ($("#SltCedulaPaciente").is(':checked')) {
-		OpcionConsulta = $("#SltCedulaPaciente").val();
-	}
-	if ($("#SltHistoriaClinicaPaciente").is(':checked')) {
-		OpcionConsulta = $("#SltHistoriaClinicaPaciente").val();
-	}
-	var ConsultarPaciente = {};
-	ConsultarPaciente.url = "/Paciente/ListarSugerenciaPacienteBusqueda";
-	ConsultarPaciente.type = "POST";
-	ConsultarPaciente.data = JSON.stringify({
-		opcionBusqueda: OpcionConsulta,
-		parametroBusqueda: $("#parametroBusqueda").val(),
+/*$("#iptClienteFactura").keypress(function () {
+	var ConsultarCliente = {};
+	ConsultarCliente.url = "/Factura/ListarSugerenciaCliente";
+	ConsultarCliente.type = "POST";
+	ConsultarCliente.data = JSON.stringify({
+		NombreCliente: $("#iptClienteFactura").val(),
 	});
-	ConsultarPaciente.datatype = "json";
-	ConsultarPaciente.contentType = "application/json";
-	ConsultarPaciente.success = function (listaSugenrenciaPaciente) {
-		$("#sugerenciaPaciente").empty();
-		for (var i = 0; i < listaSugenrenciaPaciente.length; i++) {
+	ConsultarCliente.datatype = "json";
+	ConsultarCliente.contentType = "application/json";
+	ConsultarCliente.success = function (listaSugenrenciaCliente) {
+		$("#sugerenciaCliente").empty();
+		for (var i = 0; i < listaSugenrenciaCliente.length; i++) {
 			var fila = "";
-			fila += "<td scope=\"col\">" + listaSugenrenciaPaciente[i]["ParametroBusqueda"] + "</th >";
-			$("#sugerenciaPaciente").append("<option value=\"" + listaSugenrenciaPaciente[i]["ParametroBusqueda"] + "\"></option>");
+			fila += "<td scope=\"col\">" + listaSugenrenciaCliente[i]["NombreCliente"] + "</th >";
+			$("#sugerenciaCliente").append("<option value=\"" + listaSugenrenciaCliente[i]["NombreCliente"] + "\"></option>");
 		}
 	};
-	ConsultarPaciente.error = function () {
-		toastr.error("Error al consultar sugerencias del paciente!!");
+	ConsultarCliente.error = function () {
+		toastr.error("Error al consultar sugerencias de clientes!!");
 	};
-	$.ajax(ConsultarPaciente);
-});
-////////////FIN BUSCAR CLIENTE////////////////////////////
+	$.ajax(ConsultarCliente);
+});*/
+////////////FIN BUSCAR CLIENTE///////////////////////////
+
+
+///////////INICIO AGREGAR FACTURA////////////////////////////
+function obtenerIdCliente(CedulaCliente) {
+	var ObtenerIdCliente = {};
+	ObtenerIdCliente.url = "/Factura/ObtenerIdCliente";
+	ObtenerIdCliente.type = "POST";
+	ObtenerIdCliente.data = JSON.stringify({
+		CedulaCliente: CedulaCliente
+	});
+	ObtenerIdCliente.datatype = "json";
+	ObtenerIdCliente.contentType = "application/json";
+	ObtenerIdCliente.success = function (ingresoResultado) {
+		$("#iptNumCliente").prop("value", ingresoResultado["ClienteID"]);
+	};
+	ObtenerIdCliente.error = function () {
+		toastr.error("Error al obtener el dato!!");
+	};
+	$.ajax(ObtenerIdCliente);
+}
+
+
+
+
+function agregarFactura() {
+	var Facturacion = {};
+	Facturacion.url = "/Factura/GuardarFactura";
+	Facturacion.type = "POST";
+	Facturacion.data = JSON.stringify({
+		FechaFactura: $("#iptClienteFactura").val(),
+		CedulaCliente: $("#iptClienteCI").val(),
+		DireccionCliente: $("#iptClienteDireccion").val(),
+		TelefonoCliente: $("#iptClienteTelefono").val()
+	});
+	Facturacion.datatype = "json";
+	Facturacion.contentType = "application/json";
+	Facturacion.success = function (resultado) {
+		if (resultado[0] == true) {
+			toastr.success("Datos cliente guardado");
+			limpiarTablaIngreso();
+			listarIngreso();
+		}
+		else {
+			toastr.error("Datos cliente NO guardado");
+		}
+	};
+	Facturacion.error = function () {
+		toastr.error("Error al guardar los datos del cliente");
+	};
+	$.ajax(Facturacion);
+}
+///////////FIN AGREGAR FACTURA////////////////////////////
+
 ////////////FIN FUNCIONES FACTURACION//////////////////////
+
+$(document).ready(function () {
+	obtenerIdCliente();
+});

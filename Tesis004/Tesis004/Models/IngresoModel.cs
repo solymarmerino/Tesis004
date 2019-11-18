@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Tesis004.Models
 {
-    public class IngresoModel
+    public class ClienteModel
 	{
         public int IngresoID { get; set; }
 		public string ServicioIngreso { get; set; }
