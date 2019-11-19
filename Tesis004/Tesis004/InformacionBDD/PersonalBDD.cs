@@ -124,16 +124,17 @@ namespace Tesis004.InformacionBDD
         {
             PersonalModel personalResultado = new PersonalModel();
 
-            string sentenciaSql = "SELECT TOP(1) PersonalID, Cargo, Usuario, Contrasena " +
+            string sentenciaSql = "SELECT TOP(1) PersonalID, Nombre, Cargo, Usuario, Contrasena " +
                                   "FROM Personal " +
-                                  $"WHERE PersonalID = {usuario} ";
+                                  $"WHERE Usuario LIKE \'{usuario}\' ";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
             personalResultado.PersonalID = tablaDatos.Rows[0].Field<int>("PersonalID");
+            personalResultado.Nombre = tablaDatos.Rows[0].Field<string>("Nombre");
             personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
             personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
-            personalResultado.Especialidad = tablaDatos.Rows[0].Field<int>("Contrasena");
+            personalResultado.Contrasena = tablaDatos.Rows[0].Field<string>("Contrasena");
 
             return personalResultado;
         }

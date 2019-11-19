@@ -15,44 +15,63 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        @Html.ActionLink("VACARI GC", "Ingreso", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
+        @if (Session["ingreso"] != null)
+        {
+            if (Session["ingreso"].Equals("true"))
+            {
+                @Html.ActionLink("VACARI GC", "Presentacion", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
+            }
+            else
+            {
+                @Html.ActionLink("VACARI GC", "Ingreso", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
+            }
+        }
+        else
+        {
+            @Html.ActionLink("VACARI GC", "Ingreso", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
+        }
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-		<div class="collapse navbar-collapse" id="menuPrincipal">
-			<ul class="navbar-nav mr-2">
-				<li class="nav-item">
-					@Html.ActionLink("Personal", "GestionPersonal", "Personal", new { area = "" }, new { @class = "nav-link" })
-				</li>
-			</ul>
-			<ul class="navbar-nav mr-2">
-				<li class="nav-item">
-					@Html.ActionLink("Paciente", "BuscarPaciente", "Paciente", new { area = "" }, new { @class = "nav-link" })
-				</li>
-			</ul>
-			<ul class="navbar-nav mr-2">
-				<li class="nav-item">
-					@Html.ActionLink("Cita", "ListarCita", "Servicio", new { area = "" }, new { @class = "nav-link" })
-				</li>
-			</ul>
-			<ul class="navbar-nav mr-2">
-				<li class="nav-item">
-					@Html.ActionLink("Contabilidad", "GestionContabilidad", "Contabilidad", new { area = "" }, new { @class = "nav-link" })
-				</li>
-			</ul>
-			<ul class="navbar-nav mr-2">
-				<li class="nav-item">
-					@Html.ActionLink("Inventario", "GestionInventario", "Inventario", new { area = "" }, new { @class = "nav-link" })
-				</li>
-			</ul>
-			<ul class="navbar-nav mr-2">
-				<li class="nav-item">
-					@Html.ActionLink("Factura", "IngresoFactura", "Factura", new { area = "" }, new { @class = "nav-link" })
-				</li>
-			</ul>
-
-		</div>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+            @if (Session["ingreso"] != null) {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            @Html.ActionLink("Personal", "GestionPersonal", "Personal", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Paciente", "BuscarPaciente", "Paciente", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Cita", "ListarCita", "Servicio", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Contabilidad", "GestionContabilidad", "Contabilidad", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Inventario", "GestionInventario", "Inventario", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Factura", "IngresoFactura", "Factura", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarSalir" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @Session["nombreUsuario"]
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarSalir">
+                                @Html.ActionLink("Salir", "Salir", "Ingreso", new { area = "" }, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                    </ul>
+                }
+            }
+        </div>
     </nav>
 
     <div class="container body-content">

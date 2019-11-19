@@ -16,7 +16,7 @@ namespace Tesis004.Controllers
         [HttpGet]
 		public ActionResult Ingreso()
 		{
-            Session["login"] = "false";
+            Session["ingreso"] = "false";
             return View();            
         }
 
@@ -24,15 +24,16 @@ namespace Tesis004.Controllers
         public ActionResult Ingresar(PersonalModel personal)
         {
             PersonalModel personalIngreso = personalBDD.OptenerPersonalPorUsuario(personal.Usuario);
-            if (personal.Usuario.Equals(personalIngreso.Usuario) && personal.Contrasena.Equals(personalIngreso.Contrasena))
+            if (!string.IsNullOrEmpty(personal.Usuario) && !string.IsNullOrEmpty(personal.Contrasena) && personal.Usuario.Equals(personalIngreso.Usuario) && personal.Contrasena.Equals(personalIngreso.Contrasena))
             {
-                Session["login"] = "true";
-                Session["typeUser"] = personalIngreso.Cargo;
+                Session["ingreso"] = "true";
+                Session["tipoUsuario"] = personalIngreso.Cargo;
+                Session["nombreUsuario"] = personalIngreso.Nombre;
                 return RedirectToAction("Presentacion", "Ingreso");
             }
             else
             {
-                return View();
+                return RedirectToAction("Ingreso", "Ingreso");
             }
         }
 
@@ -43,8 +44,9 @@ namespace Tesis004.Controllers
 
 		public ActionResult Salir()
 		{
-            Session["login"] = "false";
-            Session["typeUser"] = "";
+            Session["ingreso"] = "false";
+            Session["tipoUsuario"] = "";
+            Session["nombreUsuario"] = "";
             return RedirectToAction("Ingreso", "Ingreso");
 		}
 
