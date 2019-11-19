@@ -115,7 +115,7 @@ namespace Tesis004.InformacionBDD
             personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
             personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
             personalResultado.Especialidad = tablaDatos.Rows[0].Field<int>("Especialidad");
-            personalResultado.Codigo = tablaDatos.Rows[0].Field<int>("Codigo");
+            personalResultado.Codigo = tablaDatos.Rows[0].Field<string>("Codigo");
 
             return personalResultado;
         }

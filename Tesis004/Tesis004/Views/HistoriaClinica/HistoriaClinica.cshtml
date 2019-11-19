@@ -53,10 +53,13 @@
 				<a class="nav-link" data-toggle="tab" href="#atencionesprevias" onclick="consultarAtencionPrevia()">Atenciones Previas</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#tablasimc">Tablas de IMC</a>
+				<a class="nav-link" data-toggle="tab" href="#tablasimc">Tabla de IMC</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" data-toggle="tab" href="#curvascrecimiento">Pediatria</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#historicosignosvitales">Historico</a>
 			</li>
 
 		</ul>
@@ -78,14 +81,14 @@
 							<p>
 								<label>Ocupación</label>
 								<br />
-								<input name="Ocupacion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.Ocupacion" />
+								<input name="Ocupacion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.Ocupacion" disabled />
 							</p>
 						</div>
 						<div class="col-xl-3">
 							<p>
 								<label>Etnia</label>
 								<br>
-								<select id="Etnia" name="Etnia" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+								<select id="Etnia" name="Etnia" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled>
 									<option value="0"> Seleccionar </option>
 									@{
 										var etnias = ViewData["etnias"] as List<Tesis004.Models.ParametroModel>;
@@ -108,30 +111,30 @@
 							<p>
 								<label>Discapacidad</label>
 								<br />
-								<input id="CboxDiscapacidad" type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" @(Model != null ? (Model.Discapacidad ? "checked" : "") : "") /> Discapacidad
+								<input id="CboxDiscapacidad" type="checkbox" style="text-align:center; border-radius:0.3rem; width:15px; height:15px;" @(Model != null ? (Model.Discapacidad ? "checked" : "") : "") disabled /> Discapacidad
 							</p>
 						</div>
 						<div class="col-xl-3">
 							<p>
 								<label>Fecha de Nacimiento</label>
 								<br />
-								<input name="FechaNacimiento" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@fechaString" />
+								<input name="FechaNacimiento" class="required" type="date" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@fechaString" disabled />
 							</p>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-2">
+						<div class="col-xl-3">
 							<p>
 								<label>Edad</label>
 								<br />
-								<input name="TipoSangre" class="required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.Edad" />
+								<input name="TipoSangre" class="required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.Edad" disabled />
 							</p>
 						</div>
 						<div class="col-xl-3">
 							<p>
 								<label>Genero</label>
 								<br>
-								<select id="Genero" name="Genero" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+								<select id="Genero" name="Genero" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled>
 									<option value="0"> Seleccionar </option>
 									@{
 										var generos = ViewData["generos"] as List<Tesis004.Models.ParametroModel>;
@@ -150,11 +153,11 @@
 								</select>
 							</p>
 						</div>
-						<div class="col-md-3">
+						<div class="col-xl-3">
 							<p>
 								<label>Estado Civil</label>
 								<br />
-								<select id="EstadoCivil" name="EstadoCivil" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+								<select id="EstadoCivil" name="EstadoCivil" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled>
 									<option value="0"> Seleccionar </option>
 									@{
 										var estados = ViewData["estados"] as List<Tesis004.Models.ParametroModel>;
@@ -173,11 +176,11 @@
 								</select>
 							</p>
 						</div>
-						<div class="col-md-2">
+						<div class="col-xl-3">
 							<p>
 								<label>Tipo de Sangre</label>
 								<br />
-								<select id="TipoSangre" name="TipoSangre" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;">
+								<select id="TipoSangre" name="TipoSangre" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled>
 									<option value="0"> Seleccionar </option>
 									@{
 										var tipos = ViewData["tipos"] as List<Tesis004.Models.ParametroModel>;
@@ -263,12 +266,6 @@
 							<textarea id="ObservacionesEnfermeria" class="col-xl required number" type="text" rows="2" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;" disabled></textarea>
 						</p>
 					</div>
-				</div>
-				<div class="text-center">
-					<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">HISTORICO</button>
-					<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">PESO</button>
-					<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">TALLA</button>
-					<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="validarFormularioSimple()">TA</button>
 				</div>
 				<br />
 				<!--Creacion de seccion de ingreso de datos de consulta-->
@@ -731,7 +728,7 @@
 				<!-- Creacion de sección de habitos -->
 				<div class="card bg-info text-white">
 					<div class="card-header">
-						HABITOS
+						HÁBITOS
 					</div>
 				</div>
 				<br />
@@ -795,7 +792,34 @@
 				</div>
 				<br />
 				<div class="table-responsive">
-					<table id="tblAtencionPrevia" class="table"></table>
+					<table id="tblAtencionPrevia" class="table">
+						<tr>
+							<th scope="col">Fecha</th>
+							<th scope="col">Medico</th>
+							<th scope="col">Diagnostico</th>
+							<th scope="col">Ver</th>>
+						</tr>
+						<tr>
+							<td scope="col">2019-10-20</td>
+							<td scope="col">AMPARITO CORODOVA</td>
+							<td scope="col">Sano</td>
+							<td scope="col">
+								<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="location='../Paciente/IngresarPaciente'">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td scope="col">2019-11-15</td>
+							<td scope="col">AMPARITO CORODOVA</td>
+							<td scope="col">Apendicitis aguda no especificada</td>
+							<td scope="col">
+								<button style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" onclick="location='../Paciente/IngresarPaciente'">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 
@@ -821,14 +845,18 @@
 							<th scope="col">Peso(kg)</th>
 							<th scope="col">Talla(cm)</th>
 							<th scope="col">IMC</th>
-							<th scope="col">Nivel</th>
 						</tr>
 						<tr>
-							<td scope="col">01/01/1111</td>
-							<td scope="col">xx</td>
-							<td scope="col">xx.xx</td>
-							<td scope="col">xx.xx</td>
-							<td scope="col">normal</td>
+							<td scope="col">2019-10-20</td>
+							<td scope="col">45.2</td>
+							<td scope="col">1.45</td>
+							<td scope="col">21.94</td>
+						</tr>
+						<tr>
+							<td scope="col">2019-11-15</td>
+							<td scope="col">45.2</td>
+							<td scope="col">1.45</td>
+							<td scope="col">21.94</td>
 						</tr>
 					</table>
 				</div>
@@ -840,7 +868,7 @@
 				<br />
 				<div class="card bg-info text-white">
 					<div class="card-header">
-						CURVAS DE CRECIENTO
+						TABLAS DE CRECIENTO
 					</div>
 				</div>
 				<br />
@@ -849,48 +877,90 @@
 						<tr>
 							<th scope="col">Fecha</th>
 							<th scope="col">Peso(kg)</th>
-							<th scope="col">Talla(cm)</th>
+							<th scope="col">Talla(m)</th>
 							<th scope="col">Edad</th>
+							<th scope="col">ICP</th>
+							<th scope="col">ICT</th>
 						</tr>
 						<tr>
-							<td scope="col">01/01/1111</td>
-							<td scope="col">xx</td>
-							<td scope="col">xx.xx</td>
-							<td scope="col">xx años xx meses</td>
+							<td scope="col">2019-10-20</td>
+							<td scope="col">45.2</td>
+							<td scope="col">1.45</td>
+							<td scope="col">9 años 2 meses</td>
+							<td scope="col">2.7</td>
+							<td scope="col">2.4</td>
+						</tr>
+						<tr>
+							<td scope="col">2019-11-15</td>
+							<td scope="col">45.2</td>
+							<td scope="col">1.45</td>
+							<td scope="col">9 años 2 meses</td>
+							<td scope="col">2.7</td>
+							<td scope="col">2.4</td>
 						</tr>
 					</table>
 				</div>
 				<br />
+			</div>
 
-				<button data-toggle="collapse" data-target="#tablasestatura" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
-					TABLAS DE ESTATURA 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
-				</button>
-				<div id="tablasestatura" class="collapse">
-					<div class="row">
-						<div class="col-md-12">
-							<img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-						</div>
+			<!-- Creacion de sección de historico-->
+			<div id="historicosignosvitales" class="container tab-pane fade">
+				<br />
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						HISTORICO
 					</div>
 				</div>
-
-				<button data-toggle="collapse" data-target="#tablaspeso" name="Identificador" title="Ingresar medicamentos recetados" class="btn btn-info col-xl-12" style="text-align:left" border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:100%; height:30px; cursor: pointer" type="submit">
-					TABLAS DE PESO 	<i class="fas fa-chevron-circle-down" style="text-align:right"></i>
-				</button>
-				<div id="tablaspeso" class="collapse">
-					<div class="row">
-						<div class="col-md-12">
-							<img src="~/Imagenes/crecimiento_mas.png" class="mx-auto d-block" style="border-radius:0.3rem;" />
-						</div>
-					</div>
+				<br />
+				<div class="table-responsive">
+					<br />
+					<table class="table">
+						<tr>
+							<th scope="col">Fecha</th>
+							<th scope="col">Temperatura</th>
+							<th scope="col">Preción Arterial</th>
+							<th scope="col">FR</th>
+							<th scope="col">FC</th>
+							<th scope="col">Peso</th>
+							<th scope="col">Talla</th>
+							<th scope="col">Saturación</th>
+							<th scope="col">IMC</th>
+							<th scope="col">Observación</th>
+						</tr>
+						<tr>
+							<td scope="col">2019-10-20</td>
+							<td scope="col">36,00</td>
+							<td scope="col">120/80</td>
+							<td scope="col">98</td>
+							<td scope="col">96</td>
+							<td scope="col">45,2</td>
+							<td scope="col">1,40</td>
+							<td scope="col">99</td>
+							<td scope="col">21.94</td>
+							<td scope="col"></td>
+						</tr>
+						<tr>
+							<td scope="col">2019-11-15</td>
+							<td scope="col">37,50</td>
+							<td scope="col">120/80</td>
+							<td scope="col">96</td>
+							<td scope="col">94</td>
+							<td scope="col">45,2</td>
+							<td scope="col">1,40</td>
+							<td scope="col">99</td>
+							<td scope="col">21.94</td>
+							<td scope="col"></td>
+						</tr>
+					</table>
 				</div>
+				<br />
 			</div>
 		</div>
+
+
 		<div class="text-center">
 			<br />
 			<button id="btnGuardarHC" name="btnGuardarHC" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit">GUARDAR</button>
-		</div>
-		<div class="text-center">
-			<br />
 			<button id="btnFinalizarHC" name="btnFinalizarHC" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit">FINALIZAR</button>
 		</div>
 	</div>

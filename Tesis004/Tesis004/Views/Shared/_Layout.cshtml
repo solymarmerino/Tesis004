@@ -19,16 +19,16 @@
         {
             if (Session["ingreso"].Equals("true"))
             {
-                @Html.ActionLink("VACARI GC", "Presentacion", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("VACARI", "Presentacion", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
             }
             else
             {
-                @Html.ActionLink("VACARI GC", "Ingreso", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("VACARI", "Ingreso", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
             }
         }
         else
         {
-            @Html.ActionLink("VACARI GC", "Ingreso", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("VACARI", "Ingreso", "Ingreso", new { area = "" }, new { @class = "navbar-brand" })
         }
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>VACARI &copy; @DateTime.Now.Year - Pruebas</p>
+			<p>VACARI &copy; @DateTime.Now.Year Sistema de Gestión de Centros Médicos</p>
         </footer>
     </div>
 

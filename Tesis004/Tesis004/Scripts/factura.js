@@ -109,5 +109,5 @@ function agregarFactura() {
 ////////////FIN FUNCIONES FACTURACION//////////////////////
 
 $(document).ready(function () {
-	obtenerIdCliente();
+	//obtenerIdCliente();
 });

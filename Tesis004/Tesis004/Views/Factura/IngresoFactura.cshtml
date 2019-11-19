@@ -24,13 +24,6 @@
 			<input id="iptFechaFactura" name="iptFechaFactura" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled value="@DateTime.Now.ToString("yyyy-MM-dd")" />
 		</p>
 	</div>
-	<div>
-		<p>
-			<label>Fecha</label>
-			<br />
-			<input id="iptNumCliente" name="iptNumCliente" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
-		</p>
-	</div>
 </div>
 <div class="row">
 	<div class="col-xl-6">
@@ -134,14 +127,27 @@
 			</tr>
 
 			<tr>
-				<td scope="col"></td>
-				<td scope="col"></td>
-				<td scope="col"></td>
-				<td scope="col"></td>
+				<td scope="col">1</td>
+				<td scope="col">CITA A ODONTOLOGIA</td>
+				<td scope="col">10</td>
+				<td scope="col">10</td>
 				<td scope="col">
 					<form action="Modificar" method="post">
 						<button name="IdPersonal" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-trash-alt"></i>
+							<i class="fas fa-minus-square"></i>
+						</button>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td scope="col">1</td>
+				<td scope="col">CITA A PEDIATRIA</td>
+				<td scope="col">12</td>
+				<td scope="col">12</td>
+				<td scope="col">
+					<form action="Modificar" method="post">
+						<button name="IdPersonal" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
+							<i class="fas fa-minus-square"></i>
 						</button>
 					</form>
 				</td>
@@ -159,7 +165,7 @@
 	</div>
 	<div class="col-xl-3">
 		<p>
-			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="22" disabled />
 		</p>
 	</div>
 </div>
