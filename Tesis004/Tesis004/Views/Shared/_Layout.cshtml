@@ -40,24 +40,41 @@
                 if (Session["ingreso"].Equals("true"))
                 {
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            @Html.ActionLink("Personal", "GestionPersonal", "Personal", new { area = "" }, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Paciente", "BuscarPaciente", "Paciente", new { area = "" }, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Cita", "ListarCita", "Servicio", new { area = "" }, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Contabilidad", "GestionContabilidad", "Contabilidad", new { area = "" }, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Inventario", "GestionInventario", "Inventario", new { area = "" }, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Factura", "IngresoFactura", "Factura", new { area = "" }, new { @class = "nav-link" })
-                        </li>
+                        @if(Session["tipoUsuario"].Equals("17") || Session["tipoUsuario"].Equals("18")){                        
+                            <li class="nav-item">
+                                @Html.ActionLink("Personal", "GestionPersonal", "Personal", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+                        @if (Session["tipoUsuario"].Equals("18"))
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Paciente", "BuscarPaciente", "Paciente", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+                        @if (Session["tipoUsuario"].Equals("18") || Session["tipoUsuario"].Equals("20") || Session["tipoUsuario"].Equals("21"))
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Cita", "ListarCita", "Servicio", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+                        @if (Session["tipoUsuario"].Equals("17"))
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Contabilidad", "GestionContabilidad", "Contabilidad", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+                        @if (Session["tipoUsuario"].Equals("17") || Session["tipoUsuario"].Equals("18"))
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Inventario", "GestionInventario", "Inventario", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+                        @if (Session["tipoUsuario"].Equals("17") || Session["tipoUsuario"].Equals("18"))
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Factura", "IngresoFactura", "Factura", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">

@@ -16,12 +16,33 @@ namespace Tesis004.Controllers
         // GET: Servicio
         [HttpPost]
         public ActionResult IngresarServicio(int idPaciente)
-		{
-            ViewData["especialidades"] = informacionGeneral.ObtenerInformacionParametro("especialidad");
-            ViewData["citas"] = informacionGeneral.ObtenerInformacionParametro("tipo cita");
-            ViewData["paciente"] = pacienteBDD.PacientePorId(idPaciente);
-            return View();
-		}
+		{         
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("18"))
+                    {
+                        ViewData["especialidades"] = informacionGeneral.ObtenerInformacionParametro("especialidad");
+                        ViewData["citas"] = informacionGeneral.ObtenerInformacionParametro("tipo cita");
+                        ViewData["paciente"] = pacienteBDD.PacientePorId(idPaciente);
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }
+        }
 
         [HttpPost]
         public JsonResult GuardarCita(CitaModel cita)
@@ -49,7 +70,28 @@ namespace Tesis004.Controllers
 
         public ActionResult ListarCita()
 		{
-			return View();
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("18") || Session["tipoUsuario"].Equals("20") || Session["tipoUsuario"].Equals("21"))
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }            
 		}
 
         [HttpPost]

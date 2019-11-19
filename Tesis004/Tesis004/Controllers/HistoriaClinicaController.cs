@@ -18,34 +18,55 @@ namespace Tesis004.Controllers
         //public ActionResult HistoriaClinica(int idPaciente)
         //public ActionResult HistoriaClinica()
         public ActionResult HistoriaClinica(CitaModel cita)
-        {
-            ConsultaMedicaModel consultaMedica = new ConsultaMedicaModel();
-
-            if (historiaClinicaBDD.ValidarConsultaMedica(cita.CitaMedicaID))
+        {           
+            if (Session["ingreso"] != null)
             {
-                consultaMedica = historiaClinicaBDD.ConsultarConsultaMedica(cita.CitaMedicaID);
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("21"))
+                    {
+                        ConsultaMedicaModel consultaMedica = new ConsultaMedicaModel();
+
+                        if (historiaClinicaBDD.ValidarConsultaMedica(cita.CitaMedicaID))
+                        {
+                            consultaMedica = historiaClinicaBDD.ConsultarConsultaMedica(cita.CitaMedicaID);
+                        }
+                        else
+                        {
+                            consultaMedica.ConsultaMedicaID = cita.CitaMedicaID;
+                            consultaMedica.HistoriaClinicaID = cita.HistoriaClinica;
+                            historiaClinicaBDD.InsertarConsultaMedica(consultaMedica);
+                        }
+
+                        ViewData["consulta"] = consultaMedica;
+                        ViewData["generos"] = informacionGeneral.ObtenerInformacionParametro("genero");
+                        ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
+                        ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");
+                        ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
+                        ViewData["subjetivos"] = informacionGeneral.ObtenerInformacionParametro("subjetivo");
+                        ViewData["objetivos"] = informacionGeneral.ObtenerInformacionParametro("objetivo");
+                        ViewData["antecedentepersonal"] = informacionGeneral.ObtenerInformacionParametro("antecedentepersonal");
+                        ViewData["antecedentefamiliar"] = informacionGeneral.ObtenerInformacionParametro("antecedentefamiliar");
+                        ViewData["antecedentesociales"] = informacionGeneral.ObtenerInformacionParametro("antecedentesociales");
+                        ViewData["habito"] = informacionGeneral.ObtenerInformacionParametro("Habito");
+                        ViewData["diagnosticos"] = informacionGeneral.ObtenerInformacionParametro("tipo diagnostico");
+                        ViewData["paciente"] = pacienteBDD.PacientePorId(cita.PacienteID);
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
             }
             else
             {
-                consultaMedica.ConsultaMedicaID = cita.CitaMedicaID;
-                consultaMedica.HistoriaClinicaID = cita.HistoriaClinica;
-                historiaClinicaBDD.InsertarConsultaMedica(consultaMedica);
+                return RedirectToAction("Ingreso", "Ingreso");
             }
-
-            ViewData["consulta"] = consultaMedica;
-            ViewData["generos"] = informacionGeneral.ObtenerInformacionParametro("genero");
-            ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
-            ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");
-            ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
-            ViewData["subjetivos"] = informacionGeneral.ObtenerInformacionParametro("subjetivo");
-            ViewData["objetivos"] = informacionGeneral.ObtenerInformacionParametro("objetivo");
-            ViewData["antecedentepersonal"] = informacionGeneral.ObtenerInformacionParametro("antecedentepersonal");
-            ViewData["antecedentefamiliar"] = informacionGeneral.ObtenerInformacionParametro("antecedentefamiliar");
-            ViewData["antecedentesociales"] = informacionGeneral.ObtenerInformacionParametro("antecedentesociales");
-            ViewData["habito"] = informacionGeneral.ObtenerInformacionParametro("Habito");
-            ViewData["diagnosticos"] = informacionGeneral.ObtenerInformacionParametro("tipo diagnostico");
-            ViewData["paciente"] = pacienteBDD.PacientePorId(cita.PacienteID);
-            return View();
         }
 
         [HttpPost]

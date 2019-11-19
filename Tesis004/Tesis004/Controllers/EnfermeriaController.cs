@@ -14,10 +14,31 @@ namespace Tesis004.Controllers
         SignosVitalesBDD signosVitalesBDD = new SignosVitalesBDD();
         // GET: Enfermeria
         public ActionResult GestionEnfermeria(int idPaciente)
-		{
-            ViewData["paciente"] = pacienteBDD.PacientePorId(idPaciente);
-            return View();
-		}
+		{            
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("20"))
+                    {
+                        ViewData["paciente"] = pacienteBDD.PacientePorId(idPaciente);
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }
+        }
 
         [HttpPost]
         public JsonResult GuardarSignosVitales(SignosVitalesModel signosVitales)

@@ -16,7 +16,28 @@ namespace Tesis004.Controllers
 		// GET: Facturacion
 		public ActionResult IngresoFactura()
         {
-            return View();
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("17") || Session["tipoUsuario"].Equals("18"))
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }            
         }
 
 		[HttpPost]

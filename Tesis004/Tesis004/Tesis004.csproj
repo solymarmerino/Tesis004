@@ -546,6 +546,7 @@
     <Content Include="Scripts\jsPDF-1.3.2\test\015_splittext.pdf" />
     <Content Include="Views\HistoriaClinica\MostrarFichaMedica.cshtml" />
     <Content Include="Views\Factura\IngresoFactura.cshtml" />
+    <Content Include="Views\Ingreso\SinAcceso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
