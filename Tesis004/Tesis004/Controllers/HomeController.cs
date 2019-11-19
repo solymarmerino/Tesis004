@@ -10,10 +10,11 @@ namespace Tesis004.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View();
+            return RedirectToAction("Ingreso", "Ingreso");
+            //return View();
 		}
 
-		public ActionResult About()
+		/*public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";
 
@@ -25,6 +26,6 @@ namespace Tesis004.Controllers
 			ViewBag.Message = "Your contact page.";
 
 			return View();
-		}
+		}*/
 	}
 }

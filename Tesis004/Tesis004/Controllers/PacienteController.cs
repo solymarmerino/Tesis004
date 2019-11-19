@@ -15,28 +15,91 @@ namespace Tesis004.Controllers
         // GET: Paciente
         public ActionResult IngresarPaciente()
 		{
-            ViewData["ultimo"] = pacienteBDD.ObtenerUltimoNumeroHC();
-            ViewData["generos"] = informacionGeneral.ObtenerInformacionParametro("genero");
-            ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
-            ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");
-            ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
-            return View();
-		}
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("18"))
+                    {
+                        ViewData["ultimo"] = pacienteBDD.ObtenerUltimoNumeroHC();
+                        ViewData["generos"] = informacionGeneral.ObtenerInformacionParametro("genero");
+                        ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
+                        ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");
+                        ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }
+        }
 
 		public ActionResult BuscarPaciente()
 		{
-			return View();
-		}
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("18"))
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }
+        }
 
         [HttpPost]
 		public ActionResult ActualizarPaciente(int idPaciente)
-		{
-            ViewData["generos"] = informacionGeneral.ObtenerInformacionParametro("genero");
-            ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
-            ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");
-            ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
-            return View(pacienteBDD.PacientePorId(idPaciente));
-		}
+		{            
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("18"))
+                    {
+                        ViewData["generos"] = informacionGeneral.ObtenerInformacionParametro("genero");
+                        ViewData["estados"] = informacionGeneral.ObtenerInformacionParametro("estado civil");
+                        ViewData["tipos"] = informacionGeneral.ObtenerInformacionParametro("tipo sangre");
+                        ViewData["etnias"] = informacionGeneral.ObtenerInformacionParametro("etnia");
+                        return View(pacienteBDD.PacientePorId(idPaciente));
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }
+        }
 
         [HttpPost]
         public JsonResult ListarSugerenciaPacienteBusqueda(PacienteModel paciente)

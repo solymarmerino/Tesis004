@@ -16,9 +16,30 @@ namespace Tesis004.Controllers
         // GET: Personal
         public ActionResult GestionPersonal()
         {
-            ViewData["especialidades"] = informacionGeneral.ObtenerInformacionParametro("especialidad");
-            ViewData["cargos"] = informacionGeneral.ObtenerInformacionParametro("cargo");
-            return View();
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if(Session["tipoUsuario"].Equals("17") || Session["tipoUsuario"].Equals("18"))
+                    {
+                        ViewData["especialidades"] = informacionGeneral.ObtenerInformacionParametro("especialidad");
+                        ViewData["cargos"] = informacionGeneral.ObtenerInformacionParametro("cargo");
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }
         }
 
         [HttpPost]

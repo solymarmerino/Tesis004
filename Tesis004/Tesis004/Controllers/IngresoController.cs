@@ -27,7 +27,7 @@ namespace Tesis004.Controllers
             if (!string.IsNullOrEmpty(personal.Usuario) && !string.IsNullOrEmpty(personal.Contrasena) && personal.Usuario.Equals(personalIngreso.Usuario) && personal.Contrasena.Equals(personalIngreso.Contrasena))
             {
                 Session["ingreso"] = "true";
-                Session["tipoUsuario"] = personalIngreso.Cargo;
+                Session["tipoUsuario"] = personalIngreso.Cargo.ToString();
                 Session["nombreUsuario"] = personalIngreso.Nombre;
                 return RedirectToAction("Presentacion", "Ingreso");
             }
@@ -50,5 +50,10 @@ namespace Tesis004.Controllers
             return RedirectToAction("Ingreso", "Ingreso");
 		}
 
-	}
+        public ActionResult SinAcceso()
+        {
+            return View();
+        }
+
+    }
 }

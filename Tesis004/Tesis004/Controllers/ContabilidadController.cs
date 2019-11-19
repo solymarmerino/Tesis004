@@ -16,7 +16,28 @@ namespace Tesis004.Controllers
 		// GET: Contabilidad
 		public ActionResult GestionContabilidad()
 		{
-			return View();
+            if (Session["ingreso"] != null)
+            {
+                if (Session["ingreso"].Equals("true"))
+                {
+                    if (Session["tipoUsuario"].Equals("17") || Session["tipoUsuario"].Equals("18"))
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Ingreso");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Ingreso", "Ingreso");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Ingreso", "Ingreso");
+            }            
 		}
 
 		public ActionResult GuardarIngreso()
