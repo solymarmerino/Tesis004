@@ -1316,7 +1316,7 @@ $("#btnGuardarProducto").click(function () {
 	var tipoProducto = $("#sltTipoProducto").val();
 	// preguntar si el campo esta vacio
 	if (tipoProducto == null || tipoProducto.length == 0 || /^\s+$/.test(tipoProducto)) {
-		$("#ValidacionTipoProducto").append("Seleccionar tipo producto");
+		$("#ValidacionTipoProducto").append("Ingresar tipo producto");
 	}
 	else {
 		$("#ValidacionTipoProducto").prop("disable", true);
