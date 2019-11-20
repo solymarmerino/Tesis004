@@ -18,7 +18,7 @@ namespace Tesis004.InformacionBDD
 
 		///INGRESO
 
-		public bool IngresarIngreso(ClientesModel ingreso)
+		public bool IngresarIngreso(IngresoModel ingreso)
 		{
 			bool ingresado = false;
 			int resultado = 0;
@@ -43,9 +43,9 @@ namespace Tesis004.InformacionBDD
 			return ingresado;
 		}
 
-		public List<ClientesModel> ListarIngreso(DateTime fechaIngreso)
+		public List<IngresoModel> ListarIngreso(DateTime fechaIngreso)
 		{
-			List<ClientesModel> listaIngresoResultado = new List<ClientesModel>();
+			List<IngresoModel> listaIngresoResultado = new List<IngresoModel>();
 
 			var fechaconsulta = fechaIngreso.ToString("yyyy-MM-dd");
 
@@ -57,7 +57,7 @@ namespace Tesis004.InformacionBDD
 
 			for (int i = 0; i < tablaDatos.Rows.Count; i++)
 			{
-				ClientesModel ingresoResultado = new ClientesModel();
+                IngresoModel ingresoResultado = new IngresoModel();
 				ingresoResultado.IngresoID = tablaDatos.Rows[i].Field<int>("IngresoID");
 				ingresoResultado.DescripcionIngreso = tablaDatos.Rows[i].Field<string>("DescripcionIngreso");
 				ingresoResultado.ServicioIngreso = tablaDatos.Rows[i].Field<string>("ServicioIngreso");
@@ -92,7 +92,7 @@ namespace Tesis004.InformacionBDD
 			return ingresado;
 		}
 
-		public ClientesModel ObtenerIngreso(int IngresoID)
+		public IngresoModel ObtenerIngreso(int IngresoID)
 		{
 
 			string sentenciaSql = "SELECT TOP(1) IngresoID, DescripcionIngreso, ServicioIngreso, ValorIngreso, FechaIngreso " +
@@ -101,7 +101,7 @@ namespace Tesis004.InformacionBDD
 
 			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
-			ClientesModel ingresoResultado = new ClientesModel();
+            IngresoModel ingresoResultado = new IngresoModel();
 			ingresoResultado.IngresoID = tablaDatos.Rows[0].Field<int>("IngresoID");
 			ingresoResultado.DescripcionIngreso = tablaDatos.Rows[0].Field<string>("DescripcionIngreso");
 			ingresoResultado.ServicioIngreso = tablaDatos.Rows[0].Field<string>("ServicioIngreso");
@@ -111,7 +111,7 @@ namespace Tesis004.InformacionBDD
 			return ingresoResultado;
 		}
 
-		public bool ModificarIngreso(ClientesModel ingreso)
+		public bool ModificarIngreso(IngresoModel ingreso)
 		{
 			bool ingresado = false;
 			int resultado = 0;
@@ -264,9 +264,9 @@ namespace Tesis004.InformacionBDD
 
 		///INFORME I/E
 
-		public List<ClientesModel> InformeIngreso(DateTime fechaInicio, DateTime fechaFin)
+		public List<IngresoModel> InformeIngreso(DateTime fechaInicio, DateTime fechaFin)
 		{
-			List<ClientesModel> listaEgresoResultado = new List<ClientesModel>();
+			List<IngresoModel> listaEgresoResultado = new List<IngresoModel>();
 
 			var fecha1 = fechaInicio.ToString("yyyy-MM-dd");
 			var fecha2 = fechaFin.ToString("yyyy-MM-dd");
@@ -279,12 +279,13 @@ namespace Tesis004.InformacionBDD
 
 			for (int i = 0; i < tablaDatos.Rows.Count; i++)
 			{
-				ClientesModel egresoResultado = new ClientesModel();
+                IngresoModel egresoResultado = new IngresoModel();
 				egresoResultado.IngresoID = tablaDatos.Rows[i].Field<int>("IngresoID");
 				egresoResultado.DescripcionIngreso = tablaDatos.Rows[i].Field<string>("DescripcionIngreso");
 				egresoResultado.ServicioIngreso = tablaDatos.Rows[i].Field<string>("ServicioIngreso");
 				egresoResultado.ValorIngreso = tablaDatos.Rows[i].Field<decimal>("ValorIngreso");
 				egresoResultado.FechaIngreso = tablaDatos.Rows[i].Field<DateTime>("FechaIngreso");
+				egresoResultado.FechaString = tablaDatos.Rows[i].Field<DateTime>("FechaIngreso").ToString("dd/MM/yyyy");
 
 				listaEgresoResultado.Add(egresoResultado);
 			}
@@ -313,8 +314,9 @@ namespace Tesis004.InformacionBDD
 				egresoResultado.ServicioEgreso = tablaDatos.Rows[i].Field<string>("ServicioEgreso");
 				egresoResultado.ValorEgreso = tablaDatos.Rows[i].Field<decimal>("ValorEgreso");
 				egresoResultado.FechaEgreso = tablaDatos.Rows[i].Field<DateTime>("FechaEgreso");
+                egresoResultado.FechaString = tablaDatos.Rows[i].Field<DateTime>("FechaEgreso").ToString("dd/MM/yyyy");
 
-				listaEgresoResultado.Add(egresoResultado);
+                listaEgresoResultado.Add(egresoResultado);
 			}
 
 			return listaEgresoResultado;

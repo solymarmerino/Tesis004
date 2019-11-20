@@ -216,8 +216,6 @@ namespace Tesis004.InformacionBDD
 
             if (resultado > 0)
             {
-                ingresado = true;
-
 				paciente.PacienteID = this.ObtenerIdPacientePorHC(paciente.NumHistoriaClinica);
 
 				sentenciaSql = "SET IDENTITY_INSERT HistoriaClinica ON; " +
@@ -230,9 +228,7 @@ namespace Tesis004.InformacionBDD
 				sentenciaSQL.Parameters.AddWithValue("@PacienteID", paciente.PacienteID);
 
 				resultado = conexion.ComandoModificacion(sentenciaSQL);
-			}
-
-            
+			}            
 
             if (resultado > 0)
             {

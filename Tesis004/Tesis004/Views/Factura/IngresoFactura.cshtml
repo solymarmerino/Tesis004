@@ -1,7 +1,7 @@
-﻿
+﻿@using Tesis004.Models
 @{
-	ViewBag.Title = "IngresoFactura";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "IngresoFactura";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -11,168 +11,145 @@
 <!--Encabezado de factura-->
 <br />
 <div class="card bg-info text-white">
-	<div id="encDatosCliente" class="card-header">
-		<h5>Datos Cliente</h5>
-	</div>
+    <div id="encDatosCliente" class="card-header">
+        <h5>Datos Cliente</h5>
+    </div>
 </div>
 <br />
 <div class="text-right">
-	<div>
-		<p>
-			<label>Fecha</label>
-			<br />
-			<input id="iptFechaFactura" name="iptFechaFactura" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled value="@DateTime.Now.ToString("yyyy-MM-dd")" />
-		</p>
-	</div>
+    <div>
+        @{
+            var iFactura = ViewData["inicioNumFactura"] as List<Tesis004.Models.ParametroModel>;
+            var fFactura = ViewData["finNumFactura"] as List<Tesis004.Models.ParametroModel>;
+            var facturaId = ViewData["facturaId"];
+        }
+        <input id="iptFacturaID" name="iptFacturaID" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@facturaId" hidden />
+        <input id="iptNumCliente" name="iptNumCliente" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" hidden />
+        <p>
+            <label>Factura</label>
+            <br />
+            <input id="iptNumeroFactura" name="iptNumeroFactura" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled value="@iFactura[0].Valor@fFactura[0].Valor" />
+        </p>
+        <p>
+            <label>Fecha</label>
+            <br />
+            <input id="iptFechaFactura" name="iptFechaFactura" class="col-xl-3 required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        </p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-xl-6">
-		<p>
-			<label>Cliente</label>
-			<br />
-			<input id="iptClienteFactura" name="iptClienteFactura" list="sugerenciaCliente" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-			<datalist id="sugerenciaPaciente"></datalist>
-			<label id="ValidacionClienteFactura" name="ValidacionClienteFactura"> </label>
-		</p>
-	</div>
-	<div class="col-xl-6">
-		<p>
-			<label>RUC/C.I.</label>
-			<br />
-			<input id="iptClienteCI" name="iptClienteCI" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-			<label id="ValidacionClienteCedula" name="ValidacionClienteCedula"> </label>
-		</p>
-	</div>
+    <div class="col-xl-6">
+        <p>
+            <label>Cliente</label>
+            <br />
+            <input id="iptClienteFactura" name="iptClienteFactura" list="sugerenciaCliente" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+            <datalist id="sugerenciaPaciente"></datalist>
+            <label id="ValidacionClienteFactura" name="ValidacionClienteFactura"> </label>
+        </p>
+    </div>
+    <div class="col-xl-6">
+        <p>
+            <label>RUC/C.I.</label>
+            <br />
+            <input id="iptClienteCI" name="iptClienteCI" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+            <label id="ValidacionClienteCedula" name="ValidacionClienteCedula"> </label>
+        </p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-xl-6">
-		<p>
-			<label>Dirección</label>
-			<br />
-			<input id="iptClienteDireccion" name="iptClienteDireccion" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-			<label id="ValidacionClienteDireccion" name="ValidacionClienteDireccion"> </label>
-		</p>
-	</div>
-	<div class="col-xl-6">
-		<p>
-			<label>Telefono</label>
-			<br />
-			<input id="iptClienteTelefono" name="iptClienteTelefono" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-			<label id="ValidacionClienteTelefono" name="ValidacionClienteTelefono"> </label>
-		</p>
-	</div>
+    <div class="col-xl-6">
+        <p>
+            <label>Dirección</label>
+            <br />
+            <input id="iptClienteDireccion" name="iptClienteDireccion" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+            <label id="ValidacionClienteDireccion" name="ValidacionClienteDireccion"> </label>
+        </p>
+    </div>
+    <div class="col-xl-6">
+        <p>
+            <label>Telefono</label>
+            <br />
+            <input id="iptClienteTelefono" name="iptClienteTelefono" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+            <label id="ValidacionClienteTelefono" name="ValidacionClienteTelefono"> </label>
+        </p>
+    </div>
 </div>
 <div class="text-center">
-	<button id="btnGuardarCliente" name="btnGuardarCliente" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="agregarCliente()">GUARDAR</button>
-	<button id="btnBuscarCliente" name="btnBuscarCliente" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit">BUSCAR</button>
+    <!--<button id="btnGuardarCliente" name="btnGuardarCliente" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="agregarCliente()">GUARDAR</button>-->
+    <button id="btnBuscarCliente" name="btnBuscarCliente" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer">BUSCAR</button>
 </div>
 <br />
 
 <!--Ingresar detalle-->
 <br />
 <div class="card bg-info text-white">
-	<div id="encDetalleFactura" class="card-header">
-		<h5>Detalles</h5>
-	</div>
+    <div id="encDetalleFactura" class="card-header">
+        <h5>Detalles</h5>
+    </div>
 </div>
 <br />
 <div class="row">
-	<div class="col-xl-7">
-		<p>
-			<label>Detalle</label>
-			<br />
-			<input id="iptDetalleFactura" name="inpDetalleFactura" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-			<label id="ValidacionDetalleFactura" name="ValidacionDetalleFactura"> </label>
-		</p>
-	</div>
-	<div class="col-xl-2">
-		<p>
-			<label>Cantidad</label>
-			<br />
-			<input id="iptCantidadProductoFactura" name="iptCantidadProductoFactura" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-			<label id="ValidacionCantidadProductoFactura" name="ValidacionCantidadProductoFactura"> </label>
-		</p>
-	</div>
-	<div class="col-xl-2">
-		<p>
-			<label>Valor</label>
-			<br />
-			<input id="iptValorProductoFactura" name="iptValorProductoFactura" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-			<label id="ValidacionValorProductoFactura" name="ValidacionValorProductoFactura"> </label>
-		</p>
-	</div>
-	<div class="col-xl-1">
-		<p>
-			<label>   </label>
-			<br />
-			<button id="btnAgregarDetalleFactura" name="btnAgregarDetalleFactura" title="agregar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.4rem; width:40px; height:40px; cursor: pointer" type="submit">
-				<i class="fa fa-plus-square"></i>
-			</button>
-		</p>
+    <div class="col-xl-7">
+        <p>
+            <label>Detalle</label>
+            <br />
+            <input id="iptDetalleFactura" name="inpDetalleFactura" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+            <label id="ValidacionDetalleFactura" name="ValidacionDetalleFactura"> </label>
+        </p>
+    </div>
+    <div class="col-xl-2">
+        <p>
+            <label>Cantidad</label>
+            <br />
+            <input id="iptCantidadProductoFactura" name="iptCantidadProductoFactura" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+            <label id="ValidacionCantidadProductoFactura" name="ValidacionCantidadProductoFactura"> </label>
+        </p>
+    </div>
+    <div class="col-xl-2">
+        <p>
+            <label>Valor</label>
+            <br />
+            <input id="iptValorProductoFactura" name="iptValorProductoFactura" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+            <label id="ValidacionValorProductoFactura" name="ValidacionValorProductoFactura"> </label>
+        </p>
+    </div>
+    <div class="col-xl-1">
+        <p>
+            <label>   </label>
+            <br />
+            <button id="btnAgregarDetalleFactura" name="btnAgregarDetalleFactura" title="agregar" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.4rem; width:40px; height:40px; cursor: pointer" type="submit">
+                <i class="fa fa-plus-square"></i>
+            </button>
+        </p>
 
-	</div>
+    </div>
 
 </div>
 
 <!--Detalles de factura-->
 <div class="container">
-	<div>
-		<table id="TablaDetalleFactura" class="table">
-			<tr>
-				<th scope="col">Cantidad</th>
-				<th scope="col">Detalle</th>
-				<th scope="col">Valor Unitario</th>
-				<th scope="col">Valor Total</th>
-				<th scope="col"></th>
-			</tr>
-
-			<tr>
-				<td scope="col">1</td>
-				<td scope="col">CITA A ODONTOLOGIA</td>
-				<td scope="col">10</td>
-				<td scope="col">10</td>
-				<td scope="col">
-					<form action="Modificar" method="post">
-						<button name="IdPersonal" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-minus-square"></i>
-						</button>
-					</form>
-				</td>
-			</tr>
-			<tr>
-				<td scope="col">1</td>
-				<td scope="col">CITA A PEDIATRIA</td>
-				<td scope="col">12</td>
-				<td scope="col">12</td>
-				<td scope="col">
-					<form action="Modificar" method="post">
-						<button name="IdPersonal" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:35px; height:30px; cursor: pointer" type="submit">
-							<i class="fas fa-minus-square"></i>
-						</button>
-					</form>
-				</td>
-			</tr>
-
-		</table>
-	</div>
+    <div>
+        <table id="TablaDetalleFactura" class="table">
+        </table>
+    </div>
 </div>
 
 <div class="row">
-	<div claas="col-xl-3">
-		<p>
-			<label>Total </label>
-		</p>
-	</div>
-	<div class="col-xl-3">
-		<p>
-			<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="22" disabled />
-		</p>
-	</div>
+    <div claas="col-xl-3">
+        <p>
+            <label>Total </label>
+        </p>
+    </div>
+    <div class="col-xl-3">
+        <p>
+            <input id="iptValorTotalFactura" class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="0" disabled />
+        </p>
+    </div>
 </div>
 
 <div class="text-center">
-	<br />
-	<button id="btnImprimirFactura" name="btnImprimirFactura" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="guardarPaciente()">IMPRIMIR</button>
+    <br />
+    <button id="btnImprimirFactura" name="btnImprimirFactura" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer" type="submit" onclick="guardarPaciente()">IMPRIMIR</button>
 </div>
 
 <script src="~/Scripts/factura.js"></script>

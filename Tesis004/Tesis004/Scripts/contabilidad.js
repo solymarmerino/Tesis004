@@ -359,9 +359,10 @@ function Informe() {
 
 	if ($('#rdIngreso')[0].checked == true) {
 		ListarInforme.success = function (informeResultado) {
-			for (var i = 0; i < informeResultado.length; i++) {
-				var fila = "";
-				fila += "<td scope=\"col\">" + informeResultado[i]["FechaIngreso"] + "</th >";
+            for (var i = 0; i < informeResultado.length; i++) {
+                var fecha = Date(informeResultado[i]["FechaIngreso"]);
+                var fila = "";
+                fila += "<td scope=\"col\">" + informeResultado[i]["FechaString"] + "</th >";
 				fila += "<td scope=\"col\">" + informeResultado[i]["ServicioIngreso"] + "</th >";
 				fila += "<td scope=\"col\">" + informeResultado[i]["DescripcionIngreso"] + "</th >";
 				fila += "<td scope=\"col\">" + informeResultado[i]["ValorIngreso"] + "</th >";
@@ -371,9 +372,10 @@ function Informe() {
 	}
 	if ($('#rdEgreso')[0].checked == true) {
 		ListarInforme.success = function (informeResultado) {
-			for (var i = 0; i < informeResultado.length; i++) {
+            for (var i = 0; i < informeResultado.length; i++) {
+                var fecha = informeResultado[i]["FechaEgreso"];
 				var fila = "";
-				fila += "<td scope=\"col\">" + informeResultado[i]["FechaEgreso"] + "</th >";
+                fila += "<td scope=\"col\">" + informeResultado[i]["FechaString"] + "</th >";
 				fila += "<td scope=\"col\">" + informeResultado[i]["ServicioEgreso"] + "</th >";
 				fila += "<td scope=\"col\">" + informeResultado[i]["DescripcionEgreso"] + "</th >";
 				fila += "<td scope=\"col\">" + informeResultado[i]["ValorEgreso"] + "</th >";
