@@ -222,7 +222,7 @@ function consultarSubjetivo() {
                     var fila = "";
                     fila += "<td scope=\"col\">" + resultado[i]["NombreSubjetivo"] + "</td>";
                     fila += "<td scope=\"col\">" + resultado[i]["DescripcionSubjetivo"] + "</td>";
-                    fila += "<td scope=\"col\"> <button name=\"btnEliminarSubjetivo\" id=\"btnEliminarSubjetivo\" onclick=\"eliminarSubjetivo(" + resultado[i]["SubjetivoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+					fila += "<td scope=\"col\"> <button name=\"btnEliminarSubjetivo\" id=\"btnEliminarSubjetivo\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarSubjetivo(" + resultado[i]["SubjetivoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                     $("#tblSubjetivo").append("<tr>" + fila + "</tr>");
                 }
                 else {
@@ -334,7 +334,7 @@ function consultarObjetivo() {
                     var fila = "";
                     fila += "<td scope=\"col\">" + resultado[i]["NombreObjetivo"] + "</td>";
                     fila += "<td scope=\"col\">" + resultado[i]["DetalleObjetivo"] + "</td>";
-                    fila += "<td scope=\"col\"> <button name=\"btnEliminarObjetivo\" id=\"btnEliminarObjetivo\" onclick=\"eliminarObjetivo(" + resultado[i]["ObjetivoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+					fila += "<td scope=\"col\"> <button name=\"btnEliminarObjetivo\" id=\"btnEliminarObjetivo\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarObjetivo(" + resultado[i]["ObjetivoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                     $("#tblObjetivo").append("<tr>" + fila + "</tr>");
                 }
                 else {
@@ -418,7 +418,7 @@ function consultarDiagnostico() {
                 fila += "<td scope=\"col\">" + resultado[i]["Cie10Detalle"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["Cie10Codigo"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["TipoDiagnostico"] + "</td>";
-                fila += "<td scope=\"col\"> <button name=\"btnEliminarDiagnostico\" id=\"btnEliminarDiagnostico\" onclick=\"eliminarDiagnostico(" + resultado[i]["DiagnosticoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+				fila += "<td scope=\"col\"> <button name=\"btnEliminarDiagnostico\" id=\"btnEliminarDiagnostico\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarDiagnostico(" + resultado[i]["DiagnosticoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                 $("#tblDiagnostico").append("<tr>" + fila + "</tr>");
             }
         }
@@ -542,7 +542,7 @@ function consultarProcedimiento() {
                 var fila = "";
                 fila += "<td scope=\"col\">" + resultado[i]["ProcedimientoTexto"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["Detalle"] + "</td>";
-                fila += "<td scope=\"col\"> <button name=\"btnEliminarProcedimiento\" id=\"btnEliminarProcedimiento\" onclick=\"eliminarProcedimiento(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+				fila += "<td scope=\"col\"> <button name=\"btnEliminarProcedimiento\" id=\"btnEliminarProcedimiento\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarProcedimiento(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                 $("#tblProcedimiento").append("<tr>" + fila + "</tr>");
             }
         }
@@ -621,7 +621,7 @@ function consultarAntecedentePersonal() {
                 var fila = "";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreAntecedentePersonal"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["DescripcionAP"] + "</td>";
-                fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedentePersonal\" id=\"btnEliminarAntecedentePersonal\" onclick=\"eliminarAntecedentePersonal(" + resultado[i]["AntecedentePersonalID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+				fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedentePersonal\" id=\"btnEliminarAntecedentePersonal\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarAntecedentePersonal(" + resultado[i]["AntecedentePersonalID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                 $("#tblAntecedentePersonal").append("<tr>" + fila + "</tr>");
             }
         }
@@ -700,7 +700,7 @@ function consultarAntecedenteFamiliar() {
                 var fila = "";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreAntecedenteFamiliar"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["DescripcionAF"] + "</td>";
-                fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedenteFamiliar\" id=\"btnEliminarAntecedenteFamiliar\" onclick=\"eliminarAntecedenteFamiliar(" + resultado[i]["AntecedenteFamiliarID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+				fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedenteFamiliar\" id=\"btnEliminarAntecedenteFamiliar\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarAntecedenteFamiliar(" + resultado[i]["AntecedenteFamiliarID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                 $("#tblAntecedenteFamiliar").append("<tr>" + fila + "</tr>");
             }
         }
@@ -779,7 +779,7 @@ function consultarAntecedenteSocial() {
                 var fila = "";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreAntecedenteSocial"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["DescripcionAS"] + "</td>";
-                fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedenteSocial\" id=\"btnEliminarAntecedenteSocial\" onclick=\"eliminarAntecedenteSocial(" + resultado[i]["AntecedenteSocialID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+				fila += "<td scope=\"col\"> <button name=\"btnEliminarAntecedenteSocial\" id=\"btnEliminarAntecedenteSocial\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarAntecedenteSocial(" + resultado[i]["AntecedenteSocialID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                 $("#tblAntecedenteSocial").append("<tr>" + fila + "</tr>");
             }
         }
@@ -858,7 +858,7 @@ function consultarHabito() {
                 var fila = "";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreHabito"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["DescripcionHabito"] + "</td>";
-                fila += "<td scope=\"col\"> <button name=\"btnEliminarHabito\" id=\"btnEliminarHabito\" onclick=\"eliminarHabito(" + resultado[i]["HabitoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
+				fila += "<td scope=\"col\"> <button name=\"btnEliminarHabito\" id=\"btnEliminarHabito\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarHabito(" + resultado[i]["HabitoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                 $("#tblHabito").append("<tr>" + fila + "</tr>");
             }
         }
@@ -1011,7 +1011,7 @@ function consultarAtencionPrevia() {
                 fila += "<td scope=\"col\">" + resultado[i]["Fecha"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["DetalleDiagnostico"] + "</td>";
-                fila += "<td scope=\"col\"> <button name=\"\" id=\"\" onclick=\"(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-eye\"></i></button></th >";
+				fila += "<td scope=\"col\"> <button name=\"\" id=\"\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-eye\"></i></button></th >";
                 $("#tblAtencionPrevia").append("<tr>" + fila + "</tr>");
             }
         }

@@ -9,133 +9,135 @@
 <div class="container">
     <br>
     <!-- Nav tabs  creacion de encavezado de navegacion-->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#signosvitales">Signos Vitales</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#vacunas">Vacunas</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-		<div id="signosvitales" class="container tab-pane active">
-			<br />
-			<div class="card bg-info text-white">
-				<div class="card-header">
-					SIGNOS VITALES
-				</div>
-			</div>
-			<br />
-			@{
-				var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
-				var fechaString = paciente.FechaNacimiento.ToString("yyyy-MM-dd");
-				<input id="IdPaciente" value="@paciente.PacienteID" hidden />
-				<div class="text-right">
-					<p><label>Nº Historia Clinica</label></p>
-					<input id="HistoriaClinica" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" value="@paciente.NumHistoriaClinica" disabled />
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link active" data-toggle="tab" href="#signosvitales">Signos Vitales</a>
+		</li>
+		<!--
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#vacunas">Vacunas</a>
+		</li>
+	    -->
+	</ul>
+		<div class="tab-content">
+			<div id="signosvitales" class="container tab-pane active">
+				<br />
+				<div class="card bg-info text-white">
+					<div class="card-header">
+						SIGNOS VITALES
+					</div>
 				</div>
 				<br />
+				@{
+					var paciente = ViewData["paciente"] as Tesis004.Models.PacienteModel;
+					var fechaString = paciente.FechaNacimiento.ToString("yyyy-MM-dd");
+					<input id="IdPaciente" value="@paciente.PacienteID" hidden />
+					<div class="text-right">
+						<p><label>Nº Historia Clinica</label></p>
+						<input id="HistoriaClinica" style="text-align:left; border-radius:0.3rem; width:200px; height:40px;" value="@paciente.NumHistoriaClinica" disabled />
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-xl-6">
+							<p>
+								<label>Nombre Completo</label>
+								<br />
+								<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.NombreCompleto" disabled />
+							</p>
+						</div>
+						<div class="col-md-3">
+							<p>
+								<label>Cedula</label>
+								<br />
+								<input style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" value="@paciente.Cedula" disabled />
+							</p>
+						</div>
+						<div class="col-md-3">
+							<p>
+								<label>Fecha de Nacimiento</label>
+								<br />
+								<input type="date" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" value="@fechaString" disabled />
+							</p>
+						</div>
+					</div>
+				}
+				<br />
 				<div class="row">
-					<div class="col-xl-6">
+					<input id="inpNumHistoriaClinica" value="@paciente.NumHistoriaClinica" hidden />
+					<input id="inpPacienteID" value="@paciente.PacienteID" hidden />
+					<div class="col-md-3">
 						<p>
-							<label>Nombre Completo</label>
-							<br />
-							<input class="col-xl required" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" value="@paciente.NombreCompleto" disabled />
+							<label>Temperatura</label>
+							<input id="Temperatura" name="Temperatura" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<label id="ValidacionTemperatura" name="ValidacionTemperatura"></label>
 						</p>
 					</div>
 					<div class="col-md-3">
 						<p>
-							<label>Cedula</label>
-							<br />
-							<input style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" value="@paciente.Cedula" disabled />
+							<label>Preción Arterial</label>
+							<input id="PrecionArterial" name="PrecionArterial" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<label id="ValidacionPrecionArterial" name="ValidacionPrecionArterial"></label>
 						</p>
 					</div>
 					<div class="col-md-3">
 						<p>
-							<label>Fecha de Nacimiento</label>
-							<br />
-							<input type="date" style="text-align:left; border-radius:0.3rem; width:250px; height:40px;" value="@fechaString" disabled />
+							<label>FR</label>
+							<input id="Fr" name="Fr" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<label id="ValidacionFR" name="ValidacionFR"></label>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p>
+							<label>FC</label>
+							<input id="Fc" name="Fc" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<label id="ValidacionFC" name="ValidacionFC"></label>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p>
+							<label>Peso (Kg)</label>
+							<input id="Peso" name="Peso" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<label id="ValidacionPeso" name="ValidacionPeso"></label>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p>
+							<label>Talla (m)</label>
+							<input id="Talla" name="Talla" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<label id="ValidacionTalla" name="ValidacionTalla"></label>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p>
+							<label>Saturación</label>
+							<input id="Saturacion" name="Saturacion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
+							<label id="ValidacionSaturacion" name="ValidacionSaturacion"></label>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p>
+							<label>IMC</label>
+							<input id="IMC" name="IMC" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
+							<label id="p1" name="p1"></label>
 						</p>
 					</div>
 				</div>
-			}
-			<br />
-			<div class="row">
-				<input id="inpNumHistoriaClinica" value="@paciente.NumHistoriaClinica" hidden />
-				<input id="inpPacienteID" value="@paciente.PacienteID" hidden />
-				<div class="col-md-3">
-					<p>
-						<label>Temperatura</label>
-						<input id="Temperatura" name="Temperatura" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-					    <label id="ValidacionTemperatura" name="ValidacionTemperatura"></label>
-					</p>
+				<div class="row">
+					<div class="col-xl-12">
+						<p>
+							<label>Observaciones Enfermeria</label>
+							<br />
+							<textarea id="ObservacionesEnfermeria" name="ObservacionesEnfermeria" class="col-xl required number" type="text" rows="2" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
+						</p>
+					</div>
 				</div>
-				<div class="col-md-3">
-					<p>
-						<label>Preción Arterial</label>
-						<input id="PrecionArterial" name="PrecionArterial" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						<label id="ValidacionPrecionArterial" name="ValidacionPrecionArterial"></label>
-					</p>
+				<br />
+				<div class="text-center">
+					<button id="btnGuardarSignosVitales" name="btnGuardarSignosVitales" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer">GUARDAR</button>
 				</div>
-				<div class="col-md-3">
-					<p>
-						<label>FR</label>
-						<input id="Fr" name="Fr" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						<label id="ValidacionFR" name="ValidacionFR"></label>
-					</p>
-				</div>
-				<div class="col-md-3">
-					<p>
-						<label>FC</label>
-						<input id="Fc" name="Fc" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						<label id="ValidacionFC" name="ValidacionFC"></label>
-					</p>
-				</div>
-				<div class="col-md-3">
-					<p>
-						<label>Peso (Kg)</label>
-						<input id="Peso" name="Peso" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						<label id="ValidacionPeso" name="ValidacionPeso"></label>
-					</p>
-				</div>
-				<div class="col-md-3">
-					<p>
-						<label>Talla (m)</label>
-						<input id="Talla" name="Talla" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						<label id="ValidacionTalla" name="ValidacionTalla"></label>
-					</p>
-				</div>
-				<div class="col-md-3">
-					<p>
-						<label>Saturación</label>
-						<input id="Saturacion" name="Saturacion" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" />
-						<label id="ValidacionSaturacion" name="ValidacionSaturacion"></label>
-					</p>
-				</div>
-				<div class="col-md-3">
-					<p>
-						<label>IMC</label>
-						<input id="IMC" name="IMC" class="required number" style="text-align:left; border-radius:0.3rem; width:100%; height:40px;" disabled />
-						<label id="p1" name="p1"></label>
-					</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-12">
-					<p>
-						<label>Observaciones Enfermeria</label>
-						<br />
-						<textarea id="ObservacionesEnfermeria" name="ObservacionesEnfermeria" class="col-xl required number" type="text" rows="2" style="text-align:left; border-radius:0.3rem; width:100%; height:100%;"></textarea>
-					</p>
-				</div>
-			</div>
-			<br />
-			<div class="text-center">
-				<button id="btnGuardarSignosVitales" name="btnGuardarSignosVitales" style="background-color:darkturquoise; border-bottom-color:darkturquoise;color:white; border-radius:0.3rem; width:200px; height:40px; cursor: pointer">GUARDAR</button>
 			</div>
 		</div>
-    </div>
-</div>
+	</div>
 
-<script src="~/Scripts/Validador.js"></script>
-<script src="~/Scripts/signos-vitales.js"></script>
+	<script src="~/Scripts/Validador.js"></script>
+	<script src="~/Scripts/signos-vitales.js"></script>

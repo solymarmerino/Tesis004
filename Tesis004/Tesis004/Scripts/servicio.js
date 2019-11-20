@@ -4,7 +4,6 @@
                    "<th scope=\"col\">Especialidad</th>"+
                    "<th scope=\"col\">Medico</th>"+
                    "<th scope=\"col\">Tipo cita</th>"+
-                   "<th scope=\"col\">Emergencia</th>"+
                    "<th scope=\"col\">Eliminar</th>"+
                    "</tr>" ;
     $("#tbltablaCita").append(cabecera);
@@ -26,8 +25,7 @@ function consultarCitaPaciente() {
                 fila += "<td scope=\"col\">" + resultado[i]["NombreEspecialidad"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreCita"] + "</th >";
-                fila += "<td scope=\"col\">" + resultado[i]["CitaMedicaID"] + "</th >";
-                fila += "<td scope=\"col\"> <button name=\"btnEliminarCita\" id=\"btnEliminarCita\" onclick=\"eliminarCita(" + resultado[i]["CitaMedicaID"] + ")\"><i class=\"fas fa - minus - square\"></i></button></th >";
+				fila += "<td scope=\"col\"> <button name=\"btnEliminarCita\" id=\"btnEliminarCita\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"eliminarCita(" + resultado[i]["CitaMedicaID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></th >";
                 $("#tbltablaCita").append("<tr>"+fila+"</tr>");
             }            
         }
