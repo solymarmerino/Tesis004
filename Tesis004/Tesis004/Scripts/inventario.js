@@ -49,4 +49,5 @@ function AgregarProducto() {
 }
 ///////////FIN AGREGAR PRODUCTO////////////////////////////
 
+
 //////////////FIN FUNCIONES INVENTARIO//////////////

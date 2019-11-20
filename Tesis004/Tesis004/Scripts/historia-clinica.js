@@ -118,6 +118,8 @@ function limpiarAlergia() {
     $("#txtAlergia").text("");
 }
 
+
+
 function consultarSignosVitales() {
     var ConsultarSignosVitales = {};
     ConsultarSignosVitales.url = "/Enfermeria/ConsultarUltimoSignosVitales";
