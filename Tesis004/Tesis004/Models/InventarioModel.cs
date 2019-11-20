@@ -19,5 +19,6 @@ namespace Tesis004.Models
         public int CantidadProducto { get; set; }
         public string LoteProducto { get; set; }
         public DateTime FechaVencimientoProducto { get; set; }
+        public string FechaString { get; set; }
 	}
 }

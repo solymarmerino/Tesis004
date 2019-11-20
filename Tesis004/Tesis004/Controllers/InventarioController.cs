@@ -41,12 +41,28 @@ namespace Tesis004.Controllers
         }
 
 		[HttpPost]
-		public JsonResult GuardarProducto(InventarioModel producto)
+		public JsonResult GuardarProducto(InventarioModel invertario)
 		{
 			List<bool> ingresado = new List<bool>();
-			ingresado.Add(this.inventarioBDD.IngresarProducto(producto));
+			ingresado.Add(this.inventarioBDD.IngresarProducto(invertario));
 			return Json(ingresado);
 		}
 
-	}
+        [HttpPost]
+        public JsonResult ListarProducto()
+        {
+            List<InventarioModel> resultado = new List<InventarioModel>();
+            resultado = this.inventarioBDD.ListarProducto();
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult EliminarProducto(int productoId)
+        {
+            List<bool> resultado = new List<bool>();
+            resultado.Add(inventarioBDD.EliminarProducto(productoId));
+            return Json(resultado);
+        }
+
+    }
 }
