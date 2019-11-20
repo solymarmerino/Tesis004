@@ -12,5 +12,6 @@ namespace Tesis004.Models
 		public string DescripcionEgreso { get; set; }
 		public decimal ValorEgreso { get; set; }
 		public DateTime FechaEgreso { get; set; }
+		public string FechaString { get; set; }
 	}
 }
