@@ -29,6 +29,7 @@ namespace Tesis004.Controllers
                 Session["ingreso"] = "true";
                 Session["tipoUsuario"] = personalIngreso.Cargo.ToString();
                 Session["nombreUsuario"] = personalIngreso.Nombre;
+                Session["personalID"] = personalIngreso.PersonalID.ToString();
                 return RedirectToAction("Presentacion", "Ingreso");
             }
             else
@@ -47,6 +48,7 @@ namespace Tesis004.Controllers
             Session["ingreso"] = "false";
             Session["tipoUsuario"] = "";
             Session["nombreUsuario"] = "";
+            Session["personalID"] = "";
             return RedirectToAction("Ingreso", "Ingreso");
 		}
 

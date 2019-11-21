@@ -95,6 +95,26 @@ namespace Tesis004.Controllers
 		}
 
         [HttpPost]
+        public JsonResult ListarCitaGeneral()
+        {
+            List<CitaModel> resultado = new List<CitaModel>();
+            if (Session["tipoUsuario"].Equals("18"))
+            {
+                resultado = servicioBDD.ListarCitaRecepcion(18);
+            }
+            if (Session["tipoUsuario"].Equals("20"))
+            {
+                resultado = servicioBDD.ListarCitaEnfermeria(20);
+            }
+            if (Session["tipoUsuario"].Equals("21"))
+            {
+                resultado = servicioBDD.ListarCitaMedico(Session["personalID"].ToString(), 21);
+            }
+
+            return Json(resultado);
+        }
+
+        [HttpPost]
         public JsonResult ListarCitaPorDia()
         {
             List<CitaModel> resultado = new List<CitaModel>();

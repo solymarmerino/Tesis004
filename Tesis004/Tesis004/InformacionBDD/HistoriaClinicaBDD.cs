@@ -577,11 +577,14 @@ namespace Tesis004.InformacionBDD
             List<CitaModel> listaProcedimiento = new List<CitaModel>();
 
             string sentenciaSql = "SELECT c.CitaMedicaID, c.Fecha, per.Nombre, cie.Detalle " +
-                                  "FROM Cita c" +
+                                  "FROM CitaMedica c " +
                                   "INNER JOIN Personal per ON c.PersonalID = per.PersonalID " +
-                                  "INNER JOIN ConsultaMedica cm ON c.ConsultaMedicaID = cm.ConsultaMedicaID" +
-                                  "INNER JOIN CIE10 cie ON cm.CIE10ID = cie.CIE10ID " +
-                                  $"WHERE c.PacienteID = {pacienteID} ";
+                                  "INNER JOIN ConsultaMedica cm ON c.CitaMedicaID = cm.ConsultaMedicaID " +
+                                  "INNER JOIN Diagnostico d ON cm.ConsultaMedicaID = d.ConsultaMedicaID " +
+                                  "INNER JOIN CIE10 cie ON d.CIE10ID = cie.CIE10ID " +
+                                  "WHERE c.Atencion = 1 " +
+                                  $"AND c.PacienteID = {pacienteID} " +
+                                  "ORDER BY c.Fecha desc";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -592,6 +595,7 @@ namespace Tesis004.InformacionBDD
                 cita.Fecha = tablaDatos.Rows[i].Field<DateTime>("Fecha");
                 cita.NombreMedico = tablaDatos.Rows[i].Field<string>("Nombre");
                 cita.DetalleDiagnostico = tablaDatos.Rows[i].Field<string>("Detalle");
+                cita.FechaString = tablaDatos.Rows[i].Field<DateTime>("Fecha").ToString("dd/MM/yyyy");
 
                 listaProcedimiento.Add(cita);
             }

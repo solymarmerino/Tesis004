@@ -1010,7 +1010,7 @@ function consultarAtencionPrevia() {
         if (resultado.length > 0) {
             for (var i = 0; i < resultado.length; i++) {
                 var fila = "";
-                fila += "<td scope=\"col\">" + resultado[i]["Fecha"] + "</td>";
+                fila += "<td scope=\"col\">" + resultado[i]["FechaString"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["DetalleDiagnostico"] + "</td>";
 				fila += "<td scope=\"col\"> <button name=\"\" id=\"\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"(" + resultado[i]["ProcedimientoID"] + ")\"><i class=\"fas fa-eye\"></i></button></th >";

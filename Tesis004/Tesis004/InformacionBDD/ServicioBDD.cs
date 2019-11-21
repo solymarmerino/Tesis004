@@ -93,8 +93,8 @@ namespace Tesis004.InformacionBDD
             int resultado = 0;
 
             string sentenciaSql = "UPDATE CITAMEDICA " +
-                                  "SET enfermeria = 1 " +
-                                  "WHERE PacienteID = @PacienteID AND Fecha = @Fecha";
+                                  "SET Enfermeria = 1 " +
+                                  "WHERE PacienteID = @PacienteID AND Enfermeria = 0 ";
 
             SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
 
@@ -174,6 +174,47 @@ namespace Tesis004.InformacionBDD
             return listaCitaResultado;
         }
 
+        public List<CitaModel> ListarCitaRecepcion(int tipoUsuario)
+        {
+            List<CitaModel> listaCitaResultado = new List<CitaModel>();
+
+            string sentenciaSql = "SELECT cm.CitaMedicaID, cm.PacienteID, pc.NombreCompleto, cm.PersonalID, pr.Nombre, cm.TipoCita, pm.Valor as Cita, cm.Fecha, cm.Pagado, cm.Atencion, cm.Enfermeria, pmo.Valor as Especialidad, pc.Cedula, pc.NumHistoriaClinica " +
+                                  "FROM CitaMedica cm INNER JOIN Paciente pc " +
+                                  "ON cm.PacienteID = pc.PacienteID " +
+                                  "INNER JOIN Personal pr " +
+                                  "ON cm.PersonalID = pr.PersonalID " +
+                                  "INNER JOIN Parametro pm " +
+                                  "ON cm.TipoCita = pm.ParametroID " +
+                                  "INNER JOIN Parametro pmo " +
+                                  "ON pr.Especialidad = pmo.ParametroID ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                CitaModel citaResultado = new CitaModel();
+                citaResultado.CitaMedicaID = tablaDatos.Rows[i].Field<int>("CitaMedicaID");
+                citaResultado.PacienteID = tablaDatos.Rows[i].Field<int>("PacienteID");
+                citaResultado.NombrePaciente = tablaDatos.Rows[i].Field<string>("NombreCompleto");
+                citaResultado.PersonalID = tablaDatos.Rows[i].Field<int>("PersonalID");
+                citaResultado.NombreMedico = tablaDatos.Rows[i].Field<string>("Nombre");
+                citaResultado.TipoCita = tablaDatos.Rows[i].Field<int>("TipoCita");
+                citaResultado.NombreCita = tablaDatos.Rows[i].Field<string>("Cita").Replace("_", " ");
+                citaResultado.Fecha = tablaDatos.Rows[i].Field<DateTime>("Fecha");
+                citaResultado.Pagado = tablaDatos.Rows[i].Field<bool>("Pagado");
+                citaResultado.Atencion = tablaDatos.Rows[i].Field<bool>("Atencion");
+                citaResultado.Enfermeria = tablaDatos.Rows[i].Field<bool>("Enfermeria");
+                citaResultado.NombreEspecialidad = tablaDatos.Rows[i].Field<string>("Especialidad").Replace("_", " ");
+                citaResultado.Cedula = tablaDatos.Rows[i].Field<string>("Cedula");
+                citaResultado.HistoriaClinica = tablaDatos.Rows[i].Field<int>("NumHistoriaClinica");
+                citaResultado.TipoUsuario = tipoUsuario;
+
+                listaCitaResultado.Add(citaResultado);
+            }
+
+            return listaCitaResultado;
+        }
+
         public List<CitaModel> ListarCitaPorPaciente(int pacienteID)
         {
             List<CitaModel> listaCitaResultado = new List<CitaModel>();
@@ -213,11 +254,11 @@ namespace Tesis004.InformacionBDD
             return listaCitaResultado;
         }
 
-        public List<CitaModel> ListarCitaPorMedico(string personalID)
+        public List<CitaModel> ListarCitaMedico(string personalID, int tipoUsuario)
         {
             List<CitaModel> listaCitaResultado = new List<CitaModel>();
 
-            string sentenciaSql = "SELECT cm.CitaMedicaID, cm.PacienteID, pc.NombreCompleto, cm.PersonalID, pr.Nombre, cm.TipoCita, pm.Valor, cm.Fecha, cm.Pagado, cm.Atencion, cm.Enfermeria " +
+            string sentenciaSql = "SELECT cm.CitaMedicaID, cm.PacienteID, pc.NombreCompleto, cm.PersonalID, pr.Nombre, cm.TipoCita, pm.Valor, cm.Fecha, cm.Pagado, cm.Atencion, cm.Enfermeria, pc.Cedula, pc.NumHistoriaClinica " +
                                   "FROM CitaMedica cm INNER JOIN Paciente pc " +
                                   "ON cm.PacienteID = pc.PacienteID " +
                                   "INNER JOIN Personal pr " +
@@ -242,6 +283,46 @@ namespace Tesis004.InformacionBDD
                 citaResultado.Pagado = tablaDatos.Rows[i].Field<bool>("Pagado");
                 citaResultado.Atencion = tablaDatos.Rows[i].Field<bool>("Atencion");
                 citaResultado.Enfermeria = tablaDatos.Rows[i].Field<bool>("Enfermeria");
+                citaResultado.Cedula = tablaDatos.Rows[i].Field<string>("Cedula");
+                citaResultado.HistoriaClinica = tablaDatos.Rows[i].Field<int>("NumHistoriaClinica");
+                citaResultado.TipoUsuario = tipoUsuario;
+
+                listaCitaResultado.Add(citaResultado);
+            }
+
+            return listaCitaResultado;
+        }
+
+        public List<CitaModel> ListarCitaEnfermeria(int tipoUsuario)
+        {
+            List<CitaModel> listaCitaResultado = new List<CitaModel>();
+
+            /*string sentenciaSql = "SELECT cm.CitaMedicaID, cm.PacienteID, pc.NombreCompleto, cm.PersonalID, pr.Nombre, cm.TipoCita, pm.Valor as Cita, cm.Fecha, cm.Pagado, cm.Atencion, cm.Enfermeria, pmo.Valor as Especialidad, pc.Cedula, pc.NumHistoriaClinica " +
+                                  "FROM CitaMedica cm INNER JOIN Paciente pc " +
+                                  "ON cm.PacienteID = pc.PacienteID " +
+                                  "INNER JOIN Personal pr " +
+                                  "ON cm.PersonalID = pr.PersonalID " +
+                                  "INNER JOIN Parametro pm " +
+                                  "ON cm.TipoCita = pm.ParametroID " +
+                                  "INNER JOIN Parametro pmo " +
+                                  "ON pr.Especialidad = pmo.ParametroID ";*/
+            string sentenciaSql = "SELECT PacienteID, Cedula, NombreCompleto, NumHistoriaClinica " +
+                                  "FROM Paciente " +
+                                  "WHERE PacienteID IN " +
+                                  "(SELECT distinct(PacienteID) " +
+                                  "FROM CitaMedica " +
+                                  "WHERE Enfermeria = 0) ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                CitaModel citaResultado = new CitaModel();
+                citaResultado.PacienteID = tablaDatos.Rows[i].Field<int>("PacienteID");
+                citaResultado.NombrePaciente = tablaDatos.Rows[i].Field<string>("NombreCompleto");
+                citaResultado.Cedula = tablaDatos.Rows[i].Field<string>("Cedula");
+                citaResultado.HistoriaClinica = tablaDatos.Rows[i].Field<int>("NumHistoriaClinica");
+                citaResultado.TipoUsuario = tipoUsuario;
 
                 listaCitaResultado.Add(citaResultado);
             }
