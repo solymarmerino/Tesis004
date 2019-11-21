@@ -1,6 +1,7 @@
 ﻿function limpiarTablaCita() {
     $("#tbltablaCita").empty();
-    var cabecera = "<tr>"+
+    var cabecera = "<tr>" +
+                   "<th scope=\"col\">Fecha</th>" +
                    "<th scope=\"col\">Especialidad</th>"+
                    "<th scope=\"col\">Medico</th>"+
                    "<th scope=\"col\">Tipo cita</th>"+
@@ -22,6 +23,7 @@ function consultarCitaPaciente() {
         if (resultado.length > 0) {           
             for (var i = 0; i < resultado.length; i++) {
                 var fila = "";
+                fila += "<td scope=\"col\">" + resultado[i]["FechaString"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreEspecialidad"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreCita"] + "</th >";

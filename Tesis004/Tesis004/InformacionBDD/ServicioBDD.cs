@@ -226,9 +226,10 @@ namespace Tesis004.InformacionBDD
                                   "ON cm.PersonalID = pr.PersonalID " +
                                   "INNER JOIN Parametro pm " +
                                   "ON cm.TipoCita = pm.ParametroID " +
-                                  "INNER JOIN Parametro pmo "+
-                                  "ON pr.Especialidad = pmo.ParametroID "+
-                                  $"WHERE cm.PacienteID = {pacienteID}";
+                                  "INNER JOIN Parametro pmo " +
+                                  "ON pr.Especialidad = pmo.ParametroID " +
+                                  $"WHERE cm.PacienteID = {pacienteID} " +
+                                  "ORDER BY cm.Fecha DESC ";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -247,6 +248,7 @@ namespace Tesis004.InformacionBDD
                 citaResultado.Atencion = tablaDatos.Rows[i].Field<bool>("Atencion");
                 citaResultado.Enfermeria = tablaDatos.Rows[i].Field<bool>("Enfermeria");
                 citaResultado.NombreEspecialidad = tablaDatos.Rows[i].Field<string>("Especialidad").Replace("_", " ");
+                citaResultado.FechaString = tablaDatos.Rows[i].Field<DateTime>("Fecha").ToString("dd/MM/yyyyy");
 
                 listaCitaResultado.Add(citaResultado);
             }
