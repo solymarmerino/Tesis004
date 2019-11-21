@@ -118,6 +118,22 @@ function limpiarAlergia() {
     $("#txtAlergia").text("");
 }
 
+function limpiarTablaHistoricoSV() {
+	var cabecera = "<tr>" +
+		+"<th scope=\"col\">Fecha</th>"+
+	+"	< th scope =\"col\">Temperatura</th>"+
+		+"< th scope =\"col\">Preción Arterial</th>"+
+		+"< th scope =\"col\">FR</th>"+
+		+"< th scope =\"col\">FC</th>"+
+		+"< th scope = \"col\">Peso</th>"+
+			+"<th scope=\"col\">Talla</th>"+
+				+"<th scope=\"col\">Saturación</th>"+
+			+"<th scope=\"col\">IMC</th>"+
+			+"<th scope=\"col\">Observación</th>"+
+
+		"</tr>";
+	$("#tblHabito").append(cabecera);
+}
 
 
 function consultarSignosVitales() {
@@ -145,6 +161,33 @@ function consultarSignosVitales() {
     };
     $.ajax(ConsultarSignosVitales);
 }
+////////////////////////////////////////////////////////////////////////////
+function consultarHistoricoSV() {
+	var ConsultarHistoricoSV = {};
+	ConsultarHistoricoSV.url = "/Enfermeria/ConsultarHistoricoSignosVitales";
+	ConsultarHistoricoSV.type = "POST";
+	ConsultarHistoricoSV.data = JSON.stringify({
+		numeroHistoriaClinica: $("#IptNumeroHistoriaClinica").val()
+	});
+	ConsultarHistoricoSV.datatype = "json";
+	ConsultarHistoricoSV.contentType = "application/json";
+	ConsultarHistoricoSV.success = function (resultado) {
+		$("#Peso").val(resultado["Peso"]);
+		$("#Talla").val(resultado["Talla"]);
+		$("#PA").val(resultado["PrecionArterial"]);
+		$("#Temperatura").val(resultado["Temperatura"]);
+		$("#FC").val(resultado["FrecuenciaCardiaca"]);
+		$("#FR").val(resultado["FrecuenciaRespiratoria"]);
+		$("#IMC").val(resultado["IndiceMasaCorporal"]);
+		$("#Saturacion").val(resultado["SaturacionOxigeno"]);
+		$("#ObservacionesEnfermeria").val(resultado["Observacion"]);
+	};
+	ConsultarHistoricoSV.error = function () {
+		toastr.error("Error al consultar los signos vitales");
+	};
+	$.ajax(ConsultarHistoricoSV);
+}
+/////////////////////////////////////////////////////////////////////////
 
 function actualizarDatosConsulta() {
     var TipoConsultaHC = "";
