@@ -22,5 +22,7 @@ namespace Tesis004.Models
         public bool Atencion { get; set; }
         public bool Enfermeria { get; set; }
         public string DetalleDiagnostico { get; set; }
+        public string FechaString { get; set; }
+        public int TipoUsuario { get; set; }
     }
 }
