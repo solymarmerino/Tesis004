@@ -11,7 +11,7 @@ namespace Tesis004.Controllers
     public class ContabilidadController : Controller
     {
 		InformacionGeneralBDD informacionGeneral = new InformacionGeneralBDD();
-		ClienteBDD contabilidadBDD = new ClienteBDD();
+		ContabilidadBDD contabilidadBDD = new ContabilidadBDD();
 
 		// GET: Contabilidad
 		public ActionResult GestionContabilidad()

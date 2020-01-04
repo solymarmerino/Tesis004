@@ -8,10 +8,10 @@ using Tesis004.Models;
 
 namespace Tesis004.InformacionBDD
 {
-    public class ClienteBDD
+    public class ContabilidadBDD
 	{
         private ConexionBDD conexion = new ConexionBDD();
-        public ClienteBDD()
+        public ContabilidadBDD()
         {
 
         }
