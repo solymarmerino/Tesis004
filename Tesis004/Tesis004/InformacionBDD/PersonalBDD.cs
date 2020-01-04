@@ -108,14 +108,17 @@ namespace Tesis004.InformacionBDD
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
-            personalResultado.PersonalID = tablaDatos.Rows[0].Field<int>("PersonalID");
-            personalResultado.Nombre = tablaDatos.Rows[0].Field<string>("Nombre");
-            personalResultado.Cedula = tablaDatos.Rows[0].Field<string>("Cedula");
-            personalResultado.Telefono = tablaDatos.Rows[0].Field<string>("Telefono");
-            personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
-            personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
-            personalResultado.Especialidad = tablaDatos.Rows[0].Field<int>("Especialidad");
-            personalResultado.Codigo = tablaDatos.Rows[0].Field<string>("Codigo");
+            if(tablaDatos.Rows.Count > 0)
+            {
+                personalResultado.PersonalID = tablaDatos.Rows[0].Field<int>("PersonalID");
+                personalResultado.Nombre = tablaDatos.Rows[0].Field<string>("Nombre");
+                personalResultado.Cedula = tablaDatos.Rows[0].Field<string>("Cedula");
+                personalResultado.Telefono = tablaDatos.Rows[0].Field<string>("Telefono");
+                personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
+                personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
+                personalResultado.Especialidad = tablaDatos.Rows[0].Field<int>("Especialidad");
+                personalResultado.Codigo = tablaDatos.Rows[0].Field<string>("Codigo");
+            }            
 
             return personalResultado;
         }
@@ -130,11 +133,14 @@ namespace Tesis004.InformacionBDD
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
-            personalResultado.PersonalID = tablaDatos.Rows[0].Field<int>("PersonalID");
-            personalResultado.Nombre = tablaDatos.Rows[0].Field<string>("Nombre");
-            personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
-            personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
-            personalResultado.Contrasena = tablaDatos.Rows[0].Field<string>("Contrasena");
+            if (tablaDatos.Rows.Count > 0)
+            {
+                personalResultado.PersonalID = tablaDatos.Rows[0].Field<int>("PersonalID");
+                personalResultado.Nombre = tablaDatos.Rows[0].Field<string>("Nombre");
+                personalResultado.Cargo = tablaDatos.Rows[0].Field<int>("Cargo");
+                personalResultado.Usuario = tablaDatos.Rows[0].Field<string>("Usuario");
+                personalResultado.Contrasena = tablaDatos.Rows[0].Field<string>("Contrasena");
+            }
 
             return personalResultado;
         }
@@ -202,12 +208,15 @@ namespace Tesis004.InformacionBDD
                                   $"WHERE ServicioID = {ServicioID} ";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
-
             PersonalServicioModel personalServicoResultado = new PersonalServicioModel();
-            personalServicoResultado.ServicioID = tablaDatos.Rows[0].Field<int>("ServicioID");
-            personalServicoResultado.PersonalID = tablaDatos.Rows[0].Field<int>("PersonalID");
-            personalServicoResultado.Detalle = tablaDatos.Rows[0].Field<string>("Detalle");
-            personalServicoResultado.Valor = tablaDatos.Rows[0].Field<decimal>("Valor");
+
+            if (tablaDatos.Rows.Count > 0)
+            {
+                personalServicoResultado.ServicioID = tablaDatos.Rows[0].Field<int>("ServicioID");
+                personalServicoResultado.PersonalID = tablaDatos.Rows[0].Field<int>("PersonalID");
+                personalServicoResultado.Detalle = tablaDatos.Rows[0].Field<string>("Detalle");
+                personalServicoResultado.Valor = tablaDatos.Rows[0].Field<decimal>("Valor");
+            }
 
             return personalServicoResultado;
         }

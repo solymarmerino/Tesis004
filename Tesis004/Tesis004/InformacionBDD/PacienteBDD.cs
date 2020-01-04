@@ -127,24 +127,28 @@ namespace Tesis004.InformacionBDD
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
             PacienteModel pacienteResultado = new PacienteModel();
-            pacienteResultado.PacienteID = tablaDatos.Rows[0].Field<int>("PacienteID");
-            pacienteResultado.NumHistoriaClinica = tablaDatos.Rows[0].Field<int>("NumHistoriaClinica");
-            pacienteResultado.NombreCompleto = tablaDatos.Rows[0].Field<string>("NombreCompleto");
-            pacienteResultado.Cedula = tablaDatos.Rows[0].Field<string>("Cedula");
-            pacienteResultado.FechaNacimiento = tablaDatos.Rows[0].Field<DateTime>("FechaNacimiento");
-            pacienteResultado.Direccion = tablaDatos.Rows[0].Field<string>("Direccion");
-            pacienteResultado.Telefono = tablaDatos.Rows[0].Field<string>("Telefono");
-            pacienteResultado.Sexo = tablaDatos.Rows[0].Field<int>("Sexo");
-            pacienteResultado.EstadoCivil = tablaDatos.Rows[0].Field<int>("EstadoCivil");
-            pacienteResultado.TipoSangre = tablaDatos.Rows[0].Field<int>("TipoSangre");
-            pacienteResultado.Etnia = tablaDatos.Rows[0].Field<int>("Etnia");
-            pacienteResultado.NombreContactoEmergencia = tablaDatos.Rows[0].Field<string>("NombreContactoEmergencia");
-            pacienteResultado.AfinidadContactoEmergencia = tablaDatos.Rows[0].Field<string>("AfinidadContactoEmergencia");
-            pacienteResultado.TelefonoContactoEmergencia = tablaDatos.Rows[0].Field<string>("TelefonoContactoEmergencia");
-            pacienteResultado.Representante = tablaDatos.Rows[0].Field<bool>("Representante");
-            pacienteResultado.Discapacidad = tablaDatos.Rows[0].Field<bool>("Discapacidad");
-            pacienteResultado.Email = tablaDatos.Rows[0].Field<string>("Email");
-            pacienteResultado.Ocupacion = tablaDatos.Rows[0].Field<string>("Ocupacion");
+
+            if (tablaDatos.Rows.Count > 0)
+            {
+                pacienteResultado.PacienteID = tablaDatos.Rows[0].Field<int>("PacienteID");
+                pacienteResultado.NumHistoriaClinica = tablaDatos.Rows[0].Field<int>("NumHistoriaClinica");
+                pacienteResultado.NombreCompleto = tablaDatos.Rows[0].Field<string>("NombreCompleto");
+                pacienteResultado.Cedula = tablaDatos.Rows[0].Field<string>("Cedula");
+                pacienteResultado.FechaNacimiento = tablaDatos.Rows[0].Field<DateTime>("FechaNacimiento");
+                pacienteResultado.Direccion = tablaDatos.Rows[0].Field<string>("Direccion");
+                pacienteResultado.Telefono = tablaDatos.Rows[0].Field<string>("Telefono");
+                pacienteResultado.Sexo = tablaDatos.Rows[0].Field<int>("Sexo");
+                pacienteResultado.EstadoCivil = tablaDatos.Rows[0].Field<int>("EstadoCivil");
+                pacienteResultado.TipoSangre = tablaDatos.Rows[0].Field<int>("TipoSangre");
+                pacienteResultado.Etnia = tablaDatos.Rows[0].Field<int>("Etnia");
+                pacienteResultado.NombreContactoEmergencia = tablaDatos.Rows[0].Field<string>("NombreContactoEmergencia");
+                pacienteResultado.AfinidadContactoEmergencia = tablaDatos.Rows[0].Field<string>("AfinidadContactoEmergencia");
+                pacienteResultado.TelefonoContactoEmergencia = tablaDatos.Rows[0].Field<string>("TelefonoContactoEmergencia");
+                pacienteResultado.Representante = tablaDatos.Rows[0].Field<bool>("Representante");
+                pacienteResultado.Discapacidad = tablaDatos.Rows[0].Field<bool>("Discapacidad");
+                pacienteResultado.Email = tablaDatos.Rows[0].Field<string>("Email");
+                pacienteResultado.Ocupacion = tablaDatos.Rows[0].Field<string>("Ocupacion");
+            }
 
             DateTime fechaActual = DateTime.Today;
             int anos = fechaActual.Year - pacienteResultado.FechaNacimiento.Year;

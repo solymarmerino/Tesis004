@@ -34,7 +34,7 @@
     ModificarPaciente.success = function (ingresado) {
         if (ingresado[0] == true) {
             toastr.success("Paciente modificado");
-            location.reload();
+            setTimeout("location.href='../Paciente/BuscarPaciente'", 2000);
         }
         else {
             toastr.error("Paciente NO modificado");

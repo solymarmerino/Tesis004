@@ -183,7 +183,7 @@
                     target: 'body',
                     closeHtml: '<button type="button">&times;</button>',
                     newestOnTop: true,
-                    preventDuplicates: false,
+                    preventDuplicates: true,
                     progressBar: false
                 };
             }

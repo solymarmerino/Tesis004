@@ -44,9 +44,9 @@ function consultarCita() {
                 fila += "<td scope=\"col\">" + resultado[i]["Cedula"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["HistoriaClinica"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</th >";
-                fila += "<td scope=\"col\">" + resultado[i]["Pagado"] + "</th >";
-                fila += "<td scope=\"col\">" + resultado[i]["Enfermeria"] + "</th >";
-                fila += "<td scope=\"col\">" + resultado[i]["Atencion"] + "</th >";
+                fila += "<td scope=\"col\">" + (resultado[i]["Pagado"] == true ? 'SI' : 'NO') + "</th >";
+                fila += "<td scope=\"col\">" + (resultado[i]["Enfermeria"] == true ? 'SI' : 'NO') + "</th >";
+                fila += "<td scope=\"col\">" + (resultado[i]["Atencion"] == true ? 'SI' : 'NO') + "</th >";
                 fila += "<td scope=\"col\"> <button name=\"btnPagarCita\" id=\"btnPagarCita\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" onclick=\"pagarCita(" + resultado[i]["CitaMedicaID"] + ")\"><i class=\"far fa-money-bill-alt\"></i></button></th >";
                 fila += "<th scope=\"col\"></th>";
                 fila += "<th scope=\"col\"></th>";
@@ -76,9 +76,9 @@ function consultarCita() {
                 fila += "<td scope=\"col\">" + resultado[i]["Cedula"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["HistoriaClinica"] + "</th >";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</th >";
-                fila += "<td scope=\"col\">" + resultado[i]["Pagado"] + "</th >";
-                fila += "<td scope=\"col\">" + resultado[i]["Enfermeria"] + "</th >";
-                fila += "<td scope=\"col\">" + resultado[i]["Atencion"] + "</th >";
+                fila += "<td scope=\"col\">" + (resultado[i]["Pagado"] == true ? 'SI' : 'NO') + "</th >";
+                fila += "<td scope=\"col\">" + (resultado[i]["Enfermeria"] == true ? 'SI' : 'NO') + "</th >";
+                fila += "<td scope=\"col\">" + (resultado[i]["Atencion"] == true ? 'SI' : 'NO') + "</th >";
                 fila += "<th scope=\"col\"></th>";
                 fila += "<th scope=\"col\"></th>";
                 fila += "<td scope=\"col\"> <form action=\"../HistoriaClinica/HistoriaClinica\" method=\"POST\"> <input name=\"PacienteID\" value=\"" + resultado[i]["PacienteID"] + "\" hidden> <input name=\"CitaMedicaID\" value=\"" + resultado[i]["CitaMedicaID"] + "\" hidden> <input name=\"HistoriaClinica\" value=\"" + resultado[i]["HistoriaClinica"] + "\" hidden> <button style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\" type=\"submit\"><i class=\"fas fa-user-md\"></i></button></form></th >";

@@ -600,6 +600,7 @@ $('#btnGuardarPacienteNuevo').click(function () {
 	}
 
 	/////ETNIA
+	$("#ValidacionEtniaPaciente").empty();
 	if ($('#SltEtnia').val() == 0) {
 		$("#ValidacionEtniaPaciente").append("***Seleccionar Etnia");
 	}
@@ -613,16 +614,19 @@ $('#btnGuardarPacienteNuevo').click(function () {
 	}
 
 	/////GENERO
+	$("#ValidacionGeneroPaciente").empty();
 	if ($('#SltGenero').val() == 0) {
 		$("#ValidacionGeneroPaciente").append("***Seleccionar Genero");
 	}
 
 	/////ESTADO CIVIL
+	$("#ValidacionEstadoCivilPaciente").empty();
 	if ($('#SltEstadoCivil').val() == 0) {
 		$("#ValidacionEstadoCivilPaciente").append("***Seleccionar Estado Civil");
 	}
 
 	/////TIPO DE SANGRE
+	$("#ValidacionTipoSangrePaciente").empty();
 	if ($('#SltEstadoCivil').val() == 0) {
 		$("#ValidacionTipoSangrePaciente").append("***Seleccionar Tipo de sangre");
 	}
@@ -716,16 +720,19 @@ $('#btnGuardar').click(function () {
 	}
 
 	/////GENERO
+	$("#ValidacionGeneroPaciente").empty();
 	if ($('#SltGenero').val() == 0) {
 		$("#ValidacionGeneroPaciente").append("***Seleccionar Genero");
 	}
 
 	/////ESTADO CIVIL
+	$("#ValidacionEstadoCivilPaciente").empty();
 	if ($('#SltEstadoCivil').val() == 0) {
 		$("#ValidacionEstadoCivilPaciente").append("***Seleccionar Estado Civil");
 	}
 
 	/////TIPO DE SANGRE
+	$("#ValidacionTipoSangrePaciente").empty();
 	if ($('#SltEstadoCivil').val() == 0) {
 		$("#ValidacionTipoSangrePaciente").append("***Seleccionar Tipo de sangre");
 	}
@@ -1681,3 +1688,5 @@ $("#btnAgregarDetalleFactura").click(function () {
 });
 ////////FIN VALIDACION BOTON AGREGAR DETALLE///////
 ////////FIN VALIDACION INVENTARIO////////////
+
+$(".mensajeValidacion").css("color","red");
