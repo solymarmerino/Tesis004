@@ -94,7 +94,7 @@ namespace Tesis004.InformacionBDD
 
             string sentenciaSql = "UPDATE CITAMEDICA " +
                                   "SET Enfermeria = 1 " +
-                                  "WHERE PacienteID = @PacienteID AND Enfermeria = 0 ";
+                                  $"WHERE PacienteID = @PacienteID AND Enfermeria = 0 AND Fecha = '{DateTime.Now.Date}' ";
 
             SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
 
@@ -186,7 +186,8 @@ namespace Tesis004.InformacionBDD
                                   "INNER JOIN Parametro pm " +
                                   "ON cm.TipoCita = pm.ParametroID " +
                                   "INNER JOIN Parametro pmo " +
-                                  "ON pr.Especialidad = pmo.ParametroID ";
+                                  "ON pr.Especialidad = pmo.ParametroID " +
+                                  $"WHERE cm.Fecha = '{DateTime.Now.Date}' ";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -228,8 +229,7 @@ namespace Tesis004.InformacionBDD
                                   "ON cm.TipoCita = pm.ParametroID " +
                                   "INNER JOIN Parametro pmo " +
                                   "ON pr.Especialidad = pmo.ParametroID " +
-                                  $"WHERE cm.PacienteID = {pacienteID} " +
-                                  "ORDER BY cm.Fecha DESC ";
+                                  $"WHERE cm.PacienteID = {pacienteID} AND cm.Fecha = '{DateTime.Now.Date}' ";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -248,7 +248,7 @@ namespace Tesis004.InformacionBDD
                 citaResultado.Atencion = tablaDatos.Rows[i].Field<bool>("Atencion");
                 citaResultado.Enfermeria = tablaDatos.Rows[i].Field<bool>("Enfermeria");
                 citaResultado.NombreEspecialidad = tablaDatos.Rows[i].Field<string>("Especialidad").Replace("_", " ");
-                citaResultado.FechaString = tablaDatos.Rows[i].Field<DateTime>("Fecha").ToString("dd/MM/yyyyy");
+                citaResultado.FechaString = tablaDatos.Rows[i].Field<DateTime>("Fecha").ToString("dd/MM/yyyy");
 
                 listaCitaResultado.Add(citaResultado);
             }
@@ -267,7 +267,7 @@ namespace Tesis004.InformacionBDD
                                   "ON cm.PersonalID = pr.PersonalID " +
                                   "INNER JOIN Parametro pm " +
                                   "ON cm.TipoCita = pm.ParametroID " +
-                                  $"WHERE cm.PersonalID = {personalID}";
+                                  $"WHERE cm.PersonalID = {personalID} AND cm.Fecha = '{DateTime.Now.Date}' ";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
@@ -299,21 +299,12 @@ namespace Tesis004.InformacionBDD
         {
             List<CitaModel> listaCitaResultado = new List<CitaModel>();
 
-            /*string sentenciaSql = "SELECT cm.CitaMedicaID, cm.PacienteID, pc.NombreCompleto, cm.PersonalID, pr.Nombre, cm.TipoCita, pm.Valor as Cita, cm.Fecha, cm.Pagado, cm.Atencion, cm.Enfermeria, pmo.Valor as Especialidad, pc.Cedula, pc.NumHistoriaClinica " +
-                                  "FROM CitaMedica cm INNER JOIN Paciente pc " +
-                                  "ON cm.PacienteID = pc.PacienteID " +
-                                  "INNER JOIN Personal pr " +
-                                  "ON cm.PersonalID = pr.PersonalID " +
-                                  "INNER JOIN Parametro pm " +
-                                  "ON cm.TipoCita = pm.ParametroID " +
-                                  "INNER JOIN Parametro pmo " +
-                                  "ON pr.Especialidad = pmo.ParametroID ";*/
             string sentenciaSql = "SELECT PacienteID, Cedula, NombreCompleto, NumHistoriaClinica " +
                                   "FROM Paciente " +
                                   "WHERE PacienteID IN " +
                                   "(SELECT distinct(PacienteID) " +
                                   "FROM CitaMedica " +
-                                  "WHERE Enfermeria = 0) ";
+                                  $"WHERE Enfermeria = 0 AND Fecha = '{DateTime.Now.Date}' ) ";
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 

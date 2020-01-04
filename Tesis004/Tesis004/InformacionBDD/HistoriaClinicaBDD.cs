@@ -95,11 +95,14 @@ namespace Tesis004.InformacionBDD
 
             DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
-            consultaMedicaResultado.ConsultaMedicaID = tablaDatos.Rows[0].Field<int>("ConsultaMedicaID");
-            consultaMedicaResultado.MotivoConsulta = tablaDatos.Rows[0].Field<string>("MotivoConsulta");
-            consultaMedicaResultado.Analisis = tablaDatos.Rows[0].Field<string>("Analisis");
-            consultaMedicaResultado.PlanTratamiento = tablaDatos.Rows[0].Field<string>("PlanTratamiento");
-            consultaMedicaResultado.TipoConsulta = tablaDatos.Rows[0].Field<string>("TipoConsulta");
+            if (tablaDatos.Rows.Count > 0)
+            {
+                consultaMedicaResultado.ConsultaMedicaID = tablaDatos.Rows[0].Field<int>("ConsultaMedicaID");
+                consultaMedicaResultado.MotivoConsulta = tablaDatos.Rows[0].Field<string>("MotivoConsulta");
+                consultaMedicaResultado.Analisis = tablaDatos.Rows[0].Field<string>("Analisis");
+                consultaMedicaResultado.PlanTratamiento = tablaDatos.Rows[0].Field<string>("PlanTratamiento");
+                consultaMedicaResultado.TipoConsulta = tablaDatos.Rows[0].Field<string>("TipoConsulta");
+            }
 
             return consultaMedicaResultado;
         }

@@ -48,7 +48,14 @@ namespace Tesis004.Controllers
         public JsonResult GuardarCita(CitaModel cita)
         {
             List<bool> resultado = new List<bool>();
-            resultado.Add(servicioBDD.IngresarCita(cita));
+            if(cita.TipoCita > 0)
+            {
+                resultado.Add(servicioBDD.IngresarCita(cita));
+            }
+            else
+            {
+                resultado.Add(false);
+            }            
             return Json(resultado);
         }
 

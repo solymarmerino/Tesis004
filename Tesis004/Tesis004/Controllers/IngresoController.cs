@@ -17,6 +17,10 @@ namespace Tesis004.Controllers
 		public ActionResult Ingreso()
 		{
             Session["ingreso"] = "false";
+            if(TempData["mensaje"] != null)
+            {
+                ViewBag.Mensaje = TempData["mensaje"].ToString();
+            }            
             return View();            
         }
 
@@ -34,6 +38,7 @@ namespace Tesis004.Controllers
             }
             else
             {
+                TempData["mensaje"] = "Usuario o contraseña incorrecto";
                 return RedirectToAction("Ingreso", "Ingreso");
             }
         }

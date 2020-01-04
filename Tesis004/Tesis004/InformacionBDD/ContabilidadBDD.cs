@@ -102,11 +102,15 @@ namespace Tesis004.InformacionBDD
 			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
             IngresoModel ingresoResultado = new IngresoModel();
-			ingresoResultado.IngresoID = tablaDatos.Rows[0].Field<int>("IngresoID");
-			ingresoResultado.DescripcionIngreso = tablaDatos.Rows[0].Field<string>("DescripcionIngreso");
-			ingresoResultado.ServicioIngreso = tablaDatos.Rows[0].Field<string>("ServicioIngreso");
-			ingresoResultado.ValorIngreso = tablaDatos.Rows[0].Field<decimal>("ValorIngreso");
-			ingresoResultado.FechaIngreso = tablaDatos.Rows[0].Field<DateTime>("FechaIngreso");
+
+			if (tablaDatos.Rows.Count > 0)
+			{
+				ingresoResultado.IngresoID = tablaDatos.Rows[0].Field<int>("IngresoID");
+				ingresoResultado.DescripcionIngreso = tablaDatos.Rows[0].Field<string>("DescripcionIngreso");
+				ingresoResultado.ServicioIngreso = tablaDatos.Rows[0].Field<string>("ServicioIngreso");
+				ingresoResultado.ValorIngreso = tablaDatos.Rows[0].Field<decimal>("ValorIngreso");
+				ingresoResultado.FechaIngreso = tablaDatos.Rows[0].Field<DateTime>("FechaIngreso");
+			}
 
 			return ingresoResultado;
 		}
@@ -226,11 +230,14 @@ namespace Tesis004.InformacionBDD
 			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
 
 			EgresoModel egresoResultado = new EgresoModel();
-			egresoResultado.EgresoID = tablaDatos.Rows[0].Field<int>("EgresoID");
-			egresoResultado.DescripcionEgreso = tablaDatos.Rows[0].Field<string>("DescripcionEgreso");
-			egresoResultado.ServicioEgreso = tablaDatos.Rows[0].Field<string>("ServicioEgreso");
-			egresoResultado.ValorEgreso = tablaDatos.Rows[0].Field<decimal>("ValorEgreso");
-			egresoResultado.FechaEgreso = tablaDatos.Rows[0].Field<DateTime>("FechaEgreso");
+			if (tablaDatos.Rows.Count > 0)
+			{
+				egresoResultado.EgresoID = tablaDatos.Rows[0].Field<int>("EgresoID");
+				egresoResultado.DescripcionEgreso = tablaDatos.Rows[0].Field<string>("DescripcionEgreso");
+				egresoResultado.ServicioEgreso = tablaDatos.Rows[0].Field<string>("ServicioEgreso");
+				egresoResultado.ValorEgreso = tablaDatos.Rows[0].Field<decimal>("ValorEgreso");
+				egresoResultado.FechaEgreso = tablaDatos.Rows[0].Field<DateTime>("FechaEgreso");
+			}
 
 			return egresoResultado;
 		}

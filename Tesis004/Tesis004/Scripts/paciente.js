@@ -117,7 +117,8 @@ function guardarPaciente() {
     GuardarPaciente.contentType = "application/json";
     GuardarPaciente.success = function (ingresado) {
 		if (ingresado[0] == true) {
-			toastr.success("Paciente ingresado!!");
+            toastr.success("Paciente ingresado!!");
+            setTimeout("location.href='../Paciente/BuscarPaciente'", 2000);
         }
         else {
 			toastr.error("Paciente NO ingresado!!!!");
@@ -129,3 +130,7 @@ function guardarPaciente() {
     };
     $.ajax(GuardarPaciente);
 }
+
+$(document).ready(function () {
+    buscarPaciente();
+});

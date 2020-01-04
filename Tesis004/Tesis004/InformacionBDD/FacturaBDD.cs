@@ -174,33 +174,6 @@ namespace Tesis004.InformacionBDD
             return ingresado;
         }
 
-        /*
-		public List<ClienteModel> ListaSugerenciaCliente(string cliente)
-		{
-			List<ClienteModel> listaSugerenciaResultado = new List<ClienteModel>();
-
-			string sentenciaSql = "";
-			DataTable tablaDatos = new DataTable();
-
-			 sentenciaSql = "SELECT NombreCliente " +
-						    "FROM Cliente " +
-							$"WHERE NombreCliente LIKE '%{cliente}%' " +
-							"ORDER BY ClienteID desc ";
-
-					tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
-
-					for (int i = 0; i < tablaDatos.Rows.Count; i++)
-					{
-						ClienteModel clienteResultado = new ClienteModel();
-						clienteResultado.NombreCliente = tablaDatos.Rows[i].Field<string>("NombreCliente");
-
-						listaSugerenciaResultado.Add(clienteResultado);
-					}
-
-			return listaSugerenciaResultado;
-		}
-		*/
-
         public bool IngresarDetalle(DetalleFacturaModel detalle)
         {
             bool ingresado = false;
