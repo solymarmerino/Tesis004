@@ -44,13 +44,20 @@ namespace Tesis004.Controllers
 
         [HttpPost]
         public JsonResult IngresarPersonal(PersonalModel personal)
-        {
+        {            
+            List<bool> ingresado = new List<bool>();
             if (string.IsNullOrEmpty(personal.Codigo))
             {
                 personal.Codigo = "";
             }
-            List<bool> ingresado = new List<bool>();
-            ingresado.Add(this.personalBDD.IngresarPersonal(personal));
+            if (!string.IsNullOrEmpty(personal.Contrasena) && !string.IsNullOrEmpty(personal.Contrasena) && personal.Contrasena.Equals(personal.ConfContrasena))
+            {
+                ingresado.Add(this.personalBDD.IngresarPersonal(personal));
+            }
+            else
+            {
+                ingresado.Add(false);
+            }
             return Json(ingresado);
         }
 
@@ -74,7 +81,22 @@ namespace Tesis004.Controllers
         public JsonResult GuardarPersonalModificado(PersonalModel personal)
         {
             List<bool> modificado = new List<bool>();
-            modificado.Add(this.personalBDD.GuardarPersonalModificado(personal));
+            bool resultado = false;
+            if (string.IsNullOrEmpty(personal.Codigo))
+            {
+                personal.Codigo = "";
+            }
+            if (string.IsNullOrEmpty(personal.Contrasena) && string.IsNullOrEmpty(personal.Contrasena))
+            {
+                resultado = this.personalBDD.GuardarPersonalModificadoSinContrasena(personal);
+            }
+            if (!string.IsNullOrEmpty(personal.Contrasena) && !string.IsNullOrEmpty(personal.Contrasena) && personal.Contrasena.Equals(personal.ConfContrasena))
+            {
+                resultado = this.personalBDD.GuardarPersonalModificado(personal);
+            }
+
+            modificado.Add(resultado);
+            
             return Json(modificado);
         }
 
