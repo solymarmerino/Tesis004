@@ -1208,14 +1208,24 @@ $("#btnAgregarEgreso").click(function () {
 ///INICIO VALIDACION RANGO FECHA///////
 $("#iptFechaFin").change(function () {
 	$("#ValidacionFechaInicio").empty();
+	$("#ValidacionFechaFin").empty();
 	var fecha1 = $("#iptFechaInicio").val();
 	var fecha2 = $("#iptFechaFin").val();
+	var fechamaxima = new Date();
+	var fechacomparacion1 = (fechamaxima.getFullYear() + "-" + (fechamaxima.getMonth() + 1) + "-" + fechamaxima.getDate());
 
 	if (fecha2 < fecha1) {
-		$("#ValidacionFechaInicio").append("Fecha fin mayor a fecha inicio");
+		$("#ValidacionFechaInicio").append("Fecha fin anterior a fecha inicio");
 	}
 	else {
 		$("#ValidacionFechaInicio").prop("disable", true);
+	}
+
+	if (fecha2 > fechacomparacion1) {
+		$("#ValidacionFechaFin").append("Fecha fin mayor a fecha actual");
+	}
+	else {
+		$("#ValidacionFechaFin").prop("disable", true);
 	}
 });
 
@@ -1246,8 +1256,7 @@ $("#btnConsultarInforme").click(function () {
 	}
 	
 	///VALIDACION CHECK
-
-	///el campo fecha no este vacio
+	///el campo tipo informe este seleccionado
 	if ($('#rdIngreso')[0].checked == false && $('#rdEgreso')[0].checked == false) {
 		$("#ValidacionInformeIE").append("Seleccionar una opcion");
 	}
