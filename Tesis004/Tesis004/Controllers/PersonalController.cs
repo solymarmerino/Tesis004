@@ -45,6 +45,10 @@ namespace Tesis004.Controllers
         [HttpPost]
         public JsonResult IngresarPersonal(PersonalModel personal)
         {
+            if (string.IsNullOrEmpty(personal.Codigo))
+            {
+                personal.Codigo = "";
+            }
             List<bool> ingresado = new List<bool>();
             ingresado.Add(this.personalBDD.IngresarPersonal(personal));
             return Json(ingresado);

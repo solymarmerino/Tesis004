@@ -5,19 +5,20 @@
     $("#Usuario").val("");
     $("#Contrasena").val("");
     $("#ConfContrasena").val("");
+    $("#iptCodigoPersona").val("");
     document.getElementById("Cargo").selectedIndex = 0;
     document.getElementById("Especialidad").selectedIndex = 0;
 }
 
 function modificar(PersonalID) {
+    $("#AItemPersonal").click();
     limpiarTablaPersonal();
     $("#TituloCabeceraNuevo").prop("hidden", true);
     $("#TituloCabeceraModificar").prop("hidden", false);
     $("#BtnGuardarNuevo").prop("hidden", true);
     $("#BtnGuardarModificar").prop("hidden", false);
     $("#BtnBtnGuardarModificar").prop("value", PersonalID);
-    $("#Especialidad").prop("disabled", true);
-    $("#AItemPersonal").click();
+    $("#Especialidad").prop("disabled", true);    
     var ConsultarPersonal = {};
     ConsultarPersonal.url = "/Personal/ModificarPersonal";
     ConsultarPersonal.type = "POST";
@@ -136,15 +137,7 @@ function guardarModificado() {
     ModificarPersonal.success = function (modificado) {
 		if (modificado[0] == true) {
 			toastr.success("Personal modificado!!");
-            $("#Nombre").empty();
-            $("#Cedula").empty();
-            $("#Telefono").empty();
-            $("#Cargo").prop("value",0);
-            $("#Especialidad").prop("value", 0);
-            $("#Usuario").empty();
-            $("#Contrasena").empty();
-            $("#ConfContrasena").empty();
-            $("#iptCodigoPersona").empty();
+            limpiarTablaPersonal();
         }
 		else {
 			toastr.error("Personal NO modificado!!!!");
@@ -313,6 +306,14 @@ function anadirServicio() {
 		toastr.error("Error al ingresar servicio!!");
     };
     $.ajax(AnadirServicio);
+}
+
+function nuevoPersonal() {
+    limpiarTablaPersonal();
+    $("#TituloCabeceraNuevo").prop("hidden", false);
+    $("#TituloCabeceraModificar").prop("hidden", true);
+    $("#BtnGuardarNuevo").prop("hidden", false);
+    $("#BtnGuardarModificar").prop("hidden", true);
 }
 
 $("#UsuarioSrv").change(function () {

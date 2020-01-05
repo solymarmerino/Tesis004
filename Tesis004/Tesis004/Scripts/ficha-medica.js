@@ -45,10 +45,10 @@ function limpiarTablaProcedimiento() {
 
 function consultarSignosVitales() {
     var ConsultarSignosVitales = {};
-    ConsultarSignosVitales.url = "/Enfermeria/ConsultarUltimoSignosVitales";
+    ConsultarSignosVitales.url = "/Enfermeria/SignosVitalesPorCitaMedica";
     ConsultarSignosVitales.type = "POST";
     ConsultarSignosVitales.data = JSON.stringify({
-        numeroHistoriaClinica: $("#IptNumeroHistoriaClinica").val()
+        citaMedicaID: $("#ConsultaMedicaID").val()
     });
     ConsultarSignosVitales.datatype = "json";
     ConsultarSignosVitales.contentType = "application/json";

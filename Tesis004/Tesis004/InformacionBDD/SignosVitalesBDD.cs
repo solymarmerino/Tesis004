@@ -48,6 +48,38 @@ namespace Tesis004.InformacionBDD
             return signosVitalesResultado;
         }
 
+        public SignosVitalesModel SignosVitalesPorCitaMedica(int citaMedicaID)
+        {
+            SignosVitalesModel signosVitalesResultado = new SignosVitalesModel();
+
+            string sentenciaSql = "SELECT sv.SignosVitalesID, sv.HistoriaClinicaID, sv.Fecha, sv.PrecionArterial, sv.Temperatura, sv.Peso, sv.Talla, sv.FrecuenciaCardiaca, sv.FrecuenciaRespiratoria, sv.IndiceMasaCorporal, sv.SaturacionOxigeno, sv.Observacion " +
+                                  "FROM CitaMedica cm INNER JOIN HistoriaClinica hc " +
+                                  "ON cm.PacienteID = hc.PacienteID " +
+                                  "INNER JOIN SignosVitales sv " +
+                                  "ON hc.HistoriaClinicaID = sv.HistoriaClinicaID " +
+                                  $"WHERE cm.Fecha = sv.Fecha AND cm.CitaMedicaID = {citaMedicaID} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            if (tablaDatos.Rows.Count > 0)
+            {
+                signosVitalesResultado.SignosVitalesID = tablaDatos.Rows[0].Field<int>("SignosVitalesID");
+                signosVitalesResultado.HistoriaClinica = tablaDatos.Rows[0].Field<int>("HistoriaClinicaID");
+                signosVitalesResultado.Fecha = tablaDatos.Rows[0].Field<DateTime>("Fecha");
+                signosVitalesResultado.PrecionArterial = tablaDatos.Rows[0].Field<string>("PrecionArterial");
+                signosVitalesResultado.Temperatura = tablaDatos.Rows[0].Field<decimal>("Temperatura");
+                signosVitalesResultado.Peso = tablaDatos.Rows[0].Field<decimal>("Peso");
+                signosVitalesResultado.Talla = tablaDatos.Rows[0].Field<decimal>("Talla");
+                signosVitalesResultado.FrecuenciaCardiaca = tablaDatos.Rows[0].Field<int>("FrecuenciaCardiaca");
+                signosVitalesResultado.FrecuenciaRespiratoria = tablaDatos.Rows[0].Field<int>("FrecuenciaRespiratoria");
+                signosVitalesResultado.IndiceMasaCorporal = tablaDatos.Rows[0].Field<decimal>("IndiceMasaCorporal");
+                signosVitalesResultado.SaturacionOxigeno = tablaDatos.Rows[0].Field<int>("SaturacionOxigeno");
+                signosVitalesResultado.Observacion = tablaDatos.Rows[0].Field<string>("Observacion");
+            }
+
+            return signosVitalesResultado;
+        }
+
         public List<SignosVitalesModel> ListarSignosVitales(int numeroHistoriaClinica)
         {
             List<SignosVitalesModel> listaSignosVitalesResultado = new List<SignosVitalesModel>();
