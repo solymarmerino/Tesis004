@@ -81,14 +81,22 @@ namespace Tesis004.Controllers
         public JsonResult ValidarSubjetivo(SubjetivoModel subjetivo)
         {
             List<bool> ingresado = new List<bool>();
-            if (subjetivo.SubjetivoID == 0)
+
+            if(subjetivo.ItemSubjetivo > 0)
             {
-                ingresado.Add(this.historiaClinicaBDD.InsertarSubjetivo(subjetivo));
+                if (subjetivo.SubjetivoID == 0)
+                {
+                    ingresado.Add(this.historiaClinicaBDD.InsertarSubjetivo(subjetivo));
+                }
+                else
+                {
+                    ingresado.Add(this.historiaClinicaBDD.ModificarSubjetivo(subjetivo));
+                }
             }
             else
             {
-                ingresado.Add(this.historiaClinicaBDD.ModificarSubjetivo(subjetivo));
-            }
+                ingresado.Add(false);
+            }            
             return Json(ingresado);
         }
 
@@ -112,14 +120,22 @@ namespace Tesis004.Controllers
         public JsonResult ValidarObjetivo(ObjetivoModel objetivo)
         {
             List<bool> ingresado = new List<bool>();
-            if (objetivo.ObjetivoID == 0)
+            if(objetivo.ItemObjetivo > 0)
             {
-                ingresado.Add(this.historiaClinicaBDD.InsertarObjetivo(objetivo));
+                if (objetivo.ObjetivoID == 0)
+                {
+                    ingresado.Add(this.historiaClinicaBDD.InsertarObjetivo(objetivo));
+                }
+                else
+                {
+                    ingresado.Add(this.historiaClinicaBDD.ModificarObjetivo(objetivo));
+                }
             }
             else
             {
-                ingresado.Add(this.historiaClinicaBDD.ModificarObjetivo(objetivo));
+                ingresado.Add(false);
             }
+            
             return Json(ingresado);
         }
 
@@ -159,7 +175,14 @@ namespace Tesis004.Controllers
         public JsonResult IngresarDiagnostico(DiagnosticoModel diagnostico)
         {
             List<bool> ingresado = new List<bool>();
-            ingresado.Add(this.historiaClinicaBDD.InsertarDiagnostico(diagnostico));
+            if((diagnostico.EstadoDiagnostico > 0) && (diagnostico.CIE10ID > 0))
+            {
+                ingresado.Add(this.historiaClinicaBDD.InsertarDiagnostico(diagnostico));
+            }
+            else
+            {
+                ingresado.Add(false);
+            }
             return Json(ingresado);
         }
 
@@ -240,7 +263,14 @@ namespace Tesis004.Controllers
         public JsonResult IngresarAntecedentePersonal(AntecedentePersonalModel antecedente)
         {
             List<bool> ingresado = new List<bool>();
-            ingresado.Add(this.historiaClinicaBDD.InsertarAntecedentePersonal(antecedente));
+            if(antecedente.NumAntecedentePersonal > 0)
+            {
+                ingresado.Add(this.historiaClinicaBDD.InsertarAntecedentePersonal(antecedente));
+            }
+            else
+            {
+                ingresado.Add(false);
+            }
             return Json(ingresado);
         }
 
@@ -264,7 +294,15 @@ namespace Tesis004.Controllers
         public JsonResult IngresarAntecedenteFamiliar(AntecedenteFamiliarModel antecedente)
         {
             List<bool> ingresado = new List<bool>();
-            ingresado.Add(this.historiaClinicaBDD.InsertarAntecedenteFamiliar(antecedente));
+            if(antecedente.NumAntecedenteFamiliar > 0)
+            {
+                ingresado.Add(this.historiaClinicaBDD.InsertarAntecedenteFamiliar(antecedente));
+            }
+            else
+            {
+                ingresado.Add(false);
+            }
+            
             return Json(ingresado);
         }
 
@@ -288,7 +326,14 @@ namespace Tesis004.Controllers
         public JsonResult IngresarAntecedenteSocial(AntecedenteSocialModel antecedente)
         {
             List<bool> ingresado = new List<bool>();
-            ingresado.Add(this.historiaClinicaBDD.InsertarAntecedenteSocial(antecedente));
+            if(antecedente.NumAntecedenteSocial > 0)
+            {
+                ingresado.Add(this.historiaClinicaBDD.InsertarAntecedenteSocial(antecedente));
+            }
+            else
+            {
+                ingresado.Add(false);
+            }
             return Json(ingresado);
         }
 
@@ -312,7 +357,14 @@ namespace Tesis004.Controllers
         public JsonResult IngresarHabito(HabitoModel habito)
         {
             List<bool> ingresado = new List<bool>();
-            ingresado.Add(this.historiaClinicaBDD.InsertarHabito(habito));
+            if(habito.NumHabito > 0)
+            {
+                ingresado.Add(this.historiaClinicaBDD.InsertarHabito(habito));
+            }
+            else
+            {
+                ingresado.Add(false);
+            }
             return Json(ingresado);
         }
 
@@ -348,7 +400,7 @@ namespace Tesis004.Controllers
             return Json(resultado);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult MostrarFichaMedica()
         {
             return View();

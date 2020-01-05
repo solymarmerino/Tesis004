@@ -60,9 +60,16 @@ namespace Tesis004.Controllers
         [HttpPost]
         public JsonResult ListarSignosVitales(int numeroHistoriaClinica)
         {
-            List<bool> resultado = new List<bool>();
-            //resultado.Add(signosVitalesBDD.IngresarSignosVitales(signosVitales));
-            //resultado.Add(false);
+            List<SignosVitalesModel> resultado = new List<SignosVitalesModel>();
+            resultado = signosVitalesBDD.ListarSignosVitales(numeroHistoriaClinica);
+            return Json(resultado);
+        }
+
+        [HttpPost]
+        public JsonResult ListarPediatria(int numeroHistoriaClinica)
+        {
+            List<SignosVitalesModel> resultado = new List<SignosVitalesModel>();
+            resultado = signosVitalesBDD.ListarPediatria(numeroHistoriaClinica);
             return Json(resultado);
         }
 
