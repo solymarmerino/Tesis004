@@ -78,6 +78,14 @@ namespace Tesis004.Controllers
         }
 
         [HttpPost]
+        public JsonResult ConsultarDatosConsulta(int consultaMedicaID)
+        {
+            ConsultaMedicaModel consulta = new ConsultaMedicaModel();
+            consulta = this.historiaClinicaBDD.ConsultarConsultaMedica(consultaMedicaID);
+            return Json(consulta);
+        }
+
+        [HttpPost]
         public JsonResult ValidarSubjetivo(SubjetivoModel subjetivo)
         {
             List<bool> ingresado = new List<bool>();
@@ -408,9 +416,10 @@ namespace Tesis004.Controllers
             return Json(resultado);
         }
 
-        [HttpGet]
-        public ActionResult MostrarFichaMedica()
+        [HttpPost]
+        public ActionResult MostrarFichaMedica(int citaMedicaID)
         {
+            ViewData["citaMedica"] = citaMedicaID;
             return View();
         }
     }

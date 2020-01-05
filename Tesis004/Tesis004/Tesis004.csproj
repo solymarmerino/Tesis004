@@ -238,6 +238,7 @@
     <None Include="Properties\PublishProfiles\TDeploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\generarpdf.js" />
+    <Content Include="Scripts\ficha-medica.js" />
     <Content Include="Scripts\historia-clinica.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
