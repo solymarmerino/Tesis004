@@ -393,7 +393,49 @@ function Informe() {
 
 //////////FIN FUNCIONES DE INFORME I/E//////////////////////////////////
 
+function limpiarTablaPagoPersonal() {
+	$("#iptTotalPersonal").val("");
+	$("#tblPagoPersonal").empty();
+	var cabecera = "<tr>" +
+		"<th scope=\"col\">Personal</th>" +
+		"<th scope=\"col\">Citas</th>" +
+		"<th scope=\"col\">Valor</th>" +
+		"<th scope=\"col\">Total</th>" +
+		"</tr>";
+	$("#tblPagoPersonal").append(cabecera);
+}
 
+function listarPagoPersonal() {
+	var PagoPersonal = {};
+	PagoPersonal.url = "/Contabilidad/ListarPagoMedico";
+	PagoPersonal.type = "POST";
+	PagoPersonal.data = JSON.stringify({
+	});
+	PagoPersonal.datatype = "json";
+	PagoPersonal.contentType = "application/json";
+	PagoPersonal.success = function (resultado) {
+		var totalDia = 0;
+		for (var i = 0; i < resultado.length; i++) {
+			totalDia += resultado[i]["TotalPersonal"];
+			var fila = "";
+			fila += "<td scope=\"col\">" + resultado[i]["NombrePersonal"] + "</th >";
+			fila += "<td scope=\"col\">" + resultado[i]["NumeroCitas"] + "</th >";
+			fila += "<td scope=\"col\">" + resultado[i]["PagoCita"] + "</th >";
+			fila += "<td scope=\"col\">" + resultado[i]["TotalPersonal"] + "</th >";
+			$("#tblPagoPersonal").append("<tr>" + fila + "</tr>");
+		}
+		$("#iptTotalPersonal").val(totalDia);
+	};
+	PagoPersonal.error = function () {
+		toastr.error("Error al listar pago a personal!!");
+	};
+	$.ajax(PagoPersonal);
+}
+
+$("#btnActualizarTablaPago").click(function () {
+	limpiarTablaPagoPersonal();
+	listarPagoPersonal();
+});
 
 $(document).ready(function () {
 	limpiarTablaIngreso();
@@ -401,4 +443,6 @@ $(document).ready(function () {
 	limpiarTablaEgreso();
 	listarEgreso();
 	limpiarTablaInforme();
+	limpiarTablaPagoPersonal();
+	listarPagoPersonal();
 });

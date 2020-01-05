@@ -177,6 +177,7 @@
     <Compile Include="Models\DetalleFacturaModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
     <Compile Include="Models\InventarioModel.cs" />
+    <Compile Include="Models\PagoPersonalModel.cs" />
     <Compile Include="Models\ProcedimientoModel.cs" />
     <Compile Include="Models\RecetaModel.cs" />
     <Compile Include="Models\SubjetivoModel.cs" />

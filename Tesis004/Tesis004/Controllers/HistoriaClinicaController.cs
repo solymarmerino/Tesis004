@@ -206,6 +206,10 @@ namespace Tesis004.Controllers
         [HttpPost]
         public JsonResult ValidarReceta(RecetaModel receta)
         {
+            if (string.IsNullOrEmpty(receta.RecetaTexto))
+            {
+                receta.RecetaTexto = "";
+            }
             List<bool> ingresado = new List<bool>();
             ingresado.Add(this.historiaClinicaBDD.ValidarReceta(receta));
             return Json(ingresado);
@@ -387,6 +391,10 @@ namespace Tesis004.Controllers
         [HttpPost]
         public JsonResult ModificarAlergia(HistoriaClinicaModel historiaClinica)
         {
+            if (string.IsNullOrEmpty(historiaClinica.Alergias))
+            {
+                historiaClinica.Alergias = "";
+            }
             List<bool> ingresado = new List<bool>();
             ingresado.Add(this.historiaClinicaBDD.ModificarAlergia(historiaClinica));
             return Json(ingresado);

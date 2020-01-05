@@ -329,5 +329,34 @@ namespace Tesis004.InformacionBDD
 			return listaEgresoResultado;
 		}
 
+		public List<PagoPersonalModel> ListarPagoPersonal()
+		{
+
+			string sentenciaSql = "SELECT cm.PersonalID, p.Nombre, s.Valor, count(cm.PersonalID) as Citas, (count(cm.PersonalID) * s.Valor) as Total " +
+								  "FROM CitaMedica cm INNER JOIN Personal p " +
+								  "ON cm.PersonalID = p.PersonalID " +
+								  "INNER JOIN Servicio s " +
+								  "ON s.PersonalID = p.PersonalID " +
+								  $"WHERE cm.Atencion = 1 AND s.Detalle LIKE 'CITA MEDICA%' AND cm.Fecha = '{DateTime.Now.Date}' " +
+								  "GROUP BY cm.PersonalID, p.Nombre, s.Valor ";
+
+			DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+			List<PagoPersonalModel> listaPago = new List<PagoPersonalModel>();
+			
+			for (int i=0; i < tablaDatos.Rows.Count; i++)
+			{
+				PagoPersonalModel pago = new PagoPersonalModel();
+				pago.PersonalID = tablaDatos.Rows[i].Field<int>("PersonalID");
+				pago.NombrePersonal = tablaDatos.Rows[i].Field<string>("Nombre");
+				pago.PagoCita = tablaDatos.Rows[i].Field<decimal>("Valor");
+				pago.NumeroCitas = tablaDatos.Rows[i].Field<int>("Citas");
+				pago.TotalPersonal = tablaDatos.Rows[i].Field<decimal>("Total");
+				listaPago.Add(pago);
+			}
+
+			return listaPago;
+		}
+
 	}
 }
