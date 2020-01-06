@@ -5,6 +5,7 @@ function limpiarTablaIngreso() {
 	$("#IptIngresoServicio").val("");
 	$("#IptIngresoDetalle").val("");
 	$("#IptIngresoMonto").val("");
+	$("#btnAgregarIngreso").attr("onclick", "agregarIngreso()");
 	$("#tblIngresos").empty();
 	var cabecera = "<tr>" +
 		"<th scope=\"col\">Servicio</th>" +
@@ -166,9 +167,10 @@ function agregarIngreso() {
 
 //////////INICIO LIMPIA TABLA EGRESO EGRESOS////////////////////////////////
 function limpiarTablaEgreso() {
-	$("#IptEgresoServicio").val("");
-	$("#IptEgresoDetalle").val("");
-	$("#IptEgresoMonto").val("");
+	$("#iptEgresoServicio").val("");
+	$("#iptEgresoDetalle").val("");
+	$("#iptEgresoMonto").val("");
+	$("#btnAgregarEgreso").attr("onclick", "agregarEgreso()");
 	$("#tblEgresos").empty();
 	var cabecera = "<tr>" +
 		"<th scope=\"col\">Servicio</th>" +
@@ -294,7 +296,7 @@ function eliminarEgreso(egresoID) {
 ///////////FIN ELIMINAR EGRESOS////////////////////////////
 
 ///////////INICIO AGREGAR EGRESOS////////////////////////////
-function AgregarEgreso() {
+function agregarEgreso() {
 	var ContabilidadEgreso = {};
 	ContabilidadEgreso.url = "/Contabilidad/GuardarEgreso";
 	ContabilidadEgreso.type = "POST";
