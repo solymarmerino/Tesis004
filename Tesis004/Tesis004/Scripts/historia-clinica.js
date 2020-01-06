@@ -11,6 +11,7 @@
 }
 
 function limpiarTablaObjetivo() {
+    $("#descripcionObjetivo").val("");
     document.getElementById("sltObjetivo").selectedIndex = 0;
     $("#tblObjetivo").empty();
     var cabecera = "<tr>" +
@@ -1144,7 +1145,7 @@ function consultarAtencionPrevia() {
                 fila += "<td scope=\"col\">" + resultado[i]["FechaString"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["NombreMedico"] + "</td>";
                 fila += "<td scope=\"col\">" + resultado[i]["DetalleDiagnostico"] + "</td>";
-                fila += "<td scope=\"col\"> <form action=\"MostrarFichaMedica\" method=\"post\" ><button name=\"citaMedicaID\" id=\"citaMedicaID\" value=\"" + resultado[i]["CitaMedicaID"]+"\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\"\"><i class=\"fas fa-eye\"></i></button></form></td>";
+                fila += "<td scope=\"col\"> <form action=\"MostrarFichaMedica\" method=\"post\" target=\"_blank\"><button name=\"citaMedicaID\" id=\"citaMedicaID\" value=\"" + resultado[i]["CitaMedicaID"]+"\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:35px; cursor:pointer\"\"><i class=\"fas fa-eye\"></i></button></form></td>";
                 $("#tblAtencionPrevia").append("<tr>" + fila + "</tr>");
             }
         }

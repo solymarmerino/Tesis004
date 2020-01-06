@@ -61,6 +61,14 @@ namespace Tesis004.Controllers
         }
 
         [HttpPost]
+        public JsonResult SignosVitalesPorCitaMedica(int citaMedicaID)
+        {
+            SignosVitalesModel signosVitalesResultado = new SignosVitalesModel();
+            signosVitalesResultado = signosVitalesBDD.SignosVitalesPorCitaMedica(citaMedicaID);
+            return Json(signosVitalesResultado);
+        }
+
+        [HttpPost]
         public JsonResult ListarSignosVitales(int numeroHistoriaClinica)
         {
             List<SignosVitalesModel> resultado = new List<SignosVitalesModel>();
