@@ -51,7 +51,15 @@ namespace Tesis004.Controllers
 		public JsonResult GuardarIngreso(IngresoModel ingreso)
 		{
 			List<bool> ingresado = new List<bool>();
-			ingresado.Add(this.contabilidadBDD.IngresarIngreso(ingreso));
+			if (ingreso.ValorIngreso > 0)
+			{
+				ingresado.Add(this.contabilidadBDD.IngresarIngreso(ingreso));
+			}
+			else
+			{
+				ingresado.Add(false);
+			}
+			
 			return Json(ingresado);
 		}
 
@@ -94,7 +102,15 @@ namespace Tesis004.Controllers
 		public JsonResult GuardarEgreso(EgresoModel egreso)
 		{
 			List<bool> ingresado = new List<bool>();
-			ingresado.Add(this.contabilidadBDD.IngresarEgreso(egreso));
+			if (egreso.ValorEgreso > 0)
+			{
+				ingresado.Add(this.contabilidadBDD.IngresarEgreso(egreso));
+			}
+			else
+			{
+				ingresado.Add(false);
+			}
+
 			return Json(ingresado);
 		}
 
