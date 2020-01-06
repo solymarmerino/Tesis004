@@ -43,9 +43,12 @@ namespace Tesis004.Controllers
         [HttpPost]
         public JsonResult GuardarSignosVitales(SignosVitalesModel signosVitales)
         {
+            if (string.IsNullOrEmpty(signosVitales.Observacion))
+            {
+                signosVitales.Observacion = "";
+            }
             List<bool> resultado = new List<bool>();
             resultado.Add(signosVitalesBDD.IngresarSignosVitales(signosVitales));
-            //resultado.Add(false);
             return Json(resultado);
         }
 

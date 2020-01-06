@@ -164,5 +164,13 @@ namespace Tesis004.Controllers
 			ingresoResultado = this.contabilidadBDD.InformeEgreso(fechaInicio, fechaFin);
 			return Json(ingresoResultado);
 		}
+
+		[HttpPost]
+		public JsonResult ListarPagoMedico()
+		{
+			List<PagoPersonalModel> resultado = new List<PagoPersonalModel>();
+			resultado = this.contabilidadBDD.ListarPagoPersonal();
+			return Json(resultado);
+		}
 	}
 }

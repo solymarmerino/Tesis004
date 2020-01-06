@@ -78,6 +78,14 @@ namespace Tesis004.Controllers
         }
 
         [HttpPost]
+        public JsonResult ConsultarDatosConsulta(int consultaMedicaID)
+        {
+            ConsultaMedicaModel consulta = new ConsultaMedicaModel();
+            consulta = this.historiaClinicaBDD.ConsultarConsultaMedica(consultaMedicaID);
+            return Json(consulta);
+        }
+
+        [HttpPost]
         public JsonResult ValidarSubjetivo(SubjetivoModel subjetivo)
         {
             List<bool> ingresado = new List<bool>();
@@ -206,6 +214,10 @@ namespace Tesis004.Controllers
         [HttpPost]
         public JsonResult ValidarReceta(RecetaModel receta)
         {
+            if (string.IsNullOrEmpty(receta.RecetaTexto))
+            {
+                receta.RecetaTexto = "";
+            }
             List<bool> ingresado = new List<bool>();
             ingresado.Add(this.historiaClinicaBDD.ValidarReceta(receta));
             return Json(ingresado);
@@ -387,6 +399,10 @@ namespace Tesis004.Controllers
         [HttpPost]
         public JsonResult ModificarAlergia(HistoriaClinicaModel historiaClinica)
         {
+            if (string.IsNullOrEmpty(historiaClinica.Alergias))
+            {
+                historiaClinica.Alergias = "";
+            }
             List<bool> ingresado = new List<bool>();
             ingresado.Add(this.historiaClinicaBDD.ModificarAlergia(historiaClinica));
             return Json(ingresado);
@@ -400,9 +416,10 @@ namespace Tesis004.Controllers
             return Json(resultado);
         }
 
-        [HttpGet]
-        public ActionResult MostrarFichaMedica()
+        [HttpPost]
+        public ActionResult MostrarFichaMedica(int citaMedicaID)
         {
+            ViewData["citaMedica"] = citaMedicaID;
             return View();
         }
     }
