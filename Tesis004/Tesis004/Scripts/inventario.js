@@ -14,6 +14,8 @@ function limpiarTablaProductos() {
 		"<th scope=\"col\">Cantidad</th>" +
 		"<th scope=\"col\">Lote</th>" +
 		"<th scope=\"col\">Fecha Vencimiento</th>" +
+		"<th scope=\"col\"></th>" +
+		"<th scope=\"col\"></th>" +
 		"</tr>";
 	$("#tblProducto").append(cabecera);
 }
@@ -30,12 +32,14 @@ function listarProducto() {
     ListarProducto.success = function (resultado) {
         for (var i = 0; i < resultado.length; i++) {
             var fila = "";
-            fila += "<td scope=\"col\">" + resultado[i]["Producto"] + "</th >";
-            fila += "<td scope=\"col\">" + resultado[i]["TipoProducto"] + "</th >";
-            fila += "<td scope=\"col\">" + resultado[i]["CantidadProducto"] + "</th >";
-            fila += "<td scope=\"col\">" + resultado[i]["LoteProducto"] + "</th >";
-            fila += "<td scope=\"col\">" + resultado[i]["FechaString"] + "</th >";
-            fila += "<td scope=\"col\"> <button name=\"btnEliminarProducto\" id=\"btnEliminarProducto\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"eliminarProducto(" + resultado[i]["ProductoID"] + ")\"><i class=\"fas fa-trash-alt\"></i></button></th >"
+            fila += "<td scope=\"col\">" + resultado[i]["Producto"] + "</td >";
+            fila += "<td scope=\"col\">" + resultado[i]["TipoProducto"] + "</td >";
+            fila += "<td scope=\"col\">" + resultado[i]["CantidadProducto"] + "</td >";
+            fila += "<td scope=\"col\">" + resultado[i]["LoteProducto"] + "</td >";
+            fila += "<td scope=\"col\">" + resultado[i]["FechaString"] + "</td >";
+            fila += "<td scope=\"col\"> <input id=\"ipt" + resultado[i]["ProductoID"] + "\" name=\"ipt" + resultado[i]["ProductoID"] +"\" class=\"col-md\" style=\"text-align: left; border-radius: 0.3rem; width: 100 %; height: 40px;\" /></td >"
+            fila += "<td scope=\"col\"> <button name=\"btnDisminuirProducto\" id=\"btnDisminuirProducto\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"disminuirProducto(" + resultado[i]["ProductoID"] + ")\"><i class=\"fas fa-minus-square\"></i></button></td >"
+            fila += "<td scope=\"col\"> <button name=\"btnEliminarProducto\" id=\"btnEliminarProducto\" style=\"background-color:darkturquoise; border-bottom-color:darkturquoise; color:white; border-radius:0.3rem; width:35px; height:30px; cursor:pointer\" onclick=\"eliminarProducto(" + resultado[i]["ProductoID"] + ")\"><i class=\"fas fa-trash-alt\"></i></button></td >"
             $("#tblProducto").append("<tr>" + fila + "</tr>");
         }
     };
@@ -75,6 +79,32 @@ function AgregarProducto() {
 	$.ajax(NuevoProducto);
 }
 ///////////FIN AGREGAR PRODUCTO////////////////////////////
+
+function disminuirProducto(IdProducto) {
+    var DisminuirProducto = {};
+    DisminuirProducto.url = "/Inventario/DisminuirProducto";
+    DisminuirProducto.type = "POST";
+    DisminuirProducto.data = JSON.stringify({
+        productoId: IdProducto,
+        cantidad: $("#ipt"+IdProducto.toString()).val()
+    });
+    DisminuirProducto.datatype = "json";
+    DisminuirProducto.contentType = "application/json";
+    DisminuirProducto.success = function (resultado) {
+        if (resultado[0] == true) {
+            toastr.success("Producto descontado");
+            limpiarTablaProductos();
+            listarProducto();
+        }
+        else {
+            toastr.error("Producto NO descontado");
+        }
+    };
+    DisminuirProducto.error = function () {
+        toastr.error("Error al descontar el producto");
+    };
+    $.ajax(DisminuirProducto);
+}
 
 function eliminarProducto(IdProducto) {
     var EliminarProducto = {};
