@@ -17,6 +17,8 @@
 
 	var NombreCompletoPaciente = $("#IptNombreCompleto").val();
 
+	var Diagnosticos = "<td scope=\"col\">" + resultado[i]["Cie10Detalle"] + "</td>";
+
 	var observaciones = $("#observacionCertificado").val();
 
 	var certificado = new jsPDF();
@@ -45,6 +47,7 @@
 	certificado.text(20, 80, 'Certifico: que el(a) Señor(a) ' + NombreCompletoPaciente + ' con');
 	certificado.text(20, 90, 'cédula de identidad número ' +cedula+', fue atendido en esta Casa');
 	certificado.text(20, 100, 'de Salud el dia ' + flarga1 + ', presentando un cuadro de:');
+	certificado.text(20, 110, Diagnosticos);
 	certificado.text(20, 130, 'Condición que amerita reposo desde el día ' + flarga1);
 	certificado.text(20, 140, 'hasta el día ' + flarga2 + '.');
 	certificado.text(20, 150, 'OBSERVACIONES: ' + observaciones);
