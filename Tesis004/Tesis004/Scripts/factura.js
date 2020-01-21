@@ -113,6 +113,7 @@ function actualizarFactura() {
     Facturacion.success = function (resultado) {
         if (resultado[0] == true) {
             toastr.success("Factura generada");
+            location.reload();
         }
         else {
             toastr.error("Factura NO generada");

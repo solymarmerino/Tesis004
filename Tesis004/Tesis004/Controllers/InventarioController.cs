@@ -57,6 +57,14 @@ namespace Tesis004.Controllers
         }
 
         [HttpPost]
+        public JsonResult DisminuirProducto(int productoId, int cantidad)
+        {
+            List<bool> resultado = new List<bool>();
+            resultado.Add(inventarioBDD.DisminuirProducto(productoId, cantidad));
+            return Json(resultado);
+        }
+
+        [HttpPost]
         public JsonResult EliminarProducto(int productoId)
         {
             List<bool> resultado = new List<bool>();

@@ -68,6 +68,53 @@ namespace Tesis004.InformacionBDD
             return listaProducto;
         }
 
+        public int CantidadPorProducto(int productoId)
+        {
+            int cantidad = 0;
+
+            string sentenciaSql = "SELECT TOP(1) CantidadProducto " +
+                                  "FROM Inventario "+
+                                  $"WHERE ProductoID = {productoId} ";
+
+            DataTable tablaDatos = this.conexion.ComandoConsulta(sentenciaSql);
+
+            for (int i = 0; i < tablaDatos.Rows.Count; i++)
+            {
+                cantidad = tablaDatos.Rows[i].Field<int>("CantidadProducto");
+            }
+
+            return cantidad;
+        }
+
+        public bool DisminuirProducto(int productoId, int cantidad)
+        {
+            bool respuesta = false;
+            int resultado = 0;
+
+            int inicial = this.CantidadPorProducto(productoId);
+
+            if(inicial >= cantidad)
+            {
+                string sentenciaSql = "UPDATE Inventario " +
+                                      "SET CantidadProducto = CantidadProducto - @cantidad " +
+                                      "WHERE ProductoID = @ProductoID";
+
+                SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+                sentenciaSQL.Parameters.AddWithValue("@ProductoID", productoId);
+                sentenciaSQL.Parameters.AddWithValue("@cantidad", cantidad);
+
+                resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+            }
+
+            if (resultado > 0)
+            {
+                respuesta = true;
+            }
+
+            return respuesta;
+        }
+
         public bool EliminarProducto(int productoId)
         {
             bool ingresado = false;

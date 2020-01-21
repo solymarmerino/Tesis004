@@ -176,6 +176,36 @@ namespace Tesis004.InformacionBDD
             return modificado;
         }
 
+        public bool GuardarPersonalModificadoSinContrasena(PersonalModel personal)
+        {
+            bool modificado = false;
+            int resultado = 0;
+
+            string sentenciaSql = "UPDATE Personal " +
+                                  "SET Nombre = @Nombre, Cedula = @Cedula, Telefono = @Telefono, Cargo = @Cargo, Usuario = @Usuario, Especialidad = @Especialidad, Codigo = @Codigo  " +
+                                  "WHERE PersonalID = @PersonalID ";
+
+            SqlCommand sentenciaSQL = new SqlCommand(sentenciaSql);
+
+            sentenciaSQL.Parameters.AddWithValue("@PersonalID", personal.PersonalID);
+            sentenciaSQL.Parameters.AddWithValue("@Nombre", personal.Nombre);
+            sentenciaSQL.Parameters.AddWithValue("@Cedula", personal.Cedula);
+            sentenciaSQL.Parameters.AddWithValue("@Telefono", personal.Telefono);
+            sentenciaSQL.Parameters.AddWithValue("@Cargo", personal.Cargo);
+            sentenciaSQL.Parameters.AddWithValue("@Usuario", personal.Usuario);
+            sentenciaSQL.Parameters.AddWithValue("@Especialidad", personal.Especialidad);
+            sentenciaSQL.Parameters.AddWithValue("@Codigo", personal.Codigo);
+
+            resultado = this.conexion.ComandoModificacion(sentenciaSQL);
+
+            if (resultado > 0)
+            {
+                modificado = true;
+            }
+
+            return modificado;
+        }
+
         public List<PersonalServicioModel> ListaPersonalServicio(int personalID)
         {
             List<PersonalServicioModel> listaPersonalServicioResultado = new List<PersonalServicioModel>();

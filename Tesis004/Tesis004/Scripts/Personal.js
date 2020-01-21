@@ -66,6 +66,7 @@ function ingresar() {
 		if (ingresado[0] == true) {
             toastr.success("Personal ingresado correctamente!!");
             limpiarTablaPersonal();
+            $("#AItemLista").click();
         }
 		else {
 			toastr.error("Personal NO ingresado!!!!");
@@ -112,11 +113,6 @@ function listar() {
 }
 
 function guardarModificado() {
-    $("#TituloCabeceraNuevo").prop("hidden", false);
-    $("#TituloCabeceraModificar").prop("hidden", true);
-    $("#BtnGuardarNuevo").prop("hidden", false);
-    $("#BtnGuardarModificar").prop("hidden", true);
-    $("#AItemLista").click();
     var ModificarPersonal = {};
     ModificarPersonal.url = "/Personal/GuardarPersonalModificado";
     ModificarPersonal.type = "POST";
@@ -138,6 +134,7 @@ function guardarModificado() {
 		if (modificado[0] == true) {
 			toastr.success("Personal modificado!!");
             limpiarTablaPersonal();
+            $("#AItemLista").click();
         }
 		else {
 			toastr.error("Personal NO modificado!!!!");
